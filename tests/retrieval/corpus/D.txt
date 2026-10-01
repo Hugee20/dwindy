@@ -1,0 +1,1 @@
+Helios delivery service. After a failed delivery, wait 23 seconds before retrying. Permit four retries.

@@ -1,6 +1,6 @@
-# Dwindy architecture through M5
+# Dwindy architecture through M6
 
-Status: M1 runtime and template-kwargs correction, M2 Core, M3 local HTTP API, M4 chat interfaces, and M5 opt-in SQLite persistence.
+Status: M1 runtime and template-kwargs correction, M2 Core, M3 local HTTP API, M4 chat interfaces, M5 opt-in SQLite persistence, and M6 explicit local retrieval.
 The project proposal remains the specification. This document records implemented decisions.
 
 ## Execution and ownership
@@ -34,7 +34,7 @@ variable. It launches one Uvicorn worker with reload, proxy-header trust, and ac
 ## Core boundary and lifecycle
 
 `DwindyCore(backend, *, options, system_prompt="")` represents one ephemeral conversation.
-Its public operations are synchronous `chat(user_text)`, `reset()`, `snapshot()` and `restore(messages)`. It borrows a
+Its public operations are synchronous `chat(user_text, *, evidence=None)`, `reset()`, `snapshot()` and `restore(messages)`. It borrows a
 `ModelBackend`; neither reset nor stream cleanup closes the model itself. It depends on
 `backend.py`, not configuration files, GGUF, llama.cpp, or template variables.
 
@@ -292,3 +292,35 @@ conversation and explicit destructive deletion when enabled; floating controls u
 details disclosure. Ephemeral reset behavior remains available. No history/list UI or browser
 storage exists. See [persistence](PERSISTENCE.md) for exact schema, transactions, quotas,
 configuration, privacy and validation, and [chat interfaces](CHAT_INTERFACES.md) for UI lifecycle.
+
+## Explicit local retrieval through M6
+
+`ingest.py` reads an authoritative TOML manifest of explicitly named UTF-8 text/Markdown
+files and synchronizes a separate, rebuildable FTS5 SQLite index in one transaction.
+It performs no directory discovery. `retrieval.py` validates and queries that index;
+it never constructs model input or accesses source files at query time. The M5 database
+schema and store are unchanged. Both stores share the existing serialized storage worker;
+the model worker remains separate. No additional runtime dependency is introduced.
+
+`evidence.py` contains immutable passage/source records and data framing. Core accepts
+at most twelve candidates through a narrow per-turn Evidence value, selects at most three,
+and uses the backend's real rendered token counts for the incremental allowance and final
+context limit. Only retrieval-enabled turns receive untrusted-document guidance. The absent
+evidence path retains the existing message sequence and prompt behavior. Core imports no
+SQLite, ingestion, API configuration or filesystem operations.
+
+Evidence and its guidance are never committed to conversation history. Snapshot, archival
+and restoration still contain only original questions and generated answers; an answer may
+itself repeat a document fact. Source metadata appears in the current JSON response or SSE
+started event, not in a persistent conversation evidence trail. `supplied` describes model
+input, not verified answerability, grounding or correctness.
+
+The API opens a configured index read-only at startup and closes it on the storage worker
+after draining requests. Explicit POST /v1/retrieve performs no inference. Chat opts in with
+retrieval:true. It holds the existing inference lease through retrieval, token preparation,
+generation and cleanup; disconnects do not permit unsafe backend reuse. Explicit retrieval
+failures do not silently fall back to model-only generation. Index synchronization is an
+offline CLI operation: stop the server, sync, then restart. No live index management API exists.
+
+See [retrieval](RETRIEVAL.md) for schema, limits, security, wire contract and the separate
+[M6 validation report](M6_VALIDATION.md). M7 project discovery remains unimplemented.

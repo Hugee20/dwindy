@@ -9,6 +9,7 @@ import ipaddress
 import json
 import secrets
 import time
+from typing import Literal
 from urllib.parse import urlsplit
 
 from fastapi import FastAPI, Request
@@ -21,6 +22,8 @@ from .backend import Completion, ContextLimitError, TextDelta
 from .core import DwindyCore, TurnStarted
 from .server import ApiConfig
 from .persistence import ConversationStore, StorageError
+from .evidence import Evidence
+from .retrieval import RetrievalError, RetrievalIndex, match_query
 
 
 def error(status, code, message, *, retry=False):
@@ -35,6 +38,7 @@ class ChatRequest(BaseModel):
     message: str
     conversation_id: str | None = Field(default=None, pattern=r"^[A-Za-z0-9_-]{32}$")
     stream: bool = False
+    retrieval: bool = False
 
     @field_validator("message")
     @classmethod
@@ -49,18 +53,59 @@ class Usage(BaseModel):
     text_tokens: int = Field(description="Retokenized raw response text, not sampled-token count.")
 
 
+class SourceMetadata(BaseModel):
+    document_id: str
+    chunk_id: str
+    name: str
+    source_path: str
+    content_hash: str
+    line_start: int
+    line_end: int
+    start: int
+    end: int
+    heading: str
+    source_type: str
+
+
+class RetrievalMetadata(BaseModel):
+    status: Literal["supplied", "no_match", "budget_exhausted"]
+    sources: list[SourceMetadata]
+
+
+class RetrievalMatch(SourceMetadata):
+    text: str
+    score: float
+
+
+class RetrieveReply(BaseModel):
+    matches: list[RetrievalMatch]
+
+
 class ChatReply(BaseModel):
     conversation_id: str
     text: str
     finish_reason: str
     dropped_turns: int
     usage: Usage
+    retrieval: RetrievalMetadata | None = None
+
+
+class RetrieveRequest(BaseModel):
+    model_config = ConfigDict(extra="forbid", strict=True)
+    query: str
+
+    @field_validator("query")
+    @classmethod
+    def valid_query(cls, value):
+        match_query(value)
+        return value
 
 
 class HealthReply(BaseModel):
     status: str
     busy: bool
     persistence_enabled: bool
+    retrieval_enabled: bool
 
 
 ERROR_SCHEMA = {"type": "object", "required": ["error"], "properties": {"error": {
@@ -177,8 +222,9 @@ class ApiState:
         self.ready = False
         self.tasks = set()
         self.store = None
+        self.index = None
         self.storage_executor = (ThreadPoolExecutor(max_workers=1, thread_name_prefix="dwindy-storage")
-                                 if config.database_path is not None else None)
+                                 if config.database_path is not None or config.retrieval_index_path is not None else None)
         self.storage_lock = asyncio.Lock()
         self.deleting = set()
 
@@ -206,6 +252,8 @@ class ApiState:
             del self.conversations[key]
 
     def admit(self, body):
+        if body.retrieval and self.index is None:
+            return error(503, "retrieval_disabled", "No local retrieval index is configured.")
         if not self.ready:
             return error(503, "unavailable", "Model is unavailable.", retry=True)
         self.expire()
@@ -362,7 +410,11 @@ class ChatResponse(Response):
                     raise
             if state.store is not None:
                 before = self.entry.core.snapshot()
-            stream = self.entry.core.chat(self.body.message)
+            evidence = None
+            if self.body.retrieval:
+                passages = await state.storage(state.index.search, self.body.message, 12)
+                evidence = Evidence(passages, state.config.retrieval_context_tokens)
+            stream = self.entry.core.chat(self.body.message, evidence=evidence)
             started = await advance()
             if not isinstance(started, TurnStarted):
                 raise RuntimeError("Missing Core start")
@@ -371,7 +423,10 @@ class ChatResponse(Response):
                     (b"content-type", b"text/event-stream; charset=utf-8"),
                     (b"cache-control", b"no-store"), (b"x-accel-buffering", b"no")]})
                 headers_sent = True
-                await event("started", {"conversation_id": self.key, "dropped_turns": started.dropped_turns})
+                start_data = {"conversation_id": self.key, "dropped_turns": started.dropped_turns}
+                if started.retrieval is not None:
+                    start_data["retrieval"] = started.retrieval
+                await event("started", start_data)
                 exposed = True
             pieces = []
             while True:
@@ -399,6 +454,8 @@ class ChatResponse(Response):
                         await send({"type": "http.response.body", "body": b"", "more_body": False})
                     else:
                         result.update(conversation_id=self.key, text="".join(pieces), dropped_turns=started.dropped_turns)
+                        if started.retrieval is not None:
+                            result["retrieval"] = started.retrieval
                         await JSONResponse(result, headers={"Cache-Control": "no-store"})(scope, receive, send)
                         exposed = True
                     break
@@ -417,6 +474,8 @@ class ChatResponse(Response):
                         else error(500, "inference_failed", "Inference failed; the turn was not completed."))
             if released:
                 response = error(503, "delivery_uncertain", "The turn completed but completion delivery failed; do not retry automatically.")
+            elif isinstance(exc, RetrievalError):
+                response = error(503, exc.code, str(exc), retry=exc.code == "retrieval_busy")
             if not disconnected.is_set():
                 try:
                     if headers_sent:
@@ -455,6 +514,14 @@ def create_app(model_config, api_config=None, *, backend=None, chat_root=None):
     @asynccontextmanager
     async def lifespan(app):
         try:
+            if config.retrieval_index_path is not None:
+                loading_index = asyncio.get_running_loop().run_in_executor(
+                    state.storage_executor, RetrievalIndex, config.retrieval_index_path)
+                try:
+                    state.index = await asyncio.shield(loading_index)
+                except asyncio.CancelledError:
+                    state.index = await finish_cleanup(loading_index)
+                    raise
             if config.database_path is not None:
                 loading_store = asyncio.get_running_loop().run_in_executor(
                     state.storage_executor, ConversationStore, config.database_path, config.database_max_mib)
@@ -487,6 +554,8 @@ def create_app(model_config, api_config=None, *, backend=None, chat_root=None):
             finally:
                 if state.store is not None:
                     await finish_cleanup(asyncio.create_task(state.storage(state.store.close, internal=True)))
+                if state.index is not None:
+                    await finish_cleanup(asyncio.create_task(state.storage(state.index.close, internal=True)))
                 if state.storage_executor is not None:
                     state.storage_executor.shutdown(wait=True)
                 state.conversations.clear()
@@ -513,7 +582,8 @@ def create_app(model_config, api_config=None, *, backend=None, chat_root=None):
     async def health():
         if not state.ready:
             return error(503, "unavailable", "Model is unavailable.", retry=True)
-        return {"status": "ready", "busy": state.busy, "persistence_enabled": state.store is not None}
+        return {"status": "ready", "busy": state.busy, "persistence_enabled": state.store is not None,
+                "retrieval_enabled": state.index is not None}
 
     @app.delete("/v1/conversations/{conversation_id}", status_code=204)
     async def delete(conversation_id: str):
@@ -561,6 +631,39 @@ def create_app(model_config, api_config=None, *, backend=None, chat_root=None):
         openapi_extra={"requestBody": {"required": True, "content": {
         "application/json": {"schema": ChatRequest.model_json_schema()}}}})
     async def chat(request: Request):
+        body = await read_body(request, ChatRequest)
+        if isinstance(body, Response):
+            return body
+        if body.retrieval:
+            try:
+                match_query(body.message)
+            except ValueError:
+                return error(422, "invalid_request", "Retrieval queries must be nonblank and at most 2048 UTF-8 bytes.")
+        return state.admit(body)
+
+    @app.post("/v1/retrieve", response_model=RetrieveReply, openapi_extra={"requestBody": {"required": True, "content": {
+        "application/json": {"schema": RetrieveRequest.model_json_schema()}}}})
+    async def retrieve(request: Request):
+        body = await read_body(request, RetrieveRequest)
+        if isinstance(body, Response):
+            return body
+        if state.index is None:
+            return error(503, "retrieval_disabled", "No local retrieval index is configured.")
+        if not state.ready:
+            return error(503, "unavailable", "Server is unavailable.")
+        owner = asyncio.current_task()
+        state.tasks.add(owner)
+        try:
+            matches = await state.storage(state.index.search, body.query)
+            return {"matches": [p.mapping() for p in matches]}
+        except RetrievalError as exc:
+            return error(503, exc.code, str(exc), retry=exc.code == "retrieval_busy")
+        except StorageError as exc:
+            return storage_error(exc)
+        finally:
+            state.tasks.discard(owner)
+
+    async def read_body(request, schema):
         if request.headers.get("content-type", "").split(";", 1)[0].strip().lower() != "application/json":
             return error(415, "unsupported_media_type", "Use application/json.")
         chunks, size = [], 0
@@ -579,9 +682,9 @@ def create_app(model_config, api_config=None, *, backend=None, chat_root=None):
         except (ValueError, UnicodeError, RecursionError):
             return error(400, "invalid_json", "Body must be valid JSON.")
         try:
-            body = ChatRequest.model_validate(data)
+            body = schema.model_validate(data)
         except ValidationError:
-            return error(422, "invalid_request", "Expected message, optional conversation_id, and optional boolean stream.")
-        return state.admit(body)
+            return error(422, "invalid_request", "Request fields are invalid for this endpoint.")
+        return body
 
     return app

@@ -16,3 +16,7 @@ max_request_bytes = 65536
 # Omit database_path for unchanged ephemeral operation. Paths resolve here.
 # database_path = "data/dwindy.sqlite3"
 # database_max_mib = 128
+
+# Optional, separately built local-document index. Stop server before syncing it.
+# retrieval_index_path = "data/retrieval.sqlite3"
+# retrieval_context_tokens = 768 # Provisional incremental allowance, including guidance.

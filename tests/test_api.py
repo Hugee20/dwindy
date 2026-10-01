@@ -143,7 +143,7 @@ class ApiTests(unittest.TestCase):
 
     def test_health_schema_and_unavailable(self):
         client = self.client()
-        self.assertEqual(client.get("/v1/health").json(), {"status": "ready", "busy": False, "persistence_enabled": False})
+        self.assertEqual(client.get("/v1/health").json(), {"status": "ready", "busy": False, "persistence_enabled": False, "retrieval_enabled": False})
         self.app.state.dwindy.ready = False
         self.assertEqual(client.get("/v1/health").status_code, 503)
         self.assertEqual(client.post("/v1/chat", json={"message": "hi"}).status_code, 503)
@@ -188,7 +188,7 @@ class ApiTests(unittest.TestCase):
     def test_no_browser_assets_and_schema_has_only_application_routes(self):
         client = self.client()
         self.assertEqual(set(client.get("/openapi.json").json()["paths"]),
-                         {"/v1/chat", "/v1/health", "/v1/conversations/{conversation_id}"})
+                         {"/v1/chat", "/v1/health", "/v1/conversations/{conversation_id}", "/v1/retrieve"})
         self.assertEqual(client.get("/docs").status_code, 404)
         self.assertEqual(client.get("/redoc").status_code, 404)
 

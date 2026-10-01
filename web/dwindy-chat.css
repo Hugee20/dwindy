@@ -73,3 +73,5 @@ dialog::backdrop { background: #19251344; }
 :host .persistence label { display: block; margin: .4rem 0; }
 :host .persistence input { width: 100%; box-sizing: border-box; font: inherit; padding: .3rem; }
 :host .persistence button { font: inherit; margin: .2rem; padding: .35rem .5rem; }
+:host .retrieval-setting, :host .retrieval-status { flex: 0 0 auto; margin: .2rem 1rem; font-size: .8rem; }
+:host .retrieval-setting input { accent-color: var(--dw-primary); }

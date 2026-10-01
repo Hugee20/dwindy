@@ -19,6 +19,13 @@ const drain = async stream => { const events = []; for await (const e of stream)
 const errorResponse = (status, code) => new Response(JSON.stringify({error: {code, message: 'Safe error'}}), {status});
 
 export const tests = [
+  ['retrieval is opt-in and absent requests preserve the old shape', async () => {
+    const bodies = [];
+    const client = new ChatClient({fetchImpl: async (url,options) => { bodies.push(JSON.parse(options.body)); return response(); }});
+    await drain(client.chat('one'));
+    await drain(client.chat('two',{retrieval:true}));
+    assert(!('retrieval' in bodies[0]) && bodies[1].retrieval === true);
+  }],
   ['resume and detach are memory-only and preserve exact ID', async () => {
     const calls = [];
     const client = new ChatClient({fetchImpl: async (url, options) => { calls.push({url, options}); return response(); }});

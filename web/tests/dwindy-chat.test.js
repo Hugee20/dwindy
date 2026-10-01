@@ -32,6 +32,16 @@ function send(chat, text) {
 async function complete(chat) { await waitFor(() => chat.$('.status').textContent.startsWith('Complete')); }
 
 export const tests = [
+  ['local passages UI reports supply without claiming correctness', () => fixture(async (chat,calls) => {
+    await waitFor(() => !chat.$('.retrieval-setting').hidden);
+    assert(!chat.$('.use-retrieval').checked);
+    chat.$('.use-retrieval').checked = true;
+    send(chat,'local question'); await complete(chat);
+    assert(JSON.parse(calls.find(c => c.options.method === 'POST').options.body).retrieval === true);
+    assert(chat.$('.retrieval-status').textContent.includes('1 local passages supplied'));
+    assert(chat.$('.retrieval-status').textContent.includes('does not verify'));
+  }, {fetchImpl: async url => url.endsWith('/health') ? new Response('{"retrieval_enabled":true}') :
+      response(frame('started',{conversation_id:id,dropped_turns:0,retrieval:{status:'supplied',sources:[{}]}}) + frame('delta',{text:'OK'}) + done)})],
   ['persistent new preserves saved ID remotely and manual resume uses it', () => fixture(async (chat, calls) => {
     await waitFor(() => !chat.$('.persistence').hidden);
     assert(chat.$('.persistence').open);

@@ -61,7 +61,7 @@ class WebUiTests(unittest.TestCase):
 
     def test_disabled_by_default_and_no_openapi_expansion(self):
         self.client.headers["Authorization"] = "Bearer " + "x" * 32
-        self.assertEqual(len(self.client.get("/openapi.json").json()["paths"]), 3)
+        self.assertEqual(len(self.client.get("/openapi.json").json()["paths"]), 4)
         app = create_app(Config(Path("unused.gguf")), backend=FakeBackend())
         with TestClient(app, base_url="http://127.0.0.1", client=("127.0.0.1", 42),
                         headers={"Authorization": "Bearer " + "x" * 32}) as other:

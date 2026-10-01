@@ -35,6 +35,8 @@ export class DwindyChat extends HTMLElement {
             <button class="confirm-delete" type="button">Confirm deletion</button>
             <button class="cancel-delete" type="button">Keep conversation</button></p>
         </details>
+        <label class="retrieval-setting" hidden><input class="use-retrieval" type="checkbox"> Use local documents</label>
+        <p class="retrieval-status" role="status" hidden></p>
         <div class="transcript" role="region" aria-label="Conversation" tabindex="0">
           <div class="empty"><img alt=""><h3>Hello. What’s on your mind?</h3><p>Ask a question, explore an idea, or work through a thought.</p></div>
           <p class="pruned" hidden>Older messages were removed from this display.</p>
@@ -142,6 +144,9 @@ export class DwindyChat extends HTMLElement {
     this.#client = new ChatClient({base, token: this.#token});
     this.#persistent = null;
     this.$('.persistence').hidden = true;
+    this.$('.retrieval-setting').hidden = true;
+    this.$('.use-retrieval').checked = false;
+    this.$('.retrieval-status').hidden = true;
     this.$('.error').hidden = true;
     this.$('.status').textContent = 'Connection ready to use. Send a message to begin.';
     if (this.#inline || this.hasAttribute('open')) this.#checkHealth();
@@ -204,6 +209,8 @@ export class DwindyChat extends HTMLElement {
       if (!controller.signal.aborted) {
         this.#persistent = health.persistence_enabled === true;
         this.$('.persistence').hidden = !this.#persistent;
+        this.$('.retrieval-setting').hidden = health.retrieval_enabled !== true;
+        if (health.retrieval_enabled !== true) this.$('.use-retrieval').checked = false;
       }
       if (!controller.signal.aborted && !this.#busy && !this.#client.uncertain && !this.$('.messages').children.length)
         this.$('.status').textContent = health.busy ? 'Dwindy is busy with another request.' : 'Ready when you are.';
@@ -233,6 +240,7 @@ export class DwindyChat extends HTMLElement {
     this.$('.send').textContent = this.#busy ? 'Stop' : 'Send';
     this.$('.send').disabled = this.#resetting || (!this.#busy && (!this.#client || this.#client.uncertain));
     this.$('.reset').disabled = this.#busy || this.#resetting;
+    this.$('.use-retrieval').disabled = this.#busy || this.#resetting;
     for (const button of this.shadowRoot.querySelectorAll('.persistence button, .resume-id')) button.disabled = this.#busy || this.#resetting;
     this.$('.conversation-id').value = this.#client?.conversationId || '';
     this.$('.delete').disabled = this.#busy || this.#resetting || !this.#client?.conversationId;
@@ -271,9 +279,18 @@ export class DwindyChat extends HTMLElement {
     const user = this.#message('user', message), assistant = this.#message('assistant', '');
     input.value = ''; this.#scroll();
     let complete = false, dropped = 0;
+    this.$('.retrieval-status').hidden = true;
     try {
-      for await (const item of this.#client.chat(message)) {
-        if (item.event === 'started') { dropped = item.data.dropped_turns; this.#controls(); }
+      for await (const item of this.#client.chat(message, {retrieval: this.$('.use-retrieval').checked})) {
+        if (item.event === 'started') {
+          dropped = item.data.dropped_turns; this.#controls();
+          if (item.data.retrieval) {
+            const info = item.data.retrieval;
+            this.$('.retrieval-status').textContent = info.status === 'supplied' ? `${info.sources.length} local passages supplied. This does not verify the answer.` :
+              info.status === 'no_match' ? 'No matching local passages found.' : 'Matching passages did not fit the local context budget.';
+            this.$('.retrieval-status').hidden = false;
+          }
+        }
         if (item.event === 'delta') {
           const follow = this.#nearBottom();
           const available = Math.max(0, 65536 - assistant.content.textContent.length);
@@ -325,6 +342,7 @@ export class DwindyChat extends HTMLElement {
     this.$('.announcement').textContent = '';
     this.$('.delete-confirm').hidden = true;
     this.$('.resume-id').value = '';
+    this.$('.retrieval-status').hidden = true;
   }
 
   async newConversation() {

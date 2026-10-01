@@ -1,0 +1,59 @@
+[[documents]]
+id = "A"
+path = "corpus/A.txt"
+name = "Document A"
+
+[[documents]]
+id = "B"
+path = "corpus/B.txt"
+name = "Document B"
+
+[[documents]]
+id = "C"
+path = "corpus/C.txt"
+name = "Document C"
+
+[[documents]]
+id = "D"
+path = "corpus/D.txt"
+name = "Document D"
+
+[[documents]]
+id = "E"
+path = "corpus/E.txt"
+name = "Document E"
+
+[[documents]]
+id = "F"
+path = "corpus/F.txt"
+name = "Document F"
+
+[[documents]]
+id = "G"
+path = "corpus/G.txt"
+name = "Document G"
+
+[[documents]]
+id = "H"
+path = "corpus/H.txt"
+name = "Document H"
+
+[[documents]]
+id = "I"
+path = "corpus/I.txt"
+name = "Document I"
+
+[[documents]]
+id = "J"
+path = "corpus/J.txt"
+name = "Document J"
+
+[[documents]]
+id = "K"
+path = "corpus/K.txt"
+name = "Document K"
+
+[[documents]]
+id = "L"
+path = "corpus/L.txt"
+name = "Document L"

@@ -31,7 +31,8 @@ def serve(args):
     from dwindy.api import create_app
     from dwindy.config import load_config
     from dwindy.server import ApiConfig
-    app = create_app(load_config(args.config), ApiConfig(port=args.port, database_path=args.database), chat_root=ROOT)
+    app = create_app(load_config(args.config), ApiConfig(port=args.port, database_path=args.database,
+                     retrieval_index_path=args.retrieval_index), chat_root=ROOT)
     server = uvicorn.Server(uvicorn.Config(app, host="127.0.0.1", port=args.port,
         loop="asyncio", http="h11", ws="none", proxy_headers=False, access_log=False,
         log_level="error", timeout_graceful_shutdown=1))
@@ -45,10 +46,12 @@ def serve(args):
     assert app.state.dwindy.backend._model is None
     if args.database:
         assert app.state.dwindy.store.connection is None
+    if args.retrieval_index:
+        assert app.state.dwindy.index.connection is None
 
 
 @contextmanager
-def server(config, database, folder):
+def server(config, database, folder, retrieval_index=None):
     import httpx
     with closing(socket.socket()) as listener:
         listener.bind(("127.0.0.1", 0))
@@ -57,6 +60,8 @@ def server(config, database, folder):
     command = [sys.executable, str(Path(__file__).resolve()), "--serve", "--config", str(config), "--port", str(port), "--stop-file", str(stop_file)]
     if database:
         command += ["--database", str(database)]
+    if retrieval_index:
+        command += ["--retrieval-index", str(retrieval_index)]
     with open(Path(folder) / "server.log", "w", encoding="utf-8") as log:
         process = subprocess.Popen(command, stdin=subprocess.DEVNULL, stdout=log, stderr=log, text=True,
             creationflags=subprocess.CREATE_NO_WINDOW if os.name == "nt" else 0)
@@ -180,6 +185,7 @@ if __name__ == "__main__":
     parser.add_argument("--browser", type=Path)
     parser.add_argument("--serve", action="store_true", help=argparse.SUPPRESS)
     parser.add_argument("--database", help=argparse.SUPPRESS)
+    parser.add_argument("--retrieval-index", help=argparse.SUPPRESS)
     parser.add_argument("--port", type=int, help=argparse.SUPPRESS)
     parser.add_argument("--stop-file", help=argparse.SUPPRESS)
     args = parser.parse_args()

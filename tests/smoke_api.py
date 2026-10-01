@@ -35,7 +35,7 @@ def run(path):
         client.timeout = 180
         if token:
             client.headers["Authorization"] = "Bearer " + token
-        assert client.get("/v1/health").json() == {"status": "ready", "busy": False, "persistence_enabled": False}
+        assert client.get("/v1/health").json() == {"status": "ready", "busy": False, "persistence_enabled": False, "retrieval_enabled": False}
         first = client.post("/v1/chat", json={"message":
             "Remember the code word CEDAR for this conversation. Reply only OK."})
         first.raise_for_status()

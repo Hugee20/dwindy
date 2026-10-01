@@ -1,10 +1,27 @@
-# Chat interfaces through M5
+# Chat interfaces through M6
 
 The standalone page and embeddable widget share one dependency-free `<dwindy-chat>`
 custom element with open Shadow DOM. The floating presentation uses a native modal
 `dialog`; the standalone presentation is inline. Both call only the public HTTP API.
 No Node, npm, build step, framework, CDN, external font, Markdown renderer or runtime
 frontend dependency is needed. There is no browser persistence, account system or SDK.
+
+## Optional local documents (M6)
+
+When health reports `retrieval_enabled: true`, both presentations expose a small, labeled
+"Use local documents" checkbox. It starts unchecked, is held only in component memory,
+and is disabled during a request. Each enabled request sends `retrieval: true` to the same
+public chat endpoint. An unchecked request keeps the previous request body shape.
+
+The current turn's status reports "N local passages supplied. This does not verify the
+answer.", "No matching local passages found.", or that matching passages did not fit the
+budget. Status uses a live region and textContent; model/document text is never interpreted
+as HTML. A failed/cancelled request can have supplied passages without producing a completed
+answer. The status is cleared before another request or transcript reset.
+
+There is no ingestion control, source browser, document link renderer, persistent evidence
+trail or verified-grounding badge. Existing credentials, CORS, cancellation, persistence,
+personalization and idle/working mascot behavior are unchanged. See [retrieval](RETRIEVAL.md).
 
 ## Run the standalone page
 

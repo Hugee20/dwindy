@@ -1,14 +1,17 @@
 """One ephemeral conversation over a borrowed, runtime-neutral model backend."""
 
 from dataclasses import dataclass
+from dataclasses import asdict
 from typing import Generator, Sequence
 
 from .backend import BackendError, Completion, ContextLimitError, GenerationOptions, Message, ModelBackend, TextDelta
+from .evidence import Evidence, GUIDANCE, evidence_question
 
 
 @dataclass(frozen=True)
 class TurnStarted:
     dropped_turns: int
+    retrieval: dict | None = None
 
 
 def _bounded_messages(backend: ModelBackend, history: Sequence[Message], user: str,
@@ -68,20 +71,64 @@ class DwindyCore:
             raise ValueError("Expected nonempty alternating user/assistant messages.")
         self._history = candidate
 
-    def chat(self, user_text: str) -> Generator[TurnStarted | TextDelta | Completion, None, None]:
+    def chat(self, user_text: str, *, evidence: Evidence | None = None) -> Generator[TurnStarted | TextDelta | Completion, None, None]:
         self._ensure_idle()
         if not isinstance(user_text, str) or not user_text.strip():
             raise ValueError("user_text must be a nonempty string.")
-        return self._chat(user_text)
+        if evidence is not None and not isinstance(evidence, Evidence):
+            raise ValueError("Expected Evidence or None")
+        return self._chat(user_text, evidence)
 
-    def _chat(self, user_text):
+    def _evidence_messages(self, user, evidence):
+        system = (self._system_prompt + "\n\n" if self._system_prompt else "") + GUIDANCE
+        base = ([Message("system",self._system_prompt)] if self._system_prompt else []) + [Message("user",user)]
+        baseline = self._backend.count_tokens(base)
+        def compose(passages, history=()):
+            return [Message("system",system),*history,Message("user",evidence_question(user,passages))]
+        def fits(messages):
+            count = self._backend.count_tokens(messages)
+            return count + self._options.max_tokens <= self._backend.context_size() and max(0,count-baseline) <= evidence.max_tokens
+        if not fits(compose([])):
+            raise ContextLimitError("Retrieval guidance and question cannot fit the context/evidence allowance.")
+        selected, seen = [], set()
+        for passage in evidence.passages:
+            if passage.text in seen: continue
+            if fits(compose([*selected,passage])):
+                selected.append(passage); seen.add(passage.text)
+            if len(selected) == 3: break
+        # Recheck the exact rendered input with retained history: templates and
+        # tokenization need not have an additive per-message cost.
+        while True:
+            recent = list(self._history)
+            messages = compose(selected,recent)
+            count = self._backend.count_tokens(messages)
+            while count + self._options.max_tokens > self._backend.context_size() and recent:
+                del recent[:2]
+                messages = compose(selected,recent)
+                count = self._backend.count_tokens(messages)
+            plain = base[:-1] + recent + base[-1:]
+            incremental = max(0, count - self._backend.count_tokens(plain))
+            if incremental <= evidence.max_tokens and count + self._options.max_tokens <= self._backend.context_size():
+                break
+            if not selected:
+                raise ContextLimitError("Retrieval guidance cannot fit the context/evidence allowance.")
+            selected.pop()
+        status = "supplied" if selected else "budget_exhausted" if evidence.passages else "no_match"
+        return messages,recent,dict(status=status,sources=[asdict(p.source) for p in selected])
+
+    def _chat(self, user_text, evidence):
         self._ensure_idle()  # Also reject interleaving previously created iterators.
         self._active = True
         try:
-            messages = _bounded_messages(self._backend, self._history, user_text,
-                                         self._options, self._system_prompt)
-            removed = len(self._history) - sum(m.role != "system" for m in messages[:-1])
-            yield TurnStarted(removed // 2)
+            if evidence is None:
+                messages = _bounded_messages(self._backend, self._history, user_text,
+                                             self._options, self._system_prompt)
+                recent = [m for m in messages[:-1] if m.role != "system"]
+                retrieval = None
+            else:
+                messages,recent,retrieval = self._evidence_messages(user_text,evidence)
+            removed = len(self._history) - len(recent)
+            yield TurnStarted(removed // 2, retrieval)
             pieces = []
             completion = None
             stream = None
@@ -101,7 +148,7 @@ class DwindyCore:
             response = "".join(pieces)
             if not response.strip():
                 raise BackendError("Model produced no visible answer; turn not retained.")
-            self._history = [m for m in messages if m.role != "system"]
+            self._history = recent + [Message("user",user_text)]
             self._history.append(Message("assistant", response))
             yield completion  # Visible only after exhaustion, cleanup, and commit.
         finally:

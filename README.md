@@ -6,11 +6,13 @@ extracted that conversation behavior into a reusable, in-process `DwindyCore`.
 **Milestone 3** exposes Core through an optional, small local HTTP API.
 **Milestone 4** adds standalone browser chat and a copyable, framework-free chat widget.
 **Milestone 5** adds opt-in local SQLite conversation persistence.
+**Milestone 6** adds explicit local-document retrieval using SQLite FTS5, without embeddings.
 The [project proposal](docs/PROJECT_PROPOSAL.md) is the specification;
 [architecture](docs/ARCHITECTURE.md) describes the implemented boundaries.
 
-Persistence is disabled by default. There is no retrieval, tool execution, or outbound
-web retrieval in this milestone. Dwindy never selects or downloads a model. Model licenses are separate
+Persistence and retrieval are disabled by default. See [local retrieval](docs/RETRIEVAL.md)
+for manifest ingestion, configuration, HTTP contracts and measured limitations. There is no
+project discovery, tool execution or outbound web retrieval. Dwindy never selects or downloads a model. Model licenses are separate
 from the Apache-2.0 source license.
 
 ## Windows setup
@@ -170,24 +172,30 @@ work must finish and its stream must close before the loaded model is released.
 
 | Endpoint | Result |
 |---|---|
-| `GET /v1/health` | `200 {"status":"ready","busy":false,"persistence_enabled":false}`; busy describes the global inference lease. Unavailable returns 503. No inference is run. |
+| `GET /v1/health` | `200 {"status":"ready","busy":false,"persistence_enabled":false,"retrieval_enabled":false}`; busy describes the global inference lease. Unavailable returns 503. No inference is run. |
 | `POST /v1/chat` | One conversational turn; JSON by default, SSE when `stream` is true. |
+| `POST /v1/retrieve` | Explicit `{"query":"..."}` lexical search, at most three matches; no model invocation. Requires a configured index. |
 | `DELETE /v1/conversations/{id}` | 204 with an empty body; unknown/expired IDs return 404, active conversations return 409. |
 
 `GET /openapi.json` provides the local machine-readable contract under the same security
 controls. Interactive documentation/CDN assets are disabled.
 
-POST requires `Content-Type: application/json`. Only these fields are accepted:
+Chat POST requires `Content-Type: application/json`. Only these fields are accepted:
 
 ```json
-{"message":"Hello","conversation_id":null,"stream":false}
+{"message":"Hello","conversation_id":null,"stream":false,"retrieval":false}
 ```
 
 `message` is a required nonblank string, preserved verbatim. `conversation_id` is an optional
 32-character opaque ID previously returned by the server; omission or null creates a new
-conversation. `stream` is an optional strict boolean, default false. Unknown fields, coercion,
+conversation. `stream` and `retrieval` are optional strict booleans, default false. Unknown fields, coercion,
 client-selected IDs, and per-request model settings are rejected. Maximum raw body size is
 65,536 bytes by default, including chunked requests; the model's context limit is separate.
+
+`retrieval:true` enables local passages for this turn and limits its query to 2,048 UTF-8
+bytes. JSON success or SSE started then includes retrieval status/source metadata. Omission
+preserves ordinary chat. See [the full M6 contract](docs/RETRIEVAL.md) for passage schemas,
+statuses, token budgeting and errors. Passage supply does not verify the answer.
 
 A successful non-streaming response has this shape (counts are illustrative):
 
@@ -244,7 +252,7 @@ echo request content, tokens, or native exceptions. Codes/statuses:
 | 413 / 415 | `request_too_large` / `unsupported_media_type` |
 | 422 | `invalid_request` / `context_limit` |
 | 500 | `inference_failed` / `internal_error` |
-| 503 | `backend_busy`, `conversation_capacity`, `unavailable`, `delivery_uncertain`; optional `storage_busy`, `storage_full`, `storage_unavailable` |
+| 503 | `backend_busy`, `conversation_capacity`, `unavailable`, `delivery_uncertain`; optional `storage_busy`, `storage_full`, `storage_unavailable`, `retrieval_disabled`, `retrieval_busy`, `retrieval_unavailable` |
 
 Backend busy/capacity/unavailable and storage_busy responses include `Retry-After: 1`; this is a polling hint, not a
 completion estimate or queued reservation. Protocol-level failures rejected by the HTTP

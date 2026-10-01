@@ -29,6 +29,8 @@ class ApiConfig:
     ssl_keyfile: str | None = None
     database_path: str | None = None
     database_max_mib: int = 128
+    retrieval_index_path: str | None = None
+    retrieval_context_tokens: int = 768
 
     def validate(self) -> str | None:
         if not isinstance(self.host, str):
@@ -39,12 +41,16 @@ class ApiConfig:
             raise ConfigError("API host must be a literal IP address.") from exc
         if type(self.allow_non_loopback) is not bool:
             raise ConfigError("allow_non_loopback must be a boolean.")
-        for name in ("port", "max_conversations", "conversation_idle_seconds", "max_request_bytes", "database_max_mib"):
+        for name in ("port", "max_conversations", "conversation_idle_seconds", "max_request_bytes", "database_max_mib", "retrieval_context_tokens"):
             value = getattr(self, name)
             if type(value) is not int or value < 1 or (name == "port" and value > 65535):
                 raise ConfigError(f"Invalid API {name}.")
         if self.database_path is not None:
             validate_database_path(self.database_path)
+        if self.retrieval_index_path is not None:
+            validate_database_path(self.retrieval_index_path)
+            if self.database_path and Path(self.database_path).resolve() == Path(self.retrieval_index_path).resolve():
+                raise ConfigError("Conversation database and retrieval index must be separate files.")
         for name in ("allowed_hosts", "allowed_origins"):
             values = getattr(self, name)
             if not isinstance(values, (tuple, list)) or any(not isinstance(v, str) for v in values):
@@ -106,7 +112,9 @@ def load_api_config(path=None) -> ApiConfig:
             raise ConfigError(f"Unknown API configuration keys: {', '.join(sorted(unknown))}")
         if "database_path" in data:
             validate_database_path(data["database_path"])
-        for key in ("ssl_certfile", "ssl_keyfile", "database_path"):
+        if "retrieval_index_path" in data:
+            validate_database_path(data["retrieval_index_path"])
+        for key in ("ssl_certfile", "ssl_keyfile", "database_path", "retrieval_index_path"):
             if key in data:
                 if not isinstance(data[key], str) or not data[key]:
                     raise ConfigError(f"{key} must be a nonempty local path.")
