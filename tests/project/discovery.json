@@ -1,0 +1,48 @@
+{
+  "selected": [
+    "DWINDY.md",
+    "README.md",
+    "docs/tasks/reservations.md",
+    "docs/policy.md",
+    "docs/nested/README.md",
+    "src/loans.py",
+    "src/admin/settings.py",
+    "src/public/settings.py",
+    "web/returns.ts",
+    "config/reference.toml"
+  ],
+  "metadata_inputs": [
+    "package.json",
+    "pyproject.toml"
+  ],
+  "policy_inputs": [
+    ".gitignore",
+    "docs/.gitignore"
+  ],
+  "excluded": [
+    ".env",
+    "secrets/token.txt",
+    "ignored/notes.md",
+    "docs/private.txt",
+    "docs/drafts/idea.md",
+    "node_modules/library/README.md",
+    "vendor/package/README.md",
+    "dist/README.md",
+    ".git/config",
+    "src/unselected.py",
+    "docs/generated.min.js",
+    "docs/internal/restricted.md"
+  ],
+  "overview_required": [
+    "Lantern Desk",
+    "src/admin/settings.py",
+    "src/public/settings.py",
+    "selected snapshot"
+  ],
+  "forbidden": [
+    "EXCLUDED_",
+    "UNSELECTED_SOURCE_CANARY",
+    "DO_NOT_EXECUTE",
+    "fictional-framework"
+  ]
+}

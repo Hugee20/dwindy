@@ -1,0 +1,21 @@
+# Copy to project.local.toml. Paths resolve against this file's directory.
+# Keep the index OUTSIDE the project root; sync refuses an index inside it.
+project_id = "my-project"          # Stable identity; letters, digits, _ and - only.
+name = "My Project"
+root = "../my-project"             # One approved local directory; links/junctions are refused.
+index_path = "data/my-project.sqlite3"
+
+# Documentation (.md/.txt) is discovered only under these root-relative directories,
+# plus root DWINDY.md / README.md / README.txt. Default: ["docs"].
+# documentation_dirs = ["docs"]
+
+# Source (.py .js .jsx .ts .tsx) and configuration (.toml .json) are never discovered:
+# list each file individually. Defaults are empty.
+# source_files = ["src/app.py"]
+# config_files = ["config/defaults.toml"]
+
+# Extra deny-only, gitignore-style patterns. They can only remove material.
+# exclude = ["docs/internal/**"]
+
+# Optional: one ordinary M6 manifest combined into the same index.
+# documents_manifest = "collection.toml"

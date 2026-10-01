@@ -35,7 +35,7 @@ export class DwindyChat extends HTMLElement {
             <button class="confirm-delete" type="button">Confirm deletion</button>
             <button class="cancel-delete" type="button">Keep conversation</button></p>
         </details>
-        <label class="retrieval-setting" hidden><input class="use-retrieval" type="checkbox"> Use local documents</label>
+        <label class="retrieval-setting" hidden><input class="use-retrieval" type="checkbox"> <span class="retrieval-label">Use local documents</span></label>
         <p class="retrieval-status" role="status" hidden></p>
         <div class="transcript" role="region" aria-label="Conversation" tabindex="0">
           <div class="empty"><img alt=""><h3>Hello. What’s on your mind?</h3><p>Ask a question, explore an idea, or work through a thought.</p></div>
@@ -211,6 +211,7 @@ export class DwindyChat extends HTMLElement {
         this.$('.persistence').hidden = !this.#persistent;
         this.$('.retrieval-setting').hidden = health.retrieval_enabled !== true;
         if (health.retrieval_enabled !== true) this.$('.use-retrieval').checked = false;
+        this.$('.retrieval-label').textContent = health.project_snapshot ? 'Use local project context' : 'Use local documents';
       }
       if (!controller.signal.aborted && !this.#busy && !this.#client.uncertain && !this.$('.messages').children.length)
         this.$('.status').textContent = health.busy ? 'Dwindy is busy with another request.' : 'Ready when you are.';

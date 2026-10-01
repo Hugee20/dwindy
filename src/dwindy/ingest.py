@@ -1,6 +1,7 @@
 """Explicit local UTF-8 manifest sync. No discovery, model, or network access."""
 import argparse
 from datetime import datetime, timezone
+from dataclasses import dataclass
 import hashlib
 import json
 from pathlib import Path
@@ -9,11 +10,42 @@ import sqlite3
 import sys
 import tomllib
 
-from .retrieval import APPLICATION_ID, SCHEMA, SCHEMA_VERSION, RetrievalError, validate_index
+from .retrieval import APPLICATION_ID, SCHEMA, PROJECT_SCHEMA, RetrievalError, validate_index
 
 CHUNKER_VERSION = 1
 TARGET, HARD, OVERLAP = 1000, 1600, 120
 MAX_FILE, MAX_TOTAL, MAX_DOCUMENTS = 1024*1024, 10*1024*1024, 1000
+
+
+@dataclass(frozen=True)
+class Document:
+    id: str
+    source_path: str
+    name: str
+    format: str
+    text: str
+    content_hash: str
+    source_type: str = 'local_text'
+    chunker_version: int = CHUNKER_VERSION
+    spans: tuple | None = None
+
+
+def normalize(raw):
+    text = raw.decode('utf-8-sig').replace('\r\n','\n').replace('\r','\n')
+    if not text.strip() or '\x00' in text:
+        raise ValueError('Empty or binary input')
+    return text
+
+
+def manifest_documents(entries):
+    total = 0
+    for key,path,logical,name in entries:
+        with path.open('rb') as handle:
+            raw = handle.read(MAX_FILE+1)
+        total += len(raw)
+        if len(raw)>MAX_FILE or total>MAX_TOTAL:
+            raise ValueError('Source grew beyond byte limit')
+        yield Document(key,logical,name,path.suffix.lower(),normalize(raw),hashlib.sha256(raw).hexdigest())
 
 
 def chunks(text, markdown=False):
@@ -94,6 +126,13 @@ def sync(manifest, index, max_mib=128):
     target = Path(index).expanduser().resolve()
     if target in {entry[1] for entry in entries} or target == Path(manifest).resolve():
         raise ValueError("Index must not overwrite input")
+    return write_documents(manifest_documents(entries),target,max_mib=max_mib)
+
+
+def write_documents(documents, target, *, max_mib=128, project=None, precommit=None):
+    """One authoritative atomic writer shared by explicit manifests and project snapshots."""
+    target = Path(target)
+    version = 2 if project is not None else 1
     if type(max_mib) is not int or max_mib < 1: raise ValueError("Invalid index cap")
     new = not target.exists()
     if new:
@@ -106,8 +145,14 @@ def sync(manifest, index, max_mib=128):
         db.execute("PRAGMA synchronous=FULL")
         db.execute("PRAGMA cache_size=-2048")
         if new:
-            db.executescript("BEGIN IMMEDIATE;" + SCHEMA + f"PRAGMA application_id={APPLICATION_ID};PRAGMA user_version={SCHEMA_VERSION};COMMIT;")
-        validate_index(db)
+            db.executescript("BEGIN IMMEDIATE;" + SCHEMA + (PROJECT_SCHEMA if project else '') +
+                            f"PRAGMA application_id={APPLICATION_ID};PRAGMA user_version={version};COMMIT;")
+        else:
+            validate_index(db)
+            if db.execute('PRAGMA user_version').fetchone()[0] != version:
+                raise ValueError('Index ownership differs; explicitly build a new index. No migration performed.')
+            if project and db.execute('SELECT project_id FROM project_snapshot').fetchone()[0] != project['project_id']:
+                raise ValueError('Project identity differs; explicitly build a new index.')
         if db.execute("PRAGMA journal_mode").fetchone()[0] != "delete": raise RetrievalError()
         page_size = db.execute("PRAGMA page_size").fetchone()[0]
         pages = max_mib*1024*1024//page_size
@@ -118,30 +163,38 @@ def sync(manifest, index, max_mib=128):
             db.execute("DELETE FROM chunks_fts WHERE rowid IN (SELECT id FROM chunks WHERE document_id=?)",(key,))
             db.execute("DELETE FROM documents WHERE id=?",(key,))
         old_ids = {r[0] for r in db.execute("SELECT id FROM documents")}
-        total = 0
-        for key,path,logical,name in entries:
-            with path.open("rb") as handle: raw = handle.read(MAX_FILE+1)
-            total += len(raw)
-            if len(raw)>MAX_FILE or total>MAX_TOTAL: raise ValueError("Source grew beyond byte limit")
-            text = raw.decode("utf-8-sig").replace("\r\n","\n").replace("\r","\n")
-            if not text.strip() or "\x00" in text: raise ValueError("Empty or binary input")
-            digest = hashlib.sha256(raw).hexdigest()
-            old = db.execute("SELECT content_hash,source_path,name,chunker_version FROM documents WHERE id=?",(key,)).fetchone()
-            if old == (digest,logical,name,CHUNKER_VERSION):
+        desired = set()
+        for document in documents:
+            key,logical,name = document.id,document.source_path,document.name
+            text,digest,chunker = document.text,document.content_hash,document.chunker_version
+            if key in desired:
+                raise ValueError('Duplicate document ID')
+            desired.add(key)
+            old = db.execute("SELECT content_hash,source_path,name,chunker_version,source_type FROM documents WHERE id=?",(key,)).fetchone()
+            if old == (digest,logical,name,chunker,document.source_type):
                 result["unchanged"] += 1
                 continue
             remove(key)
-            db.execute("INSERT INTO documents VALUES (?,?,?,?,?,?,?,?)",(key,logical,name,path.suffix.lower(),digest,
-                       datetime.now(timezone.utc).isoformat(),CHUNKER_VERSION,"local_text"))
-            for ordinal,(heading,start,end) in enumerate(chunks(text,path.suffix.lower()==".md")):
+            db.execute("INSERT INTO documents VALUES (?,?,?,?,?,?,?,?)",(key,logical,name,document.format,digest,
+                       datetime.now(timezone.utc).isoformat(),chunker,document.source_type))
+            spans = document.spans if document.spans is not None else chunks(text,document.format=='.md')
+            for ordinal,(heading,start,end) in enumerate(spans):
                 body = text[start:end]
-                chunk_key = hashlib.sha256(f"{key}:{digest}:{CHUNKER_VERSION}:{ordinal}".encode()).hexdigest()
+                chunk_key = hashlib.sha256(f"{key}:{digest}:{chunker}:{ordinal}".encode()).hexdigest()
                 rowid = db.execute("INSERT INTO chunks(chunk_key,document_id,ordinal,heading,start,end,line_start,line_end,text_hash) VALUES (?,?,?,?,?,?,?,?,?)",
                     (chunk_key,key,ordinal,heading,start,end,text.count("\n",0,start)+1,text.count("\n",0,end-1)+1,hashlib.sha256(body.encode()).hexdigest())).lastrowid
                 db.execute("INSERT INTO chunks_fts(rowid,name,heading,body) VALUES (?,?,?,?)",(rowid,name,heading,body))
             result["indexed"] += 1
-        for key in old_ids-{e[0] for e in entries}:
+        for key in old_ids-desired:
             remove(key); result["deleted"] += 1
+        if project:
+            old = db.execute('SELECT snapshot_id FROM project_snapshot').fetchone()
+            if old is None or old[0] != project['snapshot_id']:
+                db.execute('INSERT OR REPLACE INTO project_snapshot VALUES (1,?,?,?,?,?)',
+                    (project['project_id'],project['name'],project['snapshot_id'],project['policy_version'],
+                     datetime.now(timezone.utc).isoformat()))
+        if precommit is not None:
+            precommit()
         db.execute("COMMIT")
         return result
     except BaseException:

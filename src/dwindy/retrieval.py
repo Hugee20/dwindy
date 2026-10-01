@@ -23,6 +23,13 @@ CREATE TABLE chunks (
 );
 CREATE VIRTUAL TABLE chunks_fts USING fts5(name,heading,body,tokenize='unicode61');
 """
+PROJECT_SCHEMA = """
+CREATE TABLE project_snapshot (
+ singleton INTEGER PRIMARY KEY CHECK(singleton=1), project_id TEXT NOT NULL,
+ name TEXT NOT NULL, snapshot_id TEXT NOT NULL, policy_version INTEGER NOT NULL,
+ indexed_at TEXT NOT NULL
+);
+"""
 
 # General English function words only; fixed before any benchmark run.
 STOPWORDS = frozenset("a an the is are was were be been being to of in on at for from with and or not by as it its this that these those what which who where when why how can could would should may must do does did i we you they their our your me my under than then only".split())
@@ -44,14 +51,15 @@ def match_query(query):
 
 
 def validate_index(db):
+    version = db.execute("PRAGMA user_version").fetchone()[0]
     if (db.execute("PRAGMA application_id").fetchone()[0] != APPLICATION_ID
-            or db.execute("PRAGMA user_version").fetchone()[0] != SCHEMA_VERSION
+            or version not in (1, 2)
             or db.execute("PRAGMA quick_check").fetchall() != [("ok",)]
             or db.execute("PRAGMA foreign_key_check").fetchone() is not None):
         raise RetrievalError()
     expected = sqlite3.connect(":memory:")
     try:
-        expected.executescript(SCHEMA)
+        expected.executescript(SCHEMA + (PROJECT_SCHEMA if version == 2 else ""))
         sql = "SELECT type,name,sql FROM sqlite_master WHERE sql IS NOT NULL ORDER BY name"
         if db.execute(sql).fetchall() != expected.execute(sql).fetchall():
             raise RetrievalError()
@@ -61,12 +69,15 @@ def validate_index(db):
         raise RetrievalError()
     if db.execute("SELECT 1 FROM chunks c LEFT JOIN chunks_fts f ON f.rowid=c.id WHERE f.rowid IS NULL LIMIT 1").fetchone():
         raise RetrievalError()
+    if version == 2 and db.execute("SELECT count(*) FROM project_snapshot").fetchone()[0] != 1:
+        raise RetrievalError()
 
 
 class RetrievalIndex:
     """Read-only index, owned by one worker. Stop the server before manifest sync."""
     def __init__(self, path):
         self.connection = None
+        self.project_snapshot = None
         try:
             self.connection = sqlite3.connect(Path(path).resolve().as_uri() + "?mode=ro", uri=True,
                                               timeout=1, isolation_level=None)
@@ -75,6 +86,10 @@ class RetrievalIndex:
             self.connection.execute("PRAGMA query_only=ON")
             self.connection.execute("PRAGMA cache_size=-2048")
             self.connection.row_factory = sqlite3.Row
+            if self.connection.execute("PRAGMA user_version").fetchone()[0] == 2:
+                self.project_snapshot = dict(self.connection.execute(
+                    "SELECT project_id,name,snapshot_id,indexed_at FROM project_snapshot").fetchone())
+                self.project_snapshot['freshness'] = 'not_checked'
         except (OSError, sqlite3.Error, RetrievalError) as exc:
             self.close()
             raise RetrievalError() from exc
@@ -102,9 +117,12 @@ class RetrievalIndex:
                     for p in result):
                     continue
                 seen.add(row["text_hash"])
+                project = self.project_snapshot if row['source_type'].startswith('project_') else None
                 result.append(Passage(Source(row["document_id"], row["chunk_key"], row["name"],
                     row["source_path"], row["content_hash"], row["line_start"], row["line_end"],
-                    row["start"], row["end"], row["heading"], row["source_type"]), row["body"], row["score"]))
+                    row["start"], row["end"], row["heading"], row["source_type"],
+                    project['project_id'] if project else None,
+                    project['snapshot_id'] if project else None), row["body"], row["score"]))
                 if len(result) == limit:
                     break
             return tuple(result)

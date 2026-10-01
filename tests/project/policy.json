@@ -1,0 +1,21 @@
+{
+  "project_id": "lantern",
+  "name": "Lantern Desk",
+  "root": "host",
+  "index_path": "index.sqlite3",
+  "documentation_dirs": [
+    "docs"
+  ],
+  "source_files": [
+    "src/loans.py",
+    "src/admin/settings.py",
+    "src/public/settings.py",
+    "web/returns.ts"
+  ],
+  "config_files": [
+    "config/reference.toml"
+  ],
+  "exclude": [
+    "docs/internal/**"
+  ]
+}

@@ -1,4 +1,4 @@
-# Chat interfaces through M6
+# Chat interfaces through M7
 
 The standalone page and embeddable widget share one dependency-free `<dwindy-chat>`
 custom element with open Shadow DOM. The floating presentation uses a native modal
@@ -12,6 +12,8 @@ When health reports `retrieval_enabled: true`, both presentations expose a small
 "Use local documents" checkbox. It starts unchecked, is held only in component memory,
 and is disabled during a request. Each enabled request sends `retrieval: true` to the same
 public chat endpoint. An unchecked request keeps the previous request body shape.
+When health also reports a `project_snapshot` (M7), the same checkbox is labeled
+"Use local project context"; its behavior is otherwise identical.
 
 The current turn's status reports "N local passages supplied. This does not verify the
 answer.", "No matching local passages found.", or that matching passages did not fit the

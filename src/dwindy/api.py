@@ -65,6 +65,8 @@ class SourceMetadata(BaseModel):
     end: int
     heading: str
     source_type: str
+    project_id: str | None = None
+    snapshot_id: str | None = None
 
 
 class RetrievalMetadata(BaseModel):
@@ -101,11 +103,21 @@ class RetrieveRequest(BaseModel):
         return value
 
 
+class ProjectSnapshot(BaseModel):
+    """Identity of a manually synchronized project index; the project root is never exposed."""
+    project_id: str
+    name: str
+    snapshot_id: str
+    indexed_at: str
+    freshness: Literal["not_checked"]
+
+
 class HealthReply(BaseModel):
     status: str
     busy: bool
     persistence_enabled: bool
     retrieval_enabled: bool
+    project_snapshot: ProjectSnapshot | None = None
 
 
 ERROR_SCHEMA = {"type": "object", "required": ["error"], "properties": {"error": {
@@ -578,12 +590,14 @@ def create_app(model_config, api_config=None, *, backend=None, chat_root=None):
     async def unexpected_error(request, exc):
         return error(500, "internal_error", "Request failed.")
 
-    @app.get("/v1/health", response_model=HealthReply)
+    # Unset project fields are omitted so M3-M6 responses stay byte-for-byte unchanged.
+    @app.get("/v1/health", response_model=HealthReply, response_model_exclude_none=True)
     async def health():
         if not state.ready:
             return error(503, "unavailable", "Model is unavailable.", retry=True)
         return {"status": "ready", "busy": state.busy, "persistence_enabled": state.store is not None,
-                "retrieval_enabled": state.index is not None}
+                "retrieval_enabled": state.index is not None,
+                "project_snapshot": state.index.project_snapshot if state.index is not None else None}
 
     @app.delete("/v1/conversations/{conversation_id}", status_code=204)
     async def delete(conversation_id: str):
@@ -641,7 +655,7 @@ def create_app(model_config, api_config=None, *, backend=None, chat_root=None):
                 return error(422, "invalid_request", "Retrieval queries must be nonblank and at most 2048 UTF-8 bytes.")
         return state.admit(body)
 
-    @app.post("/v1/retrieve", response_model=RetrieveReply, openapi_extra={"requestBody": {"required": True, "content": {
+    @app.post("/v1/retrieve", response_model=RetrieveReply, response_model_exclude_none=True, openapi_extra={"requestBody": {"required": True, "content": {
         "application/json": {"schema": RetrieveRequest.model_json_schema()}}}})
     async def retrieve(request: Request):
         body = await read_body(request, RetrieveRequest)

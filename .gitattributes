@@ -1,2 +1,3 @@
 # Frozen benchmark hashes must survive Windows Git checkouts unchanged.
 tests/retrieval/** text eol=lf
+tests/project/** text eol=lf

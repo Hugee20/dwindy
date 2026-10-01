@@ -42,6 +42,16 @@ export const tests = [
     assert(chat.$('.retrieval-status').textContent.includes('does not verify'));
   }, {fetchImpl: async url => url.endsWith('/health') ? new Response('{"retrieval_enabled":true}') :
       response(frame('started',{conversation_id:id,dropped_turns:0,retrieval:{status:'supplied',sources:[{}]}}) + frame('delta',{text:'OK'}) + done)})],
+  ['project index relabels the retrieval option; plain indexes keep the M6 label', async () => {
+    for (const [health, label] of [[{retrieval_enabled: true, project_snapshot: {project_id: 'p', name: 'P', snapshot_id: 's', indexed_at: 't', freshness: 'not_checked'}}, 'Use local project context'],
+                                   [{retrieval_enabled: true}, 'Use local documents']]) {
+      await fixture(async chat => {
+        await waitFor(() => !chat.$('.retrieval-setting').hidden);
+        assert(chat.$('.retrieval-setting').textContent.trim() === label);
+        assert(!chat.$('.use-retrieval').checked);
+      }, {fetchImpl: async url => url.endsWith('/health') ? new Response(JSON.stringify(health)) : response()});
+    }
+  }],
   ['persistent new preserves saved ID remotely and manual resume uses it', () => fixture(async (chat, calls) => {
     await waitFor(() => !chat.$('.persistence').hidden);
     assert(chat.$('.persistence').open);

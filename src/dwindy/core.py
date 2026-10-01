@@ -1,7 +1,6 @@
 """One ephemeral conversation over a borrowed, runtime-neutral model backend."""
 
 from dataclasses import dataclass
-from dataclasses import asdict
 from typing import Generator, Sequence
 
 from .backend import BackendError, Completion, ContextLimitError, GenerationOptions, Message, ModelBackend, TextDelta
@@ -114,7 +113,7 @@ class DwindyCore:
                 raise ContextLimitError("Retrieval guidance cannot fit the context/evidence allowance.")
             selected.pop()
         status = "supplied" if selected else "budget_exhausted" if evidence.passages else "no_match"
-        return messages,recent,dict(status=status,sources=[asdict(p.source) for p in selected])
+        return messages,recent,dict(status=status,sources=[p.source.mapping() for p in selected])
 
     def _chat(self, user_text, evidence):
         self._ensure_idle()  # Also reject interleaving previously created iterators.

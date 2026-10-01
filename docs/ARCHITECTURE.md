@@ -1,6 +1,6 @@
-# Dwindy architecture through M6
+# Dwindy architecture through M7
 
-Status: M1 runtime and template-kwargs correction, M2 Core, M3 local HTTP API, M4 chat interfaces, M5 opt-in SQLite persistence, and M6 explicit local retrieval.
+Status: M1 runtime and template-kwargs correction, M2 Core, M3 local HTTP API, M4 chat interfaces, M5 opt-in SQLite persistence, M6 explicit local retrieval, and M7 project awareness.
 The project proposal remains the specification. This document records implemented decisions.
 
 ## Execution and ownership
@@ -323,4 +323,29 @@ failures do not silently fall back to model-only generation. Index synchronizati
 offline CLI operation: stop the server, sync, then restart. No live index management API exists.
 
 See [retrieval](RETRIEVAL.md) for schema, limits, security, wire contract and the separate
-[M6 validation report](M6_VALIDATION.md). M7 project discovery remains unimplemented.
+[M6 validation report](M6_VALIDATION.md).
+
+## Project awareness through M7
+
+`project_policy.py` owns the filesystem boundary: hard exclusions, `.gitignore` and
+configured deny patterns (through the optional pathspec matcher, used for matching only),
+link/junction/reparse-point and hard-link rejection on every component, bounded directory
+listing and signature-checked reads. `project.py` loads the explicit project TOML, captures
+a bounded documentation-first selection plus individually listed source/configuration files,
+generates the overview and metadata documents, and computes the snapshot identity. Neither
+imports a model, Core or HTTP code; neither runs Git, a shell or project code.
+
+Capture produces the same internal `Document` records as an M6 manifest. `ingest.py` now has
+one authoritative atomic writer, `write_documents`, shared by manifest sync and project sync.
+It accepts precomputed spans (declaration-aware source chunking) and a precommit callback,
+which project sync uses to recheck every input before COMMIT. Project indexes use
+`user_version` 2 plus a singleton `project_snapshot` table; neither kind of sync adopts the
+other's index. `retrieval.py` validates both versions, attaches `project_id` and
+`snapshot_id` to project passages, and keeps M6 ranking unchanged.
+
+Core is unchanged apart from serializing source metadata without empty project fields.
+`evidence.py` adds a short project-observation note to the untrusted-passage framing only
+when a supplied passage comes from a project. The API reads the snapshot identity once when
+it opens the index and adds it to health. Unset project fields are omitted from health and
+retrieve responses, so M6 responses are unchanged. Sync remains an offline CLI operation.
+See [project awareness](PROJECT_AWARENESS.md) and the [M7 validation report](M7_VALIDATION.md).

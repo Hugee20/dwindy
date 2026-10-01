@@ -1,0 +1,15 @@
+{
+  "replace": {
+    "docs/policy.md": "# Workshop policy\n\nThe loan duration is nine days. The renewal allowance is two days.\n\nAsset tags are required on returns because identical equipment names can be ambiguous.\n"
+  },
+  "delete": [
+    "docs/nested/README.md"
+  ],
+  "add": {
+    "docs/new.md": "# New procedure\n\nEquipment inspections use the silver register.\n"
+  },
+  "new_ignore": "docs/tasks/\n",
+  "unchanged": [
+    "src/loans.py"
+  ]
+}

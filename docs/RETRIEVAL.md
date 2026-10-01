@@ -77,6 +77,8 @@ All API clients share the configured collection; this is not per-user document a
 The separate SQLite file has application_id `0x44575249` (DWRI), user_version 1, and chunker
 version 1. Startup checks identity, version, schema, SQLite integrity, foreign keys and chunk/
 FTS row correspondence. Unknown versions require an explicit future migration/rebuild.
+M7 project indexes use user_version 2 with one extra table; manifest sync refuses them and
+ranking is identical. See [project awareness](PROJECT_AWARENESS.md).
 
 | Table | Stored columns |
 | --- | --- |
@@ -144,6 +146,8 @@ model message sequence; no new system instructions or sampling changes apply to 
 ## HTTP contract
 
 `GET /v1/health` adds boolean `retrieval_enabled`. No filesystem paths are exposed there.
+For an M7 project index only, health, retrieve matches and chat sources add project
+identity fields; for this M6 index they are omitted and responses are unchanged.
 
 `POST /v1/retrieve`, Content-Type application/json:
 

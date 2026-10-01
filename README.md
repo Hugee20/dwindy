@@ -7,12 +7,16 @@ extracted that conversation behavior into a reusable, in-process `DwindyCore`.
 **Milestone 4** adds standalone browser chat and a copyable, framework-free chat widget.
 **Milestone 5** adds opt-in local SQLite conversation persistence.
 **Milestone 6** adds explicit local-document retrieval using SQLite FTS5, without embeddings.
+**Milestone 7** adds project awareness: a manually synchronized, controlled local knowledge
+snapshot of one explicitly configured project, searched by the unchanged M6 retrieval.
 The [project proposal](docs/PROJECT_PROPOSAL.md) is the specification;
 [architecture](docs/ARCHITECTURE.md) describes the implemented boundaries.
 
 Persistence and retrieval are disabled by default. See [local retrieval](docs/RETRIEVAL.md)
-for manifest ingestion, configuration, HTTP contracts and measured limitations. There is no
-project discovery, tool execution or outbound web retrieval. Dwindy never selects or downloads a model. Model licenses are separate
+for manifest ingestion, configuration, HTTP contracts and measured limitations, and
+[project awareness](docs/PROJECT_AWARENESS.md) for project snapshots. A snapshot covers
+only selected files; Dwindy never runs project code or scans a project during chat. There is
+no tool execution or outbound web retrieval. Dwindy never selects or downloads a model. Model licenses are separate
 from the Apache-2.0 source license.
 
 ## Windows setup
@@ -456,6 +460,7 @@ See [evaluation instructions](tests/eval/README.md) for scoring and metric limit
 | `llama-cpp-python==0.3.35` | In-process CPU inference; pinned because template/runtime APIs matter. |
 | `setuptools>=68` | Build backend, used during installation only. |
 | `psutil>=5.9,<8` (optional `eval` extra) | Sample process RSS and report machine RAM. |
+| `pathspec==1.1.1` (optional `project` extra) | Pure-Python `.gitignore` pattern matching for project snapshots only; no traversal. |
 | `fastapi==0.142.2` (optional `api` extra) | HTTP routing, lifespan integration, and local OpenAPI schema. |
 | `pydantic==2.13.5` (optional `api` extra) | Strict request validation and response/schema models; directly imported. |
 | `starlette==1.7.0` (optional `api` extra) | Direct ASGI response, disconnect, middleware, and test interfaces. |

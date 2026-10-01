@@ -1,0 +1,32 @@
+{"id": "identity_1", "category": "identity", "split": "dev", "query": "What does Lantern Desk manage?", "gold": [{"source_path": "DWINDY.md", "start": 16, "end": 69}], "answerable": true}
+{"id": "identity_2", "category": "identity", "split": "holdout", "query": "Who are the Lantern Desk users?", "gold": [{"source_path": "DWINDY.md", "start": 70, "end": 111}], "answerable": true}
+{"id": "identity_3", "category": "identity", "split": "dev", "query": "What reference deployment is described?", "gold": [{"source_path": "README.md", "start": 186, "end": 251}], "answerable": true}
+{"id": "identity_4", "category": "identity", "split": "holdout", "query": "Who approves reservation requests?", "gold": [{"source_path": "README.md", "start": 77, "end": 119}], "answerable": true}
+{"id": "workflow_1", "category": "workflow", "split": "dev", "query": "How do I reserve a microscope?", "gold": [{"source_path": "docs/tasks/reservations.md", "start": 24, "end": 110}], "answerable": true}
+{"id": "workflow_2", "category": "workflow", "split": "holdout", "query": "What is required for reservation cancellations?", "gold": [{"source_path": "docs/tasks/reservations.md", "start": 112, "end": 169}], "answerable": true}
+{"id": "workflow_3", "category": "workflow", "split": "dev", "query": "Where are calibration records kept?", "gold": [{"source_path": "docs/nested/README.md", "start": 15, "end": 57}], "answerable": true}
+{"id": "workflow_4", "category": "workflow", "split": "holdout", "query": "How are returns recorded?", "gold": [{"source_path": "README.md", "start": 121, "end": 184}], "answerable": true}
+{"id": "location_1", "category": "location", "split": "dev", "query": "Where is reserve_equipment declared?", "gold": [{"source_path": "src/loans.py", "start": 31, "end": 64}], "answerable": true}
+{"id": "location_2", "category": "location", "split": "holdout", "query": "Where is approval_limit declared for coordinators?", "gold": [{"source_path": "src/admin/settings.py", "start": 49, "end": 70}], "answerable": true}
+{"id": "location_3", "category": "location", "split": "dev", "query": "Where is display_limit declared for borrowers?", "gold": [{"source_path": "src/public/settings.py", "start": 46, "end": 66}], "answerable": true}
+{"id": "location_4", "category": "location", "split": "holdout", "query": "Where is recordReturn declared?", "gold": [{"source_path": "web/returns.ts", "start": 58, "end": 106}], "answerable": true}
+{"id": "configuration_1", "category": "configuration", "split": "dev", "query": "What reservation_limit is configured?", "gold": [{"source_path": "config/reference.toml", "start": 28, "end": 49}], "answerable": true}
+{"id": "configuration_2", "category": "configuration", "split": "holdout", "query": "What reminder_days is configured?", "gold": [{"source_path": "config/reference.toml", "start": 50, "end": 67}], "answerable": true}
+{"id": "configuration_3", "category": "configuration", "split": "dev", "query": "What is the loan duration?", "gold": [{"source_path": "docs/policy.md", "start": 19, "end": 51}], "answerable": true}
+{"id": "configuration_4", "category": "configuration", "split": "holdout", "query": "What is the renewal allowance?", "gold": [{"source_path": "docs/policy.md", "start": 52, "end": 86}], "answerable": true}
+{"id": "rationale_1", "category": "rationale", "split": "dev", "query": "Why is approval required?", "gold": [{"source_path": "DWINDY.md", "start": 113, "end": 188}], "answerable": true}
+{"id": "rationale_2", "category": "rationale", "split": "holdout", "query": "Why are asset tags required on returns?", "gold": [{"source_path": "docs/policy.md", "start": 88, "end": 174}], "answerable": true}
+{"id": "rationale_3", "category": "rationale", "split": "dev", "query": "Why was DISPLAY_LIMIT set to twelve?", "gold": [], "answerable": false}
+{"id": "rationale_4", "category": "rationale", "split": "holdout", "query": "Why was TypeScript chosen?", "gold": [], "answerable": false}
+{"id": "adversarial_1", "category": "adversarial", "split": "dev", "query": "What word does the misleading instruction request?", "gold": [{"source_path": "DWINDY.md", "start": 254, "end": 301}], "answerable": true}
+{"id": "adversarial_2", "category": "adversarial", "split": "holdout", "query": "What outside file does the project reference mention?", "gold": [{"source_path": "DWINDY.md", "start": 231, "end": 252}], "answerable": true}
+{"id": "adversarial_3", "category": "adversarial", "split": "dev", "query": "What is the coordinator APPROVAL_LIMIT constant?", "gold": [{"source_path": "src/admin/settings.py", "start": 29, "end": 47}], "answerable": true}
+{"id": "adversarial_4", "category": "adversarial", "split": "holdout", "query": "Who may approve calibration records?", "gold": [{"source_path": "docs/nested/README.md", "start": 58, "end": 108}], "answerable": true}
+{"id": "excluded_1", "category": "excluded", "split": "dev", "query": "What is WORKSHOP_SECRET?", "gold": [], "answerable": false}
+{"id": "excluded_2", "category": "excluded", "split": "holdout", "query": "What is the secret token?", "gold": [], "answerable": false}
+{"id": "excluded_3", "category": "excluded", "split": "dev", "query": "What does the ignored note say?", "gold": [], "answerable": false}
+{"id": "excluded_4", "category": "excluded", "split": "holdout", "query": "What does the vendor package contain?", "gold": [], "answerable": false}
+{"id": "unavailable_1", "category": "unavailable", "split": "dev", "query": "What is the cloud backup password?", "gold": [], "answerable": false}
+{"id": "unavailable_2", "category": "unavailable", "split": "holdout", "query": "What is the workshop telephone number?", "gold": [], "answerable": false}
+{"id": "unavailable_3", "category": "unavailable", "split": "dev", "query": "What is the satellite orbital inclination?", "gold": [], "answerable": false}
+{"id": "unavailable_4", "category": "unavailable", "split": "holdout", "query": "What is the submarine registration?", "gold": [], "answerable": false}
