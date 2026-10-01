@@ -1,0 +1,13 @@
+# Copy to api.local.toml. Model settings remain in config.local.toml.
+host = "127.0.0.1"
+port = 8000
+allow_non_loopback = false
+allowed_hosts = ["127.0.0.1", "localhost", "::1"]
+allowed_origins = []
+token_env = "DWINDY_API_TOKEN"
+max_conversations = 16
+conversation_idle_seconds = 1800
+max_request_bytes = 65536
+# Non-loopback additionally requires a token and an existing TLS certificate/key.
+# ssl_certfile = "local/cert.pem"
+# ssl_keyfile = "local/key.pem"

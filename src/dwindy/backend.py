@@ -8,6 +8,10 @@ class BackendError(RuntimeError):
     """A model loading, formatting, or generation failure."""
 
 
+class ContextLimitError(BackendError):
+    """The request cannot fit the configured context and output allowance."""
+
+
 @dataclass(frozen=True)
 class Message:
     role: Literal["system", "user", "assistant"]

@@ -3,7 +3,7 @@
 from dataclasses import asdict
 from typing import Iterator, Sequence
 
-from .backend import BackendError, Completion, GenerationOptions, Message, TextDelta
+from .backend import BackendError, Completion, ContextLimitError, GenerationOptions, Message, TextDelta
 from .config import Config, validate_template_kwargs
 
 
@@ -80,7 +80,7 @@ class LlamaBackend:
                  ) -> Iterator[TextDelta | Completion]:
         formatted, tokens = self._prepare(messages)
         if options.max_tokens < 1 or len(tokens) + options.max_tokens > self.context_size():
-            raise BackendError("Request plus generation allowance exceeds model context.")
+            raise ContextLimitError("Request plus generation allowance exceeds model context.")
         stream = None
         try:
             # Reset logical inference state; supplied messages are the sole history.

@@ -3,7 +3,7 @@
 from dataclasses import dataclass
 from typing import Generator, Sequence
 
-from .backend import BackendError, Completion, GenerationOptions, Message, ModelBackend, TextDelta
+from .backend import BackendError, Completion, ContextLimitError, GenerationOptions, Message, ModelBackend, TextDelta
 
 
 @dataclass(frozen=True)
@@ -20,7 +20,7 @@ def _bounded_messages(backend: ModelBackend, history: Sequence[Message], user: s
         if backend.count_tokens(messages) + options.max_tokens <= backend.context_size():
             return messages
         if not recent:
-            raise BackendError("Current message cannot fit with the generation allowance. "
+            raise ContextLimitError("Current message cannot fit with the generation allowance. "
                                "Shorten it or adjust the context/output settings.")
         del recent[:2]  # Preserve M1: drop oldest complete user/assistant turn.
 

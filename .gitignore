@@ -249,6 +249,7 @@ config.local.yaml
 
 # M1 local configuration and explicit evaluation artifacts
 config.local.toml
+api.local.toml
 eval-results/
 *.db-wal
 *.db-shm

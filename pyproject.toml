@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "dwindy"
 version = "0.1.0"
-description = "Small offline CPU-first terminal conversational runtime"
+description = "Small offline CPU-first conversational runtime and local API"
 readme = "README.md"
 requires-python = ">=3.11"
 license = {text = "Apache-2.0"}
@@ -13,9 +13,12 @@ dependencies = ["llama-cpp-python==0.3.35"]
 
 [project.optional-dependencies]
 eval = ["psutil>=5.9,<8"]
+api = ["fastapi==0.142.2", "pydantic==2.13.5", "starlette==1.7.0", "uvicorn==0.54.0"]
+api-test = ["httpx==0.28.1"]
 
 [project.scripts]
 dwindy = "dwindy.__main__:main"
+dwindy-api = "dwindy.server:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

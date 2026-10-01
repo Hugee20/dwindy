@@ -1,13 +1,15 @@
-# Dwindy architecture through M2
+# Dwindy architecture through M3
 
-Status: M1 runtime and template-kwargs correction, plus the M2 Core extraction.
+Status: M1 runtime and template-kwargs correction, M2 Core, and M3 local HTTP API.
 The project proposal remains the specification. This document records implemented decisions.
 
 ## Execution and ownership
 
-One Python process contains the terminal client and a CPU-only llama.cpp runtime accessed
-through llama-cpp-python. No listener, service process, database, or outbound-network client
-is created. Dependencies and model files are installed/supplied separately from execution.
+One Python process contains either the terminal application or the optional HTTP application
+and a CPU-only llama.cpp runtime accessed through llama-cpp-python. The terminal opens no
+listener; the API explicitly opens a loopback listener by default. No separate model service,
+database, or outbound-network client is created. Dependencies and model files are
+installed/supplied separately from execution.
 
 `core.py` owns an in-memory list of completed user/assistant turns for each `DwindyCore`.
 It selects recent complete turns within context, reserving `max_tokens` for generation.
@@ -25,7 +27,9 @@ history storage, or response-commit decisions remain in terminal rendering.
 
 `config.py` reads explicitly selected TOML using `tomllib`, validates settings, and resolves
 local model paths. CLI model paths override the file setting. No automatic config search or
-environment-based runtime settings are implemented. CPU execution is fixed, not a toggle.
+environment-based model settings are implemented. CPU execution is fixed, not a toggle.
+`server.py` separately validates API-only TOML and an optional bearer token environment
+variable. It launches one Uvicorn worker with reload, proxy-header trust, and access logs disabled.
 
 ## Core boundary and lifecycle
 
@@ -50,7 +54,8 @@ close streams; abandoned references are not a supported cleanup strategy.
 
 The guard provides sequential-use validation, not thread safety or backend-wide locking.
 Separate Core instances have separate history; applications sharing a model backend must
-serialize their calls. There is no registry, session addressing, or concurrency scheduling.
+serialize their calls. Core has no registry, session addressing, or concurrency scheduling;
+the HTTP adapter supplies a bounded registry and one global inference lease.
 Core rejects blank/non-string input without changing state and does not normalize valid text
 or interpret slash commands. The terminal keeps its M1 input normalization and commands.
 
@@ -71,6 +76,9 @@ metadata, a backend error, and a synchronous Protocol:
 Completion metadata includes finish reason, prompt-token count, and **retokenized visible
 text** token count. The latter is not the number of tokens actually sampled by the runtime.
 Native runtime objects and dictionaries do not cross this boundary.
+M3 adds `ContextLimitError(BackendError)` to the existing context-overflow paths in Core
+and the adapter. This enables reliable HTTP 422 mapping without matching exception text.
+Existing callers catching BackendError retain their behavior; no model-facing logic changes.
 
 `llama_backend.py` alone imports llama-cpp-python. It loads one explicit local GGUF,
 forces `n_gpu_layers=0`, reads the embedded chat template, and uses the runtime's Jinja
@@ -100,6 +108,79 @@ Evaluation configuration serialization includes the mapping. Templates define wh
 variable has an effect; unfamiliar variables may be ignored. There is no model detection,
 universal reasoning mode, message rewriting, or generated-output stripping.
 
+## HTTP ownership, state, and cancellation
+
+`api.py` contains the FastAPI application, strict HTTP schemas/security checks, bounded
+conversation registry, and response adapter. Its only runtime construction import is inside
+application startup; request handling uses DwindyCore and the existing backend contract.
+`create_app(model_config, api_config, backend=...)` permits model-free tests to supply a backend;
+the application's lifespan owns and closes either the supplied or constructed backend.
+No factory framework, backend registry, or Core dependency on HTTP is introduced.
+
+One event loop owns admission and the in-memory ID-to-Core mapping. One dedicated worker
+thread loads the model and performs all synchronous counting/generation/stream cleanup/model
+closure. Admission happens without an intervening await: same-conversation overlap gets 409,
+other inference gets 503, and rejected operations never enter the worker. ThreadPoolExecutor
+is only a mechanism for this single worker, not an inference queue. Health and idle deletion
+do not call the model. No native call is made on the event loop.
+
+Opaque 192-bit random IDs identify one ephemeral Core each. Defaults cap the registry at
+16 conversations, with lazy 30-minute idle expiry. Active entries cannot expire or be deleted.
+There is no live eviction, listing, persisted history, user ownership, or multi-process sharing.
+New requests failing before exposing their IDs release their slots. SSE exposes the ID in
+`started`, so later failure leaves the addressed conversation available until delete/expiry.
+Expired/deleted IDs return 404 and are never silently recreated. Delete plus a chat without
+an ID supplies reset semantics. The registry disappears on shutdown.
+
+The response adapter explicitly owns the closeable Core stream rather than handing a sync
+generator to a framework streaming wrapper. It advances to TurnStarted before sending success
+headers, preserving normal HTTP errors for preparation failures. It forwards raw deltas and
+committed completion metadata into either accumulated JSON or four SSE event types:
+`started`, `delta`, `completed`, `error`. Wire schemas and all errors are documented in README
+and the local OpenAPI endpoint; there are no fields for unimplemented features.
+
+An ASGI disconnect watcher requests cancellation between synchronous advances. A pending
+native next() is shielded from task cancellation; cleanup waits for it to return, closes Core
+on the worker, and only then releases conversation/global leases. Cleanup itself is shielded
+against repeated task cancellation. Native code is never forcibly interrupted. Close failure
+marks the API unavailable instead of permitting unverified backend reuse.
+
+Shutdown stops admission, cancels/drains active response tasks, then closes the model on the
+same worker and joins the worker. The launcher gives requests a one-second graceful window
+before requesting cancellation; this is not a deadline for killing native work. A stuck native
+call can prevent safe shutdown. Connected requests cancelled during shutdown receive an
+unavailable error after cleanup where delivery is still possible. Startup cancellation waits for model construction
+so the model cannot be abandoned while loading.
+
+Core commit precedes HTTP completion delivery. A disconnect racing with commit can leave a
+completed turn in history without the client knowing it succeeded. There is no exactly-once
+delivery, replay, automatic retry, resumable SSE, or idempotency store. Nonempty output-limit
+responses still commit. Failed/cancelled turns roll back under the existing Core semantics.
+
+## HTTP security boundary
+
+The supported launcher binds literal 127.0.0.1 by default and never uses reload or multiple
+workers. Separate API configuration requires explicit opt-in, bearer authentication, and a
+loadable TLS certificate/key for non-loopback binding. TLS terminates directly in Uvicorn;
+proxy headers are disabled. Application checks also reject non-loopback peers in local mode
+and plaintext requests in non-loopback mode. These controls do not make this a public internet
+service; accounts, rate limiting, hostile-client availability guarantees, and proxy deployments
+are outside M3.
+
+Host headers must match exact configured names/IPs. Browser Origin headers must match the
+request origin or an explicitly allowed origin; all others, including null, are rejected before
+application work. CORS is not authentication. Only approved methods/headers receive preflight
+permission, and cookies/credentialed CORS are not enabled. Optional loopback authentication
+uses one environment-supplied bearer token and constant-time comparison; it is mandatory for
+non-loopback exposure. The token is not written to configuration, logs, or responses. Local
+clients share the same trust boundary; opaque IDs do not provide per-user access control.
+
+Bodies are bounded while reading, including chunked requests, before JSON parsing. Schemas
+reject unknown fields and coercion, preserving valid message text. Application errors do not
+echo submitted values or native exception details. Responses disable caching and the launcher
+disables access logs. Interactive docs/CDN assets are disabled; /openapi.json uses the same
+Host/Origin/auth rules. Model loading and API operation make no outbound requests.
+
 ## Evaluation and validation
 
 `tests/eval/core_v0.jsonl` holds 30 synthetic cases across six categories. The explicit
@@ -110,6 +191,19 @@ only to a user-selected new output file. Human quality fields begin unscored.
 The frozen M1 runner continues calling the backend directly, bypassing Core. M2 tests cover
 Core state ownership, trimming and rollback, stream cleanup, overlap rejection, backend
 ownership, and terminal behavior. Historical evaluation artifacts and rubrics are unchanged.
+All 50 existing M2 tests remain unchanged. M3 tests cover HTTP contracts, strict validation,
+body bounds, state expiry/capacity, security and binding policy, and real loopback socket
+disconnects/shutdown with a controlled fake backend. Blocking native-next and cleanup phases
+verify backend exclusion until cleanup finishes, including rollback of a cancelled turn.
+The optional HTTP dependencies are pinned to the combination tested on Windows/Python 3.13.
+No real model is required for automated tests.
+
+`tests/smoke_api.py` is an explicit synthetic real-model smoke, separate from M1 evaluation.
+The existing Qwen3-1.7B Q4_K_M non-thinking configuration (4096 context, 256 output,
+temperature 0.7, seed 42) retained CEDAR across HTTP requests and after disconnect recovery;
+JSON, SSE, deletion, fresh conversation state, and shutdown during generation/model cleanup
+passed. Observed disconnect recovery was approximately 0.15–0.20 seconds on the development
+machine; it is an observation, not a latency guarantee or a new baseline measurement.
 
 Time to first nonempty text is measured rather than claiming raw first-token latency.
 Throughput counts retokenized visible text over total request time, including prefill.
