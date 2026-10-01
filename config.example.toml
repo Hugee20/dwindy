@@ -1,0 +1,16 @@
+# Copy to config.local.toml and supply your own local GGUF.
+# Relative model paths resolve against this configuration file's directory.
+# Windows paths can use forward slashes or TOML literal strings: 'D:\models\model.gguf'
+model_path = "models/your-model.gguf"
+context_size = 4096
+max_tokens = 256
+temperature = 0.7
+seed = 42
+# threads = 4  # Omit to let the runtime choose.
+# Empty by default: some chat templates do not support system messages.
+system_prompt = ""
+
+# Optional model-template variables; omitted/empty preserves template defaults.
+# Put this table AFTER all top-level settings. Supported keys depend on your GGUF.
+# [chat_template_kwargs]
+# enable_thinking = false  # Only for templates that implement this variable.

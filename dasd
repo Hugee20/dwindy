@@ -1,0 +1,179 @@
+warning: in the working copy of '.gitignore', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'README.md', LF will be replaced by CRLF the next time Git touches it
+[1mdiff --git a/.gitignore b/.gitignore[m
+[1mindex 83972fa..530fa5b 100644[m
+[1m--- a/.gitignore[m
+[1m+++ b/.gitignore[m
+[36m@@ -216,3 +216,43 @@[m [m__marimo__/[m
+ [m
+ # Streamlit[m
+ .streamlit/secrets.toml[m
+[32m+[m
+[32m+[m[32m# ============================================================[m
+[32m+[m[32m# Dwindy[m
+[32m+[m[32m# ============================================================[m
+[32m+[m
+[32m+[m[32m# Local model weights[m
+[32m+[m[32m*.gguf[m
+[32m+[m[32m*.ggml[m
+[32m+[m[32m*.safetensors[m
+[32m+[m[32mmodels/*[m
+[32m+[m[32m!models/README.md[m
+[32m+[m
+[32m+[m[32m# Runtime/user data[m
+[32m+[m[32mdata/*[m
+[32m+[m[32m!data/README.md[m
+[32m+[m
+[32m+[m[32m# SQLite databases and journals[m
+[32m+[m[32m*.db[m
+[32m+[m[32m*.sqlite[m
+[32m+[m[32m*.sqlite3[m
+[32m+[m[32m*.db-journal[m
+[32m+[m[32m*.sqlite-journal[m
+[32m+[m[32m*.sqlite3-journal[m
+[32m+[m
+[32m+[m[32m# Cache[m
+[32m+[m[32mcache/[m
+[32m+[m
+[32m+[m[32m# Local configuration[m
+[32m+[m[32mconfig.yaml[m
+[32m+[m[32mconfig.local.yaml[m
+[32m+[m
+[32m+[m[32m# M1 local configuration and explicit evaluation artifacts[m
+[32m+[m[32mconfig.local.toml[m
+[32m+[m[32meval-results/[m
+[32m+[m[32m*.db-wal[m
+[32m+[m[32m*.db-shm[m
+[32m+[m[32m*.sqlite-wal[m
+[32m+[m[32m*.sqlite-shm[m
+[32m+[m[32m*.sqlite3-wal[m
+[32m+[m[32m*.sqlite3-shm[m
+[1mdiff --git a/README.md b/README.md[m
+[1mindex 13e3de5..81e5db8 100644[m
+[1m--- a/README.md[m
+[1m+++ b/README.md[m
+[36m@@ -1,2 +1,122 @@[m
+[31m-# dwindy[m
+[31m-Lightweight, local-first, project-aware conversational AI runtime and API.[m
+[32m+[m[32m# Dwindy[m
+[32m+[m
+[32m+[m[32mA small, local-first, CPU-first conversational runtime. **V0.1 implements Milestone 1:**[m
+[32m+[m[32mephemeral terminal chat with a user-supplied GGUF and a 30-case baseline evaluation.[m
+[32m+[m[32mThe [project proposal](docs/PROJECT_PROPOSAL.md) is the specification;[m
+[32m+[m[32m[architecture](docs/ARCHITECTURE.md) describes what M1 actually implements.[m
+[32m+[m
+[32m+[m[32mThere is no HTTP API, browser client, persistent chat, retrieval, tool execution, or web access[m
+[32m+[m[32min this milestone. Dwindy never selects or downloads a model. Model licenses are separate[m
+[32m+[m[32mfrom the Apache-2.0 source license.[m
+[32m+[m
+[32m+[m[32m## Windows setup[m
+[32m+[m
+[32m+[m[32mPython 3.11+ is required. Run these PowerShell commands from the repository root.[m
+[32m+[m[32mThe existing development environment was tested on Windows x86-64 / Python 3.13.0;[m
+[32m+[m[32mPython 3.11 and other platforms have not yet been validated. On a new checkout, create[m
+[32m+[m[32mthe virtual environment with an installed Python 3.11+ interpreter, for example:[m
+[32m+[m
+[32m+[m[32m```powershell[m
+[32m+[m[32mpy -3.13 -m venv .venv[m
+[32m+[m[32m```[m
+[32m+[m
+[32m+[m[32mSkip that command if `.venv` already contains the interpreter you want. Activation is[m
+[32m+[m[32munnecessary; use its interpreter explicitly:[m
+[32m+[m
+[32m+[m[32m```powershell[m
+[32m+[m[32m$env:PIP_DISABLE_PIP_VERSION_CHECK = "1"[m
+[32m+[m[32m.\.venv\Scripts\python.exe -m pip install --only-binary=llama-cpp-python --extra-index-url https://abetlen.github.io/llama-cpp-python/whl/cpu -e .[m
+[32m+[m[32m```[m
+[32m+[m
+[32m+[m[32mThis is a **setup-time dependency download**, not a runtime operation. The command uses[m
+[32m+[m[32mthe runtime project's published CPU wheel index and fails instead of silently attempting[m
+[32m+[m[32ma native source build if a matching runtime wheel is unavailable. See the[m
+[32m+[m[32m[official installation documentation](https://llama-cpp-python.readthedocs.io/en/latest/)[m
+[32m+[m[32mfor compiler-based installation alternatives. Dwindy does not install anything at startup.[m
+[32m+[m[32mAir-gapped setup requires separately prepared dependency wheels and model files.[m
+[32m+[m
+[32m+[m[32m## Supply and run your own model[m
+[32m+[m
+[32m+[m[32mObtain a compatible text instruction/chat GGUF separately, review its license, and keep it[m
+[32m+[m[32moutside version control. M1 requires an embedded `tokenizer.chat_template` supported by[m
+[32m+[m[32mthe installed runtime's Jinja formatter. Missing or unsupported templates produce errors;[m
+[32m+[m[32mthere is no model-family fallback, tokenizer download, or remote model lookup.[m
+[32m+[m[32mNot every GGUF is a compatible text chat model.[m
+[32m+[m
+[32m+[m[32mFor a direct run, replace this example path with your actual local file:[m
+[32m+[m
+[32m+[m[32m```powershell[m
+[32m+[m[32m.\.venv\Scripts\python.exe -m dwindy --model 'D:\Models\your-model.gguf'[m
+[32m+[m[32m```[m
+[32m+[m
+[32m+[m[32mFor configuration:[m
+[32m+[m
+[32m+[m[32m```powershell[m
+[32m+[m[32mCopy-Item config.example.toml config.local.toml[m
+[32m+[m[32mnotepad config.local.toml[m
+[32m+[m[32m.\.venv\Scripts\python.exe -m dwindy --config config.local.toml[m
+[32m+[m[32m```[m
+[32m+[m
+[32m+[m[32mSet `model_path` to your actual file. TOML literal strings accept Windows backslashes,[m
+[32m+[m[32mfor example `model_path = 'D:\Models\your-model.gguf'`. Forward slashes also work.[m
+[32m+[m[32mPaths in TOML resolve relative to that file; `--model` overrides only the model path and[m
+[32m+[m[32mresolves relative to the working directory. No configuration is discovered automatically.[m
+[32m+[m[32mUse a physical local filesystem, not network-mapped or cloud-backed storage, for offline use.[m
+[32m+[m[32mURLs and UNC model paths are rejected.[m
+[32m+[m
+[32m+[m[32mConfiguration keys are `model_path`, `context_size`, `max_tokens`, `temperature`, `seed`,[m
+[32m+[m[32m`threads`, and `system_prompt`. Unknown keys fail. Defaults are 4096 context tokens,[m
+[32m+[m[32m256 output tokens, temperature 0.7, seed 42, runtime-chosen thread count, and no system[m
+[32m+[m[32mmessage. These are starting settings, not benchmark-derived recommendations. Some templates[m
+[32m+[m[32mreject system messages; leave `system_prompt` empty unless your model supports them.[m
+[32m+[m
+[32m+[m[32mType `/reset` to discard history and `/exit` to quit. EOF or Ctrl+C at the input prompt[m
+[32m+[m[32malso exits. Ctrl+C during generation discards the incomplete turn and returns to the prompt.[m
+[32m+[m[32mResponses stream to the terminal. The oldest complete turns are removed when necessary[m
+[32m+[m[32mto reserve output space; an oversized current message is rejected. Output limits are shown.[m
+[32m+[m[32mHistory exists only in memory and is never written by the terminal client. Reset is logical[m
+[32m+[m[32mhistory removal, not a guarantee of secure erasure from process memory or terminal scrollback.[m
+[32m+[m
+[32m+[m[32m## Tests and evaluation[m
+[32m+[m
+[32m+[m[32m```powershell[m
+[32m+[m[32m.\.venv\Scripts\python.exe -m unittest discover -s tests -v[m
+[32m+[m[32m.\.venv\Scripts\python.exe -m pip check[m
+[32m+[m[32m```[m
+[32m+[m
+[32m+[m[32mTests use fake runtimes; no model or network is required. To test the source without[m
+[32m+[m[32minstalling runtime dependencies, set `$env:PYTHONPATH = (Join-Path (Get-Location) 'src')`[m
+[32m+[m[32mbefore running unittest.[m
+[32m+[m
+[32m+[m[32mOptional memory measurement dependency and baseline run:[m
+[32m+[m
+[32m+[m[32m```powershell[m
+[32m+[m[32m.\.venv\Scripts\python.exe -m pip install --only-binary=llama-cpp-python --extra-index-url https://abetlen.github.io/llama-cpp-python/whl/cpu -e '.[eval]'[m
+[32m+[m[32mNew-Item -ItemType Directory -Force eval-results | Out-Null[m
+[32m+[m[32m.\.venv\Scripts\python.exe tests\eval\run.py --config config.local.toml --output eval-results\baseline-01.jsonl[m
+[32m+[m[32m```[m
+[32m+[m
+[32m+[m[32mUse a new output name for every run. The runner requires an explicit output path and refuses[m
+[32m+[m[32mto overwrite existing files. It writes evaluation answers and measurement metadata, never[m
+[32m+[m[32mterminal history. `eval-results/` is ignored by Git.[m
+[32m+[m[32mSee [evaluation instructions](tests/eval/README.md) for scoring and metric limitations.[m
+[32m+[m
+[32m+[m[32m## Dependencies[m
+[32m+[m
+[32m+[m[32m| Dependency | Role |[m
+[32m+[m[32m|---|---|[m
+[32m+[m[32m| `llama-cpp-python==0.3.35` | In-process CPU inference; pinned because template/runtime APIs matter. |[m
+[32m+[m[32m| `setuptools>=68` | Build backend, used during installation only. |[m
+[32m+[m[32m| `psutil>=5.9,<8` (optional `eval` extra) | Sample process RSS and report machine RAM. |[m
+[32m+[m[32m| NumPy (runtime transitive) | Runtime arrays and native inference integration. |[m
+[32m+[m[32m| Jinja2 and MarkupSafe (runtime transitive) | Runtime chat-template rendering and its string support. |[m
+[32m+[m[32m| typing-extensions (runtime transitive) | Runtime typing compatibility. |[m
+[32m+[m[32m| diskcache (runtime transitive) | Upstream runtime dependency; Dwindy does not enable a disk cache. |[m
+[32m+[m
+[32m+[m[32mConfiguration, terminal interaction, tests, JSONL, hashing, and timing use Python's standard[m
+[32m+[m[32mlibrary. Installed during initial validation: llama-cpp-python 0.3.35, NumPy 2.5.3,[m
+[32m+[m[32mJinja2 3.1.6, MarkupSafe 3.0.3, typing-extensions 4.16.0, diskcache 5.6.3, psutil 7.2.2.[m
+[32m+[m[32mThese are an observed environment, not a cross-platform lockfile.[m
+[32m+[m
+[32m+[m[32mNo model inference or quality/performance benchmark has been validated yet. The 8 GB[m
+[32m+[m[32mCPU-only laptop remains a design target, not an established performance claim.[m

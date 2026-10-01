@@ -216,3 +216,43 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# ============================================================
+# Dwindy
+# ============================================================
+
+# Local model weights
+*.gguf
+*.ggml
+*.safetensors
+models/*
+!models/README.md
+
+# Runtime/user data
+data/*
+!data/README.md
+
+# SQLite databases and journals
+*.db
+*.sqlite
+*.sqlite3
+*.db-journal
+*.sqlite-journal
+*.sqlite3-journal
+
+# Cache
+cache/
+
+# Local configuration
+config.yaml
+config.local.yaml
+
+# M1 local configuration and explicit evaluation artifacts
+config.local.toml
+eval-results/
+*.db-wal
+*.db-shm
+*.sqlite-wal
+*.sqlite-shm
+*.sqlite3-wal
+*.sqlite3-shm
