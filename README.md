@@ -4,10 +4,11 @@ A small, local-first, CPU-first conversational runtime. Milestone 1 established 
 terminal chat with a user-supplied GGUF and a 30-case baseline evaluation. Milestone 2
 extracted that conversation behavior into a reusable, in-process `DwindyCore`.
 **Milestone 3** exposes Core through an optional, small local HTTP API.
+**Milestone 4** adds standalone browser chat and a copyable, framework-free chat widget.
 The [project proposal](docs/PROJECT_PROPOSAL.md) is the specification;
 [architecture](docs/ARCHITECTURE.md) describes the implemented boundaries.
 
-There is no browser client, persistent chat, retrieval, tool execution, or outbound web access
+There is no persistent chat, retrieval, tool execution, or outbound web retrieval
 in this milestone. Dwindy never selects or downloads a model. Model licenses are separate
 from the Apache-2.0 source license.
 
@@ -292,7 +293,7 @@ The token is read at startup and must be at least 32 non-whitespace ASCII charac
 `Authorization: Bearer <token>` on every application/schema request. Approved browser
 preflights do not require the token. Without authentication, other local processes share trust;
 conversation IDs are opaque addresses, not user isolation. Do not embed a shared secret in a
-publicly shipped widget. M4 client integration is not implemented here.
+publicly shipped widget. M4's memory-only client integration is documented below.
 
 | API TOML field | Default / rule |
 |---|---|
@@ -325,6 +326,39 @@ $reply.text
 Invoke-RestMethod -Uri http://127.0.0.1:8000/v1/chat -Method Post -Headers $headers -ContentType application/json -Body (@{ message = 'Continue'; conversation_id = $reply.conversation_id } | ConvertTo-Json)
 Invoke-RestMethod -Uri "http://127.0.0.1:8000/v1/conversations/$($reply.conversation_id)" -Method Delete -Headers $headers
 ```
+
+## Browser chat and embedding (M4)
+
+Both interfaces use the same vanilla `<dwindy-chat>` Web Component and the public M3 API.
+No Node, npm, build step, frontend framework, CDN or runtime frontend dependency is needed.
+To serve the standalone page from a source checkout:
+
+```powershell
+.\.venv\Scripts\python.exe -m dwindy.server --config config.local.toml --chat-root .
+```
+
+Open `http://127.0.0.1:8000/chat/`. Static hosting is opt-in and allowlisted; API authentication
+remains unchanged. Optional connection credentials stay in page memory. The browser keeps no
+persistent conversation history. The UI shows literal model text, with no Markdown/HTML rendering.
+
+Alternatively, copy the `web/` runtime files and used `assets/` into another application's
+static directory, preserving their layout:
+
+```html
+<script type="module" src="/vendor/dwindy/web/dwindy-chat.js"></script>
+<dwindy-chat api-base="http://127.0.0.1:8000"
+             display-name="Project Assistant"
+             position="bottom-right"></dwindy-chat>
+```
+
+Allow the host **page's** exact Origin in API configuration. Never ship a deployment-wide
+bearer secret in a public widget. Host styling is isolated by Shadow DOM; a small attribute
+contract and four color variables permit personalization. Idle and active-generation mascot
+states are supported; artwork for later capabilities is not activated.
+
+See [Chat interfaces](docs/CHAT_INTERFACES.md) for the complete bundle, configuration,
+security, cancellation/reset behavior, accessibility coverage, and browser test commands.
+An unrelated host-page example is in `web/examples/embedded.html`.
 
 ## Tests and evaluation
 

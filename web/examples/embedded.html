@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Garden Club — Dwindy embedding example</title>
+<style>
+  body { margin: 0; padding: 8vw; background: #edf0fa; color: #182345; font: 18px Georgia, serif; }
+  button { background: #253783; color: white; border: 8px double white; padding: 20px; }
+  textarea { background: magenta; font: 28px monospace; }
+  h1 { font-size: 42px; } section { max-width: 650px; } p { line-height: 1.7; }
+</style>
+<script type="module" src="../dwindy-chat.js"></script></head>
+<body><main><section><p>THE NEIGHBOURHOOD GARDEN CLUB</p><h1>A small patch.<br>A shared project.</h1>
+<p>This unrelated sample page has its own typography, colors and button styles. The chat in the corner is a standard custom element.</p>
+<button type="button">Host page button</button>
+<p>The assistant has no knowledge of this page or this club. M4 provides conversation only.</p>
+</section></main>
+<!-- For this local example: allow this PAGE's exact origin in api.local.toml. -->
+<dwindy-chat api-base="http://127.0.0.1:8000" display-name="Garden Assistant" position="bottom-right" placeholder="Ask a question"></dwindy-chat>
+</body></html>

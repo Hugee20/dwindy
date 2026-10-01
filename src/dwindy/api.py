@@ -83,8 +83,9 @@ def origin_tuple(value):
 class SecurityMiddleware:
     """Reject untrusted Host/Origin, not merely omit CORS response headers."""
 
-    def __init__(self, app, config, token):
+    def __init__(self, app, config, token, public_files=()):
         self.app, self.config, self.token = app, config, token
+        self.public_files = frozenset(public_files)
 
     async def __call__(self, scope, receive, send):
         if scope["type"] != "http":
@@ -144,7 +145,8 @@ class SecurityMiddleware:
                 "Access-Control-Allow-Methods": "GET, POST, DELETE",
                 "Access-Control-Allow-Headers": "Authorization, Content-Type"})
             return await response(scope, receive, cors_send)
-        if self.token is not None:
+        public_asset = scope["method"] in ("GET", "HEAD") and scope["path"] in self.public_files
+        if self.token is not None and not public_asset:
             auth = headers.get(b"authorization", "")
             supplied = auth[7:] if auth[:7].lower() == "bearer " else ""
             if not hmac.compare_digest(supplied.encode("utf-8"), self.token.encode("ascii")):
@@ -363,10 +365,14 @@ class ChatResponse(Response):
                 pass
 
 
-def create_app(model_config, api_config=None, *, backend=None):
+def create_app(model_config, api_config=None, *, backend=None, chat_root=None):
     """Application owns supplied or constructed backend; lifespan closes it once."""
     config = api_config or ApiConfig()
     token = config.validate()
+    files = {}
+    if chat_root is not None:
+        from .web_ui import frontend_files
+        files = frontend_files(chat_root)
     state = ApiState(config, model_config)
 
     @asynccontextmanager
@@ -400,7 +406,11 @@ def create_app(model_config, api_config=None, *, backend=None):
     app = FastAPI(title="Dwindy local API", version="1", lifespan=lifespan,
                   docs_url=None, redoc_url=None, responses=ERROR_RESPONSES)
     app.state.dwindy = state
-    app.add_middleware(SecurityMiddleware, config=config, token=token)
+    public_files = (*files, "/chat/") if files else ()
+    app.add_middleware(SecurityMiddleware, config=config, token=token, public_files=public_files)
+    if files:
+        from .web_ui import add_frontend
+        add_frontend(app, files)
 
     @app.exception_handler(HTTPException)
     async def http_error(request, exc):

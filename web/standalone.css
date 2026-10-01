@@ -1,0 +1,16 @@
+* { box-sizing: border-box; }
+body { margin: 0; color: #263018; background: #f5efe3; font: 15px/1.5 system-ui, sans-serif; }
+.page-header { display: flex; align-items: center; justify-content: space-between; padding: 6px max(20px, calc((100% - 940px)/2)); background: #fffcf6; border-bottom: 1px solid #d9dfc9; }
+.page-header img { width: 133px; height: 58px; object-fit: contain; }
+.page-header span { color: #566144; font-size: 13px; }
+main { max-width: 940px; padding: 12px 18px; margin: auto; }
+.connection { margin-bottom: 10px; font-size: 13px; }
+summary { cursor: pointer; min-height: 32px; }
+#connection-form { padding: 12px; display: flex; align-items: end; flex-wrap: wrap; gap: 12px; background: #fffcf6; border-radius: 12px; }
+label { display: grid; gap: 4px; }
+input { font: inherit; border: 1px solid #9ba983; padding: 8px; border-radius: 6px; width: min(290px, 75vw); }
+button { font: inherit; min-height: 40px; padding: 8px 12px; background: #4f5b2a; color: white; border: 0; border-radius: 8px; cursor: pointer; }
+#connection-form p { width: 100%; margin: 0; }
+.footnote { font-size: 12px; text-align: center; color: #566144; }
+:focus-visible { outline: 3px solid #4f5b2a; outline-offset: 3px; }
+@media (max-width: 520px) { main { padding: 8px; } .page-header { padding: 4px 12px; } .page-header span { max-width: 125px; text-align: right; } }

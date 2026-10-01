@@ -1,6 +1,6 @@
-# Dwindy architecture through M3
+# Dwindy architecture through M4
 
-Status: M1 runtime and template-kwargs correction, M2 Core, and M3 local HTTP API.
+Status: M1 runtime and template-kwargs correction, M2 Core, M3 local HTTP API, and M4 chat interfaces.
 The project proposal remains the specification. This document records implemented decisions.
 
 ## Execution and ownership
@@ -180,6 +180,45 @@ reject unknown fields and coercion, preserving valid message text. Application e
 echo submitted values or native exception details. Responses disable caching and the launcher
 disables access logs. Interactive docs/CDN assets are disabled; /openapi.json uses the same
 Host/Origin/auth rules. Model loading and API operation make no outbound requests.
+
+## Browser clients through M4
+
+`web/dwindy-chat.js` implements one autonomous custom element with open Shadow DOM and
+an external component stylesheet. The standalone shell selects inline presentation; embedding
+uses the same component with a launcher/native modal dialog. No framework, bundler, browser
+package dependency, CDN or outbound asset fetch is introduced. Default assets resolve relative
+to the module and use the existing canonical `assets/` tree. Idle and working indicate idle/
+completed and active request processing respectively; no other mascot state is activated.
+
+`web/api-client.js` is an internal shared transport: fetch, streamed UTF-8/SSE parsing,
+conversation ID, bearer credential, abort and DELETE lifecycle. It uses only public M3 endpoints.
+Core, model configuration, prompts, inference settings and backend behavior are unchanged.
+The browser never sends its displayed transcript as model history. User/model output is inserted
+as text, not HTML/Markdown. Display retention is bounded separately from server context.
+
+Credentials and IDs exist only in component/page memory. Each element has independent state.
+Failed requests preserve drafts; uncertain cancellation/EOF requires an explicit new conversation.
+Reset removes the server conversation before clearing the display; failures retain the address.
+Closing a dialog hides it, while element removal aborts outstanding requests. No unload deletion,
+automatic chat retry, persistence, event bus, frontend accounts or model logic exists.
+
+`web_ui.py` provides optional same-server static delivery selected by `--chat-root`. A fixed
+mapping serves the six runtime frontend files and four required PNGs, plus the /chat/ redirect.
+Resolved files must remain in the explicitly selected source bundle. No directory is mounted.
+Only exact static GET/HEAD paths bypass bearer checks for browser bootstrap; Host/Origin and
+exposure checks still apply, and all M3 API/schema authentication remains intact. The frontend
+contains no injected backend token. Static paths do not expand the application OpenAPI surface.
+
+Copying the same component/assets into another host's static directory is equally supported.
+No static server or Dwindy Python integration is needed in the host application; only its HTTP
+API destination and M3 Origin permissions. Source assets are not yet bundled in the Python wheel.
+The customization contract consists of the documented attributes, memory-only bearer setter,
+reset method, and four CSS color variables. Shadow DOM provides style isolation, not security.
+
+Native keyboard controls and dialog behavior, status/error announcements, completion-only
+answer announcements, bounded autoscroll, reduced motion and narrow-viewport styles are
+implemented. `docs/CHAT_INTERFACES.md` records the exact behavior, security requirements,
+test commands, browser coverage and remaining accessibility/device validation limitations.
 
 ## Evaluation and validation
 

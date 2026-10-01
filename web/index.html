@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dwindy — Chat</title><link rel="stylesheet" href="./standalone.css">
+  <script type="module" src="./standalone.js"></script></head>
+<body>
+  <header class="page-header"><img src="../assets/branding/dwindy-lockup.png" alt="Dwindy"><span>Small chatbot. Your space.</span></header>
+  <main>
+    <details class="connection"><summary>Connection settings</summary>
+      <form id="connection-form"><label>API base <input id="api-base" type="url" required></label>
+        <label>Bearer token (optional) <input id="api-token" type="password" autocomplete="off" spellcheck="false"></label>
+        <button type="submit">Connect / start fresh</button>
+        <p>This page saves no chat history or credentials. Messages are sent to the selected API. Changing connection clears the current conversation.</p>
+      </form><p id="connection-status" role="status"></p>
+    </details>
+    <dwindy-chat presentation="inline"></dwindy-chat>
+    <p class="footnote">Conversation is temporary. Answers may be inaccurate.</p>
+    <noscript>Enable JavaScript to use this chat interface.</noscript>
+  </main>
+</body></html>

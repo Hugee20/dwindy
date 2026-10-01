@@ -108,6 +108,7 @@ def main(argv=None) -> int:
     parser.add_argument("--config", help="Existing model TOML configuration")
     parser.add_argument("--model", help="Explicit local GGUF override")
     parser.add_argument("--api-config", help="Optional API-only TOML configuration")
+    parser.add_argument("--chat-root", help="Opt in to frontend hosting from a bundle containing web/ and assets/")
     args = parser.parse_args(argv)
     try:
         api_config = load_api_config(args.api_config)
@@ -118,7 +119,7 @@ def main(argv=None) -> int:
         except ImportError:
             print('Install the optional API dependencies: pip install -e ".[api]"', file=sys.stderr)
             return 1
-        app = create_app(model_config, api_config)
+        app = create_app(model_config, api_config, chat_root=args.chat_root)
         server = uvicorn.Server(uvicorn.Config(app, host=api_config.host, port=api_config.port,
                     workers=1, reload=False, loop="asyncio", http="h11", ws="none",
                     proxy_headers=False, access_log=False, server_header=False,
