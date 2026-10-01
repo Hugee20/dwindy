@@ -11,3 +11,8 @@ max_request_bytes = 65536
 # Non-loopback additionally requires a token and an existing TLS certificate/key.
 # ssl_certfile = "local/cert.pem"
 # ssl_keyfile = "local/key.pem"
+
+# Opt-in: completed conversations are saved UNENCRYPTED on this server.
+# Omit database_path for unchanged ephemeral operation. Paths resolve here.
+# database_path = "data/dwindy.sqlite3"
+# database_max_mib = 128

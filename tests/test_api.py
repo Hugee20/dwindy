@@ -143,7 +143,7 @@ class ApiTests(unittest.TestCase):
 
     def test_health_schema_and_unavailable(self):
         client = self.client()
-        self.assertEqual(client.get("/v1/health").json(), {"status": "ready", "busy": False})
+        self.assertEqual(client.get("/v1/health").json(), {"status": "ready", "busy": False, "persistence_enabled": False})
         self.app.state.dwindy.ready = False
         self.assertEqual(client.get("/v1/health").status_code, 503)
         self.assertEqual(client.post("/v1/chat", json={"message": "hi"}).status_code, 503)

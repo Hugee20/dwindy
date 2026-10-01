@@ -19,6 +19,25 @@ const drain = async stream => { const events = []; for await (const e of stream)
 const errorResponse = (status, code) => new Response(JSON.stringify({error: {code, message: 'Safe error'}}), {status});
 
 export const tests = [
+  ['resume and detach are memory-only and preserve exact ID', async () => {
+    const calls = [];
+    const client = new ChatClient({fetchImpl: async (url, options) => { calls.push({url, options}); return response(); }});
+    client.resume(id); assert(client.conversationId === id && calls.length === 0);
+    await drain(client.chat('continued'));
+    assert(JSON.parse(calls[0].options.body).conversation_id === id);
+    client.detach(); assert(client.conversationId === null && calls.length === 1);
+    await rejects(async () => client.resume('invalid'), 'invalid_request');
+    client.uncertain = true;
+    await rejects(async () => client.resume(id), 'conversation_busy');
+    client.detach(); client.resume(id);
+  }],
+  ['storage errors distinguish rollback from uncertain commit', async () => {
+    for (const code of ['storage_busy', 'storage_full', 'storage_unavailable']) {
+      const client = new ChatClient({fetchImpl: async () => errorResponse(503, code)});
+      await rejects(() => drain(client.chat('hello')), code);
+      assert(client.uncertain === (code === 'storage_unavailable'));
+    }
+  }],
   ['invalid UTF-8 is a protocol error', async () => {
     const body = new ReadableStream({start(c) { c.enqueue(new Uint8Array([255])); c.close(); }});
     await rejects(() => drain(readEvents(body)), 'protocol');

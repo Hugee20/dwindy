@@ -32,6 +32,31 @@ function send(chat, text) {
 async function complete(chat) { await waitFor(() => chat.$('.status').textContent.startsWith('Complete')); }
 
 export const tests = [
+  ['persistent new preserves saved ID remotely and manual resume uses it', () => fixture(async (chat, calls) => {
+    await waitFor(() => !chat.$('.persistence').hidden);
+    assert(chat.$('.persistence').open);
+    send(chat, 'first'); await complete(chat);
+    assert(chat.$('.conversation-id').value === id);
+    await chat.newConversation();
+    assert(!calls.some(c => c.options.method === 'DELETE'));
+    assert(chat.$('.messages').children.length === 0);
+    chat.resumeConversation(id);
+    send(chat, 'resumed'); await complete(chat);
+    assert(JSON.parse(calls.filter(c => c.options.method === 'POST').at(-1).options.body).conversation_id === id);
+    chat.$('.delete').click();
+    assert(!chat.$('.delete-confirm').hidden);
+    assert(!calls.some(c => c.options.method === 'DELETE'));
+    chat.$('.confirm-delete').click();
+    await waitFor(() => chat.$('.conversation-id').value === '');
+    assert(calls.some(c => c.options.method === 'DELETE'));
+  }, {fetchImpl: async (url, options) => url.endsWith('/health') ? new Response('{"persistence_enabled":true}') :
+      options.method === 'DELETE' ? new Response(null, {status: 204}) : response()})],
+  ['floating persistence controls start in a compact keyboard disclosure', () => fixture(async chat => {
+    chat.setAttribute('open', '');
+    await waitFor(() => !chat.$('.persistence').hidden);
+    assert(!chat.$('.persistence').open && chat.$('.persistence summary').textContent === 'Saved conversation');
+    assert(chat.$('.resume-id').closest('label'));
+  }, {attributes: {}, fetchImpl: async () => new Response('{"persistence_enabled":true}')})],
   ['component sends and retains ID over separate turns', () => fixture(async (chat, calls) => {
     send(chat, 'first'); await complete(chat); send(chat, 'second'); await complete(chat);
     const posts = calls.filter(c => c.options.method === 'POST');

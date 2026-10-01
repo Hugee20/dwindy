@@ -1,8 +1,8 @@
-# M4 chat interfaces
+# Chat interfaces through M5
 
 The standalone page and embeddable widget share one dependency-free `<dwindy-chat>`
 custom element with open Shadow DOM. The floating presentation uses a native modal
-`dialog`; the standalone presentation is inline. Both call only M3's public HTTP API.
+`dialog`; the standalone presentation is inline. Both call only the public HTTP API.
 No Node, npm, build step, framework, CDN, external font, Markdown renderer or runtime
 frontend dependency is needed. There is no browser persistence, account system or SDK.
 
@@ -21,8 +21,8 @@ automatically discovered or bundled into the Python wheel. Hosting is disabled w
 the argument is omitted. No browser is automatically launched.
 
 The page defaults to its own origin as API base. Connection settings allow a different
-HTTP(S) base and an optional bearer token. Reconnection first deletes the old conversation
-using its old credentials. It will not silently abandon a failed deletion or send old
+HTTP(S) base and an optional bearer token. In ephemeral mode, reconnection first deletes the old conversation
+using its old credentials. In persistent mode it detaches without deleting saved turns. It will not silently abandon a failed deletion or send old
 credentials to a new destination. If the old server is unreachable or its token revoked,
 reload the page to abandon local state; the old server conversation remains until expiry
 or explicit deletion by an authorized client. A token input is cleared after connection.
@@ -112,7 +112,8 @@ HTML boolean attributes use presence, so `open="false"` still opens the dialog.
 Hiding branding does not implicitly hide the mascot. The canonical standalone page's
 outer header is separate from the embedded component's footer branding.
 
-Changing API destination or credentials requires a successful reset first. Changing
+Changing API destination or credentials requires a successful reset or explicit new
+conversation first. Persistent new conversation preserves saved turns; reset deletes them. Changing
 destination clears the old token; set a new token afterwards, if required. For trusted
 local/private integrations, use the setter from host JavaScript after element definition:
 
@@ -122,7 +123,11 @@ const chat = document.querySelector('dwindy-chat');
 chat.bearerToken = tokenEnteredByTheUser; // Never a deployment secret shipped in a bundle.
 ```
 
-`await chat.resetConversation()` performs the same operation as New conversation.
+`await chat.resetConversation()` explicitly deletes the current server conversation.
+`await chat.newConversation()` preserves saved turns on a persistent server and retains
+M4 reset behavior on an ephemeral server. It checks health first; failure preserves the ID.
+`chat.resumeConversation(id)` attaches a saved ID while idle and fresh, on a server confirmed
+as persistence-enabled. Its existence is validated by the next chat request.
 Open/close can use the `open` attribute. No event bus, plugin hooks or replacement
 templates are supported. The transport module is internal implementation, not a public SDK.
 
@@ -180,13 +185,14 @@ conversation after uncertain cancellation because server commit may race with de
 Known API busy/validation failures do not cause automatic resubmission. Drafts are restored
 after a failed attempt; failed transcript entries are explicitly marked.
 
-New conversation DELETEs a known ID before clearing the transcript. Both 204 and 404 mean
+In ephemeral mode, New conversation DELETEs a known ID before clearing the transcript. Both 204 and 404 mean
 the old address no longer needs retention. On 409 or network failure, the ID/transcript are
 retained and the error explains retry. If disconnection happened before the ID arrived,
-there is no address the browser can delete; the server's idle expiry handles that orphan.
+there is no address the browser can delete. Ephemeral idle expiry handles that orphan;
+persistent records remain saved and there is no ID recovery list in M5.
 Closing the modal simply hides it and preserves an ongoing request. Removing the component
 aborts requests; there is no unreliable unload DELETE or browser persistence. Reload loses
-local state, while server state remains subject to M3's limit/expiry.
+local state; persistent server records survive while cached Core state remains bounded.
 
 Display retention is separate from server context: at most 100 message entries and roughly
 200,000 characters across older displayed turns are kept. One answer displays at most
@@ -223,7 +229,7 @@ does not log credentials or conversation text.
 
 ## Validation
 
-All existing 81 M3 tests remain unchanged. Run Python tests with the API test extra installed:
+The existing M3/M4 behavioral tests remain; health assertions include the additive persistence flag. Run Python tests with the API test extra installed:
 
 ```powershell
 .\.venv\Scripts\python.exe -m unittest discover -s tests -v
@@ -249,9 +255,9 @@ The real-model path additionally checks recall and Stop/reset/recovery. It print
 answers; it does not save transcripts or rerun/modify the frozen M1 evaluation. Optional
 `--screenshot` writes an explicitly selected screenshot; keep such artifacts outside Git.
 
-Validated on Windows/Python 3.13 with Chrome 154.0.8037.59 and Edge 154.0.4258.37.
-The Python suite passes 89 tests (81 unchanged M3 tests plus 8 static/security tests).
-The browser-native suite passes 33 tests in each browser. Additional actual-HTTP checks
+M4 was validated on Windows/Python 3.13 with Chrome 154.0.8037.59 and Edge 154.0.4258.37.
+Its Python suite passed 89 tests (81 M3 tests plus 8 static/security tests).
+Its browser-native suite passed 33 tests in each browser. Additional actual-HTTP checks
 exercise both hosting patterns, optional bearer authentication, denied Origin, keyboard
 focus, 390px mobile emulation and standalone 200% CSS-zoom reflow.
 The tested Qwen3-1.7B Q4_K_M configuration retained CEDAR across standalone requests,
@@ -264,3 +270,32 @@ integration contract is framework-neutral; individual framework integrations are
 Windows/Python's Proactor event loop occasionally logs WinError 10054 when a browser resets
 a connection during navigation/abort. The tested requests and server/model cleanup still pass;
 M4 does not suppress or alter M3's event loop to hide this diagnostic.
+
+
+## M5 persistence controls
+
+When health reports `persistence_enabled: true`, the component explains that completed turns
+are saved unencrypted on the server. Inline chat shows a small conversation section; the
+floating widget uses a collapsed native details/summary disclosure with labeled controls.
+The current ID is selectable/copyable, and a Resume ID input attaches an explicitly supplied
+32-character ID. Earlier transcript messages are not loaded into the display; the next POST
+restores only the server's retained model context. Invalid/unknown IDs never create records.
+
+Save the ID yourself before page reload or starting fresh. New conversation preserves the
+old saved transcript but clears this component's address/display. Delete saved conversation
+requires an explicit confirmation in the controls and removes all its stored turns. The
+programmatic resetConversation method remains destructive without an extra browser prompt.
+Changing API destination uses New semantics; old credentials are still cleared before a
+new destination is configured. No automatic browser persistence, URL IDs, history list,
+conversation search, transcript fetch or frontend redesign is introduced.
+
+After uncertain cancellation, explicitly start fresh; no automatic retry occurs. The old ID
+may identify a completed saved turn even if completion was not delivered. Recoverable storage
+busy/full errors mean the proposed turn was rolled back; storage_unavailable is treated as
+uncertain. Streaming text is provisional until completed. A failed delete preserves the ID
+and display. Page reload/element removal does not delete saved conversations.
+
+The health notice reflects the configured server at connection time; an administrator may
+change storage mode on a later server restart. Consult server configuration for authoritative
+privacy policy. IDs and tokens remain memory-only. All existing branding/personalization,
+plain-text rendering, host isolation and public-API security boundaries remain unchanged.

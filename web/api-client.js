@@ -94,6 +94,18 @@ export class ChatClient {
 
   stop() { this.#controller?.abort(); }
 
+  detach() {
+    if (this.#controller) throw new ApiError('conversation_busy', 'Wait for this request to stop.', 409);
+    this.conversationId = null;
+    this.uncertain = false;
+  }
+
+  resume(id) {
+    if (this.#controller || this.uncertain || this.conversationId) throw new ApiError('conversation_busy', 'Start a new conversation before resuming.', 409);
+    if (typeof id !== 'string' || !/^[A-Za-z0-9_-]{32}$/.test(id)) throw new ApiError('invalid_request', 'Enter a 32-character conversation ID.');
+    this.conversationId = id;
+  }
+
   async reset() {
     if (this.#controller) throw new ApiError('conversation_busy', 'Wait for this request to stop before resetting.', 409);
     if (this.conversationId) {
@@ -117,7 +129,7 @@ export class ChatClient {
         body: JSON.stringify({message, conversation_id: this.conversationId, stream: true})});
       if (!response.ok) {
         const failure = await responseError(response);
-        settled = failure.status < 500 || ['backend_busy', 'conversation_capacity', 'unavailable', 'inference_failed'].includes(failure.code);
+        settled = failure.status < 500 || ['backend_busy', 'conversation_capacity', 'unavailable', 'inference_failed', 'storage_busy', 'storage_full'].includes(failure.code);
         if (failure.code === 'conversation_not_found') this.uncertain = true;
         throw failure;
       }
@@ -139,7 +151,7 @@ export class ChatClient {
         } else if (item.event === 'error' && started) {
           if (typeof data.error?.code !== 'string' || typeof data.error.message !== 'string') throw protocolError();
           // Shutdown may race with Core commit. Treat unavailable as uncertain.
-          settled = ['inference_failed', 'context_limit'].includes(data.error.code);
+          settled = ['inference_failed', 'context_limit', 'storage_busy', 'storage_full'].includes(data.error.code);
           throw new ApiError(data.error.code, data.error.message);
         } else throw protocolError();
         yield item;

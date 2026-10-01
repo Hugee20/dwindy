@@ -8,6 +8,7 @@ export class DwindyChat extends HTMLElement {
   static observedAttributes = ['api-base', 'display-name', 'hide-branding', 'hide-avatar', 'position', 'open', 'placeholder', 'avatar-src'];
   #client; #token = ''; #base; #busy = false; #resetting = false; #health;
   #inline = false; #ready = false; #configuredToken; #styleReady;
+  #persistent = null;
 
   constructor() {
     super();
@@ -23,6 +24,17 @@ export class DwindyChat extends HTMLElement {
         <header><div class="identity"><img class="header-avatar" alt=""><div><h2 id="heading"></h2><span class="subtitle">A little room to think.</span></div></div>
           <div class="actions"><button class="reset" type="button">New conversation</button><button class="close" type="button" aria-label="Close chat">×</button></div>
         </header>
+        <details class="persistence" hidden>
+          <summary>Saved conversation</summary>
+          <p>Completed turns are saved unencrypted on this server. Save the ID yourself to resume after reloading.</p>
+          <label>Conversation ID <input class="conversation-id" readonly aria-label="Current conversation ID"></label>
+          <label>Resume ID <input class="resume-id" maxlength="32" autocomplete="off" spellcheck="false"></label>
+          <button class="resume" type="button">Resume conversation</button>
+          <button class="delete" type="button">Delete saved conversation</button>
+          <p class="delete-confirm" hidden>Delete this conversation and all its saved turns? This cannot be undone.
+            <button class="confirm-delete" type="button">Confirm deletion</button>
+            <button class="cancel-delete" type="button">Keep conversation</button></p>
+        </details>
         <div class="transcript" role="region" aria-label="Conversation" tabindex="0">
           <div class="empty"><img alt=""><h3>Hello. What’s on your mind?</h3><p>Ask a question, explore an idea, or work through a thought.</p></div>
           <p class="pruned" hidden>Older messages were removed from this display.</p>
@@ -58,7 +70,14 @@ export class DwindyChat extends HTMLElement {
         event.preventDefault(); if (!this.#busy) this.#submit();
       }
     });
-    this.$('.reset').addEventListener('click', () => this.resetConversation().catch(() => {}));
+    this.$('.reset').addEventListener('click', () => this.newConversation().catch(error => this.#error(error)));
+    this.$('.resume').addEventListener('click', () => {
+      try { this.resumeConversation(this.$('.resume-id').value.trim()); }
+      catch (error) { this.#error(error); }
+    });
+    this.$('.delete').addEventListener('click', () => { this.$('.delete-confirm').hidden = false; this.$('.confirm-delete').focus(); });
+    this.$('.cancel-delete').addEventListener('click', () => { this.$('.delete-confirm').hidden = true; this.$('.delete').focus(); });
+    this.$('.confirm-delete').addEventListener('click', () => this.resetConversation().then(() => this.$('.reset').focus()).catch(() => {}));
     this.$('.latest').addEventListener('click', () => this.#scroll());
     this.$('.transcript').addEventListener('scroll', () => {
       if (this.#nearBottom()) this.$('.latest').hidden = true;
@@ -71,13 +90,13 @@ export class DwindyChat extends HTMLElement {
     if (!this.#ready) {
       this.#inline = this.getAttribute('presentation') === 'inline';
       this.setAttribute('data-presentation', this.#inline ? 'inline' : 'floating');
+      this.$('.persistence').open = this.#inline;
       if (!this.#inline) this.$('dialog').append(this.$('.panel'));
       this.#ready = true;
     }
     try { this.#configure(); } catch (error) { this.#error(error); }
     this.#personalize();
     this.#open();
-    if (this.#inline) this.#checkHealth();
   }
 
   disconnectedCallback() {
@@ -121,8 +140,11 @@ export class DwindyChat extends HTMLElement {
     this.#health?.abort();
     this.#base = base; this.#configuredToken = this.#token;
     this.#client = new ChatClient({base, token: this.#token});
+    this.#persistent = null;
+    this.$('.persistence').hidden = true;
     this.$('.error').hidden = true;
     this.$('.status').textContent = 'Connection ready to use. Send a message to begin.';
+    if (this.#inline || this.hasAttribute('open')) this.#checkHealth();
   }
 
   #personalize() {
@@ -179,7 +201,11 @@ export class DwindyChat extends HTMLElement {
     this.#health?.abort(); const controller = new AbortController(); this.#health = controller;
     try {
       const health = await this.#client.health(controller.signal);
-      if (!controller.signal.aborted && !this.#busy && !this.#client.uncertain)
+      if (!controller.signal.aborted) {
+        this.#persistent = health.persistence_enabled === true;
+        this.$('.persistence').hidden = !this.#persistent;
+      }
+      if (!controller.signal.aborted && !this.#busy && !this.#client.uncertain && !this.$('.messages').children.length)
         this.$('.status').textContent = health.busy ? 'Dwindy is busy with another request.' : 'Ready when you are.';
     } catch (error) { if (!controller.signal.aborted && !this.#busy) this.#error(error); }
   }
@@ -207,6 +233,9 @@ export class DwindyChat extends HTMLElement {
     this.$('.send').textContent = this.#busy ? 'Stop' : 'Send';
     this.$('.send').disabled = this.#resetting || (!this.#busy && (!this.#client || this.#client.uncertain));
     this.$('.reset').disabled = this.#busy || this.#resetting;
+    for (const button of this.shadowRoot.querySelectorAll('.persistence button, .resume-id')) button.disabled = this.#busy || this.#resetting;
+    this.$('.conversation-id').value = this.#client?.conversationId || '';
+    this.$('.delete').disabled = this.#busy || this.#resetting || !this.#client?.conversationId;
     this.#avatars();
   }
 
@@ -236,7 +265,7 @@ export class DwindyChat extends HTMLElement {
     if (this.#resetting || !this.#client || this.#client.uncertain) return;
     const input = this.$('textarea'), message = input.value;
     if (!message.trim()) return;
-    this.#health?.abort(); this.#busy = true; this.#controls();
+    this.#busy = true; this.#controls();
     this.$('.error').hidden = true; this.$('.empty').hidden = true;
     this.$('.status').textContent = 'Generating…';
     const user = this.#message('user', message), assistant = this.#message('assistant', '');
@@ -244,7 +273,7 @@ export class DwindyChat extends HTMLElement {
     let complete = false, dropped = 0;
     try {
       for await (const item of this.#client.chat(message)) {
-        if (item.event === 'started') dropped = item.data.dropped_turns;
+        if (item.event === 'started') { dropped = item.data.dropped_turns; this.#controls(); }
         if (item.event === 'delta') {
           const follow = this.#nearBottom();
           const available = Math.max(0, 65536 - assistant.content.textContent.length);
@@ -284,12 +313,42 @@ export class DwindyChat extends HTMLElement {
     this.#resetting = true; this.#controls(); this.#health?.abort();
     try {
       await this.#client.reset();
-      this.$('.messages').replaceChildren(); this.$('.empty').hidden = false;
-      this.$('.pruned').hidden = true; this.$('.latest').hidden = true; this.$('.error').hidden = true;
-      this.$('.announcement').textContent = '';
+      this.#clearDisplay();
       this.$('.status').textContent = 'New conversation. Previous context has been cleared.';
     } catch (error) { this.#error(error); throw error; }
     finally { this.#resetting = false; this.#controls(); }
+  }
+
+  #clearDisplay() {
+    this.$('.messages').replaceChildren(); this.$('.empty').hidden = false;
+    this.$('.pruned').hidden = true; this.$('.latest').hidden = true; this.$('.error').hidden = true;
+    this.$('.announcement').textContent = '';
+    this.$('.delete-confirm').hidden = true;
+    this.$('.resume-id').value = '';
+  }
+
+  async newConversation() {
+    if (!this.#client || this.#busy || this.#resetting) throw Error('Wait for the active operation to finish.');
+    // Check the server's current storage mode before a potentially destructive reset.
+    // If unreachable, preserve the ID rather than guessing that it is ephemeral.
+    this.#resetting = true; this.#controls(); this.#health?.abort();
+    try {
+      const health = await this.#client.health();
+      this.#persistent = health.persistence_enabled === true;
+      this.$('.persistence').hidden = !this.#persistent;
+    } finally { this.#resetting = false; this.#controls(); }
+    if (!this.#persistent) return this.resetConversation();
+    this.#client.detach();
+    this.#clearDisplay(); this.#controls();
+    this.$('.status').textContent = 'New conversation. Previous saved turns were not deleted. Keep their ID to resume.';
+  }
+
+  resumeConversation(id) {
+    if (!this.#persistent) throw Error('Connect to a persistence-enabled server before resuming.');
+    if (this.#busy || this.#resetting) throw Error('Wait for the active operation to finish.');
+    this.#client.resume(id);
+    this.#clearDisplay(); this.#controls();
+    this.$('.status').textContent = 'Saved context will resume on your next message. Earlier transcript messages are not loaded.';
   }
 }
 

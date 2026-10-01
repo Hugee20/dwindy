@@ -48,6 +48,26 @@ class DwindyCore:
         self._ensure_idle()
         self._history.clear()
 
+    def snapshot(self) -> tuple[Message, ...]:
+        """Return retained completed turns, excluding the configured system message."""
+        self._ensure_idle()
+        return tuple(self._history)
+
+    def restore(self, messages: Sequence[Message]) -> None:
+        """Replace idle conversation context with validated complete turns; no I/O."""
+        self._ensure_idle()
+        if not isinstance(messages, Sequence):
+            raise ValueError("Expected a sequence of complete user/assistant turns.")
+        candidate = list(messages)
+        if len(candidate) % 2 or any(
+            not isinstance(message, Message)
+            or message.role != ("user" if index % 2 == 0 else "assistant")
+            or not isinstance(message.content, str) or not message.content.strip()
+            for index, message in enumerate(candidate)
+        ):
+            raise ValueError("Expected nonempty alternating user/assistant messages.")
+        self._history = candidate
+
     def chat(self, user_text: str) -> Generator[TurnStarted | TextDelta | Completion, None, None]:
         self._ensure_idle()
         if not isinstance(user_text, str) or not user_text.strip():

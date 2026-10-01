@@ -27,6 +27,8 @@ class ApiConfig:
     max_request_bytes: int = 65536
     ssl_certfile: str | None = None
     ssl_keyfile: str | None = None
+    database_path: str | None = None
+    database_max_mib: int = 128
 
     def validate(self) -> str | None:
         if not isinstance(self.host, str):
@@ -37,10 +39,12 @@ class ApiConfig:
             raise ConfigError("API host must be a literal IP address.") from exc
         if type(self.allow_non_loopback) is not bool:
             raise ConfigError("allow_non_loopback must be a boolean.")
-        for name in ("port", "max_conversations", "conversation_idle_seconds", "max_request_bytes"):
+        for name in ("port", "max_conversations", "conversation_idle_seconds", "max_request_bytes", "database_max_mib"):
             value = getattr(self, name)
             if type(value) is not int or value < 1 or (name == "port" and value > 65535):
                 raise ConfigError(f"Invalid API {name}.")
+        if self.database_path is not None:
+            validate_database_path(self.database_path)
         for name in ("allowed_hosts", "allowed_origins"):
             values = getattr(self, name)
             if not isinstance(values, (tuple, list)) or any(not isinstance(v, str) for v in values):
@@ -81,6 +85,13 @@ class ApiConfig:
         return token
 
 
+def validate_database_path(value):
+    if (not isinstance(value, str) or not value.strip() or value == ":memory:"
+            or value.startswith(("\\\\", "//")) or "://" in value
+            or value.lower().startswith("file:") or "?" in value or "\x00" in value):
+        raise ConfigError("database_path must be a physical local file path, not a URL, URI or UNC path.")
+
+
 def load_api_config(path=None) -> ApiConfig:
     data = {}
     if path is not None:
@@ -93,7 +104,9 @@ def load_api_config(path=None) -> ApiConfig:
         unknown = data.keys() - {f.name for f in fields(ApiConfig)}
         if unknown:
             raise ConfigError(f"Unknown API configuration keys: {', '.join(sorted(unknown))}")
-        for key in ("ssl_certfile", "ssl_keyfile"):
+        if "database_path" in data:
+            validate_database_path(data["database_path"])
+        for key in ("ssl_certfile", "ssl_keyfile", "database_path"):
             if key in data:
                 if not isinstance(data[key], str) or not data[key]:
                     raise ConfigError(f"{key} must be a nonempty local path.")

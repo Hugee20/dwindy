@@ -10,7 +10,7 @@ document.querySelector('#connection-form').addEventListener('submit', async even
   const button = event.currentTarget.querySelector('button'); button.disabled = true;
   try {
     const next = apiBase(base.value);
-    await chat.resetConversation(); // Delete on the old destination with the old credential.
+    await chat.newConversation(); // Preserve saved turns; ephemeral mode retains reset semantics.
     chat.setAttribute('api-base', next);
     chat.bearerToken = token.value;
     token.value = '';

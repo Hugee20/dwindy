@@ -20,6 +20,7 @@ from starlette.responses import JSONResponse, Response
 from .backend import Completion, ContextLimitError, TextDelta
 from .core import DwindyCore, TurnStarted
 from .server import ApiConfig
+from .persistence import ConversationStore, StorageError
 
 
 def error(status, code, message, *, retry=False):
@@ -59,6 +60,7 @@ class ChatReply(BaseModel):
 class HealthReply(BaseModel):
     status: str
     busy: bool
+    persistence_enabled: bool
 
 
 ERROR_SCHEMA = {"type": "object", "required": ["error"], "properties": {"error": {
@@ -174,6 +176,24 @@ class ApiState:
         self.busy = False
         self.ready = False
         self.tasks = set()
+        self.store = None
+        self.storage_executor = (ThreadPoolExecutor(max_workers=1, thread_name_prefix="dwindy-storage")
+                                 if config.database_path is not None else None)
+        self.storage_lock = asyncio.Lock()
+        self.deleting = set()
+
+    async def storage(self, fn, *args, internal=False):
+        # External operations never build an unbounded executor queue. At most
+        # the single admitted inference finalizer can wait for a short operation.
+        if not internal and self.storage_lock.locked():
+            raise StorageError("storage_busy")
+        async with self.storage_lock:
+            future = asyncio.get_running_loop().run_in_executor(self.storage_executor, fn, *args)
+            try:
+                return await asyncio.shield(future)
+            finally:
+                if not future.done():
+                    await finish_cleanup(future)
 
     def submit(self, fn, *args):
         return asyncio.get_running_loop().run_in_executor(self.executor, fn, *args)
@@ -191,7 +211,10 @@ class ApiState:
         self.expire()
         key = body.conversation_id
         entry = self.conversations.get(key)
-        if key is not None and entry is None:
+        restoring = key is not None and entry is None and self.store is not None
+        if key in self.deleting:
+            return error(409, "conversation_busy", "Conversation is being deleted.", retry=True)
+        if key is not None and entry is None and not restoring:
             return error(404, "conversation_not_found", "Conversation is unknown or expired.")
         if entry is not None and entry.active:
             return error(409, "conversation_busy", "Conversation has an active request.", retry=True)
@@ -200,12 +223,12 @@ class ApiState:
         if entry is None:
             if len(self.conversations) >= self.config.max_conversations:
                 return error(503, "conversation_capacity", "Conversation limit reached; delete an idle conversation.", retry=True)
-            key = secrets.token_urlsafe(24)
+            key = key or secrets.token_urlsafe(24)
             entry = Conversation(DwindyCore(self.backend, options=self.model_config.options(),
                                            system_prompt=self.model_config.system_prompt), time.monotonic())
             self.conversations[key] = entry
         self.busy = entry.active = True
-        return ChatResponse(self, key, entry, body)
+        return ChatResponse(self, key, entry, body, restoring=restoring)
 
 
 async def finish_cleanup(task):
@@ -225,10 +248,16 @@ class Disconnected(Exception):
     pass
 
 
+def storage_error(exc):
+    return error(503, exc.code, "Conversation storage failed; no successful completion was acknowledged.",
+                 retry=exc.code == "storage_busy")
+
+
 class ChatResponse(Response):
-    def __init__(self, state, key, entry, body):
+    def __init__(self, state, key, entry, body, restoring=False):
         super().__init__(content=None)
         self.state, self.key, self.entry, self.body = state, key, entry, body
+        self.restoring = restoring
 
     async def __call__(self, scope, receive, send):
         state = self.state
@@ -242,6 +271,34 @@ class ChatResponse(Response):
         cancelled = False
         exposed = self.body.conversation_id is not None
         transport_send = send
+        before = None
+        released = False
+
+        def release_lease():
+            nonlocal released
+            if not released:
+                self.entry.active = state.busy = False
+                self.entry.touched = time.monotonic()
+                released = True
+
+        async def next_and_save():
+            item = await state.submit(next, stream, _END)
+            if isinstance(item, Completion) and state.store is not None:
+                # This task is settled even if disconnect wins the response race.
+                await state.submit(stream.close)
+                snapshot = self.entry.core.snapshot()
+                try:
+                    await state.storage(state.store.append, self.key, snapshot, item.finish_reason, internal=True)
+                except Exception as exc:
+                    if not isinstance(exc, StorageError) or exc.uncertain:
+                        state.ready = False
+                        state.conversations.pop(self.key, None)
+                    else:
+                        self.entry.core.restore(before)
+                    if not isinstance(exc, StorageError):
+                        raise StorageError(uncertain=True) from exc
+                    raise
+            return item
 
         async def send(message):
             nonlocal http_started
@@ -261,7 +318,7 @@ class ChatResponse(Response):
             nonlocal pending
             if disconnected.is_set():
                 raise Disconnected()
-            pending = state.submit(next, stream, _END)
+            pending = asyncio.create_task(next_and_save())
             await asyncio.wait((pending, watcher), return_when=asyncio.FIRST_COMPLETED)
             if disconnected.is_set():
                 raise Disconnected()
@@ -278,7 +335,7 @@ class ChatResponse(Response):
                 with suppress(Exception):
                     await asyncio.shield(pending)
             try:
-                if stream is not None:
+                if stream is not None and not released:
                     await state.submit(stream.close)
             except Exception:
                 state.ready = False  # A failed close cannot establish safe backend reuse.
@@ -286,13 +343,25 @@ class ChatResponse(Response):
                 watcher.cancel()
                 with suppress(asyncio.CancelledError, Exception):
                     await watcher
-                self.entry.active = state.busy = False
-                self.entry.touched = time.monotonic()
-                if not exposed:
+                release_lease()
+                if not exposed and not self.entry.active:
                     state.conversations.pop(self.key, None)
                 state.tasks.discard(owner)
 
         try:
+            if self.restoring:
+                try:
+                    saved = await state.storage(state.store.load, self.key)
+                    if saved is None:
+                        state.conversations.pop(self.key, None)
+                        await error(404, "conversation_not_found", "Conversation is unknown or deleted.")(scope, receive, send)
+                        return
+                    self.entry.core.restore(saved)
+                except BaseException:
+                    state.conversations.pop(self.key, None)
+                    raise
+            if state.store is not None:
+                before = self.entry.core.snapshot()
             stream = self.entry.core.chat(self.body.message)
             started = await advance()
             if not isinstance(started, TurnStarted):
@@ -322,6 +391,9 @@ class ChatResponse(Response):
                         raise
                     result = {"finish_reason": item.finish_reason,
                               "usage": {"prompt_tokens": item.prompt_tokens, "text_tokens": item.text_tokens}}
+                    # All native work, stream cleanup and optional saving have
+                    # settled. A client receiving completion may immediately chat.
+                    release_lease()
                     if self.body.stream:
                         await event("completed", result)
                         await send({"type": "http.response.body", "body": b"", "more_body": False})
@@ -337,9 +409,14 @@ class ChatResponse(Response):
         except asyncio.CancelledError:
             cancelled = True
         except Exception as exc:
-            response = (error(422, "context_limit", "Message cannot fit the configured context/output allowance.")
+            if isinstance(exc, StorageError) and exc.uncertain:
+                state.ready = False
+            response = (storage_error(exc) if isinstance(exc, StorageError) else
+                        error(422, "context_limit", "Message cannot fit the configured context/output allowance.")
                         if isinstance(exc, ContextLimitError)
                         else error(500, "inference_failed", "Inference failed; the turn was not completed."))
+            if released:
+                response = error(503, "delivery_uncertain", "The turn completed but completion delivery failed; do not retry automatically.")
             if not disconnected.is_set():
                 try:
                     if headers_sent:
@@ -378,6 +455,14 @@ def create_app(model_config, api_config=None, *, backend=None, chat_root=None):
     @asynccontextmanager
     async def lifespan(app):
         try:
+            if config.database_path is not None:
+                loading_store = asyncio.get_running_loop().run_in_executor(
+                    state.storage_executor, ConversationStore, config.database_path, config.database_max_mib)
+                try:
+                    state.store = await asyncio.shield(loading_store)
+                except asyncio.CancelledError:
+                    state.store = await finish_cleanup(loading_store)
+                    raise
             if backend is None:
                 from .llama_backend import LlamaBackend
                 loading = state.submit(LlamaBackend, model_config)
@@ -400,6 +485,10 @@ def create_app(model_config, api_config=None, *, backend=None, chat_root=None):
                 if state.backend is not None:
                     await finish_cleanup(state.submit(state.backend.close))
             finally:
+                if state.store is not None:
+                    await finish_cleanup(asyncio.create_task(state.storage(state.store.close, internal=True)))
+                if state.storage_executor is not None:
+                    state.storage_executor.shutdown(wait=True)
                 state.conversations.clear()
                 state.executor.shutdown(wait=True)
 
@@ -424,17 +513,46 @@ def create_app(model_config, api_config=None, *, backend=None, chat_root=None):
     async def health():
         if not state.ready:
             return error(503, "unavailable", "Model is unavailable.", retry=True)
-        return {"status": "ready", "busy": state.busy}
+        return {"status": "ready", "busy": state.busy, "persistence_enabled": state.store is not None}
 
     @app.delete("/v1/conversations/{conversation_id}", status_code=204)
     async def delete(conversation_id: str):
         state.expire()
         entry = state.conversations.get(conversation_id)
-        if entry is None:
+        if entry is None and state.store is None:
             return error(404, "conversation_not_found", "Conversation is unknown or expired.")
-        if entry.active:
+        if conversation_id in state.deleting or (entry is not None and entry.active):
             return error(409, "conversation_busy", "Conversation has an active request.", retry=True)
-        del state.conversations[conversation_id]
+        if state.store is not None:
+            if not state.ready:
+                return error(503, "storage_unavailable", "Conversation storage is unavailable.")
+            state.deleting.add(conversation_id)
+            if entry is not None:
+                entry.active = True
+            owner = asyncio.current_task()
+            state.tasks.add(owner)
+            async def remove():
+                try:
+                    found = await state.storage(state.store.delete, conversation_id)
+                    state.conversations.pop(conversation_id, None)
+                    return found
+                finally:
+                    state.deleting.discard(conversation_id)
+                    if entry is not None:
+                        entry.active = False
+                        entry.touched = time.monotonic()
+            try:
+                found = await finish_cleanup(asyncio.create_task(remove()))
+                if not found and entry is None:
+                    return error(404, "conversation_not_found", "Conversation is unknown or deleted.")
+            except StorageError as exc:
+                if exc.uncertain:
+                    state.ready = False
+                return storage_error(exc)
+            finally:
+                state.tasks.discard(owner)
+        else:
+            del state.conversations[conversation_id]
         return Response(status_code=204)
 
     @app.post("/v1/chat", response_model=ChatReply, responses={200: {"content": {"text/event-stream": {

@@ -1,6 +1,6 @@
-# Dwindy architecture through M4
+# Dwindy architecture through M5
 
-Status: M1 runtime and template-kwargs correction, M2 Core, M3 local HTTP API, and M4 chat interfaces.
+Status: M1 runtime and template-kwargs correction, M2 Core, M3 local HTTP API, M4 chat interfaces, and M5 opt-in SQLite persistence.
 The project proposal remains the specification. This document records implemented decisions.
 
 ## Execution and ownership
@@ -8,7 +8,7 @@ The project proposal remains the specification. This document records implemente
 One Python process contains either the terminal application or the optional HTTP application
 and a CPU-only llama.cpp runtime accessed through llama-cpp-python. The terminal opens no
 listener; the API explicitly opens a loopback listener by default. No separate model service,
-database, or outbound-network client is created. Dependencies and model files are
+database server or outbound-network client is created. Optional API persistence opens a local SQLite file. Dependencies and model files are
 installed/supplied separately from execution.
 
 `core.py` owns an in-memory list of completed user/assistant turns for each `DwindyCore`.
@@ -17,7 +17,7 @@ It keeps a configured system message, rejects a current request that cannot fit,
 history only after successful backend exhaustion, stream cleanup, and a nonempty completed
 answer. Nonempty output-limit responses are retained, preserving M1 behavior. Failed or
 cancelled requests do not alter retained history, even when candidate preparation trimmed
-old turns. No transcript is persisted.
+old turns. Core itself performs no persistence; the optional API store archives completed turns.
 
 `__main__.py` contains application wiring and terminal rendering. `main()` loads configuration,
 constructs the model backend, gives Core its generation options and system prompt, and closes
@@ -34,7 +34,7 @@ variable. It launches one Uvicorn worker with reload, proxy-header trust, and ac
 ## Core boundary and lifecycle
 
 `DwindyCore(backend, *, options, system_prompt="")` represents one ephemeral conversation.
-Its public operations are synchronous `chat(user_text)` and `reset()`. It borrows a
+Its public operations are synchronous `chat(user_text)`, `reset()`, `snapshot()` and `restore(messages)`. It borrows a
 `ModelBackend`; neither reset nor stream cleanup closes the model itself. It depends on
 `backend.py`, not configuration files, GGUF, llama.cpp, or template variables.
 
@@ -126,11 +126,13 @@ do not call the model. No native call is made on the event loop.
 
 Opaque 192-bit random IDs identify one ephemeral Core each. Defaults cap the registry at
 16 conversations, with lazy 30-minute idle expiry. Active entries cannot expire or be deleted.
-There is no live eviction, listing, persisted history, user ownership, or multi-process sharing.
+There is no live eviction, listing, user ownership, or multi-process sharing. Optional persistence
+archives successful turns outside Core; expiry removes only cached state when enabled.
 New requests failing before exposing their IDs release their slots. SSE exposes the ID in
 `started`, so later failure leaves the addressed conversation available until delete/expiry.
-Expired/deleted IDs return 404 and are never silently recreated. Delete plus a chat without
-an ID supplies reset semantics. The registry disappears on shutdown.
+Deleted/unknown IDs return 404 and are never silently recreated. Ephemeral expired IDs return
+404; persistent disk-only IDs restore their retained context lazily. Delete plus a chat without
+an ID supplies reset semantics. The memory registry disappears on shutdown; enabled storage remains on disk.
 
 The response adapter explicitly owns the closeable Core stream rather than handing a sync
 generator to a framework streaming wrapper. It advances to TurnStarted before sending success
@@ -152,7 +154,9 @@ call can prevent safe shutdown. Connected requests cancelled during shutdown rec
 unavailable error after cleanup where delivery is still possible. Startup cancellation waits for model construction
 so the model cannot be abandoned while loading.
 
-Core commit precedes HTTP completion delivery. A disconnect racing with commit can leave a
+Core commit precedes HTTP completion delivery. With persistence enabled, SQLite COMMIT also
+precedes completion delivery; the adapter owns rollback/quarantine and retains the lease
+through native cleanup and durable settlement. A disconnect racing with commit can leave a
 completed turn in history without the client knowing it succeeded. There is no exactly-once
 delivery, replay, automatic retry, resumable SSE, or idempotency store. Nonempty output-limit
 responses still commit. Failed/cancelled turns roll back under the existing Core semantics.
@@ -198,9 +202,9 @@ as text, not HTML/Markdown. Display retention is bounded separately from server 
 
 Credentials and IDs exist only in component/page memory. Each element has independent state.
 Failed requests preserve drafts; uncertain cancellation/EOF requires an explicit new conversation.
-Reset removes the server conversation before clearing the display; failures retain the address.
+Explicit reset/delete removes the server conversation before clearing the display; failures retain the address.
 Closing a dialog hides it, while element removal aborts outstanding requests. No unload deletion,
-automatic chat retry, persistence, event bus, frontend accounts or model logic exists.
+automatic chat retry, browser storage, event bus, frontend accounts or model logic exists.
 
 `web_ui.py` provides optional same-server static delivery selected by `--chat-root`. A fixed
 mapping serves the six runtime frontend files and four required PNGs, plus the /chat/ redirect.
@@ -213,7 +217,7 @@ Copying the same component/assets into another host's static directory is equall
 No static server or Dwindy Python integration is needed in the host application; only its HTTP
 API destination and M3 Origin permissions. Source assets are not yet bundled in the Python wheel.
 The customization contract consists of the documented attributes, memory-only bearer setter,
-reset method, and four CSS color variables. Shadow DOM provides style isolation, not security.
+reset/new/resume methods, and four CSS color variables. Shadow DOM provides style isolation, not security.
 
 Native keyboard controls and dialog behavior, status/error announcements, completion-only
 answer announcements, bounded autoscroll, reduced motion and narrow-viewport styles are
@@ -230,7 +234,7 @@ only to a user-selected new output file. Human quality fields begin unscored.
 The frozen M1 runner continues calling the backend directly, bypassing Core. M2 tests cover
 Core state ownership, trimming and rollback, stream cleanup, overlap rejection, backend
 ownership, and terminal behavior. Historical evaluation artifacts and rubrics are unchanged.
-All 50 existing M2 tests remain unchanged. M3 tests cover HTTP contracts, strict validation,
+The existing M2 behavior remains covered without model-policy changes. M3 tests cover HTTP contracts, strict validation,
 body bounds, state expiry/capacity, security and binding policy, and real loopback socket
 disconnects/shutdown with a controlled fake backend. Blocking native-next and cleanup phases
 verify backend exclusion until cleanup finishes, including rollback of a cancelled turn.
@@ -267,3 +271,24 @@ exclude the absolute model path but still contain generated text and any explici
 system prompt; review before sharing. Model access uses a local path, never a download API.
 Offline operation also requires users to avoid network-mapped/cloud-backed filesystem paths.
 There is no OS sandbox or secure-memory-erasure claim.
+
+
+## SQLite ownership through M5
+
+`persistence.py` implements the concrete standard-library SQLite store on one dedicated
+storage worker. Core's idle-only snapshot/restore operations are the sole state boundary;
+no SQL or filesystem dependency enters Core. `api.py` owns storage startup/shutdown, lazy
+restoration, admission, durable completion and deletion. `server.py` validates opt-in
+`database_path` and `database_max_mib` separately from model configuration.
+
+Schema version 1 stores conversations and complete turn pairs. `context_start_turn` separates
+the archived transcript from the retained model-context suffix. Restoration never reintroduces
+trimmed turns. A short transaction saves a pair and boundary together after generation, before
+JSON success/SSE completed. Confirmed capacity/lock failures restore the pre-turn snapshot;
+uncertain storage failures quarantine admission. Cancellation cleanup settles pending saves.
+
+The existing browser component adds manual ID resume, a storage notice, non-destructive new
+conversation and explicit destructive deletion when enabled; floating controls use a native
+details disclosure. Ephemeral reset behavior remains available. No history/list UI or browser
+storage exists. See [persistence](PERSISTENCE.md) for exact schema, transactions, quotas,
+configuration, privacy and validation, and [chat interfaces](CHAT_INTERFACES.md) for UI lifecycle.

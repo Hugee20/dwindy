@@ -66,3 +66,10 @@ dialog::backdrop { background: #19251344; }
   form { padding: 8px 12px 0; }
 }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; animation: none !important; transition: none !important; } }
+:host .persistence { flex: 0 1 auto; overflow: auto; max-height: 12rem; padding: .5rem 1rem; border-bottom: 1px solid #d7dedb; font-size: .8rem; }
+:host .persistence[hidden] { display: none; }
+:host .persistence summary { cursor: pointer; font-weight: 600; }
+:host .persistence p { margin: .4rem 0; }
+:host .persistence label { display: block; margin: .4rem 0; }
+:host .persistence input { width: 100%; box-sizing: border-box; font: inherit; padding: .3rem; }
+:host .persistence button { font: inherit; margin: .2rem; padding: .35rem .5rem; }

@@ -5,11 +5,12 @@ terminal chat with a user-supplied GGUF and a 30-case baseline evaluation. Miles
 extracted that conversation behavior into a reusable, in-process `DwindyCore`.
 **Milestone 3** exposes Core through an optional, small local HTTP API.
 **Milestone 4** adds standalone browser chat and a copyable, framework-free chat widget.
+**Milestone 5** adds opt-in local SQLite conversation persistence.
 The [project proposal](docs/PROJECT_PROPOSAL.md) is the specification;
 [architecture](docs/ARCHITECTURE.md) describes the implemented boundaries.
 
-There is no persistent chat, retrieval, tool execution, or outbound web retrieval
-in this milestone. Dwindy never selects or downloads a model. Model licenses are separate
+Persistence is disabled by default. There is no retrieval, tool execution, or outbound
+web retrieval in this milestone. Dwindy never selects or downloads a model. Model licenses are separate
 from the Apache-2.0 source license.
 
 ## Windows setup
@@ -169,7 +170,7 @@ work must finish and its stream must close before the loaded model is released.
 
 | Endpoint | Result |
 |---|---|
-| `GET /v1/health` | `200 {"status":"ready","busy":false}`; busy describes the global inference lease. Unavailable returns 503. No inference is run. |
+| `GET /v1/health` | `200 {"status":"ready","busy":false,"persistence_enabled":false}`; busy describes the global inference lease. Unavailable returns 503. No inference is run. |
 | `POST /v1/chat` | One conversational turn; JSON by default, SSE when `stream` is true. |
 | `DELETE /v1/conversations/{id}` | 204 with an empty body; unknown/expired IDs return 404, active conversations return 409. |
 
@@ -215,7 +216,7 @@ data: {"finish_reason":"stop","usage":{"prompt_tokens":12,"text_tokens":2}}
 ```
 
 There are zero or more `delta` frames. JSON escaping preserves newlines and Unicode; HTTP
-chunks need not coincide with SSE frames. Completion is sent after Core commits and closes.
+chunks need not coincide with SSE frames. Completion is sent after Core commits and closes and, when enabled, SQLite commits.
 A failure after SSE headers produces a terminal `error` event instead of `completed`:
 
 ```text
@@ -243,13 +244,13 @@ echo request content, tokens, or native exceptions. Codes/statuses:
 | 413 / 415 | `request_too_large` / `unsupported_media_type` |
 | 422 | `invalid_request` / `context_limit` |
 | 500 | `inference_failed` / `internal_error` |
-| 503 | `backend_busy`, `conversation_capacity`, `unavailable` |
+| 503 | `backend_busy`, `conversation_capacity`, `unavailable`, `delivery_uncertain`; optional `storage_busy`, `storage_full`, `storage_unavailable` |
 
-Busy/capacity/unavailable responses include `Retry-After: 1`; this is a polling hint, not a
+Backend busy/capacity/unavailable and storage_busy responses include `Retry-After: 1`; this is a polling hint, not a
 completion estimate or queued reservation. Protocol-level failures rejected by the HTTP
 server itself need not use the application error envelope.
 
-### Ephemeral conversations and cancellation
+### Conversations and cancellation
 
 The first successful request returns a random ID; send it on later requests to retain context.
 SSE exposes the ID in `started`, so even a failed streamed turn may leave an empty conversation.
@@ -260,7 +261,9 @@ conversation and omit the ID on the next chat to start fresh.
 Defaults allow 16 conversations, each with Core's existing bounded recent-turn history. Idle
 conversations expire after 1,800 seconds since request cleanup. Expiry is lazy at the next chat
 or delete request; it never expires an active turn or evicts a live conversation for capacity.
-Restart discards all IDs and history. Deletion/expiry are logical removal, not secure memory erasure.
+With persistence disabled, restart discards all IDs and history. With persistence enabled,
+expiry removes only cached Core state and IDs restore lazily from disk after expiry/restart.
+Deletion/expiry are logical removal, not secure erasure.
 
 Only one inference request is admitted globally. A simultaneous request for the same conversation
 receives 409; another conversation receives 503 immediately, without queuing model work. Health
@@ -306,6 +309,8 @@ publicly shipped widget. M4's memory-only client integration is documented below
 | `conversation_idle_seconds` | `1800` |
 | `max_request_bytes` | `65536` |
 | `ssl_certfile`, `ssl_keyfile` | unset; must be supplied together; paths relative to API TOML |
+| `database_path` | unset (ephemeral); explicit local SQLite file, relative to API TOML |
+| `database_max_mib` | `128`; main database cap, excludes journal/filesystem overhead |
 
 Non-loopback startup requires **all** of explicit exposure opt-in, a valid bearer token, and
 a loadable TLS certificate/key. Configure the actual host in `allowed_hosts` too. TLS terminates
@@ -338,8 +343,8 @@ To serve the standalone page from a source checkout:
 ```
 
 Open `http://127.0.0.1:8000/chat/`. Static hosting is opt-in and allowlisted; API authentication
-remains unchanged. Optional connection credentials stay in page memory. The browser keeps no
-persistent conversation history. The UI shows literal model text, with no Markdown/HTML rendering.
+remains unchanged. Optional connection credentials stay in page memory. The browser itself keeps no
+persistent conversation history or credentials. Optional server-side persistence is explicit. The UI shows literal model text, with no Markdown/HTML rendering.
 
 Alternatively, copy the `web/` runtime files and used `assets/` into another application's
 static directory, preserving their layout:
@@ -359,6 +364,33 @@ states are supported; artwork for later capabilities is not activated.
 See [Chat interfaces](docs/CHAT_INTERFACES.md) for the complete bundle, configuration,
 security, cancellation/reset behavior, accessibility coverage, and browser test commands.
 An unrelated host-page example is in `web/examples/embedded.html`.
+
+## Optional local persistence (M5)
+
+Add to `api.local.toml` and pass it with `--api-config`:
+
+```toml
+database_path = 'data/dwindy.sqlite3'
+database_max_mib = 128
+```
+
+This writes completed API conversations **unencrypted to local disk**. Omit the path to
+retain ephemeral operation; terminal/Core use remains independent of SQLite. Saving is
+atomic, and JSON success/SSE completed waits for COMMIT. Failed/cancelled incomplete turns
+are not saved; nonempty output-limit answers are. Configured storage failure never silently
+falls back to ephemeral mode.
+
+The saved transcript retains completed turns; Core restores only its recorded retained
+context window. Previously trimmed turns do not reappear after restart. Existing IDs can
+be supplied to POST to restore, or DELETE to remove cached/disk-only conversations. There
+is no list/history endpoint, automatic pruning, or historical retrieval.
+
+The browser offers manual ID copying/resume and distinct New/Delete actions when storage
+is enabled. Floating-widget controls live in a compact disclosure. IDs/tokens remain in
+page memory: keep the ID yourself before reloading. No localStorage/sessionStorage is used.
+
+[Persistence documentation](docs/PERSISTENCE.md) defines schema, failure/cancellation,
+privacy, disk limits, and the separate real-model process-restart smoke procedure.
 
 ## Tests and evaluation
 
