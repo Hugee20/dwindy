@@ -3,9 +3,10 @@ from pathlib import Path
 import unittest
 from unittest.mock import patch
 
-from dwindy.__main__ import bounded_messages, main, terminal
+from dwindy.__main__ import main, terminal
 from dwindy.backend import BackendError, Completion, Message, TextDelta
 from dwindy.config import Config
+from dwindy.core import DwindyCore
 
 
 class FakeBackend:
@@ -47,7 +48,8 @@ class TerminalTests(unittest.TestCase):
                 return next(iterator)
             except StopIteration:
                 raise EOFError
-        terminal(backend, self.cfg, read=read, output=output)
+        core = DwindyCore(backend, options=self.cfg.options(), system_prompt=self.cfg.system_prompt)
+        terminal(core, read=read, output=output)
         return output.getvalue()
 
     def test_history_and_reset(self):
@@ -65,22 +67,11 @@ class TerminalTests(unittest.TestCase):
                 self.assertEqual([m.content for m in backend.requests[1]], ["two"])
                 self.assertEqual(backend.closed_streams, 2)
 
-    def test_drop_whole_turn_keep_system(self):
-        cfg = Config(Path("unused"), max_tokens=5, system_prompt="sys")
-        history = [Message("user", "old"), Message("assistant", "answer"),
-                   Message("user", "new"), Message("assistant", "ok")]
-        messages = bounded_messages(FakeBackend(limit=20), history, "hi", cfg)
-        self.assertEqual([m.content for m in messages], ["sys", "new", "ok", "hi"])
-        self.assertEqual(len(history), 4)  # Selection is transactional.
-
     def test_oversize_does_not_generate(self):
         backend = FakeBackend(limit=8)
         output = self.run_chat(backend, ["too long", "a", "/exit"])
         self.assertIn("cannot fit", output)
         self.assertEqual(len(backend.requests), 1)
-
-    def test_exact_budget_fits(self):
-        self.assertEqual(len(bounded_messages(FakeBackend(limit=8), [], "hi", self.cfg)), 1)
 
     def test_blank_input_and_eof(self):
         backend = FakeBackend()

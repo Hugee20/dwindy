@@ -1,7 +1,7 @@
-# M1 architecture
+# Dwindy architecture through M2
 
-Status: V0.1 implementation with an M1 template-kwargs compatibility correction.
-The project proposal remains the specification. This document records M1 decisions only.
+Status: M1 runtime and template-kwargs correction, plus the M2 Core extraction.
+The project proposal remains the specification. This document records implemented decisions.
 
 ## Execution and ownership
 
@@ -9,15 +9,54 @@ One Python process contains the terminal client and a CPU-only llama.cpp runtime
 through llama-cpp-python. No listener, service process, database, or outbound-network client
 is created. Dependencies and model files are installed/supplied separately from execution.
 
-`__main__.py` owns terminal I/O and an in-memory list of completed user/assistant turns.
+`core.py` owns an in-memory list of completed user/assistant turns for each `DwindyCore`.
 It selects recent complete turns within context, reserving `max_tokens` for generation.
 It keeps a configured system message, rejects a current request that cannot fit, and commits
-history only after a successful, nonempty completion. Failed/interrupted requests do not
-alter retained history. `/reset` clears that list. No transcript is persisted.
+history only after successful backend exhaustion, stream cleanup, and a nonempty completed
+answer. Nonempty output-limit responses are retained, preserving M1 behavior. Failed or
+cancelled requests do not alter retained history, even when candidate preparation trimmed
+old turns. No transcript is persisted.
+
+`__main__.py` contains application wiring and terminal rendering. `main()` loads configuration,
+constructs the model backend, gives Core its generation options and system prompt, and closes
+the backend on exit. The terminal receives Core; it handles input, slash commands, rendering,
+and interruption. `/reset` calls Core's reset operation. No model messages, token budgeting,
+history storage, or response-commit decisions remain in terminal rendering.
 
 `config.py` reads explicitly selected TOML using `tomllib`, validates settings, and resolves
 local model paths. CLI model paths override the file setting. No automatic config search or
 environment-based runtime settings are implemented. CPU execution is fixed, not a toggle.
+
+## Core boundary and lifecycle
+
+`DwindyCore(backend, *, options, system_prompt="")` represents one ephemeral conversation.
+Its public operations are synchronous `chat(user_text)` and `reset()`. It borrows a
+`ModelBackend`; neither reset nor stream cleanup closes the model itself. It depends on
+`backend.py`, not configuration files, GGUF, llama.cpp, or template variables.
+
+`chat()` returns a closeable generator with one Core-owned `TurnStarted(dropped_turns)`
+event, existing `TextDelta` events, and an existing `Completion` event. The initial event
+lets interfaces preserve M1's trimming notice before response output. Core buffers the
+answer for history while forwarding text unchanged; it delays Completion until commit.
+Missing completion or empty output retains the M1 backend error behavior.
+
+The stream is lazy. A started stream holds a per-instance active guard until exhausted or
+closed, including while suspended at its final Completion event. A second chat or reset is
+rejected during that interval. Iteration rechecks the guard so previously created streams
+cannot interleave. Closing an unstarted stream changes nothing. Closing a started stream
+before completion closes its backend iterator and discards candidate state. Backend errors,
+interruptions, and cleanup failures release the guard. Callers must explicitly exhaust or
+close streams; abandoned references are not a supported cleanup strategy.
+
+The guard provides sequential-use validation, not thread safety or backend-wide locking.
+Separate Core instances have separate history; applications sharing a model backend must
+serialize their calls. There is no registry, session addressing, or concurrency scheduling.
+Core rejects blank/non-string input without changing state and does not normalize valid text
+or interpret slash commands. The terminal keeps its M1 input normalization and commands.
+
+M2 changes ownership, not model policy: prompts, generation settings, budget arithmetic,
+whole-turn trimming order, template kwargs, and raw text output are unchanged. Model quality
+limitations from the M1 baseline are not addressed by this extraction.
 
 ## Backend contract
 
@@ -67,6 +106,10 @@ universal reasoning mode, message rewriting, or generated-output stripping.
 runner evaluates each independently, without importing terminal history. It writes answers,
 case rubrics, execution failures, settings, hashes, machine information, and measurements
 only to a user-selected new output file. Human quality fields begin unscored.
+
+The frozen M1 runner continues calling the backend directly, bypassing Core. M2 tests cover
+Core state ownership, trimming and rollback, stream cleanup, overlap rejection, backend
+ownership, and terminal behavior. Historical evaluation artifacts and rubrics are unchanged.
 
 Time to first nonempty text is measured rather than claiming raw first-token latency.
 Throughput counts retokenized visible text over total request time, including prefill.

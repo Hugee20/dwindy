@@ -1,9 +1,10 @@
 # Dwindy
 
-A small, local-first, CPU-first conversational runtime. **V0.1 implements Milestone 1:**
-ephemeral terminal chat with a user-supplied GGUF and a 30-case baseline evaluation.
+A small, local-first, CPU-first conversational runtime. Milestone 1 established ephemeral
+terminal chat with a user-supplied GGUF and a 30-case baseline evaluation. **Milestone 2**
+extracts that conversation behavior into a reusable, in-process `DwindyCore`.
 The [project proposal](docs/PROJECT_PROPOSAL.md) is the specification;
-[architecture](docs/ARCHITECTURE.md) describes what M1 actually implements.
+[architecture](docs/ARCHITECTURE.md) describes the implemented boundaries.
 
 There is no HTTP API, browser client, persistent chat, retrieval, tool execution, or web access
 in this milestone. Dwindy never selects or downloads a model. Model licenses are separate
@@ -95,7 +96,54 @@ to reserve output space; an oversized current message is rejected. Output limits
 History exists only in memory and is never written by the terminal client. Reset is logical
 history removal, not a guarantee of secure erasure from process memory or terminal scrollback.
 
+## Calling Core from Python
+
+Core borrows a backend and owns one in-memory conversation. The application is responsible
+for constructing and closing the backend. Core does not import the runtime adapter.
+
+```python
+from contextlib import closing
+from dwindy.backend import TextDelta
+from dwindy.config import load_config
+from dwindy.core import DwindyCore
+from dwindy.llama_backend import LlamaBackend
+
+config = load_config("config.local.toml")
+backend = LlamaBackend(config)
+try:
+    core = DwindyCore(backend, options=config.options(), system_prompt=config.system_prompt)
+    with closing(core.chat("Hello")) as stream:
+        for event in stream:
+            if isinstance(event, TextDelta):
+                print(event.text, end="", flush=True)
+    # Subsequent core.chat(...) calls retain completed turns.
+    core.reset()  # Discard history without unloading the model.
+finally:
+    backend.close()
+```
+
+`chat()` returns a synchronous closeable iterator: `TurnStarted(dropped_turns)`, text deltas,
+then existing backend `Completion` metadata. Completion is exposed only after successful
+backend exhaustion, cleanup, and history commit. Core preserves nonempty length-limited
+responses in history, matching M1. Failed, empty, incomplete, or cancelled turns do not
+commit either the proposed response or proposed history trimming.
+
+Streams are lazy: merely creating one does not start generation or reserve the conversation.
+Once iteration begins, exhaust or close it before calling `chat()` again or `reset()`.
+Closing before completion discards the pending turn; closing after completion retains it.
+Overlapping use raises `RuntimeError`. This is a sequential-use guard, not thread safety;
+callers must also serialize access when multiple Core objects borrow the same backend.
+No session registry, concurrency scheduler, or persistence is implemented.
+
+Core rejects empty/non-string input with `ValueError`; it otherwise preserves supplied
+text. The terminal retains its existing whitespace handling, blank-line skipping, slash
+commands, Ctrl+C behavior, and rendering. Slash commands have no special meaning to Core.
+
 ## Tests and evaluation
+
+The frozen M1 evaluation still calls the backend directly: it is a naked-model/runtime
+baseline, not a Core benchmark. M2 adds model-free Core lifecycle tests without changing
+the dataset, historical results, prompts, sampling defaults, or template behavior.
 
 ```powershell
 .\.venv\Scripts\python.exe -m unittest discover -s tests -v

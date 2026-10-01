@@ -1,30 +1,14 @@
-"""M1 terminal client; conversations exist only in process memory."""
+"""Terminal client and application wiring for Dwindy Core."""
 
 import argparse
 import sys
-from typing import Sequence
-
-from .backend import BackendError, Completion, Message, ModelBackend, TextDelta
-from .config import Config, ConfigError, load_config
-
-
-def bounded_messages(backend: ModelBackend, history: Sequence[Message],
-                     user: str, config: Config) -> list[Message]:
-    prefix = [Message("system", config.system_prompt)] if config.system_prompt else []
-    recent = list(history)
-    while True:
-        messages = prefix + recent + [Message("user", user)]
-        if backend.count_tokens(messages) + config.max_tokens <= backend.context_size():
-            return messages
-        if not recent:
-            raise BackendError("Current message cannot fit with the generation allowance. "
-                               "Shorten it or adjust the context/output settings.")
-        del recent[:2]  # Drop oldest complete user/assistant turn.
+from .backend import BackendError, Completion, TextDelta
+from .config import ConfigError, load_config
+from .core import DwindyCore, TurnStarted
 
 
-def terminal(backend: ModelBackend, config: Config, read=input, output=None) -> None:
+def terminal(core: DwindyCore, read=input, output=None) -> None:
     output = output or sys.stdout
-    history = []
     print("Dwindy: local CPU chat. /reset clears history; /exit quits.", file=output)
     while True:
         try:
@@ -35,37 +19,26 @@ def terminal(backend: ModelBackend, config: Config, read=input, output=None) -> 
         if user == "/exit":
             return
         if user == "/reset":
-            history.clear()
+            core.reset()
             print("History cleared.", file=output)
             continue
         if not user:
             continue
         stream = None
         try:
-            messages = bounded_messages(backend, history, user, config)
-            removed = len(history) - sum(m.role != "system" for m in messages[:-1])
-            if removed:
-                print(f"[Dropped {removed // 2} oldest turn(s) to fit context.]", file=output)
-            print("Dwindy> ", end="", file=output, flush=True)
-            pieces = []
-            completion = None
-            stream = backend.generate(messages, config.options())
+            stream = core.chat(user)
             for event in stream:
-                if isinstance(event, TextDelta):
-                    pieces.append(event.text)
+                if isinstance(event, TurnStarted):
+                    if event.dropped_turns:
+                        print(f"[Dropped {event.dropped_turns} oldest turn(s) to fit context.]",
+                              file=output)
+                    print("Dwindy> ", end="", file=output, flush=True)
+                elif isinstance(event, TextDelta):
                     print(event.text, end="", file=output, flush=True)
                 elif isinstance(event, Completion):
-                    completion = event
-            if completion is None:
-                raise BackendError("Backend ended without a completion result.")
-            response = "".join(pieces)
-            if not response.strip():
-                raise BackendError("Model produced no visible answer; turn not retained.")
-            history = [m for m in messages if m.role != "system"]
-            history.append(Message("assistant", response))
-            print(file=output)
-            if completion.finish_reason == "length":
-                print("[Output limit reached.]", file=output)
+                    print(file=output)
+                    if event.finish_reason == "length":
+                        print("[Output limit reached.]", file=output)
         except KeyboardInterrupt:
             print("\n[Generation interrupted; turn not retained.]", file=output)
         except BackendError as exc:
@@ -85,7 +58,8 @@ def main(argv=None) -> int:
         config = load_config(args.config, args.model)
         from .llama_backend import LlamaBackend
         backend = LlamaBackend(config)
-        terminal(backend, config)
+        core = DwindyCore(backend, options=config.options(), system_prompt=config.system_prompt)
+        terminal(core)
         return 0
     except (ConfigError, BackendError) as exc:
         print(f"Error: {exc}", file=sys.stderr)
