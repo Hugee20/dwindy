@@ -1,0 +1,19 @@
+[[documents]]
+id = "glossary"
+path = "glossary.md"
+name = "Workshop glossary"
+
+[[documents]]
+id = "notice"
+path = "notice.md"
+name = "Assistant notice"
+
+[[documents]]
+id = "weather"
+path = "weather.md"
+name = "Weather station"
+
+[[documents]]
+id = "events"
+path = "events.md"
+name = "Workshop events"

@@ -1,0 +1,13 @@
+{
+  "README.md": "37bb2c5e0ead8ad4134c442a7ebd07a3d676fb672f16ab7d8920b9dfae0cc33f",
+  "cases.jsonl": "1fdce2d5e4f97568bdad75dbd47f29093137f874278cf38b1cbc8b57324ace7f",
+  "e2e.jsonl": "d52beface81ce2ece3ef4bdba11403e7f5d2aa01f5d1afeb95d4d72092ab75dc",
+  "evaluate.py": "ed433c3d24830caf97f36c496456eb8c306f46e41cdd13277977fcd9dc3f8a34",
+  "extra/collection.toml": "53213da76afa055d83cb7159ec7583ad03f1d9444c7b16224b4d2ccdd33637c7",
+  "extra/events.md": "ad7161a2f619997e15f1ed10f1f18e1786efc85ef165d38e4c4d7c79df0b72b5",
+  "extra/glossary.md": "70ffb0ea6cd118e58dbfa9722cb831d8db96327598101a1a799b3e9e16a7f7aa",
+  "extra/notice.md": "8217f7b333f50339d2230905b8eb5fe1e4fa3499736188e237e82c7ec521e206",
+  "extra/weather.md": "4d159254252d8c22c3fc4e872539667b2af75a45dde39ec457998a54ab3f1b3a",
+  "failures.jsonl": "3e5187ddb1481280230b1b009074e25305ee7cc19a0650145e087be5c4d86ba1",
+  "rubric.md": "34adac1a9d90a0a436875deff4e4e8956b0c0aa581dc4470b1fdb03f7ff51fcd"
+}
