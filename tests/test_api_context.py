@@ -33,7 +33,7 @@ def model_outcome(messages):
     system = messages[0].content if messages and messages[0].role == 'system' else ''
     if UNAVAILABLE_GUIDANCE in system:
         return 'unavailable'
-    if GUIDANCE in system:
+    if 'Local entries:\n' in messages[-1].content:
         return 'context' if 'Source 1 ' in messages[-1].content else 'honest_empty'
     return 'direct'
 

@@ -1,0 +1,8 @@
+{
+  "core.py": "dd81f1b2605cbc446e94d76644db472e93d2fa03ce384600a81fb72ce03a32a8",
+  "eval_policy_foundation_v2_dev.py": "c4c6c1be5a8b0fa92d224a52c073a9ae4c85616af69251511049fc8d726f5198",
+  "evidence.py": "ddae98bbe114f7b1b59626abd06fc0b5415ef76ab2fdca8bd55ac06340050886",
+  "foundation_capability_v2.py": "b226d1051dcbce1c247b51a9a89b46fea2fd50ff259acc87e593ad7f28f450ef",
+  "test_foundation_capability_adapter.py": "f985df6c47e396d4160713bedf06bcaed7f4b686e1c1afd91587b8abef3c8d13",
+  "test_foundation_capability_wording.py": "cd688a89ee342a4a204703705a1705ec88b0ccbb56e83067fbc258ac28ef9b51"
+}

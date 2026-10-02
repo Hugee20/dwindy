@@ -87,8 +87,8 @@ class ProjectAwarenessTests(unittest.TestCase):
         self.assertEqual((passage.source.source_path, passage.source.source_type), ('DWINDY.md', 'project_documentation'))
         self.assertEqual(passage.source.project_id, 'lantern')
         prompt = evidence_question('What does the project file say?', [passage])
-        self.assertTrue(prompt.startswith('Project snapshot observations are limited to selected files.'))
-        self.assertIn('Untrusted local passages:', prompt)
+        self.assertTrue(prompt.startswith('Local entries:') and 'PROJECT/documentation' in prompt)
+        self.assertIn('Local entries:', prompt)
         self.assertNotIn(b'outside_secret', index_text(self.index))
 
     def test_frozen_benchmark_gates(self):

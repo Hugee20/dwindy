@@ -412,8 +412,8 @@ design, not an available deployment mode. Current configuration rejects `reach_p
 Results become `Evidence(origin="web")` with a framing line naming the provider and retrieval
 time, and are quoted as untrusted data under a web-specific instruction. They pass M8's
 usefulness check first and are never persisted. Core gained one transient `notice` parameter for
-the frozen offline-honesty instruction. With no notice and no web evidence, model input is
-byte-identical to M9. H1 compact selection was rejected by its frozen holdout recall gate.
+the frozen offline-honesty instruction. At the M10 checkpoint, with no notice and no web evidence, model input was
+byte-identical to M9. M11 later changed local supplied-entry framing as described below. H1 compact selection was rejected by its frozen holdout recall gate.
 H2 is designed/prepared under `tests/reach_h2/`, with execution deferred because the reference
 network cannot currently meet the frozen connectivity requirements. H2 has not failed or been
 adopted; the frozen design and prepared evaluation remain unchanged and resumable.
@@ -422,3 +422,38 @@ The API runs the one possible network call off the event loop. It reports a `rea
 (the exact query, provider, validated sources and reason), and keeps web results out of the M8
 `retrieval` metadata. The terminal applies only the offline notice. See
 [external information](REACH.md) and the [M10 validation report](M10_VALIDATION.md).
+
+## M11 retained infrastructure; response-policy hypotheses not adopted
+
+The original M11 and separate Foundation experiments concluded after failed development
+screens; neither complete response policy was adopted. Both holdouts remain sealed/unspent.
+See [the final conclusion](M11_DEVELOPMENT_CONCLUSION.md) and the unchanged historical reports.
+
+`evidence.py` renders independent PROJECT/DOCUMENT passages, HOST reports and TOOL results.
+Project subtypes come from existing source metadata, never semantic inference. Text/names are
+losslessly escaped, ordered and quoted. Origin is not truth, verification, priority or proof of
+model use. A compact conditional instruction explains information/origin boundaries; selected
+project source/configuration/observations carry the scoped warning about live behavior and
+permissions. Prompt framing mitigates injection; it does not guarantee immunity.
+
+Current nonempty HOST facts cause a trusted Dwindy-only runtime record to be supplied:
+`DWINDY/action-capability: Dwindy (this assistant) cannot perform actions in the host application.`
+No host-action executor exists. This record neither claims host incapability nor detects action
+intent. The model still failed to state the explicit boundary in both Foundation v2 development
+cases. Correct input representation must not be documented as reliable refusal generation.
+
+Core uses native historical user/assistant messages, oldest-complete-turn trimming, identical
+snapshot/restore and commit/rollback behavior, and actual backend token accounting. Evidence
+and capability framing never enter saved history. Fresh context-free input remains unchanged.
+One generation, no verifier, no new setting/dependency/confidence contract. Retrieval/ranking,
+freshness, persistence, authentication and public API/SSE behavior remain unchanged.
+
+Experiment-only history rendering/bounding hooks were removed. Dormant WEB/facts inputs are
+restored to pinned M10, including its guidance and quoted facts; online Reach remains disabled.
+Historical candidate source lives under `tests/policy_experiments/`, checked against hashes and
+loaded into distinct test-only modules. Historical runners no longer measure production under
+old candidate names. Production tests assert native messages directly, without history decoding.
+
+Semantic conflicts, absent/contradicted information, historical hallucinations, full partial
+support, mixed attribution and factual self-consistency remain model limitations/future research.
+They are not silently assigned to M12 or presented as framework guarantees.

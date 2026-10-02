@@ -53,7 +53,7 @@ class ApiProjectTests(unittest.TestCase):
             reply = client.post('/v1/chat', json={'message': 'What is the loan duration?', 'retrieval': True}).json()
             self.assertEqual(reply['retrieval']['status'], 'supplied')
             self.assertTrue(all(s['project_id'] == 'lantern' for s in reply['retrieval']['sources']))
-            self.assertTrue(self.backend.requests[-1][-1].content.startswith('Project snapshot observations'))
+            self.assertTrue(self.backend.requests[-1][-1].content.startswith('Local entries:'))
             stream = client.post('/v1/chat', json={'message': 'loan duration', 'retrieval': True, 'stream': True}).text
             started = json.loads(next(line[6:] for line in stream.splitlines() if line.startswith('data: ')))
             self.assertEqual(started['retrieval']['sources'][0]['snapshot_id'], self.report['snapshot_id'])
@@ -82,7 +82,7 @@ class ApiProjectTests(unittest.TestCase):
             self.assertFalse({'project_id', 'snapshot_id'} & match.keys())
             reply = client.post('/v1/chat', json={'message': 'Helios retry delay', 'retrieval': True}).json()
             self.assertFalse(any({'project_id', 'snapshot_id'} & s.keys() for s in reply['retrieval']['sources']))
-            self.assertTrue(self.backend.requests[-1][-1].content.startswith('Untrusted local passages:'))
+            self.assertTrue(self.backend.requests[-1][-1].content.startswith('Local entries:'))
 
 
 if __name__ == '__main__':

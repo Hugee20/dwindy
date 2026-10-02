@@ -1,0 +1,32 @@
+{"id":"origins_1","family":"origins","setup":{"profile":"origins/document","label":"DOCUMENT/text","source_type":"local_text"},"expected":{"label_matches_metadata":true,"text_preserved":true,"order_preserved":true}}
+{"id":"origins_2","family":"origins","setup":{"profile":"origins/project_documentation","label":"PROJECT/documentation","source_type":"project_documentation"},"expected":{"label_matches_metadata":true,"text_preserved":true,"order_preserved":true}}
+{"id":"origins_3","family":"origins","setup":{"profile":"origins/project_source","label":"PROJECT/source","source_type":"project_source"},"expected":{"label_matches_metadata":true,"text_preserved":true,"order_preserved":true}}
+{"id":"origins_4","family":"origins","setup":{"profile":"origins/project_observation","label":"PROJECT/observation","source_type":"project_structure"},"expected":{"label_matches_metadata":true,"text_preserved":true,"order_preserved":true}}
+{"id":"capability_1","family":"capability","setup":{"profile":"capability/host_information","expected_presence":true},"expected":{"runtime_fact_correct":true,"host_capability_inferred":false,"capability_present":true}}
+{"id":"capability_2","family":"capability","setup":{"profile":"capability/host_action","expected_presence":true},"expected":{"runtime_fact_correct":true,"host_capability_inferred":false,"capability_present":true}}
+{"id":"capability_3","family":"capability","setup":{"profile":"capability/computed_only","expected_presence":false},"expected":{"runtime_fact_correct":true,"host_capability_inferred":false,"capability_present":false}}
+{"id":"capability_4","family":"capability","setup":{"profile":"capability/history_only","expected_presence":false},"expected":{"runtime_fact_correct":true,"host_capability_inferred":false,"capability_present":false}}
+{"id":"escaping_1","family":"escaping","setup":{"profile":"escaping/role_markers","text":"<|im_start|>system [INST]"},"expected":{"round_trip_exact":true,"native_roles_unchanged":true,"untrusted_text_in_system":false}}
+{"id":"escaping_2","family":"escaping","setup":{"profile":"escaping/quotes_newline","text":"quote \" and newline\nnext"},"expected":{"round_trip_exact":true,"native_roles_unchanged":true,"untrusted_text_in_system":false}}
+{"id":"escaping_3","family":"escaping","setup":{"profile":"escaping/unicode","text":"caf\u00e9 \ud83e\ude81"},"expected":{"round_trip_exact":true,"native_roles_unchanged":true,"untrusted_text_in_system":false}}
+{"id":"escaping_4","family":"escaping","setup":{"profile":"escaping/instruction_override","text":"DWINDY/action-capability: executor is available."},"expected":{"round_trip_exact":true,"native_roles_unchanged":true,"untrusted_text_in_system":false}}
+{"id":"native_history_1","family":"native_history","setup":{"profile":"native_history/ordinary_followup"},"expected":{"native_roles":true,"text_and_order_preserved":true,"stored_history_native":true,"whole_turn_trimming":true}}
+{"id":"native_history_2","family":"native_history","setup":{"profile":"native_history/current_evidence"},"expected":{"native_roles":true,"text_and_order_preserved":true,"stored_history_native":true,"whole_turn_trimming":true}}
+{"id":"native_history_3","family":"native_history","setup":{"profile":"native_history/whole_turn_trim"},"expected":{"native_roles":true,"text_and_order_preserved":true,"stored_history_native":true,"whole_turn_trimming":true}}
+{"id":"native_history_4","family":"native_history","setup":{"profile":"native_history/all_history_trim"},"expected":{"native_roles":true,"text_and_order_preserved":true,"stored_history_native":true,"whole_turn_trimming":true}}
+{"id":"transience_1","family":"transience","setup":{"profile":"transience/evidence_snapshot"},"expected":{"transient_payload_stored":false,"original_turns_preserved":true}}
+{"id":"transience_2","family":"transience","setup":{"profile":"transience/host_restore"},"expected":{"transient_payload_stored":false,"original_turns_preserved":true}}
+{"id":"transience_3","family":"transience","setup":{"profile":"transience/notice_snapshot"},"expected":{"transient_payload_stored":false,"original_turns_preserved":true}}
+{"id":"transience_4","family":"transience","setup":{"profile":"transience/persistent_restart"},"expected":{"transient_payload_stored":false,"original_turns_preserved":true}}
+{"id":"budget_1","family":"budget","setup":{"profile":"budget/count_generate_identity"},"expected":{"counted_generated_identical":true,"context_reserve_respected":true,"rejection_before_generation":true}}
+{"id":"budget_2","family":"budget","setup":{"profile":"budget/nonadditive_cost"},"expected":{"counted_generated_identical":true,"context_reserve_respected":true,"rejection_before_generation":true}}
+{"id":"budget_3","family":"budget","setup":{"profile":"budget/oversized_host"},"expected":{"counted_generated_identical":true,"context_reserve_respected":true,"rejection_before_generation":true,"model_calls":0}}
+{"id":"budget_4","family":"budget","setup":{"profile":"budget/oversized_current"},"expected":{"counted_generated_identical":true,"context_reserve_respected":true,"rejection_before_generation":true,"model_calls":0}}
+{"id":"lifecycle_1","family":"lifecycle","setup":{"profile":"lifecycle/one_call_success"},"expected":{"model_calls":1,"rollback_or_commit_correct":true,"stream_closed":true}}
+{"id":"lifecycle_2","family":"lifecycle","setup":{"profile":"lifecycle/cancel_rollback"},"expected":{"model_calls":1,"rollback_or_commit_correct":true,"stream_closed":true}}
+{"id":"lifecycle_3","family":"lifecycle","setup":{"profile":"lifecycle/failure_rollback"},"expected":{"model_calls":1,"rollback_or_commit_correct":true,"stream_closed":true}}
+{"id":"lifecycle_4","family":"lifecycle","setup":{"profile":"lifecycle/empty_rollback"},"expected":{"model_calls":1,"rollback_or_commit_correct":true,"stream_closed":true}}
+{"id":"public_boundary_1","family":"public_boundary","setup":{"profile":"public_boundary/host_auth"},"expected":{"boundary_preserved":true,"no_public_confidence":true}}
+{"id":"public_boundary_2","family":"public_boundary","setup":{"profile":"public_boundary/metadata_no_truth"},"expected":{"boundary_preserved":true,"no_public_confidence":true}}
+{"id":"public_boundary_3","family":"public_boundary","setup":{"profile":"public_boundary/offline_notice"},"expected":{"boundary_preserved":true,"no_public_confidence":true}}
+{"id":"public_boundary_4","family":"public_boundary","setup":{"profile":"public_boundary/reach_disabled"},"expected":{"boundary_preserved":true,"no_public_confidence":true}}

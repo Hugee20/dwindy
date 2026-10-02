@@ -1,0 +1,11 @@
+{
+  "baseline.json": "f22dbaecacfe854a06bbfbdadd4a8095216ed01305f701ff1a1805913ba608a0",
+  "cases.jsonl": "18bc9dc349e3de41e47f8fee9ca14e59dc86fa42337e71a07dbddc2780304b21",
+  "checks.py": "6ff413cfd7bdb2152b184c8d539e7f3ba2b698fe9bef54f92d4c36b39c0177e8",
+  "contract.jsonl": "330198f464425c303208b82ce584ae3ab9c9a90e675ea63169dc133fa3a7fb77",
+  "evaluate.py": "942464fad602cb44216c30a9ce98178234e264790e0de563491f6f49efb5faa5",
+  "probes.py": "c92cf5d7da2077f956efae89546a8db7a70f0948832d9b8bc0c3e53ada09859c",
+  "README.md": "f9f0341da7f4af9a02b9b44cd69601a52c72973737bb7cd87ea67c599743ec50",
+  "rubric.md": "6d6c4329ab26058a93e6120b7bec2be96d08d38928ba999fc00ee49c96ee0298",
+  "split.json": "dd0ca5ba4d8f904bfb9adfd39e890aa21118cd6613f1466326a1998bdccc07d6"
+}

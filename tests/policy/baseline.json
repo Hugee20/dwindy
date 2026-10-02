@@ -1,0 +1,28 @@
+{
+  "commit": "25ea503202ba9b8030a78c2ac59df117aac7d0b9",
+  "historical_freeze_hashes": {
+    "tests/retrieval/FREEZE.json": "4981d60cef4870c6169144aea77818e0bbe0501846374fd57b8c445a9d5f6066",
+    "tests/project/FREEZE.json": "cad27fd6672834fb802eca59f97d3a31cd22d99cf25a56c1aa1658b6ed437be3",
+    "tests/context/FREEZE.json": "9f5a67d31fc4d0a4f90845c86e18806cc6c05c7458c3534935323becb14e5f82",
+    "tests/tools/FREEZE.json": "a4d3a81d584f9c4120ceece119c3b9751307c249509e0c1e9b6a7113f1d061f2",
+    "tests/reach/FREEZE.json": "16b2f1a129038b4552b7b3a17b0cc3de3337b070e54efa5e1780409afe025eda",
+    "tests/reach_v2/FREEZE.json": "9e963207efb08074aa275d0c0d50f7a2bae98c5e60d51c65de29d4fc8d24dc08",
+    "tests/reach_h2/FREEZE.json": "873baf7d87d1ff4a06597ffe3a78a9db2ec98c27afcbf89efe10680465262f1b"
+  },
+  "model": "Qwen3-1.7B Q4_K_M",
+  "context_size": 4096,
+  "max_tokens": 256,
+  "temperature": 0.7,
+  "seed": 42,
+  "cpu_only": true,
+  "chat_template_kwargs": {
+    "enable_thinking": false
+  },
+  "network": "Forbidden; Reach/H2 disabled/deferred.",
+  "generation_count": 160,
+  "conditions": [
+    "M10",
+    "M11_candidate"
+  ],
+  "fresh_backend_state": "Use matched fresh llama context/cache state and reset seed per target generation, with identical model file/runtime recorded. No generation to construct seeded histories."
+}

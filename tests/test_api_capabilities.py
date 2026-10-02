@@ -54,7 +54,7 @@ class ApiCapabilityTests(unittest.TestCase):
                     return observed
                 self.assertEqual(len(self.backend.requests) - before, 1)
                 observed.update(model_input=self.model_input(), capabilities=[c['name'] for c in data.get('capabilities', [])])
-                observed['host_context_supplied'] = 'Host-application data' in observed['model_input']
+                observed['host_context_supplied'] = 'HOST/reported' in observed['model_input']
                 if persistent:
                     client.post('/v1/chat', json={'message': 'And now?', 'conversation_id': data['conversation_id']}, headers=headers)
                     observed['resumed_input'] = self.model_input()

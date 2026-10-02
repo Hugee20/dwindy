@@ -147,8 +147,10 @@ class CoreFallbackTests(unittest.TestCase):
         self.assertEqual(events[0].retrieval, dict(status='not_used', sources=[]))
         self.assertEqual(self.backend.requests[-1], expected)
         unfit = Evidence((passage('x' * 1600),), max_tokens=10, fallback='plain')
+        expected = self.plain_messages('again')
         self.assertEqual(list(self.core.chat('again', evidence=unfit))[0].retrieval['status'], 'not_used')
-        self.assertNotIn(GUIDANCE, str(self.backend.requests[-1]))
+        self.assertEqual(self.backend.requests[-1], expected)
+        self.assertNotIn('Source 1', self.backend.requests[-1][-1].content)
 
     def test_plain_fallback_when_guidance_cannot_fit(self):
         self.backend.limit = 60

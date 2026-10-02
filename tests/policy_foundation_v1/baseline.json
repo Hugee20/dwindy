@@ -1,0 +1,43 @@
+{
+  "version": "policy_foundation_v1",
+  "hypothesis": "Separate narrowed hypothesis: Evidence-aware response policy; bounded source framing and runtime boundaries.",
+  "original_hypothesis_status": "Failed development screens; original semantic holdout never generated/inspected/scored; neither superseded nor retroactively passed.",
+  "authored_after_development": true,
+  "commit": "25ea503202ba9b8030a78c2ac59df117aac7d0b9",
+  "historical_freeze_hashes": {
+    "tests/retrieval/FREEZE.json": "4981d60cef4870c6169144aea77818e0bbe0501846374fd57b8c445a9d5f6066",
+    "tests/project/FREEZE.json": "cad27fd6672834fb802eca59f97d3a31cd22d99cf25a56c1aa1658b6ed437be3",
+    "tests/context/FREEZE.json": "9f5a67d31fc4d0a4f90845c86e18806cc6c05c7458c3534935323becb14e5f82",
+    "tests/tools/FREEZE.json": "a4d3a81d584f9c4120ceece119c3b9751307c249509e0c1e9b6a7113f1d061f2",
+    "tests/reach/FREEZE.json": "16b2f1a129038b4552b7b3a17b0cc3de3337b070e54efa5e1780409afe025eda",
+    "tests/reach_v2/FREEZE.json": "9e963207efb08074aa275d0c0d50f7a2bae98c5e60d51c65de29d4fc8d24dc08",
+    "tests/reach_h2/FREEZE.json": "873baf7d87d1ff4a06597ffe3a78a9db2ec98c27afcbf89efe10680465262f1b",
+    "tests/policy/FREEZE.json": "e098fe14666bd43a6ee797d8fc7e94585d169c9e4b9ac0633943590be731cc26",
+    "tests/reach_h2/FREEZE_CAPTURE.json": "02ef8ba5ef050f25a6c4b6b585412436bd63712a02f2aee3a3bb38dfce9f2254",
+    "tests/eval/core_v0.jsonl": "6141e531a37eea4d8933b010cc71dcaf4470ab0aeda5d058a6a9ad451352011a",
+    "docs/M11_DEVELOPMENT.md": "0824d7567a3d076f05a6fe7f21c443d90222045838be30e92bc8109b9aa49828",
+    "docs/M11_DEVELOPMENT_V2.md": "7ee7020437d26c5eddbf617c1b6c665ae16a7ce60ede57d560f423a91c02fa9a",
+    "docs/M11_DEVELOPMENT_V3.md": "d9b3f9bec486af10d39b65aefa84f9f1777a570bdc852aea62ff6401edb85917"
+  },
+  "model": "Qwen3-1.7B Q4_K_M",
+  "model_sha256": "d2387ca2dbfee2ffabce7120d3770dadca0b293052bc2f0e138fdc940d9bc7b5",
+  "runtime": "llama-cpp-python==0.3.35",
+  "context_size": 4096,
+  "max_tokens": 256,
+  "temperature": 0.7,
+  "seed": 42,
+  "cpu_only": true,
+  "threads": null,
+  "system_prompt": "",
+  "chat_template_kwargs": {
+    "enable_thinking": false
+  },
+  "network": "Forbidden; Reach/H2 disabled/deferred.",
+  "conditions": [
+    "M10",
+    "M11_foundation"
+  ],
+  "fresh_backend": "Fresh per episode; retain state only between its two continuity turns. Baseline/candidate same model/configuration/cache/seed setup. Loads excluded from timing.",
+  "generation_count": 112,
+  "public_contract_changes": false
+}

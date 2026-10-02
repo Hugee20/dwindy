@@ -60,7 +60,7 @@ class CoreEvidenceTests(unittest.TestCase):
         list(self.core.chat('first'))
         count = self.backend.count_tokens
         def history_sensitive(messages):
-            penalty = 600 if len(messages) > 2 and 'Source 1' in messages[-1].content else 0
+            penalty = 768 if any(m.role == "assistant" for m in messages) and 'Source 1' in messages[-1].content else 0
             return count(messages) + penalty
         self.backend.count_tokens = history_sensitive
         events = list(self.core.chat('next', evidence=Evidence((passage(),))))

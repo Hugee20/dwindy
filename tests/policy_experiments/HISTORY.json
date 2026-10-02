@@ -1,0 +1,59 @@
+{
+  "status": "Historical development only; neither hypothesis adopted; both holdouts unspent. Local ignored artifacts are retained, not silently replayed against production.",
+  "runs": {
+    "m11-dev-01": {
+      "manifest_path": "eval-results/m11-dev-01/manifest.json",
+      "manifest_sha256": "94e1f41b4a0b7ec9bcfa273446b886469e0eca6b214e16df676fd85732000aca",
+      "source_hashes": {
+        "src/dwindy/evidence.py": "bd0daae4de4e7753e82e396794dbe119bbdc1cf9b2ed065b854f377845ab1a33",
+        "src/dwindy/core.py": "3d6c3ad13e16804df30b0fd640946883adfe72290169d1c892ab200941581499",
+        "tests/eval_policy_dev.py": "2cdac121cc78f1406a01b38d791adccd32f03ddadbfc538457002bd9076cdda5",
+        "tests/policy_probes.py": "57c0bc323fb6eb983e9317253a311a8a9a712883ee0066c55bf474f97ea8cc3b"
+      }
+    },
+    "m11-dev-v2-01": {
+      "status": "Historical aborted preparation, no run manifest",
+      "artifact_path": "eval-results/m11-dev-v2-01/ABORTED.txt",
+      "artifact_sha256": "04596a0b113fdc036bcb7623ebabcfb935b99fa47b18296b3680918efc489a83"
+    },
+    "m11-dev-v2-02": {
+      "manifest_path": "eval-results/m11-dev-v2-02/manifest.json",
+      "manifest_sha256": "bb7681ec472fe34cccd685bab42227815dd5501a3506d6debdbe5827ff3ec52b",
+      "source_hashes": {
+        "src/dwindy/evidence.py": "22a3e35571341c1f0ab74b04e94509c05f325f669648f687e39a7dbe61c46514",
+        "src/dwindy/core.py": "4e91f041f73cea4a5d1d6c879f90bd0277e083702e82c96ca96670884b356575",
+        "tests/eval_policy_dev.py": "523ef71cd1527c72c4de00416632b1cbe974d50e72765f232d6a7f379d3b56de",
+        "tests/policy_probes.py": "d6d839e70b4bf6dd9ee5314e851218b8bc901bc69bee3e979929ef7fba4443b7"
+      }
+    },
+    "m11-dev-v3-01": {
+      "manifest_path": "eval-results/m11-dev-v3-01/manifest.json",
+      "manifest_sha256": "47f40773529553ad2e4ea535cb85c2d148f73cebf83a4917ca9dd9d7faa1eb4e",
+      "source_hashes": {
+        "src/dwindy/evidence.py": "cd6cc94c93bfb0bcd0265b106be1e960da82d71ee80e39e88d6795467649e46a",
+        "src/dwindy/core.py": "3a56cf924fde479313b572df1d3251c8bc8022479fb798b383962e3cd0a32e85",
+        "tests/eval_policy_dev.py": "042894ea5c3fa8dd8328ab291131e3f28569228e1b5d20c6b82064088e71d2fb",
+        "tests/policy_probes.py": "9a78f3f4fd7d9dbbd1a8e139c2da753d411eb4a24596f9eb1ecd3e7ecf8de4fa"
+      }
+    },
+    "policy-foundation-dev-01": {
+      "manifest_path": "eval-results/policy-foundation-dev-01/manifest.json",
+      "manifest_sha256": "a53abf181ab6c50a194c22e470417fae53cc1d0ffb7319b5c51632c4fe0ee422",
+      "source_hashes": {
+        "src/dwindy/core.py": "dd81f1b2605cbc446e94d76644db472e93d2fa03ce384600a81fb72ce03a32a8",
+        "src/dwindy/evidence.py": "d5fd15242836ca944351191029fc000e322272314b3cc4d532907eb4b417ac0b",
+        "tests/eval_policy_foundation_dev.py": "a332035d02a7191a5ac84fea4a10ef6d4186f8fbe9d008dea77b20a396d24d10"
+      }
+    },
+    "policy-foundation-dev-v2-01": {
+      "manifest_path": "eval-results/policy-foundation-dev-v2-01/manifest.json",
+      "manifest_sha256": "d71cd3238f66ba0dc09f7066ad4ceeac802e4dbba65c194d8e57833e05fdae6a",
+      "source_hashes": {
+        "src/dwindy/core.py": "dd81f1b2605cbc446e94d76644db472e93d2fa03ce384600a81fb72ce03a32a8",
+        "src/dwindy/evidence.py": "ddae98bbe114f7b1b59626abd06fc0b5415ef76ab2fdca8bd55ac06340050886",
+        "tests/eval_policy_foundation_v2_dev.py": "c4c6c1be5a8b0fa92d224a52c073a9ae4c85616af69251511049fc8d726f5198",
+        "tests/foundation_capability_v2.py": "b226d1051dcbce1c247b51a9a89b46fea2fd50ff259acc87e593ad7f28f450ef"
+      }
+    }
+  }
+}

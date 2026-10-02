@@ -10,7 +10,7 @@ from dwindy.core import DwindyCore
 
 
 class FakeBackend:
-    def __init__(self, limit=100, failure=None):
+    def __init__(self, limit=400, failure=None):
         self.limit = limit
         self.failure = failure
         self.requests = []

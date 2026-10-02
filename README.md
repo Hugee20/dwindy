@@ -19,6 +19,14 @@ shipped**: v1 was rejected experimentally, and H1 compact selection failed its f
 recall gate. H2 is designed/prepared, but execution is deferred because the reference network
 cannot currently satisfy its connectivity requirements. H2 has neither failed nor been adopted;
 its prepared evaluation is preserved for later resumption. See [Reach status](docs/REACH.md).
+
+**Milestone 11 development is concluded**: original and Foundation response-policy hypotheses
+were not adopted as complete policies; both holdouts remain sealed/unspent. Production retains
+bounded typed source framing, lossless escaping and a Dwindy-only runtime-capability fact,
+with native history and existing lifecycle/budget boundaries. These mechanisms do not guarantee
+factual correctness, conflict resolution or reliable verbal action boundaries from Qwen3-1.7B.
+See the [development conclusion](docs/M11_DEVELOPMENT_CONCLUSION.md).
+
 The [project proposal](docs/PROJECT_PROPOSAL.md) is the specification;
 [architecture](docs/ARCHITECTURE.md) describes the implemented boundaries.
 

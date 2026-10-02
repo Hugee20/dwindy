@@ -824,6 +824,15 @@ M12 Optimization + V1 hardening
 
 **M11: Evidence-aware response policy.** Behavior built on the existing provenance trail.
 *Success:* Dwindy distinguishes model-only responses from project-, document-, tool-, and web-grounded responses.
+*Development disposition:* the original broad hypothesis and the separately authored Foundation
+hypothesis were not adopted as complete response policies: their development screens failed,
+including Foundation v2's 0/2 explicit host-action boundaries despite a direct trusted Dwindy
+capability fact. Both holdouts remain sealed/unspent; frozen gates/results are unchanged.
+Retained infrastructure provides typed source/origin framing, escaping, transient context,
+native history and existing budgeting/lifecycle guarantees, not verified grounding or semantic
+reliability. Conflict handling, historical-claim correction, partial support, attribution and
+self-consistency remain limitations/future research; they do not automatically move to M12.
+See [M11 development conclusion](M11_DEVELOPMENT_CONCLUSION.md).
 
 **M12: Optimization and V1 hardening.** Use everything measured so far to optimize bottlenecks and stabilize V1, rather than starting evaluation from scratch.
 

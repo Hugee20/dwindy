@@ -6,7 +6,7 @@ from typing import Generator, Sequence
 from .backend import BackendError, Completion, ContextLimitError, GenerationOptions, Message, ModelBackend, TextDelta
 from .evidence import (Evidence, Facts, GUIDANCE, UNAVAILABLE_GUIDANCE, WEB_GUIDANCE, WEB_SENTENCE_GUIDANCE,
                        evidence_question,
-                       facts_block, facts_guidance, host_block)
+                       facts_block, policy_guidance, host_block, web_facts_block, web_facts_guidance, web_host_block)
 
 
 @dataclass(frozen=True)
@@ -86,7 +86,7 @@ class DwindyCore:
             raise ValueError("Expected a nonempty notice or None")
         return self._chat(user_text, evidence, facts or None, notice)
 
-    def _evidence_messages(self, user, evidence, prefix="", extra=""):
+    def _evidence_messages(self, user, evidence, prefix="", extra="", facts=None, notice=None):
         guidance = dict(web=WEB_GUIDANCE, web_sentences=WEB_SENTENCE_GUIDANCE).get(evidence.origin, GUIDANCE)
         system = (self._system_prompt + "\n\n" if self._system_prompt else "") + guidance + ("\n\n" + extra if extra else "")
         base_system = ((self._system_prompt + "\n\n" if self._system_prompt else "") + extra) if extra else self._system_prompt
@@ -94,7 +94,16 @@ class DwindyCore:
             Message("user", prefix + "User question:\n" + user if prefix else user)]
         baseline = self._backend.count_tokens(base)
         def compose(passages, history=()):
-            return [Message("system",system),*history,Message("user",prefix + evidence_question(user,passages,evidence.framing,evidence.origin))]
+            framed_system = system
+            if evidence.origin == "local":
+                guidance = policy_guidance(facts, passages)
+                # Empty local evidence still has the existing explicit no-match framing.
+                if not passages and not facts:
+                    guidance = guidance or GUIDANCE
+                framed_system = (self._system_prompt + "\n\n" if self._system_prompt else "") + guidance
+                if notice: framed_system += "\n\n" + notice
+            return ([Message("system", framed_system)] if framed_system else []) + list(history) + [
+                Message("user", prefix + evidence_question(user, passages, evidence.framing, evidence.origin))]
         def fits(messages):
             count = self._backend.count_tokens(messages)
             return count + self._options.max_tokens <= self._backend.context_size() and max(0,count-baseline) <= evidence.max_tokens
@@ -131,15 +140,18 @@ class DwindyCore:
         self._active = True
         try:
             system, retrieval = self._system_prompt, None
-            prefix = extra = ""
+            web = evidence is not None and evidence.origin != "local"
+            prefix = ""
+            extra = "" if web else policy_guidance(facts)
             content = user_text
             if facts:
                 # Host data has its own allowance; it is rejected, never truncated, when too large.
-                block = host_block(facts)
+                block = web_host_block(facts) if web else host_block(facts)
                 if block and (self._backend.count_tokens([Message("user", block)]) -
                               self._backend.count_tokens([Message("user", "")])) > facts.host_budget:
                     raise ContextLimitError("Host context exceeds its token allowance.")
-                prefix, extra = facts_block(facts), facts_guidance(facts)
+                prefix = web_facts_block(facts) if web else facts_block(facts)
+                if web: extra = web_facts_guidance(facts)
                 content = prefix + "User question:\n" + user_text
             if notice:
                 extra = (extra + "\n\n" if extra else "") + notice
@@ -149,7 +161,7 @@ class DwindyCore:
                 retrieval = dict(status="unavailable", sources=[])
             elif evidence is not None:
                 try:
-                    messages,recent,retrieval = self._evidence_messages(user_text,evidence,prefix,extra)
+                    messages,recent,retrieval = self._evidence_messages(user_text,evidence,prefix,extra,facts,notice)
                 except ContextLimitError:
                     if evidence.fallback != "plain":
                         raise
