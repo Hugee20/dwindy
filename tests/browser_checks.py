@@ -12,6 +12,7 @@ import os
 from pathlib import Path
 import threading
 from urllib.parse import unquote, urlsplit
+from unittest.mock import patch
 
 from dwindy.api import create_app
 from dwindy.config import Config, load_config
@@ -50,6 +51,68 @@ def completed(browser):
     return browser.evaluate("chat.$('.assistant:last-child .content').textContent")
 
 
+def standalone_connection_check(browser, static):
+    """Exercise the real standalone form on a separate allowed, authenticated origin."""
+    token = "standalone-regression-token-0123456789"
+    with patch.dict(os.environ, {"DWINDY_API_TOKEN": token}):
+        app = create_app(Config(Path("unused.gguf"), max_tokens=5),
+            ApiConfig(allowed_origins=(static,)), backend=FakeBackend(limit=10000))
+    browser.call("Page.enable")
+    script = browser.call("Page.addScriptToEvaluateOnNewDocument", source="""
+        globalThis.connectionRequests = [];
+        const originalFetch = globalThis.fetch.bind(globalThis);
+        globalThis.fetch = (url, options = {}) => {
+            connectionRequests.push({url: String(url), method: options.method || 'GET',
+                authorization: options.headers?.Authorization || null, body: options.body || null});
+            return originalFetch(url, options);
+        };
+    """)["identifier"]
+    try:
+        with live_server(app) as (client, server, thread):
+            api = str(client.base_url).rstrip("/")
+            assert api != static
+            browser.navigate(static + "/web/index.html")
+            browser.wait("!!document.querySelector('dwindy-chat')?.shadowRoot?.querySelector('link')?.sheet")
+            browser.evaluate("globalThis.chat = document.querySelector('dwindy-chat')")
+            browser.wait("!chat.$('.error').hidden")  # Initial static-host health 404.
+            assert browser.evaluate("document.querySelector('#api-base').value") == static
+
+            def connect(value):
+                browser.evaluate("connectionRequests.length = 0; document.querySelector('#api-base').value = " +
+                    json.dumps(api) + "; document.querySelector('#api-token').value = " + json.dumps(value) +
+                    "; document.querySelector('#connection-status').textContent = ''; document.querySelector('#connection-form').requestSubmit()")
+                browser.wait("!document.querySelector('#connection-form button').disabled && !!document.querySelector('#connection-status').textContent")
+                return browser.evaluate("document.querySelector('#connection-status').textContent")
+
+            status = connect(token)
+            calls = browser.evaluate("connectionRequests")
+            assert status.startswith("Connection updated."), {"status": status, "requests": calls}
+            assert calls and all(c['url'].startswith(api + '/v1/') and
+                c['authorization'] == 'Bearer ' + token for c in calls), calls
+            assert browser.evaluate("document.querySelector('#api-token').value") == ''
+            submit(browser, 'Fresh connection')
+            assert completed(browser) == 'ok'
+            assert browser.evaluate("JSON.parse(connectionRequests.find(c => c.method === 'POST').body).conversation_id || null") is None
+            first_id = next(iter(app.state.dwindy.conversations))
+
+            assert not connect('wrong-token').startswith('Connection updated.')
+            assert first_id in app.state.dwindy.conversations
+            calls = browser.evaluate('connectionRequests')
+            assert calls and all(c['authorization'] == 'Bearer wrong-token' for c in calls)
+            assert not any(c['method'] == 'DELETE' for c in calls)
+            assert connect(token).startswith('Connection updated.')
+            submit(browser, 'New authenticated turn')
+            assert completed(browser) == 'ok'
+            assert len(app.state.dwindy.conversations) == 2
+            assert connect(token).startswith('Connection updated.')
+            assert len(app.state.dwindy.conversations) == 1  # Same-settings ephemeral reset.
+            return {"static_origin": static, "api_origin": api, "form_connection": True,
+                "new_destination_and_token_only": True, "wrong_token_rejected": True,
+                "fresh_chat": True, "same_connection_reset": True}
+    finally:
+        browser.call("Page.removeScriptToEvaluateOnNewDocument", identifier=script)
+
+
 def run(args):
     with static_server() as static, launch_browser(args.browser) as browser:
         version = browser.call("Browser.getVersion")["product"]
@@ -59,6 +122,7 @@ def run(args):
         failures = [item for item in results if not item["pass"]]
         print(json.dumps({"browser": version, "browser_tests": len(results), "failures": failures}), flush=True)
         assert not failures
+        print(json.dumps({"standalone_cross_origin_connection": standalone_connection_check(browser, static)}), flush=True)
         model = load_config(args.config) if args.config else Config(Path("unused.gguf"), max_tokens=5)
         backend = None if args.config else FakeBackend(limit=10000)
         app = create_app(model, ApiConfig(allowed_origins=(static,)), backend=backend, chat_root=ROOT)

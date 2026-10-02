@@ -129,6 +129,25 @@ export class DwindyChat extends HTMLElement {
     if (name === 'open') this.#open();
   }
 
+  async connect(base, token = '') {
+    const next = apiBase(base);
+    if (typeof token !== 'string' || /[\r\n]/.test(token)) throw Error('Invalid bearer token.');
+    if (!this.#client || this.#busy || this.#resetting) throw Error('Wait for the active operation to finish.');
+    if (next === this.#base && token === this.#configuredToken) return this.newConversation();
+    // A connection switch is local: never contact the old server to discover storage
+    // mode or delete via old/new credentials. Saved turns survive; ephemeral IDs expire.
+    this.#health?.abort();
+    this.#client.detach();
+    const ready = this.#ready;
+    this.#ready = false;
+    try { this.setAttribute('api-base', next); }
+    finally { this.#ready = ready; }
+    this.#token = token;
+    this.#configure(); // Install both values before any health request.
+    this.#clearDisplay(); this.#controls();
+    await this.newConversation();
+  }
+
   set bearerToken(value) {
     if (typeof value !== 'string' || /[\r\n]/.test(value)) throw Error('Invalid bearer token.');
     if (this.#busy || this.#resetting || this.#client?.conversationId || this.#client?.uncertain) throw Error('Start a new conversation before changing credentials.');

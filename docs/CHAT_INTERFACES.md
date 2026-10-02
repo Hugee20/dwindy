@@ -48,11 +48,15 @@ automatically discovered or bundled into the Python wheel. Hosting is disabled w
 the argument is omitted. No browser is automatically launched.
 
 The page defaults to its own origin as API base. Connection settings allow a different
-HTTP(S) base and an optional bearer token. In ephemeral mode, reconnection first deletes the old conversation
-using its old credentials. In persistent mode it detaches without deleting saved turns. It will not silently abandon a failed deletion or send old
-credentials to a new destination. If the old server is unreachable or its token revoked,
-reload the page to abandon local state; the old server conversation remains until expiry
-or explicit deletion by an authorized client. A token input is cleared after connection.
+HTTP(S) base and an optional bearer token. The standalone form uses `chat.connect(base, token)`
+to apply both values before checking the selected API. A changed destination or token detaches
+the previous conversation locally without contacting or deleting from the old connection.
+Saved turns remain on that server; old ephemeral conversations remain until idle expiry or
+explicit authorized deletion. Keep a saved ID before switching if you want to resume it.
+Reconnecting with unchanged settings keeps normal New Conversation behavior: ephemeral
+conversations are deleted; persistent conversations detach without deleting saved turns.
+Invalid settings and active operations are rejected before switching. No old token or
+conversation ID is forwarded to the new connection. A token input is cleared after successful connection.
 Browser/password-manager behavior is outside Dwindy's control; Dwindy does not save it.
 
 Static hosting publicly exposes only the six required HTML/JS/CSS files and the four

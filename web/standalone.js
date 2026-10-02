@@ -10,9 +10,7 @@ document.querySelector('#connection-form').addEventListener('submit', async even
   const button = event.currentTarget.querySelector('button'); button.disabled = true;
   try {
     const next = apiBase(base.value);
-    await chat.newConversation(); // Preserve saved turns; ephemeral mode retains reset semantics.
-    chat.setAttribute('api-base', next);
-    chat.bearerToken = token.value;
+    await chat.connect(next, token.value);
     token.value = '';
     status.textContent = 'Connection updated. Send a message to begin.';
   } catch (error) { status.textContent = error.message; }

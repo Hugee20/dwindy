@@ -32,6 +32,40 @@ function send(chat, text) {
 async function complete(chat) { await waitFor(() => chat.$('.status').textContent.startsWith('Complete')); }
 
 export const tests = [
+  ['connect applies destination and token before health, even when default API is unavailable', () => fixture(async (chat, calls) => {
+    calls.length = 0;
+    await chat.connect('http://127.0.0.1:8999', 'new-token');
+    assert(calls.length > 0);
+    assert(calls.every(c => c.url.startsWith('http://127.0.0.1:8999/v1/') && c.options.headers.Authorization === 'Bearer new-token'));
+    send(chat, 'hello'); await complete(chat);
+    const post = calls.find(c => c.options.method === 'POST');
+    assert(!JSON.parse(post.options.body).conversation_id);
+  }, {fetchImpl: async (url, options) => {
+    if (!url.startsWith('http://127.0.0.1:8999/')) return new Response('{}', {status: 404});
+    assert(options.headers.Authorization === 'Bearer new-token');
+    return url.endsWith('/health') ? new Response('{"persistence_enabled":false}') : response();
+  }})],
+  ['connect detaches old conversation without contacting its endpoint or leaking credentials', () => fixture(async (chat, calls) => {
+    chat.bearerToken = 'old-token';
+    send(chat, 'old turn'); await complete(chat);
+    calls.length = 0;
+    await chat.connect('http://127.0.0.1:8999', 'new-token');
+    assert(chat.$('.messages').children.length === 0);
+    send(chat, 'new turn'); await complete(chat);
+    assert(calls.every(c => c.url.startsWith('http://127.0.0.1:8999/v1/') && c.options.headers.Authorization === 'Bearer new-token'));
+    assert(!calls.some(c => c.options.method === 'DELETE'));
+    assert(!JSON.parse(calls.find(c => c.options.method === 'POST').options.body).conversation_id);
+  })],
+  ['connect validates before mutation and preserves same-settings ephemeral reset', () => fixture(async (chat, calls) => {
+    send(chat, 'old turn'); await complete(chat);
+    calls.length = 0;
+    await rejects(() => chat.connect('ftp://127.0.0.1', 'token'));
+    await rejects(() => chat.connect('http://127.0.0.1:8999', 'bad\ntoken'));
+    assert(calls.length === 0 && chat.$('.messages').children.length === 2);
+    await chat.connect(location.origin);
+    assert(calls.some(c => c.options.method === 'DELETE' && c.url.endsWith(id)));
+    assert(chat.$('.messages').children.length === 0);
+  })],
   ['local passages UI reports supply without claiming correctness', () => fixture(async (chat,calls) => {
     await waitFor(() => !chat.$('.retrieval-setting').hidden);
     assert(!chat.$('.use-retrieval').checked);
@@ -150,6 +184,9 @@ export const tests = [
     let streamController;
     await fixture(async chat => {
       send(chat, 'hello'); await waitFor(() => streamController);
+      const base = chat.getAttribute('api-base');
+      await rejects(() => chat.connect('http://127.0.0.1:8999', 'new-token'));
+      assert(chat.getAttribute('api-base') === base);
       assert(chat.$('.header-avatar').src.endsWith('dwindy-working.png'));
       chat.$('.send').click();
       await waitFor(() => chat.$('.send').textContent === 'Send');
