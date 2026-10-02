@@ -25,6 +25,10 @@ export const tests = [
     await drain(client.chat('one'));
     await drain(client.chat('two',{retrieval:true}));
     assert(!('retrieval' in bodies[0]) && bodies[1].retrieval === true);
+    await drain(client.chat('three',{retrieval:'auto'}));
+    await drain(client.chat('four',{retrieval:false}));
+    assert(bodies[2].retrieval === 'auto' && bodies[3].retrieval === false);
+    await rejects(() => drain(client.chat('five',{retrieval:'always'})), 'invalid_request');
   }],
   ['resume and detach are memory-only and preserve exact ID', async () => {
     const calls = [];

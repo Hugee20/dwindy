@@ -37,7 +37,7 @@ export const tests = [
     assert(!chat.$('.use-retrieval').checked);
     chat.$('.use-retrieval').checked = true;
     send(chat,'local question'); await complete(chat);
-    assert(JSON.parse(calls.find(c => c.options.method === 'POST').options.body).retrieval === true);
+    assert(JSON.parse(calls.find(c => c.options.method === 'POST').options.body).retrieval === 'auto');
     assert(chat.$('.retrieval-status').textContent.includes('1 local passages supplied'));
     assert(chat.$('.retrieval-status').textContent.includes('does not verify'));
   }, {fetchImpl: async url => url.endsWith('/health') ? new Response('{"retrieval_enabled":true}') :
@@ -51,6 +51,27 @@ export const tests = [
         assert(!chat.$('.use-retrieval').checked);
       }, {fetchImpl: async url => url.endsWith('/health') ? new Response(JSON.stringify(health)) : response()});
     }
+  }],
+  ['auto default starts checked, opt-out sends false, and status stays truthful', async () => {
+    const statuses = [{mode: 'auto', attempted: false, status: 'not_used', reason: 'conversational', sources: []},
+                      {mode: 'auto', attempted: true, status: 'not_used', reason: 'weak_match', sources: []},
+                      {mode: 'auto', attempted: true, status: 'unavailable', reason: 'retrieval_busy', sources: []}];
+    let turn = 0;
+    await fixture(async (chat, calls) => {
+      await waitFor(() => !chat.$('.retrieval-setting').hidden);
+      assert(chat.$('.use-retrieval').checked);
+      send(chat, 'hello'); await complete(chat);
+      assert(chat.$('.retrieval-status').hidden);
+      send(chat, 'general question'); await complete(chat);
+      assert(chat.$('.retrieval-status').textContent === 'Local material checked; none used.');
+      send(chat, 'project question'); await complete(chat);
+      assert(chat.$('.retrieval-status').textContent === 'Local project information was unavailable.');
+      chat.$('.use-retrieval').checked = false;
+      send(chat, 'off'); await complete(chat);
+      const bodies = calls.filter(c => c.options.method === 'POST').map(c => JSON.parse(c.options.body).retrieval);
+      assert(JSON.stringify(bodies) === JSON.stringify(['auto', 'auto', 'auto', false]));
+    }, {fetchImpl: async url => url.endsWith('/health') ? new Response('{"retrieval_enabled":true,"retrieval_default":"auto"}') :
+        response(frame('started', {conversation_id: id, dropped_turns: 0, ...(turn < 3 ? {retrieval: statuses[turn++]} : {})}) + frame('delta', {text: 'OK'}) + done)});
   }],
   ['persistent new preserves saved ID remotely and manual resume uses it', () => fixture(async (chat, calls) => {
     await waitFor(() => !chat.$('.persistence').hidden);

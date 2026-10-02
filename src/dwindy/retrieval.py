@@ -41,13 +41,21 @@ class RetrievalError(RuntimeError):
         self.code = code
 
 
+def words(text):
+    """Case-folded Unicode alphanumeric runs: the tokenization every query uses."""
+    return [t.casefold() for t in re.findall(r"[^\W_]+", text, re.UNICODE)]
+
+
+def query_terms(query):
+    """The exact terms a query searches for: first 32 unique non-stopwords."""
+    return list(dict.fromkeys(t for t in words(query) if t not in STOPWORDS))[:32]
+
+
 def match_query(query):
     if not isinstance(query, str) or not query.strip() or len(query.encode("utf-8")) > 2048:
         raise ValueError("Retrieval query must be nonblank and at most 2048 UTF-8 bytes.")
     # No raw operators, prefixes, SQL or FTS syntax cross this boundary.
-    terms = list(dict.fromkeys(t.casefold() for t in re.findall(r"[^\W_]+", query, re.UNICODE)
-                              if t.casefold() not in STOPWORDS))[:32]
-    return " OR ".join('"' + term.replace('"', '""') + '"' for term in terms)
+    return " OR ".join('"' + term.replace('"', '""') + '"' for term in query_terms(query))
 
 
 def validate_index(db):

@@ -38,7 +38,7 @@ class ApiRetrievalTests(unittest.TestCase):
         with self.client(app) as client:
             schemas=client.get('/openapi.json').json()['components']['schemas']
             self.assertEqual(schemas['RetrievalMetadata']['properties']['status']['enum'],
-                             ['supplied','no_match','budget_exhausted'])
+                             ['supplied','no_match','budget_exhausted','not_used','unavailable'])
             self.assertIn('text',schemas['RetrievalMatch']['properties'])
             result=client.post('/v1/retrieve',json={'query':'Helios retry delay'}).json()
             self.assertTrue(result['matches'])
@@ -47,7 +47,7 @@ class ApiRetrievalTests(unittest.TestCase):
             self.assertEqual(reply['retrieval']['status'],'supplied')
             self.assertLessEqual(len(reply['retrieval']['sources']),3)
             self.assertEqual(app.state.dwindy.conversations[reply['conversation_id']].core.snapshot()[0].content,'Helios retry delay')
-            plain=client.post('/v1/chat',json={'message':'hello'}).json()
+            plain=client.post('/v1/chat',json={'message':'hello','retrieval':False}).json()
             self.assertNotIn('retrieval',plain)
             self.assertEqual(len(self.backend.requests[-1]),1)
 

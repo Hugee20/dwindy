@@ -122,6 +122,17 @@ The standalone chat interface communicates through the same public API used by e
 
 Project files, documents, and web pages are untrusted data. They may inform an answer but must never be treated as instructions to Dwindy (see Section 17).
 
+### 4.8 Capability Density
+
+Dwindy favors components that provide a disproportionate increase in reliability or capability relative to their deployment size, runtime memory, latency, maintenance burden, and portability cost.
+
+Compactness is a constraint to optimize against, not a prohibition against mature libraries. Do not add a dependency when the standard library or current stack solves the problem adequately. Future milestones may propose lightweight libraries when evaluation demonstrates a meaningful capability gain. Avoid both dependency minimalism for its own sake and indiscriminate framework accumulation.
+
+- **Internal implementation dependencies.** Lightweight, broadly applicable libraries that measurably improve Dwindy's own baseline pipeline (retrieval, parsing, normalization, safety, reliability, context selection) may become ordinary dependencies rather than developer-facing toggles. Every deployment pays for them, so each must show a measured gain on a frozen evaluation, be pinned, install offline on the reference platform, and carry a compatible license.
+- **Optional extras.** A dependency that serves only a particular deployment choice belongs in an optional extra (for example, `pathspec` in the `project` extra).
+- **Configuration only for genuine choices.** A component is configurable only when there is a real deployment or behavioral choice. Internal thresholds and cue lists are evaluated constants, not settings.
+- **Host capabilities belong to the host.** Domain functionality, such as querying a host application's database, changing records, producing domain reports, checking account state, or performing business operations, is not bundled into Dwindy as a growing collection of built-in tools. A future capability milestone may define a narrow, safe interface through which a host application exposes explicitly approved functions or results. Authentication, authorization, validation, transactions, and business logic stay in the host application. Dwindy's own lightweight internal capabilities are generally invisible implementation details; host capabilities are explicit integration points.
+
 ---
 
 ## 5. Intended Users and Usage Modes
@@ -485,6 +496,10 @@ use it       GENERAL
 
 The router is allowed to recover. If PROJECT retrieval returns no useful chunks, Dwindy may fall back to GENERAL handling while explicitly avoiding any claim about the project.
 
+### 12.3 As implemented in M8: context selection
+
+M8 implements this section as a **context-selection policy** for capabilities that exist, not as a general router. Local and project material share one index and one search, so there is a single outcome: supply local context or not. The policy is deterministic, makes no model call, and follows *attempt liberally, supply conservatively*. A small closed cue table handles only high-certainty fast paths, and everything ambiguous falls through to cheap retrieval and a usefulness check (the flow in 12.1). Requests are not classified for capabilities that do not exist: tool applicability arrives with M9, and current-information detection arrives with Reach in M10. See [context selection](CONTEXT_SELECTION.md).
+
 ---
 
 ## 13. Deterministic Tools
@@ -492,6 +507,8 @@ The router is allowed to recover. If PROJECT retrieval returns no useful chunks,
 Dwindy maintains a deliberately small tool surface. Initial tools may eventually include a calculator, date/time operations, and local/project retrieval.
 
 Tools are not added simply because they are possible. A small model becomes less reliable when it must select among many tools, so growth is driven by demonstrated use cases.
+
+**Direction for M9 (recorded at M8; not yet designed).** Following Capability Density (Section 4.8), M9 distinguishes Dwindy's own small internal deterministic operations, which are generally invisible implementation details, from host-application capabilities. Host capabilities are exposed through a narrow, explicit integration interface. The host keeps authentication, authorization, validation, transactions, and business logic. Results are untrusted data, like retrieved passages, and anything that changes data needs host-side authorization and confirmation. Selecting which host function applies should favor deterministic or explicitly declared applicability, evaluated at that milestone, over free-form function calling by a small model. M8 builds no tool or agent framework.
 
 ---
 
@@ -757,7 +774,7 @@ M6  Retrieval
 M7  Project Awareness
  │   └── project / security evaluation added
  │
-M8  Router
+M8  Context selection (routing foundation)
  │   └── fallback and recovery behavior
  │
 M9  Tools
@@ -796,7 +813,7 @@ M12 Optimization + V1 hardening
 **M7: Project Awareness.** Controlled scanning and indexing of `DWINDY.md`, README files, `/docs`, selected metadata, and permitted source files; exclusion rules; untrusted-content handling in the context builder.
 *Success:* Dwindy answers basic what/where/why/how questions about an unfamiliar but documented host application.
 
-**M8: Query routing.** Lightweight routing between conversation, general requests, project knowledge, documents, tools, and current information, with conservative fallback and recovery.
+**M8: Context selection.** A deterministic policy deciding per turn whether local or project evidence deserves model context, with conservative fallback and recovery. *Amended at M8:* tool and current-information triggers move to M9 and M10, which introduce those capabilities.
 *Success:* Dwindy avoids sending every request through every subsystem, and misroutes degrade gracefully.
 
 **M9: Deterministic tools.** A small number of useful operations.

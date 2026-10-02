@@ -58,7 +58,7 @@ class ApiProjectTests(unittest.TestCase):
             started = json.loads(next(line[6:] for line in stream.splitlines() if line.startswith('data: ')))
             self.assertEqual(started['retrieval']['sources'][0]['snapshot_id'], self.report['snapshot_id'])
             self.assertIn('event: completed', stream)
-            plain = client.post('/v1/chat', json={'message': 'hello'}).json()
+            plain = client.post('/v1/chat', json={'message': 'hello', 'retrieval': False}).json()
             self.assertNotIn('retrieval', plain)
             self.assertEqual([m.content for m in self.backend.requests[-1]], ['hello'])
 
@@ -76,7 +76,8 @@ class ApiProjectTests(unittest.TestCase):
         manifest_sync(Path(__file__).parent/'retrieval/collection.toml', plain)
         with self.client(index=plain) as client:
             self.assertEqual(client.get('/v1/health').json(), {'status': 'ready', 'busy': False,
-                             'persistence_enabled': False, 'retrieval_enabled': True})
+                             'persistence_enabled': False, 'retrieval_enabled': True,
+                             'retrieval_default': 'auto'})
             match = client.post('/v1/retrieve', json={'query': 'Helios retry delay'}).json()['matches'][0]
             self.assertFalse({'project_id', 'snapshot_id'} & match.keys())
             reply = client.post('/v1/chat', json={'message': 'Helios retry delay', 'retrieval': True}).json()

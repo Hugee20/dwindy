@@ -31,6 +31,7 @@ class ApiConfig:
     database_max_mib: int = 128
     retrieval_index_path: str | None = None
     retrieval_context_tokens: int = 768
+    retrieval_default: str | None = None  # "auto" | "off"; unset means auto when an index is configured
 
     def validate(self) -> str | None:
         if not isinstance(self.host, str):
@@ -51,6 +52,11 @@ class ApiConfig:
             validate_database_path(self.retrieval_index_path)
             if self.database_path and Path(self.database_path).resolve() == Path(self.retrieval_index_path).resolve():
                 raise ConfigError("Conversation database and retrieval index must be separate files.")
+        if self.retrieval_default is not None:
+            if self.retrieval_default not in ("auto", "off"):
+                raise ConfigError('retrieval_default must be "auto" or "off"; forced retrieval is per request only.')
+            if self.retrieval_index_path is None:
+                raise ConfigError("retrieval_default requires retrieval_index_path.")
         for name in ("allowed_hosts", "allowed_origins"):
             values = getattr(self, name)
             if not isinstance(values, (tuple, list)) or any(not isinstance(v, str) for v in values):
@@ -141,6 +147,11 @@ def main(argv=None) -> int:
             print('Install the optional API dependencies: pip install -e ".[api]"', file=sys.stderr)
             return 1
         app = create_app(model_config, api_config, chat_root=args.chat_root)
+        if api_config.retrieval_index_path is not None:
+            mode = api_config.retrieval_default or "auto"
+            print(f"Local context: {mode} by default. Clients may send retrieval=false; "
+                  f'set retrieval_default = "{"auto" if mode == "off" else "off"}" in the API configuration to change it.',
+                  file=sys.stderr)
         server = uvicorn.Server(uvicorn.Config(app, host=api_config.host, port=api_config.port,
                     workers=1, reload=False, loop="asyncio", http="h11", ws="none",
                     proxy_headers=False, access_log=False, server_header=False,

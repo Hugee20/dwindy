@@ -9,12 +9,15 @@ extracted that conversation behavior into a reusable, in-process `DwindyCore`.
 **Milestone 6** adds explicit local-document retrieval using SQLite FTS5, without embeddings.
 **Milestone 7** adds project awareness: a manually synchronized, controlled local knowledge
 snapshot of one explicitly configured project, searched by the unchanged M6 retrieval.
+**Milestone 8** adds context selection: when an index is configured, a deterministic policy
+decides per turn whether local evidence deserves model context, with no extra model call.
 The [project proposal](docs/PROJECT_PROPOSAL.md) is the specification;
 [architecture](docs/ARCHITECTURE.md) describes the implemented boundaries.
 
-Persistence and retrieval are disabled by default. See [local retrieval](docs/RETRIEVAL.md)
-for manifest ingestion, configuration, HTTP contracts and measured limitations, and
-[project awareness](docs/PROJECT_AWARENESS.md) for project snapshots. A snapshot covers
+Persistence and retrieval are disabled by default; once an index is configured, automatic
+context selection is its default (see [context selection](docs/CONTEXT_SELECTION.md)). See
+[local retrieval](docs/RETRIEVAL.md) for manifest ingestion, configuration, HTTP contracts
+and measured limitations, and [project awareness](docs/PROJECT_AWARENESS.md) for project snapshots. A snapshot covers
 only selected files; Dwindy never runs project code or scans a project during chat. There is
 no tool execution or outbound web retrieval. Dwindy never selects or downloads a model. Model licenses are separate
 from the Apache-2.0 source license.
@@ -192,14 +195,18 @@ Chat POST requires `Content-Type: application/json`. Only these fields are accep
 
 `message` is a required nonblank string, preserved verbatim. `conversation_id` is an optional
 32-character opaque ID previously returned by the server; omission or null creates a new
-conversation. `stream` and `retrieval` are optional strict booleans, default false. Unknown fields, coercion,
+conversation. `stream` is an optional strict boolean, default false. `retrieval` is optional and strict:
+`true` (forced), `false` (off) or `"auto"`; omitted means the server default. Unknown fields, coercion,
 client-selected IDs, and per-request model settings are rejected. Maximum raw body size is
 65,536 bytes by default, including chunked requests; the model's context limit is separate.
 
-`retrieval:true` enables local passages for this turn and limits its query to 2,048 UTF-8
-bytes. JSON success or SSE started then includes retrieval status/source metadata. Omission
-preserves ordinary chat. See [the full M6 contract](docs/RETRIEVAL.md) for passage schemas,
-statuses, token budgeting and errors. Passage supply does not verify the answer.
+`retrieval:true` forces local passages for this turn with the unchanged M6 contract and limits
+its query to 2,048 UTF-8 bytes. `"auto"` lets the context-selection policy decide. With an index
+configured, omission means `auto` unless `retrieval_default = "off"` (an M8 change: see the
+[migration note](docs/CONTEXT_SELECTION.md#migration-from-m6m7)); without an index, omission is
+ordinary chat. JSON success or SSE started then includes retrieval metadata. See
+[the full M6 contract](docs/RETRIEVAL.md) for passage schemas, statuses, token budgeting and
+errors. Passage supply does not verify the answer.
 
 A successful non-streaming response has this shape (counts are illustrative):
 
@@ -323,6 +330,8 @@ publicly shipped widget. M4's memory-only client integration is documented below
 | `ssl_certfile`, `ssl_keyfile` | unset; must be supplied together; paths relative to API TOML |
 | `database_path` | unset (ephemeral); explicit local SQLite file, relative to API TOML |
 | `database_max_mib` | `128`; main database cap, excludes journal/filesystem overhead |
+| `retrieval_index_path` | unset; local M6/M7 index, relative to API TOML |
+| `retrieval_default` | `"auto"` when an index is configured; `"off"` opts out. `"on"` is per request only |
 
 Non-loopback startup requires **all** of explicit exposure opt-in, a valid bearer token, and
 a loadable TLS certificate/key. Configure the actual host in `allowed_hosts` too. TLS terminates
@@ -461,6 +470,9 @@ See [evaluation instructions](tests/eval/README.md) for scoring and metric limit
 | `setuptools>=68` | Build backend, used during installation only. |
 | `psutil>=5.9,<8` (optional `eval` extra) | Sample process RSS and report machine RAM. |
 | `pathspec==1.1.1` (optional `project` extra) | Pure-Python `.gitignore` pattern matching for project snapshots only; no traversal. |
+
+Dependencies follow the Capability Density principle ([proposal 4.8](docs/PROJECT_PROPOSAL.md#48-capability-density)):
+a library must earn its place through measured gain. M8 context selection added none.
 | `fastapi==0.142.2` (optional `api` extra) | HTTP routing, lifespan integration, and local OpenAPI schema. |
 | `pydantic==2.13.5` (optional `api` extra) | Strict request validation and response/schema models; directly imported. |
 | `starlette==1.7.0` (optional `api` extra) | Direct ASGI response, disconnect, middleware, and test interfaces. |

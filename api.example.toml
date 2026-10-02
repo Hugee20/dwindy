@@ -20,3 +20,6 @@ max_request_bytes = 65536
 # Optional, separately built local-document index. Stop server before syncing it.
 # retrieval_index_path = "data/retrieval.sqlite3"
 # retrieval_context_tokens = 768 # Provisional incremental allowance, including guidance.
+# With an index, automatic context selection is the default. Set "off" to require explicit
+# retrieval=true per request (the M6/M7 behavior). "on" is not accepted here.
+# retrieval_default = "auto"

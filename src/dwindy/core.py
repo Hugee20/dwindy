@@ -4,7 +4,7 @@ from dataclasses import dataclass
 from typing import Generator, Sequence
 
 from .backend import BackendError, Completion, ContextLimitError, GenerationOptions, Message, ModelBackend, TextDelta
-from .evidence import Evidence, GUIDANCE, evidence_question
+from .evidence import Evidence, GUIDANCE, UNAVAILABLE_GUIDANCE, evidence_question
 
 
 @dataclass(frozen=True)
@@ -119,13 +119,25 @@ class DwindyCore:
         self._ensure_idle()  # Also reject interleaving previously created iterators.
         self._active = True
         try:
-            if evidence is None:
+            system, retrieval = self._system_prompt, None
+            if evidence is not None and evidence.fallback == "unavailable":
+                # Transient instruction only; history still stores the original question.
+                system = (system + "\n\n" if system else "") + UNAVAILABLE_GUIDANCE
+                retrieval = dict(status="unavailable", sources=[])
+            elif evidence is not None:
+                try:
+                    messages,recent,retrieval = self._evidence_messages(user_text,evidence)
+                except ContextLimitError:
+                    if evidence.fallback != "plain":
+                        raise
+                    retrieval = dict(status="no_match", sources=[])
+                if evidence.fallback == "plain" and retrieval["status"] != "supplied":
+                    # Opportunistic evidence that cannot be used becomes ordinary chat.
+                    retrieval = dict(status="not_used", sources=[])
+            if retrieval is None or retrieval["status"] in ("unavailable", "not_used"):
                 messages = _bounded_messages(self._backend, self._history, user_text,
-                                             self._options, self._system_prompt)
+                                             self._options, system)
                 recent = [m for m in messages[:-1] if m.role != "system"]
-                retrieval = None
-            else:
-                messages,recent,retrieval = self._evidence_messages(user_text,evidence)
             removed = len(self._history) - len(recent)
             yield TurnStarted(removed // 2, retrieval)
             pieces = []

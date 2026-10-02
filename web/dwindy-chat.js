@@ -209,6 +209,9 @@ export class DwindyChat extends HTMLElement {
       if (!controller.signal.aborted) {
         this.#persistent = health.persistence_enabled === true;
         this.$('.persistence').hidden = !this.#persistent;
+        // Checked means automatic context selection; it starts as the deployment's default.
+        if (this.$('.retrieval-setting').hidden && health.retrieval_enabled === true)
+          this.$('.use-retrieval').checked = health.retrieval_default === 'auto';
         this.$('.retrieval-setting').hidden = health.retrieval_enabled !== true;
         if (health.retrieval_enabled !== true) this.$('.use-retrieval').checked = false;
         this.$('.retrieval-label').textContent = health.project_snapshot ? 'Use local project context' : 'Use local documents';
@@ -282,12 +285,15 @@ export class DwindyChat extends HTMLElement {
     let complete = false, dropped = 0;
     this.$('.retrieval-status').hidden = true;
     try {
-      for await (const item of this.#client.chat(message, {retrieval: this.$('.use-retrieval').checked})) {
+      const retrieval = this.$('.retrieval-setting').hidden ? undefined : this.$('.use-retrieval').checked ? 'auto' : false;
+      for await (const item of this.#client.chat(message, {retrieval})) {
         if (item.event === 'started') {
           dropped = item.data.dropped_turns; this.#controls();
-          if (item.data.retrieval) {
-            const info = item.data.retrieval;
+          const info = item.data.retrieval;
+          if (info && (info.status !== 'not_used' || info.attempted)) {
             this.$('.retrieval-status').textContent = info.status === 'supplied' ? `${info.sources.length} local passages supplied. This does not verify the answer.` :
+              info.status === 'not_used' ? 'Local material checked; none used.' :
+              info.status === 'unavailable' ? 'Local project information was unavailable.' :
               info.status === 'no_match' ? 'No matching local passages found.' : 'Matching passages did not fit the local context budget.';
             this.$('.retrieval-status').hidden = false;
           }

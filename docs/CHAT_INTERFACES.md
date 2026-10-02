@@ -1,4 +1,4 @@
-# Chat interfaces through M7
+# Chat interfaces through M8
 
 The standalone page and embeddable widget share one dependency-free `<dwindy-chat>`
 custom element with open Shadow DOM. The floating presentation uses a native modal
@@ -14,6 +14,14 @@ and is disabled during a request. Each enabled request sends `retrieval: true` t
 public chat endpoint. An unchecked request keeps the previous request body shape.
 When health also reports a `project_snapshot` (M7), the same checkbox is labeled
 "Use local project context"; its behavior is otherwise identical.
+
+From M8, checked sends `retrieval: "auto"` (the context-selection policy decides) and unchecked
+sends `false`. The box starts checked when health reports `retrieval_default: "auto"`, the
+default whenever an index is configured. The status line reads "Local material checked; none
+used." when local material was searched but not used, and "Local project information was
+unavailable." when retrieval failed. Nothing is shown when no search was attempted. This control
+is transitional and developer-facing: a deployment built as a project assistant should not
+require end users to enable it. See [context selection](CONTEXT_SELECTION.md).
 
 The current turn's status reports "N local passages supplied. This does not verify the
 answer.", "No matching local passages found.", or that matching passages did not fit the

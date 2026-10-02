@@ -161,7 +161,12 @@ The response is `{"matches":[...]}` with zero to three ranked records. Each reco
 side effects and does not invoke the model. It can run while inference is active if the
 storage worker is free. It does not prove that returned text answers the query.
 
-`POST /v1/chat` adds optional strict boolean `retrieval` (default false):
+**M8 change:** `retrieval` also accepts `"auto"`, and when an index is configured an omitted
+field means `auto` unless the API configuration sets `retrieval_default = "off"`. `true` keeps
+exactly the contract below. See [context selection](CONTEXT_SELECTION.md) for the migration
+note, auto metadata and failure behavior.
+
+`POST /v1/chat` adds optional strict boolean `retrieval` (M6 default false):
 
 ```json
 {"message":"How long is an Amber loan?","retrieval":true,"stream":true}

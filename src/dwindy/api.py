@@ -22,6 +22,7 @@ from .backend import Completion, ContextLimitError, TextDelta
 from .core import DwindyCore, TurnStarted
 from .server import ApiConfig
 from .persistence import ConversationStore, StorageError
+from .context_policy import ContextDecision, decide
 from .evidence import Evidence
 from .retrieval import RetrievalError, RetrievalIndex, match_query
 
@@ -38,7 +39,15 @@ class ChatRequest(BaseModel):
     message: str
     conversation_id: str | None = Field(default=None, pattern=r"^[A-Za-z0-9_-]{32}$")
     stream: bool = False
-    retrieval: bool = False
+    # true = on, false = off, "auto" = context-selection policy; omitted = server default.
+    retrieval: bool | Literal["auto"] | None = None
+
+    @field_validator("retrieval")
+    @classmethod
+    def not_null(cls, value):
+        if value is None:
+            raise ValueError("Retrieval must be true, false or \"auto\" when supplied.")
+        return value
 
     @field_validator("message")
     @classmethod
@@ -70,8 +79,12 @@ class SourceMetadata(BaseModel):
 
 
 class RetrievalMetadata(BaseModel):
-    status: Literal["supplied", "no_match", "budget_exhausted"]
+    status: Literal["supplied", "no_match", "budget_exhausted", "not_used", "unavailable"]
     sources: list[SourceMetadata]
+    mode: Literal["auto"] | None = Field(default=None, description="Present only for automatic context selection.")
+    attempted: bool | None = None
+    reason: str | None = Field(default=None, description="Fixed context-selection reason code; not a score.")
+    query_normalized: bool | None = None
 
 
 class RetrievalMatch(SourceMetadata):
@@ -117,6 +130,7 @@ class HealthReply(BaseModel):
     busy: bool
     persistence_enabled: bool
     retrieval_enabled: bool
+    retrieval_default: Literal["auto", "off"] | None = None
     project_snapshot: ProjectSnapshot | None = None
 
 
@@ -235,6 +249,8 @@ class ApiState:
         self.tasks = set()
         self.store = None
         self.index = None
+        # A deliberately configured index means the deployment is an assistant for that material.
+        self.default_mode = config.retrieval_default or ("auto" if config.retrieval_index_path else "off")
         self.storage_executor = (ThreadPoolExecutor(max_workers=1, thread_name_prefix="dwindy-storage")
                                  if config.database_path is not None or config.retrieval_index_path is not None else None)
         self.storage_lock = asyncio.Lock()
@@ -263,8 +279,12 @@ class ApiState:
         for key in expired:
             del self.conversations[key]
 
+    def mode(self, body):
+        requested = body.retrieval
+        return "on" if requested is True else "off" if requested is False else "auto" if requested == "auto" else self.default_mode
+
     def admit(self, body):
-        if body.retrieval and self.index is None:
+        if self.mode(body) == "on" and self.index is None:
             return error(503, "retrieval_disabled", "No local retrieval index is configured.")
         if not self.ready:
             return error(503, "unavailable", "Model is unavailable.", retry=True)
@@ -389,6 +409,27 @@ class ChatResponse(Response):
                         ("event: " + name + "\ndata: " + json.dumps(data, ensure_ascii=False) + "\n\n").encode("utf-8"),
                         "more_body": True})
 
+        async def select_context():
+            mode, tokens = state.mode(self.body), state.config.retrieval_context_tokens
+            if mode == "on":
+                passages = await state.storage(state.index.search, self.body.message, 12)
+                return ContextDecision("on", True, "explicit"), Evidence(passages, tokens)
+            if mode == "off":
+                return ContextDecision("off", False, "off"), None
+            if state.index is None:
+                return decide(self.body.message, "auto", max_tokens=tokens)
+            snapshot = state.index.project_snapshot
+            options = dict(project_name=snapshot["name"] if snapshot else None, max_tokens=tokens)
+            try:
+                return await state.storage(lambda: decide(self.body.message, "auto", search=state.index.search, **options))
+            except StorageError as exc:
+                if exc.code != "storage_busy" or exc.uncertain:
+                    raise
+                # The shared storage worker is occupied: decide without waiting, as a busy retrieval.
+                def busy(*args):
+                    raise RetrievalError("retrieval_busy")
+                return decide(self.body.message, "auto", search=busy, **options)
+
         async def cleanup():
             # A pending next() can still be inside C. Never close or reuse it concurrently.
             if pending is not None:
@@ -422,10 +463,7 @@ class ChatResponse(Response):
                     raise
             if state.store is not None:
                 before = self.entry.core.snapshot()
-            evidence = None
-            if self.body.retrieval:
-                passages = await state.storage(state.index.search, self.body.message, 12)
-                evidence = Evidence(passages, state.config.retrieval_context_tokens)
+            decision, evidence = await select_context()
             stream = self.entry.core.chat(self.body.message, evidence=evidence)
             started = await advance()
             if not isinstance(started, TurnStarted):
@@ -436,8 +474,9 @@ class ChatResponse(Response):
                     (b"cache-control", b"no-store"), (b"x-accel-buffering", b"no")]})
                 headers_sent = True
                 start_data = {"conversation_id": self.key, "dropped_turns": started.dropped_turns}
-                if started.retrieval is not None:
-                    start_data["retrieval"] = started.retrieval
+                retrieval = decision.metadata(started.retrieval)
+                if retrieval is not None:
+                    start_data["retrieval"] = retrieval
                 await event("started", start_data)
                 exposed = True
             pieces = []
@@ -466,8 +505,9 @@ class ChatResponse(Response):
                         await send({"type": "http.response.body", "body": b"", "more_body": False})
                     else:
                         result.update(conversation_id=self.key, text="".join(pieces), dropped_turns=started.dropped_turns)
-                        if started.retrieval is not None:
-                            result["retrieval"] = started.retrieval
+                        retrieval = decision.metadata(started.retrieval)
+                        if retrieval is not None:
+                            result["retrieval"] = retrieval
                         await JSONResponse(result, headers={"Cache-Control": "no-store"})(scope, receive, send)
                         exposed = True
                     break
@@ -597,6 +637,7 @@ def create_app(model_config, api_config=None, *, backend=None, chat_root=None):
             return error(503, "unavailable", "Model is unavailable.", retry=True)
         return {"status": "ready", "busy": state.busy, "persistence_enabled": state.store is not None,
                 "retrieval_enabled": state.index is not None,
+                "retrieval_default": state.default_mode if state.index is not None else None,
                 "project_snapshot": state.index.project_snapshot if state.index is not None else None}
 
     @app.delete("/v1/conversations/{conversation_id}", status_code=204)
@@ -648,7 +689,7 @@ def create_app(model_config, api_config=None, *, backend=None, chat_root=None):
         body = await read_body(request, ChatRequest)
         if isinstance(body, Response):
             return body
-        if body.retrieval:
+        if state.mode(body) == "on":
             try:
                 match_query(body.message)
             except ValueError:

@@ -1,6 +1,6 @@
-# Dwindy architecture through M7
+# Dwindy architecture through M8
 
-Status: M1 runtime and template-kwargs correction, M2 Core, M3 local HTTP API, M4 chat interfaces, M5 opt-in SQLite persistence, M6 explicit local retrieval, and M7 project awareness.
+Status: M1 runtime and template-kwargs correction, M2 Core, M3 local HTTP API, M4 chat interfaces, M5 opt-in SQLite persistence, M6 explicit local retrieval, M7 project awareness, and M8 context selection.
 The project proposal remains the specification. This document records implemented decisions.
 
 ## Execution and ownership
@@ -349,3 +349,22 @@ when a supplied passage comes from a project. The API reads the snapshot identit
 it opens the index and adds it to health. Unset project fields are omitted from health and
 retrieve responses, so M6 responses are unchanged. Sync remains an offline CLI operation.
 See [project awareness](PROJECT_AWARENESS.md) and the [M7 validation report](M7_VALIDATION.md).
+
+## Context selection through M8
+
+`context_policy.py` decides per turn whether local evidence deserves model context. It is pure
+apart from calling a caller-supplied `search` function: it has no model, configuration, HTTP or
+filesystem dependency, and Core does not import it. Callers run `decide(message, mode, ...)` and
+pass the resulting `Evidence` to the unchanged `DwindyCore.chat`. The API, the terminal (with
+optional `--retrieval-index`) and direct Python use share this one policy. In the API, the
+decision runs as one call on the existing serialized storage worker; if that worker is
+occupied, the decision is made immediately as a busy retrieval rather than queued.
+
+Core gained one narrow field: `Evidence.fallback`. `insufficient` keeps the M6 path
+byte-for-byte. `plain` turns opportunistic evidence that cannot be used into ordinary chat with
+identical model input. `unavailable` adds the transient constrained-fallback instruction with no
+passages. Instructions and evidence still never enter history or persistence, and generation
+remains the only model call per turn. M6 ranking is unchanged: `retrieval.py` only exposes the
+query terms its search already used. The mode is resolved per request, then from
+`retrieval_default`, then `auto` when an index is configured. See [context selection](CONTEXT_SELECTION.md)
+and the [M8 validation report](M8_VALIDATION.md).
