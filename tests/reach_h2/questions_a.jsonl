@@ -1,0 +1,24 @@
+{"id": "a_m01", "author": "a", "role": "main", "order": 1, "message": "Who is the current president of South Korea?", "expected": "answerable"}
+{"id": "a_m02", "author": "a", "role": "main", "order": 2, "message": "Who currently leads the World Health Organization?", "expected": "answerable"}
+{"id": "a_m03", "author": "a", "role": "main", "order": 3, "message": "Who is the current prime minister of Canada?", "expected": "answerable"}
+{"id": "a_m04", "author": "a", "role": "main", "order": 4, "message": "What is the latest stable version of Blender?", "expected": "answerable"}
+{"id": "a_m05", "author": "a", "role": "main", "order": 5, "message": "What is the latest stable release of Node.js?", "expected": "answerable"}
+{"id": "a_m06", "author": "a", "role": "main", "order": 6, "message": "What is the newest stable version of Fedora Linux?", "expected": "answerable"}
+{"id": "a_m07", "author": "a", "role": "main", "order": 7, "message": "Who won the most recent Palme d'Or?", "expected": "answerable"}
+{"id": "a_m08", "author": "a", "role": "main", "order": 8, "message": "Who won the latest Formula One World Drivers' Championship?", "expected": "answerable"}
+{"id": "a_m09", "author": "a", "role": "main", "order": 9, "message": "Who is the current president of the European Commission?", "expected": "answerable"}
+{"id": "a_m10", "author": "a", "role": "main", "order": 10, "message": "What is the current population of Singapore?", "expected": "answerable"}
+{"id": "a_m11", "author": "a", "role": "main", "order": 11, "message": "What is the price of Bitcoin right now?", "expected": "unanswerable"}
+{"id": "a_m12", "author": "a", "role": "main", "order": 12, "message": "What is the Philippine peso to US dollar exchange rate today?", "expected": "unanswerable"}
+{"id": "a_m13", "author": "a", "role": "main", "order": 13, "message": "What are the biggest news stories in the Philippines today?", "expected": "unanswerable"}
+{"id": "a_m14", "author": "a", "role": "main", "order": 14, "message": "What is NVIDIA's stock price right now?", "expected": "unanswerable"}
+{"id": "a_m15", "author": "a", "role": "main", "order": 15, "message": "Who is winning the latest Los Angeles Lakers game?", "expected": "unanswerable"}
+{"id": "a_m16", "author": "a", "role": "main", "order": 16, "message": "What is the weather in Manila right now?", "expected": "unanswerable"}
+{"id": "a_m17", "author": "a", "role": "main", "order": 17, "message": "What is the newest Nintendo console that has been announced for 2028?", "expected": "unanswerable"}
+{"id": "a_m18", "author": "a", "role": "main", "order": 18, "message": "Who won the 2030 FIFA World Cup?", "expected": "unanswerable"}
+{"id": "a_r01", "author": "a", "role": "reserve", "order": 1, "message": "Who is the current president of Indonesia?", "expected": "answerable"}
+{"id": "a_r02", "author": "a", "role": "reserve", "order": 2, "message": "What is the latest stable version of VLC media player?", "expected": "answerable"}
+{"id": "a_r03", "author": "a", "role": "reserve", "order": 3, "message": "Who is the current director-general of UNESCO?", "expected": "answerable"}
+{"id": "a_r04", "author": "a", "role": "reserve", "order": 4, "message": "Who won the most recent Academy Award for Best Actor?", "expected": "answerable"}
+{"id": "a_r05", "author": "a", "role": "reserve", "order": 5, "message": "What is the latest stable version of PostgreSQL?", "expected": "answerable"}
+{"id": "a_r06", "author": "a", "role": "reserve", "order": 6, "message": "Who is the current president of the International Olympic Committee?", "expected": "answerable"}

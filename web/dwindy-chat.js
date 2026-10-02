@@ -297,6 +297,12 @@ export class DwindyChat extends HTMLElement {
               info.status === 'no_match' ? 'No matching local passages found.' : 'Matching passages did not fit the local context budget.';
             this.$('.retrieval-status').hidden = false;
           }
+          // Whenever a query left the machine, show exactly what was sent (Reach, M10).
+          const external = item.data.reach;
+          if (external && typeof external.provider === 'string' && typeof external.query === 'string') {
+            this.$('.retrieval-status').textContent = `Searched externally for: ${external.query}`;
+            this.$('.retrieval-status').hidden = false;
+          }
         }
         if (item.event === 'delta') {
           const follow = this.#nearBottom();

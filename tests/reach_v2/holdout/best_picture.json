@@ -1,0 +1,96 @@
+{
+ "case_id": "best_picture",
+ "message": "Who won the most recent Academy Award for Best Picture?",
+ "query": "won most recent academy award best picture",
+ "request_url": "https://en.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&generator=search&gsrsearch=won+most+recent+academy+award+best+picture&gsrlimit=3&prop=extracts%7Cinfo&exintro=1&explaintext=1&exsentences=5&exlimit=3&inprop=url&list=search&srsearch=won+most+recent+academy+award+best+picture&srlimit=3&srprop=snippet",
+ "status": 200,
+ "captured_at": "2026-10-02T04:17:06+00:00",
+ "provider": "wikipedia",
+ "synthetic": false,
+ "body": {
+  "batchcomplete": true,
+  "continue": {
+   "sroffset": 3,
+   "gsroffset": 3,
+   "continue": "gsroffset||"
+  },
+  "query": {
+   "pages": [
+    {
+     "pageid": 61702,
+     "ns": 0,
+     "title": "Academy Award for Best Picture",
+     "index": 1,
+     "extract": "The Academy Award for Best Picture is one of the Academy Awards (also known as Oscars) presented annually by the Academy of Motion Picture Arts and Sciences (AMPAS) since the awards debuted on May 16, 1929. This award goes to the producers of the film and is the only category in which every member of the Academy is eligible to submit a nomination and vote on the final ballot. The Best Picture category is traditionally the final award of the night and is widely considered the most prestigious honor of the ceremony.\nThe Grand Staircase columns at the Dolby Theatre in Hollywood, where the Academy Awards ceremonies have been held since 2002, showcase every film that has won the Best Picture title since the award's inception. There have been 621 films nominated for Best Picture and 98 winners.",
+     "contentmodel": "wikitext",
+     "pagelanguage": "en",
+     "pagelanguagehtmlcode": "en",
+     "pagelanguagedir": "ltr",
+     "touched": "2026-09-30T16:25:31Z",
+     "lastrevid": 1375974144,
+     "length": 168739,
+     "fullurl": "https://en.wikipedia.org/wiki/Academy_Award_for_Best_Picture",
+     "editurl": "https://en.wikipedia.org/w/index.php?title=Academy_Award_for_Best_Picture&action=edit",
+     "canonicalurl": "https://en.wikipedia.org/wiki/Academy_Award_for_Best_Picture"
+    },
+    {
+     "pageid": 79369474,
+     "ns": 0,
+     "title": "98th Academy Awards",
+     "index": 2,
+     "extract": "The 98th Academy Awards ceremony, presented by the Academy of Motion Picture Arts and Sciences (AMPAS), took place on March 15, 2026, at the Dolby Theatre in Hollywood, Los Angeles. During the gala, the AMPAS presented Academy Awards (commonly referred to as Oscars) in 24 categories honoring films released in 2025. The ceremony, televised in the United States by ABC and streamed on Hulu, was produced by Raj Kapoor and Katy Mullan, and was directed by Hamish Hamilton. Comedian Conan O'Brien hosted the show for the second consecutive year.\nIn related events, the Academy held its 16th Governors Awards ceremony at the Ray Dolby Ballroom of the Ovation Hollywood complex in Hollywood on November 16, 2025.",
+     "contentmodel": "wikitext",
+     "pagelanguage": "en",
+     "pagelanguagehtmlcode": "en",
+     "pagelanguagedir": "ltr",
+     "touched": "2026-09-29T19:53:02Z",
+     "lastrevid": 1375628081,
+     "length": 74384,
+     "fullurl": "https://en.wikipedia.org/wiki/98th_Academy_Awards",
+     "editurl": "https://en.wikipedia.org/w/index.php?title=98th_Academy_Awards&action=edit",
+     "canonicalurl": "https://en.wikipedia.org/wiki/98th_Academy_Awards"
+    },
+    {
+     "pageid": 83084251,
+     "ns": 0,
+     "title": "List of submissions to the 99th Academy Awards for Best International Feature Film",
+     "index": 3,
+     "extract": "This is a list of submissions to the 99th Academy Awards for the Best International Feature Film. The Academy of Motion Picture Arts and Sciences (AMPAS) has invited the film industries of various countries to submit their best film for the Academy Award for Best International Feature Film every year since the award was created in 1956. The award is presented annually by the Academy to a feature-length motion picture produced outside the United States that contains primarily non-English dialogue. The International Feature Film Award Committee oversees the process and reviews all the submitted films. The category was previously called the Best Foreign Language Film, but this was changed in April 2019 to Best International Feature Film, after the Academy deemed the word \"Foreign\" to be outdated.",
+     "contentmodel": "wikitext",
+     "pagelanguage": "en",
+     "pagelanguagehtmlcode": "en",
+     "pagelanguagedir": "ltr",
+     "touched": "2026-10-02T03:07:53Z",
+     "lastrevid": 1377955377,
+     "length": 68292,
+     "fullurl": "https://en.wikipedia.org/wiki/List_of_submissions_to_the_99th_Academy_Awards_for_Best_International_Feature_Film",
+     "editurl": "https://en.wikipedia.org/w/index.php?title=List_of_submissions_to_the_99th_Academy_Awards_for_Best_International_Feature_Film&action=edit",
+     "canonicalurl": "https://en.wikipedia.org/wiki/List_of_submissions_to_the_99th_Academy_Awards_for_Best_International_Feature_Film"
+    }
+   ],
+   "searchinfo": {
+    "totalhits": 3284
+   },
+   "search": [
+    {
+     "ns": 0,
+     "title": "Academy Award for Best Picture",
+     "pageid": 61702,
+     "snippet": "The <span class=\"searchmatch\">Academy</span> <span class=\"searchmatch\">Award</span> for <span class=\"searchmatch\">Best</span> <span class=\"searchmatch\">Picture</span> is one of the <span class=\"searchmatch\">Academy</span> <span class=\"searchmatch\">Awards</span> (also known as Oscars) presented annually by the <span class=\"searchmatch\">Academy</span> of Motion <span class=\"searchmatch\">Picture</span> Arts and Sciences"
+    },
+    {
+     "ns": 0,
+     "title": "98th Academy Awards",
+     "pageid": 79369474,
+     "snippet": "<span class=\"searchmatch\">won</span> the <span class=\"searchmatch\">most</span> <span class=\"searchmatch\">awards</span> with six, including <span class=\"searchmatch\">Best</span> <span class=\"searchmatch\">Picture</span> and the inaugural <span class=\"searchmatch\">award</span> for <span class=\"searchmatch\">Best</span> Casting. Sinners received a record sixteen nominations and <span class=\"searchmatch\">won</span> four"
+    },
+    {
+     "ns": 0,
+     "title": "List of submissions to the 99th Academy Awards for Best International Feature Film",
+     "pageid": 83084251,
+     "snippet": "list of submissions to the 99th <span class=\"searchmatch\">Academy</span> <span class=\"searchmatch\">Awards</span> for the <span class=\"searchmatch\">Best</span> International Feature Film. The <span class=\"searchmatch\">Academy</span> of Motion <span class=\"searchmatch\">Picture</span> Arts and Sciences (AMPAS) has invited"
+    }
+   ]
+  }
+ }
+}

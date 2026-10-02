@@ -1,0 +1,54 @@
+{"id": "fresh_latest_1", "category": "fresh_latest", "split": "dev", "message": "What is the latest version of Python?", "expected": {"freshness": true, "explicit_search": false}}
+{"id": "fresh_latest_2", "category": "fresh_latest", "split": "holdout", "message": "What is the newest iPhone model?", "expected": {"freshness": true, "explicit_search": false}}
+{"id": "fresh_latest_3", "category": "fresh_latest", "split": "dev", "message": "What is the most recent Ubuntu release?", "expected": {"freshness": true, "explicit_search": false}}
+{"id": "fresh_latest_4", "category": "fresh_latest", "split": "holdout", "message": "Which Android version is current now?", "expected": {"freshness": true, "explicit_search": false}}
+{"id": "fresh_latest_5", "category": "fresh_latest", "split": "dev", "message": "What is the latest stable release of Node.js?", "expected": {"freshness": true, "explicit_search": false}}
+{"id": "fresh_latest_6", "category": "fresh_latest", "split": "holdout", "message": "Has a newer version of Firefox come out recently?", "expected": {"freshness": true, "explicit_search": false}}
+{"id": "fresh_latest_7", "category": "fresh_latest", "split": "dev", "message": "What is the latest Windows update?", "expected": {"freshness": true, "explicit_search": false}}
+{"id": "fresh_latest_8", "category": "fresh_latest", "split": "holdout", "message": "What is the current version of Java?", "expected": {"freshness": true, "explicit_search": false}}
+{"id": "fresh_officeholder_1", "category": "fresh_officeholder", "split": "dev", "message": "Who is the current President of the Philippines?", "expected": {"freshness": true, "explicit_search": false}}
+{"id": "fresh_officeholder_2", "category": "fresh_officeholder", "split": "holdout", "message": "Who is the current CEO of Microsoft?", "expected": {"freshness": true, "explicit_search": false}}
+{"id": "fresh_officeholder_3", "category": "fresh_officeholder", "split": "dev", "message": "Who is the UN Secretary-General right now?", "expected": {"freshness": true, "explicit_search": false}}
+{"id": "fresh_officeholder_4", "category": "fresh_officeholder", "split": "holdout", "message": "Who is the prime minister of Japan now?", "expected": {"freshness": true, "explicit_search": false}}
+{"id": "fresh_officeholder_5", "category": "fresh_officeholder", "split": "dev", "message": "Who currently leads the World Health Organization?", "expected": {"freshness": true, "explicit_search": false}}
+{"id": "fresh_officeholder_6", "category": "fresh_officeholder", "split": "holdout", "message": "Who is the current chief justice of the Philippines?", "expected": {"freshness": true, "explicit_search": false}}
+{"id": "fresh_events_1", "category": "fresh_events", "split": "dev", "message": "What is the latest news about the Philippine economy?", "expected": {"freshness": true, "explicit_search": false}}
+{"id": "fresh_events_2", "category": "fresh_events", "split": "holdout", "message": "Who won the most recent FIFA World Cup?", "expected": {"freshness": true, "explicit_search": false}}
+{"id": "fresh_events_3", "category": "fresh_events", "split": "dev", "message": "What happened in the news today?", "expected": {"freshness": true, "explicit_search": false}}
+{"id": "fresh_events_4", "category": "fresh_events", "split": "holdout", "message": "What were this week's top headlines?", "expected": {"freshness": true, "explicit_search": false}}
+{"id": "fresh_events_5", "category": "fresh_events", "split": "dev", "message": "Who won the latest Nobel Peace Prize?", "expected": {"freshness": true, "explicit_search": false}}
+{"id": "fresh_events_6", "category": "fresh_events", "split": "holdout", "message": "What is the score of the game going on right now?", "expected": {"freshness": true, "explicit_search": false}}
+{"id": "fresh_prices_1", "category": "fresh_prices", "split": "dev", "message": "What is the current price of bitcoin?", "expected": {"freshness": true, "explicit_search": false}}
+{"id": "fresh_prices_2", "category": "fresh_prices", "split": "holdout", "message": "What is the peso to dollar exchange rate today?", "expected": {"freshness": true, "explicit_search": false}}
+{"id": "fresh_prices_3", "category": "fresh_prices", "split": "dev", "message": "How much is gasoline right now in Manila?", "expected": {"freshness": true, "explicit_search": false}}
+{"id": "fresh_prices_4", "category": "fresh_prices", "split": "holdout", "message": "What is Apple's stock price today?", "expected": {"freshness": true, "explicit_search": false}}
+{"id": "explicit_search_1", "category": "explicit_search", "split": "dev", "message": "Search the web for the history of Tacloban.", "expected": {"freshness": false, "explicit_search": true}}
+{"id": "explicit_search_2", "category": "explicit_search", "split": "holdout", "message": "Look up online how tall Mount Apo is.", "expected": {"freshness": false, "explicit_search": true}}
+{"id": "explicit_search_3", "category": "explicit_search", "split": "dev", "message": "Can you search for the population of Leyte?", "expected": {"freshness": false, "explicit_search": true}}
+{"id": "explicit_search_4", "category": "explicit_search", "split": "holdout", "message": "Check Wikipedia for the definition of photosynthesis.", "expected": {"freshness": false, "explicit_search": true}}
+{"id": "no_trigger_clock_1", "category": "no_trigger_clock", "split": "dev", "message": "What time is it?", "expected": {"freshness": false, "explicit_search": false}}
+{"id": "no_trigger_clock_2", "category": "no_trigger_clock", "split": "holdout", "message": "What is today's date?", "expected": {"freshness": false, "explicit_search": false}}
+{"id": "no_trigger_clock_3", "category": "no_trigger_clock", "split": "dev", "message": "What day is it?", "expected": {"freshness": false, "explicit_search": false}}
+{"id": "no_trigger_clock_4", "category": "no_trigger_clock", "split": "holdout", "message": "Is today a weekday?", "expected": {"freshness": false, "explicit_search": false}}
+{"id": "no_trigger_timeless_1", "category": "no_trigger_timeless", "split": "dev", "message": "What is photosynthesis?", "expected": {"freshness": false, "explicit_search": false}}
+{"id": "no_trigger_timeless_2", "category": "no_trigger_timeless", "split": "holdout", "message": "Who wrote Romeo and Juliet?", "expected": {"freshness": false, "explicit_search": false}}
+{"id": "no_trigger_timeless_3", "category": "no_trigger_timeless", "split": "dev", "message": "How do I reverse a list in Python?", "expected": {"freshness": false, "explicit_search": false}}
+{"id": "no_trigger_timeless_4", "category": "no_trigger_timeless", "split": "holdout", "message": "What is TCP?", "expected": {"freshness": false, "explicit_search": false}}
+{"id": "no_trigger_timeless_5", "category": "no_trigger_timeless", "split": "dev", "message": "Explain gravity simply.", "expected": {"freshness": false, "explicit_search": false}}
+{"id": "no_trigger_timeless_6", "category": "no_trigger_timeless", "split": "holdout", "message": "Who painted the Mona Lisa?", "expected": {"freshness": false, "explicit_search": false}}
+{"id": "no_trigger_timeless_7", "category": "no_trigger_timeless", "split": "dev", "message": "What is the boiling point of water?", "expected": {"freshness": false, "explicit_search": false}}
+{"id": "no_trigger_timeless_8", "category": "no_trigger_timeless", "split": "holdout", "message": "Define recursion.", "expected": {"freshness": false, "explicit_search": false}}
+{"id": "no_trigger_historical_1", "category": "no_trigger_historical", "split": "dev", "message": "Who was president of the Philippines in 1990?", "expected": {"freshness": false, "explicit_search": false}}
+{"id": "no_trigger_historical_2", "category": "no_trigger_historical", "split": "holdout", "message": "What happened during the 1969 Moon landing?", "expected": {"freshness": false, "explicit_search": false}}
+{"id": "no_trigger_historical_3", "category": "no_trigger_historical", "split": "dev", "message": "What was the capital of the Philippines in 1900?", "expected": {"freshness": false, "explicit_search": false}}
+{"id": "no_trigger_historical_4", "category": "no_trigger_historical", "split": "holdout", "message": "When was Python first released?", "expected": {"freshness": false, "explicit_search": false}}
+{"id": "no_trigger_current_nontemporal_1", "category": "no_trigger_current_nontemporal", "split": "dev", "message": "What is electric current?", "expected": {"freshness": false, "explicit_search": false}}
+{"id": "no_trigger_current_nontemporal_2", "category": "no_trigger_current_nontemporal", "split": "holdout", "message": "How do I print the current directory in bash?", "expected": {"freshness": false, "explicit_search": false}}
+{"id": "no_trigger_current_nontemporal_3", "category": "no_trigger_current_nontemporal", "split": "dev", "message": "How do ocean currents affect climate?", "expected": {"freshness": false, "explicit_search": false}}
+{"id": "no_trigger_current_nontemporal_4", "category": "no_trigger_current_nontemporal", "split": "holdout", "message": "What is a current account in banking?", "expected": {"freshness": false, "explicit_search": false}}
+{"id": "no_trigger_current_nontemporal_5", "category": "no_trigger_current_nontemporal", "split": "dev", "message": "What does the current function in PHP return?", "expected": {"freshness": false, "explicit_search": false}}
+{"id": "no_trigger_current_nontemporal_6", "category": "no_trigger_current_nontemporal", "split": "holdout", "message": "I'm currently learning Python. How do lists work?", "expected": {"freshness": false, "explicit_search": false}}
+{"id": "no_trigger_self_contained_1", "category": "no_trigger_self_contained", "split": "dev", "message": "Write a short poem about the latest trends.", "expected": {"freshness": false, "explicit_search": false}}
+{"id": "no_trigger_self_contained_2", "category": "no_trigger_self_contained", "split": "holdout", "message": "Translate to Spanish: the latest news is good.", "expected": {"freshness": false, "explicit_search": false}}
+{"id": "no_trigger_self_contained_3", "category": "no_trigger_self_contained", "split": "dev", "message": "Summarize this: The newest model was released today and sold well.", "expected": {"freshness": false, "explicit_search": false}}
+{"id": "no_trigger_self_contained_4", "category": "no_trigger_self_contained", "split": "holdout", "message": "Write a story about a recent storm.", "expected": {"freshness": false, "explicit_search": false}}

@@ -1,0 +1,96 @@
+{
+ "case_id": "pope",
+ "message": "Who is the current Pope?",
+ "query": "current pope",
+ "request_url": "https://en.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&generator=search&gsrsearch=current+pope&gsrlimit=3&prop=extracts%7Cinfo&exintro=1&explaintext=1&exsentences=5&exlimit=3&inprop=url&list=search&srsearch=current+pope&srlimit=3&srprop=snippet",
+ "status": 200,
+ "captured_at": "2026-10-02T04:17:20+00:00",
+ "provider": "wikipedia",
+ "synthetic": false,
+ "body": {
+  "batchcomplete": true,
+  "continue": {
+   "sroffset": 3,
+   "gsroffset": 3,
+   "continue": "gsroffset||"
+  },
+  "query": {
+   "pages": [
+    {
+     "pageid": 23056,
+     "ns": 0,
+     "title": "Pope",
+     "index": 1,
+     "extract": "The pope is the bishop of Rome and the head of the worldwide Catholic Church. He is also known as the supreme pontiff, Roman pontiff, or sovereign pontiff. From the 8th century until 1870, the pope was the sovereign or head of state of the Papal States, and since 1929 of the much smaller Vatican City State. From a Catholic viewpoint, the primacy of the bishop of Rome is largely derived from his role as the apostolic successor to Saint Peter, to whom primacy was conferred by Jesus, who gave Peter the Keys of Heaven and the powers of \"binding and loosing\", naming him as the \"rock\" upon which the Church would be built. The current pope is Leo XIV, who was elected on 8 May 2025 on the second day of the 2025 papal conclave.",
+     "contentmodel": "wikitext",
+     "pagelanguage": "en",
+     "pagelanguagehtmlcode": "en",
+     "pagelanguagedir": "ltr",
+     "touched": "2026-10-01T12:10:16Z",
+     "lastrevid": 1377733619,
+     "length": 181504,
+     "fullurl": "https://en.wikipedia.org/wiki/Pope",
+     "editurl": "https://en.wikipedia.org/w/index.php?title=Pope&action=edit",
+     "canonicalurl": "https://en.wikipedia.org/wiki/Pope"
+    },
+    {
+     "pageid": 737194,
+     "ns": 0,
+     "title": "List of current popes and patriarchs",
+     "index": 2,
+     "extract": "This is a list of current Christian popes and patriarchs.",
+     "contentmodel": "wikitext",
+     "pagelanguage": "en",
+     "pagelanguagehtmlcode": "en",
+     "pagelanguagedir": "ltr",
+     "touched": "2026-10-01T11:36:39Z",
+     "lastrevid": 1377287579,
+     "length": 9926,
+     "fullurl": "https://en.wikipedia.org/wiki/List_of_current_popes_and_patriarchs",
+     "editurl": "https://en.wikipedia.org/w/index.php?title=List_of_current_popes_and_patriarchs&action=edit",
+     "canonicalurl": "https://en.wikipedia.org/wiki/List_of_current_popes_and_patriarchs"
+    },
+    {
+     "pageid": 1129580,
+     "ns": 0,
+     "title": "Pope (disambiguation)",
+     "index": 3,
+     "extract": "The pope is the head of the Catholic Church and sovereign of the State of the Vatican City.",
+     "contentmodel": "wikitext",
+     "pagelanguage": "en",
+     "pagelanguagehtmlcode": "en",
+     "pagelanguagedir": "ltr",
+     "touched": "2026-09-30T16:25:56Z",
+     "lastrevid": 1377683425,
+     "length": 2773,
+     "fullurl": "https://en.wikipedia.org/wiki/Pope_(disambiguation)",
+     "editurl": "https://en.wikipedia.org/w/index.php?title=Pope_(disambiguation)&action=edit",
+     "canonicalurl": "https://en.wikipedia.org/wiki/Pope_(disambiguation)"
+    }
+   ],
+   "searchinfo": {
+    "totalhits": 25949
+   },
+   "search": [
+    {
+     "ns": 0,
+     "title": "Pope",
+     "pageid": 23056,
+     "snippet": " naming him as the &quot;rock&quot; upon which the Church would be built. The <span class=\"searchmatch\">current</span> <span class=\"searchmatch\">pope</span> is Leo XIV, who was elected on 8 May 2025 on the second day of the 2025"
+    },
+    {
+     "ns": 0,
+     "title": "List of current popes and patriarchs",
+     "pageid": 737194,
+     "snippet": "<span class=\"searchmatch\">current</span> Christian <span class=\"searchmatch\">popes</span> and patriarchs. In 2006, Benedict XVI renounced the title of &quot;Patriarch of the West&quot; (Patriarcha Occidentis). In 2024, <span class=\"searchmatch\">Pope</span> Francis"
+    },
+    {
+     "ns": 0,
+     "title": "Pope (disambiguation)",
+     "pageid": 1129580,
+     "snippet": "refer specifically to: <span class=\"searchmatch\">Pope</span> Leo XIV, the <span class=\"searchmatch\">current</span> <span class=\"searchmatch\">Pope</span> <span class=\"searchmatch\">Pope</span> Tawadros II of Alexandria, the <span class=\"searchmatch\">current</span> Coptic <span class=\"searchmatch\">Pope</span> of Alexandria <span class=\"searchmatch\">Pope</span> and Patriarch Theodore"
+    }
+   ]
+  }
+ }
+}

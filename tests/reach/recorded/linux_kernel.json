@@ -1,0 +1,113 @@
+{
+ "case_id": "linux_kernel",
+ "message": "What is the latest version of the Linux kernel?",
+ "capture_query": "latest version linux kernel",
+ "captured_at": "2026-10-02T01:53:35+00:00",
+ "provider": "wikipedia",
+ "synthetic": false,
+ "extracts": {
+  "url": "https://en.wikipedia.org/w/api.php?action=query&generator=search&gsrsearch=latest+version+linux+kernel&gsrlimit=3&prop=extracts%7Cinfo&exintro=1&explaintext=1&exsentences=5&exlimit=3&inprop=url&format=json&formatversion=2",
+  "status": 200,
+  "body": {
+   "batchcomplete": true,
+   "continue": {
+    "gsroffset": 3,
+    "continue": "gsroffset||"
+   },
+   "query": {
+    "pages": [
+     {
+      "pageid": 556778,
+      "ns": 0,
+      "title": "Red Hat Enterprise Linux",
+      "index": 2,
+      "extract": "Red Hat Enterprise Linux (RHEL) is a commercial Linux distribution developed by Red Hat. Red Hat Enterprise Linux is released in server versions for x86-64, Power ISA, ARM64, and IBM Z and a desktop version for x86-64. Fedora Linux and CentOS Stream serve as its upstream sources. All of Red Hat's official support and training, together with the Red Hat Certification Program, focuses on the Red Hat Enterprise Linux platform.\nThe first version of Red Hat Enterprise Linux to bear the name originally came onto the market as \"Red Hat Linux Advanced Server\".",
+      "contentmodel": "wikitext",
+      "pagelanguage": "en",
+      "pagelanguagehtmlcode": "en",
+      "pagelanguagedir": "ltr",
+      "touched": "2026-09-30T16:26:15Z",
+      "lastrevid": 1376656889,
+      "length": 84998,
+      "fullurl": "https://en.wikipedia.org/wiki/Red_Hat_Enterprise_Linux",
+      "editurl": "https://en.wikipedia.org/w/index.php?title=Red_Hat_Enterprise_Linux&action=edit",
+      "canonicalurl": "https://en.wikipedia.org/wiki/Red_Hat_Enterprise_Linux"
+     },
+     {
+      "pageid": 6097297,
+      "ns": 0,
+      "title": "Linux",
+      "index": 3,
+      "extract": "Linux ( LIN-uuks) is a family of free and open-source software Unix-like operating systems based on the Linux kernel, which was first released on 17 September 1991 by Linus Torvalds. Some members of the family are typically packaged as a distribution (a.k.a. distro), which includes the kernel alongside supporting system software and libraries developed by third parties—such as GNU, Red Hat, and X.Org—to create a complete operating system; however, not all Linux-based operating systems are considered distros, with Android being an example. Linux was originally designed as a clone of Unix and is distributed under the copyleft GPL license.\nThere are many thousands of Linux distributions, many based directly or indirectly on other distributions; popular Linux distros include Debian, Fedora Linux, Linux Mint, Arch Linux, and Ubuntu, while commercial distributions include Red Hat Enterprise Linux, SUSE Linux Enterprise, and ChromeOS. Linux distributions are frequently used in server platforms.",
+      "contentmodel": "wikitext",
+      "pagelanguage": "en",
+      "pagelanguagehtmlcode": "en",
+      "pagelanguagedir": "ltr",
+      "touched": "2026-09-30T06:07:45Z",
+      "lastrevid": 1377623330,
+      "length": 125981,
+      "fullurl": "https://en.wikipedia.org/wiki/Linux",
+      "editurl": "https://en.wikipedia.org/w/index.php?title=Linux&action=edit",
+      "canonicalurl": "https://en.wikipedia.org/wiki/Linux"
+     },
+     {
+      "pageid": 62331725,
+      "ns": 0,
+      "title": "Linux kernel version history",
+      "index": 1,
+      "extract": "This article documents the broad, wide version history of the Linux kernel, a free, open-source, and Unix-like kernel that is used on many computer systems and web servers worldwide.\nSince the Linux kernel's creation by Linus Torvalds in 1991, it had rapidly gained popularity as many developers started contributing to the project.\nThe kernel became self-hosting as of version 0.11 in December 1991.\nThe version 1.0.0 of the kernel was released on March 1994, which consisted of around 176,250 lines in the original unmodified source code.\nThe most recent stable release of the Linux kernel is 7.2, which was released on 16 August 2026.",
+      "contentmodel": "wikitext",
+      "pagelanguage": "en",
+      "pagelanguagehtmlcode": "en",
+      "pagelanguagedir": "ltr",
+      "touched": "2026-10-01T14:35:10Z",
+      "lastrevid": 1377204444,
+      "length": 251111,
+      "fullurl": "https://en.wikipedia.org/wiki/Linux_kernel_version_history",
+      "editurl": "https://en.wikipedia.org/w/index.php?title=Linux_kernel_version_history&action=edit",
+      "canonicalurl": "https://en.wikipedia.org/wiki/Linux_kernel_version_history"
+     }
+    ]
+   }
+  }
+ },
+ "snippets": {
+  "url": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=latest+version+linux+kernel&srlimit=3&srprop=snippet%7Ctimestamp&format=json&formatversion=2",
+  "status": 200,
+  "body": {
+   "batchcomplete": true,
+   "continue": {
+    "sroffset": 3,
+    "continue": "-||"
+   },
+   "query": {
+    "searchinfo": {
+     "totalhits": 840
+    },
+    "search": [
+     {
+      "ns": 0,
+      "title": "Linux kernel version history",
+      "pageid": 62331725,
+      "snippet": "This article documents the broad, wide <span class=\"searchmatch\">version</span> history of the <span class=\"searchmatch\">Linux</span> <span class=\"searchmatch\">kernel</span>, a free, open-source, and Unix-like <span class=\"searchmatch\">kernel</span> that is used on many computer systems",
+      "timestamp": "2026-09-28T08:13:08Z"
+     },
+     {
+      "ns": 0,
+      "title": "Red Hat Enterprise Linux",
+      "pageid": 556778,
+      "snippet": "Enterprise <span class=\"searchmatch\">Linux</span> (RHEL) is a commercial <span class=\"searchmatch\">Linux</span> distribution developed by Red Hat. Red Hat Enterprise <span class=\"searchmatch\">Linux</span> is released in server <span class=\"searchmatch\">versions</span> for x86-64,",
+      "timestamp": "2026-09-25T13:59:43Z"
+     },
+     {
+      "ns": 0,
+      "title": "Linux",
+      "pageid": 6097297,
+      "snippet": "<span class=\"searchmatch\">Linux</span> (/ˈlɪnʊks/ LIN-uuks) is a family of free and open-source software Unix-like operating systems based on the <span class=\"searchmatch\">Linux</span> <span class=\"searchmatch\">kernel</span>, which was first released",
+      "timestamp": "2026-09-30T06:07:43Z"
+     }
+    ]
+   }
+  }
+ }
+}

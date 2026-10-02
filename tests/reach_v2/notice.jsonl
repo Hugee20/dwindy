@@ -1,0 +1,8 @@
+{"id": "notice_project_name", "message": "What is the latest version of Lantern Desk?", "index": "m8_fixture", "retrieval": null, "expected": {"notice": false}, "note": "Project-directed (project name)."}
+{"id": "notice_project_deictic", "message": "What is the latest version of this app?", "index": null, "retrieval": null, "expected": {"notice": false}, "note": "Project-directed (deictic), even without an index."}
+{"id": "notice_local_relevant", "message": "What is the latest loan duration policy?", "index": "m8_fixture", "retrieval": null, "expected": {"notice": false}, "note": "M8 supplied relevant local evidence (relevant_match)."}
+{"id": "notice_index_no_match", "message": "What is the latest version of Python?", "index": "m8_fixture", "retrieval": null, "expected": {"notice": true}, "note": "An index exists, but M8 supplied no relevant evidence."}
+{"id": "notice_no_index", "message": "What is the latest version of Python?", "index": null, "retrieval": null, "expected": {"notice": true}, "note": "No index: the notice applies."}
+{"id": "notice_forced_retrieval", "message": "What is the latest version of Python?", "index": "m8_fixture", "retrieval": true, "expected": {"notice": true}, "note": "Judgment: forced retrieval does not establish relevance, so the notice still applies."}
+{"id": "notice_weak_local", "message": "What is the latest news about microscopes?", "index": "m8_fixture", "retrieval": null, "expected": {"notice": true}, "note": "Weak local overlap is not relevant evidence."}
+{"id": "notice_not_fresh", "message": "Hello!", "index": "m8_fixture", "retrieval": null, "expected": {"notice": false}, "note": "Not a freshness question."}

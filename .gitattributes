@@ -3,3 +3,6 @@ tests/retrieval/** text eol=lf
 tests/project/** text eol=lf
 tests/context/** text eol=lf
 tests/tools/** text eol=lf
+tests/reach/** text eol=lf
+tests/reach_v2/** text eol=lf
+tests/reach_h2/** text eol=lf

@@ -4,7 +4,8 @@ from dataclasses import dataclass
 from typing import Generator, Sequence
 
 from .backend import BackendError, Completion, ContextLimitError, GenerationOptions, Message, ModelBackend, TextDelta
-from .evidence import (Evidence, Facts, GUIDANCE, UNAVAILABLE_GUIDANCE, evidence_question,
+from .evidence import (Evidence, Facts, GUIDANCE, UNAVAILABLE_GUIDANCE, WEB_GUIDANCE, WEB_SENTENCE_GUIDANCE,
+                       evidence_question,
                        facts_block, facts_guidance, host_block)
 
 
@@ -71,8 +72,9 @@ class DwindyCore:
             raise ValueError("Expected nonempty alternating user/assistant messages.")
         self._history = candidate
 
-    def chat(self, user_text: str, *, evidence: Evidence | None = None,
-             facts: Facts | None = None) -> Generator[TurnStarted | TextDelta | Completion, None, None]:
+    def chat(self, user_text: str, *, evidence: Evidence | None = None, facts: Facts | None = None,
+             notice: str | None = None) -> Generator[TurnStarted | TextDelta | Completion, None, None]:
+        """notice is a transient system instruction for this turn only (M10 offline honesty)."""
         self._ensure_idle()
         if not isinstance(user_text, str) or not user_text.strip():
             raise ValueError("user_text must be a nonempty string.")
@@ -80,16 +82,19 @@ class DwindyCore:
             raise ValueError("Expected Evidence or None")
         if facts is not None and not isinstance(facts, Facts):
             raise ValueError("Expected Facts or None")
-        return self._chat(user_text, evidence, facts or None)
+        if notice is not None and (not isinstance(notice, str) or not notice.strip()):
+            raise ValueError("Expected a nonempty notice or None")
+        return self._chat(user_text, evidence, facts or None, notice)
 
     def _evidence_messages(self, user, evidence, prefix="", extra=""):
-        system = (self._system_prompt + "\n\n" if self._system_prompt else "") + GUIDANCE + ("\n\n" + extra if extra else "")
+        guidance = dict(web=WEB_GUIDANCE, web_sentences=WEB_SENTENCE_GUIDANCE).get(evidence.origin, GUIDANCE)
+        system = (self._system_prompt + "\n\n" if self._system_prompt else "") + guidance + ("\n\n" + extra if extra else "")
         base_system = ((self._system_prompt + "\n\n" if self._system_prompt else "") + extra) if extra else self._system_prompt
         base = ([Message("system",base_system)] if base_system else []) + [
             Message("user", prefix + "User question:\n" + user if prefix else user)]
         baseline = self._backend.count_tokens(base)
         def compose(passages, history=()):
-            return [Message("system",system),*history,Message("user",prefix + evidence_question(user,passages))]
+            return [Message("system",system),*history,Message("user",prefix + evidence_question(user,passages,evidence.framing,evidence.origin))]
         def fits(messages):
             count = self._backend.count_tokens(messages)
             return count + self._options.max_tokens <= self._backend.context_size() and max(0,count-baseline) <= evidence.max_tokens
@@ -121,7 +126,7 @@ class DwindyCore:
         status = "supplied" if selected else "budget_exhausted" if evidence.passages else "no_match"
         return messages,recent,dict(status=status,sources=[p.source.mapping() for p in selected])
 
-    def _chat(self, user_text, evidence, facts=None):
+    def _chat(self, user_text, evidence, facts=None, notice=None):
         self._ensure_idle()  # Also reject interleaving previously created iterators.
         self._active = True
         try:
@@ -136,6 +141,8 @@ class DwindyCore:
                     raise ContextLimitError("Host context exceeds its token allowance.")
                 prefix, extra = facts_block(facts), facts_guidance(facts)
                 content = prefix + "User question:\n" + user_text
+            if notice:
+                extra = (extra + "\n\n" if extra else "") + notice
             if evidence is not None and evidence.fallback == "unavailable":
                 # Transient instruction only; history still stores the original question.
                 system = (system + "\n\n" if system else "") + UNAVAILABLE_GUIDANCE

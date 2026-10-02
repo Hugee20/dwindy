@@ -1,0 +1,96 @@
+{
+ "case_id": "go_version",
+ "message": "What is the latest version of the Go programming language?",
+ "query": "latest version go programming language",
+ "request_url": "https://en.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&generator=search&gsrsearch=latest+version+go+programming+language&gsrlimit=3&prop=extracts%7Cinfo&exintro=1&explaintext=1&exsentences=5&exlimit=3&inprop=url&list=search&srsearch=latest+version+go+programming+language&srlimit=3&srprop=snippet",
+ "status": 200,
+ "captured_at": "2026-10-02T04:16:59+00:00",
+ "provider": "wikipedia",
+ "synthetic": false,
+ "body": {
+  "batchcomplete": true,
+  "continue": {
+   "sroffset": 3,
+   "gsroffset": 3,
+   "continue": "gsroffset||"
+  },
+  "query": {
+   "pages": [
+    {
+     "pageid": 23862,
+     "ns": 0,
+     "title": "Python (programming language)",
+     "index": 2,
+     "extract": "Python is a high-level, general-purpose programming language that emphasizes code readability, simplicity, and ease-of-writing with the use of significant indentation, an extensive (\"batteries-included\") standard library, and garbage collection. Python supports multiple programming paradigms but with an emphasis on object-oriented programming and dynamic typing.\nGuido van Rossum began working on Python in the late 1980s as a successor to the ABC programming language. Python 3.0, released in 2008, was a major revision and not completely backward-compatible with earlier versions. Beginning with Python 3.5, capabilities and keywords for typing were added to the language, allowing optional static typing.",
+     "contentmodel": "wikitext",
+     "pagelanguage": "en",
+     "pagelanguagehtmlcode": "en",
+     "pagelanguagedir": "ltr",
+     "touched": "2026-10-02T02:28:28Z",
+     "lastrevid": 1377929544,
+     "length": 144806,
+     "fullurl": "https://en.wikipedia.org/wiki/Python_(programming_language)",
+     "editurl": "https://en.wikipedia.org/w/index.php?title=Python_(programming_language)&action=edit",
+     "canonicalurl": "https://en.wikipedia.org/wiki/Python_(programming_language)"
+    },
+    {
+     "pageid": 24445885,
+     "ns": 0,
+     "title": "Programming language generations",
+     "index": 1,
+     "extract": "Programming languages have been classified into several programming language generations. This series of buzzwords was popular in the 1980s and 1990s. Historically, this classification was used to indicate increasing power of programming styles. Later writers have somewhat redefined the meanings as distinctions previously seen as important became less significant to current practice.\nThe terms first-generation and second-generation programming language were not used prior to the coining of the term third-generation.",
+     "contentmodel": "wikitext",
+     "pagelanguage": "en",
+     "pagelanguagehtmlcode": "en",
+     "pagelanguagedir": "ltr",
+     "touched": "2026-10-01T04:22:42Z",
+     "lastrevid": 1376621400,
+     "length": 43742,
+     "fullurl": "https://en.wikipedia.org/wiki/Programming_language_generations",
+     "editurl": "https://en.wikipedia.org/w/index.php?title=Programming_language_generations&action=edit",
+     "canonicalurl": "https://en.wikipedia.org/wiki/Programming_language_generations"
+    },
+    {
+     "pageid": 45413679,
+     "ns": 0,
+     "title": "Nim (programming language)",
+     "index": 3,
+     "extract": "Nim is a general-purpose, multi-paradigm, statically typed, compiled, high-level system programming language. It was designed and developed by a team led by Andreas Rumpf. Nim aims to be \"efficient, expressive, and elegant\", and supports metaprogramming, functional, message passing, procedural, and object-oriented programming paradigms. Nim includes features such as compile-time code generation, algebraic data types, and a foreign function interface (FFI) for interfacing with C, C++, Objective-C, and JavaScript. It also supports compilation to these same languages as intermediate representations.",
+     "contentmodel": "wikitext",
+     "pagelanguage": "en",
+     "pagelanguagehtmlcode": "en",
+     "pagelanguagedir": "ltr",
+     "touched": "2026-10-01T14:35:02Z",
+     "lastrevid": 1373964635,
+     "length": 57512,
+     "fullurl": "https://en.wikipedia.org/wiki/Nim_(programming_language)",
+     "editurl": "https://en.wikipedia.org/w/index.php?title=Nim_(programming_language)&action=edit",
+     "canonicalurl": "https://en.wikipedia.org/wiki/Nim_(programming_language)"
+    }
+   ],
+   "searchinfo": {
+    "totalhits": 8029
+   },
+   "search": [
+    {
+     "ns": 0,
+     "title": "Programming language generations",
+     "pageid": 24445885,
+     "snippet": "<span class=\"searchmatch\">Programming</span> <span class=\"searchmatch\">languages</span> have been classified into several <span class=\"searchmatch\">programming</span> <span class=\"searchmatch\">language</span> generations. This series of buzzwords was popular in the 1980s and 1990s."
+    },
+    {
+     "ns": 0,
+     "title": "Python (programming language)",
+     "pageid": 23862,
+     "snippet": "collection. Python supports multiple <span class=\"searchmatch\">programming</span> paradigms but with an emphasis on object-oriented <span class=\"searchmatch\">programming</span> and dynamic typing. Guido van Rossum began"
+    },
+    {
+     "ns": 0,
+     "title": "Nim (programming language)",
+     "pageid": 45413679,
+     "snippet": "general-purpose, multi-paradigm, statically typed, compiled, high-level system <span class=\"searchmatch\">programming</span> <span class=\"searchmatch\">language</span>. It was designed and developed by a team led by Andreas Rumpf. Nim"
+    }
+   ]
+  }
+ }
+}

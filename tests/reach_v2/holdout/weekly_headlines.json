@@ -1,0 +1,96 @@
+{
+ "case_id": "weekly_headlines",
+ "message": "What were this week's top headlines?",
+ "query": "week top headlines",
+ "request_url": "https://en.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&generator=search&gsrsearch=week+top+headlines&gsrlimit=3&prop=extracts%7Cinfo&exintro=1&explaintext=1&exsentences=5&exlimit=3&inprop=url&list=search&srsearch=week+top+headlines&srlimit=3&srprop=snippet",
+ "status": 200,
+ "captured_at": "2026-10-02T04:17:34+00:00",
+ "provider": "wikipedia",
+ "synthetic": false,
+ "body": {
+  "batchcomplete": true,
+  "continue": {
+   "sroffset": 3,
+   "gsroffset": 3,
+   "continue": "gsroffset||"
+  },
+  "query": {
+   "pages": [
+    {
+     "pageid": 13579738,
+     "ns": 0,
+     "title": "Headlines (Friendship Never Ends)",
+     "index": 1,
+     "extract": "\"Headlines (Friendship Never Ends)\" is a song by English girl group the Spice Girls for their greatest hits album Greatest Hits (2007). It was written by the Spice Girls, Richard Stannard and Matt Rowe, whilst produced by the latter two. It was released as the only single from the album on 5 November 2007 by Virgin Records. The song was the first commercial single release to feature the group's original lineup since Geri Halliwell left in 1998. It was also the official Children in Need single of 2007.",
+     "contentmodel": "wikitext",
+     "pagelanguage": "en",
+     "pagelanguagehtmlcode": "en",
+     "pagelanguagedir": "ltr",
+     "touched": "2026-09-29T19:15:43Z",
+     "lastrevid": 1337338843,
+     "length": 27453,
+     "fullurl": "https://en.wikipedia.org/wiki/Headlines_(Friendship_Never_Ends)",
+     "editurl": "https://en.wikipedia.org/w/index.php?title=Headlines_(Friendship_Never_Ends)&action=edit",
+     "canonicalurl": "https://en.wikipedia.org/wiki/Headlines_(Friendship_Never_Ends)"
+    },
+    {
+     "pageid": 27832006,
+     "ns": 0,
+     "title": "Headlines!",
+     "index": 2,
+     "extract": "Headlines! is the debut extended play (EP) by British-Irish girl group The Saturdays. It was released in Ireland on 13 August 2010 and in the United Kingdom on 16 August  by Fascination Records. The EP includes the previously released singles \"Forever Is Over\" and \"Ego\" as well as a remix of album track \"One Shot\" from their previous album Wordshaker (2009) and five new songs.  The album was preceded by the release of the lead single \"Missing You\" on 5 August 2010.",
+     "contentmodel": "wikitext",
+     "pagelanguage": "en",
+     "pagelanguagehtmlcode": "en",
+     "pagelanguagedir": "ltr",
+     "touched": "2026-09-29T19:27:01Z",
+     "lastrevid": 1339982988,
+     "length": 27790,
+     "fullurl": "https://en.wikipedia.org/wiki/Headlines!",
+     "editurl": "https://en.wikipedia.org/w/index.php?title=Headlines!&action=edit",
+     "canonicalurl": "https://en.wikipedia.org/wiki/Headlines!"
+    },
+    {
+     "pageid": 32573359,
+     "ns": 0,
+     "title": "Headlines (Drake song)",
+     "index": 3,
+     "extract": "\"Headlines\" is a song by Canadian rapper Drake. It is the second single from Drake's second studio album Take Care. The song, produced by Matthew \"Boi-1da\" Samuels, and Noah \"40\" Shebib, first premiered on Drake's blog October's Very Own on July 31, 2011, and was sent to all radio formats in the US on August 9, 2011. It was released on iTunes and Amazon on August 9, 2011 in the U.S. The song debuted and peaked on the Billboard charts at number 13, becoming one of his highest charting songs at the time of release. It was re-released to US Top 40/Mainstream radio on October 18, 2011.",
+     "contentmodel": "wikitext",
+     "pagelanguage": "en",
+     "pagelanguagehtmlcode": "en",
+     "pagelanguagedir": "ltr",
+     "touched": "2026-10-01T19:42:50Z",
+     "lastrevid": 1374745742,
+     "length": 23199,
+     "fullurl": "https://en.wikipedia.org/wiki/Headlines_(Drake_song)",
+     "editurl": "https://en.wikipedia.org/w/index.php?title=Headlines_(Drake_song)&action=edit",
+     "canonicalurl": "https://en.wikipedia.org/wiki/Headlines_(Drake_song)"
+    }
+   ],
+   "searchinfo": {
+    "totalhits": 20265
+   },
+   "search": [
+    {
+     "ns": 0,
+     "title": "Headlines (Friendship Never Ends)",
+     "pageid": 13579738,
+     "snippet": "would later say, &quot;&#039;<span class=\"searchmatch\">Headlines</span>&#039; grew on me, it really came in to its own when we toured it, and it really felt lovely on stage&quot;. &quot;<span class=\"searchmatch\">Headlines</span> (Friendship Never"
+    },
+    {
+     "ns": 0,
+     "title": "Headlines!",
+     "pageid": 27832006,
+     "snippet": "<span class=\"searchmatch\">Headlines</span>! is the debut extended play (EP) by British-Irish girl group The Saturdays. It was released in Ireland on 13 August 2010 and in the United Kingdom"
+    },
+    {
+     "ns": 0,
+     "title": "Headlines (Drake song)",
+     "pageid": 32573359,
+     "snippet": "when posting the lone word &quot;<span class=\"searchmatch\">Headlines</span>&quot; on his Twitter account. In an interview with Billboard, Drake talked about &quot;<span class=\"searchmatch\">Headlines</span>&quot; saying, &quot;By no means is it"
+    }
+   ]
+  }
+ }
+}

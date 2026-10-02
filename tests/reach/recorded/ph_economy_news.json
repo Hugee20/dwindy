@@ -1,0 +1,113 @@
+{
+ "case_id": "ph_economy_news",
+ "message": "What is the latest news about the Philippine economy today?",
+ "capture_query": "latest news about philippine economy today",
+ "captured_at": "2026-10-02T01:54:57+00:00",
+ "provider": "wikipedia",
+ "synthetic": false,
+ "extracts": {
+  "url": "https://en.wikipedia.org/w/api.php?action=query&generator=search&gsrsearch=latest+news+about+philippine+economy+today&gsrlimit=3&prop=extracts%7Cinfo&exintro=1&explaintext=1&exsentences=5&exlimit=3&inprop=url&format=json&formatversion=2",
+  "status": 200,
+  "body": {
+   "batchcomplete": true,
+   "continue": {
+    "gsroffset": 3,
+    "continue": "gsroffset||"
+   },
+   "query": {
+    "pages": [
+     {
+      "pageid": 23440,
+      "ns": 0,
+      "title": "Philippines",
+      "index": 1,
+      "extract": "The Philippines, officially the Republic of the Philippines, is an archipelagic country in Southeast Asia. Located in the western Pacific Ocean, it consists of about 7,641 islands, with a total area of about 300,000 square kilometers. The islands are broadly categorized in three main geographical divisions. From north to south, the divisions are: Luzon, Visayas, and Mindanao. With a population of over 114 million, it is the world's thirteenth-most-populous country.",
+      "contentmodel": "wikitext",
+      "pagelanguage": "en",
+      "pagelanguagehtmlcode": "en",
+      "pagelanguagedir": "ltr",
+      "touched": "2026-10-01T14:34:30Z",
+      "lastrevid": 1377254690,
+      "length": 499398,
+      "fullurl": "https://en.wikipedia.org/wiki/Philippines",
+      "editurl": "https://en.wikipedia.org/w/index.php?title=Philippines&action=edit",
+      "canonicalurl": "https://en.wikipedia.org/wiki/Philippines"
+     },
+     {
+      "pageid": 37747879,
+      "ns": 0,
+      "title": "Guzman College of Science and Technology",
+      "index": 3,
+      "extract": "Guzman College of Science and Technology is one of the institutions founded by Don Zacarias P. De Guzman in 1947. It is a vocational college in Manila, the Philippines.",
+      "contentmodel": "wikitext",
+      "pagelanguage": "en",
+      "pagelanguagehtmlcode": "en",
+      "pagelanguagedir": "ltr",
+      "touched": "2026-10-01T15:39:42Z",
+      "lastrevid": 1369469736,
+      "length": 12429,
+      "fullurl": "https://en.wikipedia.org/wiki/Guzman_College_of_Science_and_Technology",
+      "editurl": "https://en.wikipedia.org/w/index.php?title=Guzman_College_of_Science_and_Technology&action=edit",
+      "canonicalurl": "https://en.wikipedia.org/wiki/Guzman_College_of_Science_and_Technology"
+     },
+     {
+      "pageid": 76187263,
+      "ns": 0,
+      "title": "2025 Philippine Senate election",
+      "index": 2,
+      "extract": "The 2025 Philippine Senate election was the 35th election of members to the Senate of the Philippines. It was held on May 12, 2025, within the 2025 Philippine general election. The seats of the 12 senators elected in 2019 were contested in this election. The senators who will be elected in this election will serve until 2031, joining the winners of the 2022 election to form the Senate's delegation to the 20th Congress of the Philippines, with the senators elected in 2022 serving until 2028.\nThe election was shaped by several key issues, including employment and food security, concerns over the quality of public services such as healthcare, water, and education, and the demand for stronger anti-corruption measures and government accountability.",
+      "contentmodel": "wikitext",
+      "pagelanguage": "en",
+      "pagelanguagehtmlcode": "en",
+      "pagelanguagedir": "ltr",
+      "touched": "2026-10-01T14:20:21Z",
+      "lastrevid": 1375766268,
+      "length": 309520,
+      "fullurl": "https://en.wikipedia.org/wiki/2025_Philippine_Senate_election",
+      "editurl": "https://en.wikipedia.org/w/index.php?title=2025_Philippine_Senate_election&action=edit",
+      "canonicalurl": "https://en.wikipedia.org/wiki/2025_Philippine_Senate_election"
+     }
+    ]
+   }
+  }
+ },
+ "snippets": {
+  "url": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=latest+news+about+philippine+economy+today&srlimit=3&srprop=snippet%7Ctimestamp&format=json&formatversion=2",
+  "status": 200,
+  "body": {
+   "batchcomplete": true,
+   "continue": {
+    "sroffset": 3,
+    "continue": "-||"
+   },
+   "query": {
+    "searchinfo": {
+     "totalhits": 505
+    },
+    "search": [
+     {
+      "ns": 0,
+      "title": "Philippines",
+      "pageid": 23440,
+      "snippet": "33rd largest <span class=\"searchmatch\">economy</span> with a nominal gross domestic product (GDP) of $494.16 billion. As a newly industrialized country, the <span class=\"searchmatch\">Philippine</span> <span class=\"searchmatch\">economy</span> has been transitioning",
+      "timestamp": "2026-09-28T14:58:31Z"
+     },
+     {
+      "ns": 0,
+      "title": "2025 Philippine Senate election",
+      "pageid": 76187263,
+      "snippet": "May 26, 2025. &quot;Corruption, education, <span class=\"searchmatch\">economy</span> among hottest topics online during 2025 <span class=\"searchmatch\">Philippine</span> elections&quot;. <span class=\"searchmatch\">news</span>.tv5.com.ph. Retrieved May 26, 2025. &quot;Employment",
+      "timestamp": "2026-09-19T23:13:59Z"
+     },
+     {
+      "ns": 0,
+      "title": "Guzman College of Science and Technology",
+      "pageid": 37747879,
+      "snippet": "Technology <span class=\"searchmatch\">today</span> holds the primary spot in the field of automotive technology. With a firm partnership with Toyota Motors Philippines, the <span class=\"searchmatch\">latest</span> technologies",
+      "timestamp": "2026-08-15T04:54:27Z"
+     }
+    ]
+   }
+  }
+ }
+}

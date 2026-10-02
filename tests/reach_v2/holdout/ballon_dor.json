@@ -1,0 +1,96 @@
+{
+ "case_id": "ballon_dor",
+ "message": "Who won the most recent Ballon d'Or?",
+ "query": "won most recent ballon",
+ "request_url": "https://en.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&generator=search&gsrsearch=won+most+recent+ballon&gsrlimit=3&prop=extracts%7Cinfo&exintro=1&explaintext=1&exsentences=5&exlimit=3&inprop=url&list=search&srsearch=won+most+recent+ballon&srlimit=3&srprop=snippet",
+ "status": 200,
+ "captured_at": "2026-10-02T04:16:45+00:00",
+ "provider": "wikipedia",
+ "synthetic": false,
+ "body": {
+  "batchcomplete": true,
+  "continue": {
+   "sroffset": 3,
+   "gsroffset": 3,
+   "continue": "gsroffset||"
+  },
+  "query": {
+   "pages": [
+    {
+     "pageid": 70951693,
+     "ns": 0,
+     "title": "2022 Ballon d'Or",
+     "index": 2,
+     "extract": "The 2022 Ballon d'Or (lit. '2022 Golden Ball') was the 66th annual presentation of the Ballon d'Or, presented by France Football, recognising the best footballers in the world during the 2021–22 season. For the first time in the history of the award, it was given based on the results of the European season, instead of the calendar year. The nominees for the ceremony were announced on 12 August 2022, and the ceremony was held on 17 October. \nKarim Benzema won the Ballon d'Or, for successfully leading Real Madrid to win both UEFA Champions League and La Liga. Alexia Putellas claimed the Ballon d'Or Féminin, following her successful domestic campaign with Barcelona.",
+     "contentmodel": "wikitext",
+     "pagelanguage": "en",
+     "pagelanguagehtmlcode": "en",
+     "pagelanguagedir": "ltr",
+     "touched": "2026-10-01T11:45:37Z",
+     "lastrevid": 1369888646,
+     "length": 54904,
+     "fullurl": "https://en.wikipedia.org/wiki/2022_Ballon_d%27Or",
+     "editurl": "https://en.wikipedia.org/w/index.php?title=2022_Ballon_d%27Or&action=edit",
+     "canonicalurl": "https://en.wikipedia.org/wiki/2022_Ballon_d%27Or"
+    },
+    {
+     "pageid": 73850908,
+     "ns": 0,
+     "title": "2023 Ballon d'Or",
+     "index": 1,
+     "extract": "The 2023 Ballon d'Or (lit. '2023 Golden Ball'), was the 67th annual ceremony of the Ballon d'Or, presented by France Football magazine, recognising the best footballers in the world in the 2022–2023 season. For the second time in the history of the award, it was given based on the results of the season instead of the calendar year, with the season starting on 1 August 2022 and ending 31 July 2023. The nominees were announced on 6 September 2023 and the ceremony took place on 30 October 2023.\nLionel Messi won the award for a record-extending eighth time after leading Argentina in their victorious 2022 FIFA World Cup campaign and winning Ligue 1 with Paris Saint-Germain. Messi became the only player in history to win the award with three different clubs—having joined Inter Miami in July—and the only one to win it while playing outside Europe.",
+     "contentmodel": "wikitext",
+     "pagelanguage": "en",
+     "pagelanguagehtmlcode": "en",
+     "pagelanguagedir": "ltr",
+     "touched": "2026-10-02T01:04:04Z",
+     "lastrevid": 1374845158,
+     "length": 53303,
+     "fullurl": "https://en.wikipedia.org/wiki/2023_Ballon_d%27Or",
+     "editurl": "https://en.wikipedia.org/w/index.php?title=2023_Ballon_d%27Or&action=edit",
+     "canonicalurl": "https://en.wikipedia.org/wiki/2023_Ballon_d%27Or"
+    },
+    {
+     "pageid": 76223357,
+     "ns": 0,
+     "title": "2024 Ballon d'Or",
+     "index": 3,
+     "extract": "The 2024 Ballon d'Or (lit. '2024 Golden Ball'), was the 68th annual ceremony of the Ballon d'Or. Presented by France Football, the ceremony recognise the best footballers in the world for the 2023–24 season. It was the third ceremony during which awards were presented based on the results of the season instead of the calendar year, specifically the period from 1 August 2023 to 31 July 2024. The nominees were announced on 4 September 2024 and the ceremony took take place on 28 October 2024. Two new accolades were awarded: Men's Coach of the Year and Women's Coach of the Year, recognizing the contribution of coaches to success on the pitch.",
+     "contentmodel": "wikitext",
+     "pagelanguage": "en",
+     "pagelanguagehtmlcode": "en",
+     "pagelanguagedir": "ltr",
+     "touched": "2026-10-02T01:04:04Z",
+     "lastrevid": 1354997695,
+     "length": 53362,
+     "fullurl": "https://en.wikipedia.org/wiki/2024_Ballon_d%27Or",
+     "editurl": "https://en.wikipedia.org/w/index.php?title=2024_Ballon_d%27Or&action=edit",
+     "canonicalurl": "https://en.wikipedia.org/wiki/2024_Ballon_d%27Or"
+    }
+   ],
+   "searchinfo": {
+    "totalhits": 296
+   },
+   "search": [
+    {
+     "ns": 0,
+     "title": "2023 Ballon d'Or",
+     "pageid": 73850908,
+     "snippet": "August 2022 and 31 July 2023), only the <span class=\"searchmatch\">most</span> <span class=\"searchmatch\">recent</span> club is listed. Thirty players were nominated for the 2023 <span class=\"searchmatch\">Ballon</span> d&#039;Or. Messi was signed by Inter Miami"
+    },
+    {
+     "ns": 0,
+     "title": "2022 Ballon d'Or",
+     "pageid": 70951693,
+     "snippet": "Benzema <span class=\"searchmatch\">won</span> the <span class=\"searchmatch\">Ballon</span> d&#039;Or, for successfully leading Real Madrid to win both UEFA Champions League and La Liga. Alexia Putellas claimed the <span class=\"searchmatch\">Ballon</span> d&#039;Or"
+    },
+    {
+     "ns": 0,
+     "title": "2024 Ballon d'Or",
+     "pageid": 76223357,
+     "snippet": "multiple clubs during the season, only the <span class=\"searchmatch\">most</span> <span class=\"searchmatch\">recent</span> club is listed. Thirty players were nominated for the 2024 <span class=\"searchmatch\">Ballon</span> d&#039;Or. Mbappé was signed by Real Madrid"
+    }
+   ]
+  }
+ }
+}

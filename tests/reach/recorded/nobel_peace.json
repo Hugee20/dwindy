@@ -1,0 +1,113 @@
+{
+ "case_id": "nobel_peace",
+ "message": "Who won the most recent Nobel Peace Prize?",
+ "capture_query": "won most recent nobel peace prize",
+ "captured_at": "2026-10-02T01:54:43+00:00",
+ "provider": "wikipedia",
+ "synthetic": false,
+ "extracts": {
+  "url": "https://en.wikipedia.org/w/api.php?action=query&generator=search&gsrsearch=won+most+recent+nobel+peace+prize&gsrlimit=3&prop=extracts%7Cinfo&exintro=1&explaintext=1&exsentences=5&exlimit=3&inprop=url&format=json&formatversion=2",
+  "status": 200,
+  "body": {
+   "batchcomplete": true,
+   "continue": {
+    "gsroffset": 3,
+    "continue": "gsroffset||"
+   },
+   "query": {
+    "pages": [
+     {
+      "pageid": 24629811,
+      "ns": 0,
+      "title": "2009 Nobel Peace Prize",
+      "index": 3,
+      "extract": "The 2009 Nobel Peace Prize was awarded to United States president Barack Obama (b. 1961) for his \"extraordinary efforts to strengthen international diplomacy and cooperation between peoples\". The Norwegian Nobel Committee announced the award on October 9, 2009, citing Obama's promotion of nuclear nonproliferation and a \"new climate\" in international relations fostered by Obama, especially in reaching out to the Muslim world.\nThe Nobel Committee's decision drew mixed reactions from US commentators and editorial writers across the political spectrum, as well as from the rest of the world.\nObama accepted the prize in Oslo on December 10, 2009.",
+      "contentmodel": "wikitext",
+      "pagelanguage": "en",
+      "pagelanguagehtmlcode": "en",
+      "pagelanguagedir": "ltr",
+      "touched": "2026-10-01T12:11:45Z",
+      "lastrevid": 1375670721,
+      "length": 70470,
+      "fullurl": "https://en.wikipedia.org/wiki/2009_Nobel_Peace_Prize",
+      "editurl": "https://en.wikipedia.org/w/index.php?title=2009_Nobel_Peace_Prize&action=edit",
+      "canonicalurl": "https://en.wikipedia.org/wiki/2009_Nobel_Peace_Prize"
+     },
+     {
+      "pageid": 26230922,
+      "ns": 0,
+      "title": "Nobel Peace Prize",
+      "index": 1,
+      "extract": "The Nobel Peace Prize is one of the five original Nobel Prizes established by the will of Swedish industrialist, inventor, and armaments manufacturer Alfred Nobel, along with the prizes in Chemistry, Physics, Physiology or Medicine, and Literature.\nSince March 1901, it has been awarded annually (with some exceptions) to people who have \"done the most or the best work for fraternity between nations, for the abolition or reduction of standing armies and for the holding and promotion of peace congresses\". The Oxford Dictionary of Contemporary History describes it as \"the most prestigious prize in the world\".\nIn accordance with Nobel's will, the prize is selected by the Norwegian Nobel Committee, a five-member committee appointed by the Parliament of Norway unlike all the other awards chosen by the Swedish Nobel Committee. The prize award ceremony has been held in Oslo City Hall since 1990, previously in the assembly hall of the University of Oslo (1947–1989), Norwegian Nobel Institute (1905–1946), and the Parliament (1901–1904).",
+      "contentmodel": "wikitext",
+      "pagelanguage": "en",
+      "pagelanguagehtmlcode": "en",
+      "pagelanguagedir": "ltr",
+      "touched": "2026-09-30T16:22:07Z",
+      "lastrevid": 1377246242,
+      "length": 45231,
+      "fullurl": "https://en.wikipedia.org/wiki/Nobel_Peace_Prize",
+      "editurl": "https://en.wikipedia.org/w/index.php?title=Nobel_Peace_Prize&action=edit",
+      "canonicalurl": "https://en.wikipedia.org/wiki/Nobel_Peace_Prize"
+     },
+     {
+      "pageid": 78880914,
+      "ns": 0,
+      "title": "2025 Nobel Peace Prize",
+      "index": 2,
+      "extract": "The 2025 Nobel Peace Prize, an international peace prize established according to the will of Alfred Nobel, was announced on 10 October 2025 by the Norwegian Nobel Committee in Oslo, Norway. It was awarded to María Corina Machado of Venezuela. The prize was presented at the ceremony on 10 December 2025 in Oslo, given to her daughter on her behalf. The Norwegian Nobel Committee praised her as \"one of the most extraordinary examples of civilian courage in Latin America in recent times\".\nAt the time of the prize's announcement, Machado was in hiding inside Venezuela, fearing repression from the government of Nicolás Maduro.",
+      "contentmodel": "wikitext",
+      "pagelanguage": "en",
+      "pagelanguagehtmlcode": "en",
+      "pagelanguagedir": "ltr",
+      "touched": "2026-10-01T21:19:08Z",
+      "lastrevid": 1377523460,
+      "length": 72960,
+      "fullurl": "https://en.wikipedia.org/wiki/2025_Nobel_Peace_Prize",
+      "editurl": "https://en.wikipedia.org/w/index.php?title=2025_Nobel_Peace_Prize&action=edit",
+      "canonicalurl": "https://en.wikipedia.org/wiki/2025_Nobel_Peace_Prize"
+     }
+    ]
+   }
+  }
+ },
+ "snippets": {
+  "url": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=won+most+recent+nobel+peace+prize&srlimit=3&srprop=snippet%7Ctimestamp&format=json&formatversion=2",
+  "status": 200,
+  "body": {
+   "batchcomplete": true,
+   "continue": {
+    "sroffset": 3,
+    "continue": "-||"
+   },
+   "query": {
+    "searchinfo": {
+     "totalhits": 1270
+    },
+    "search": [
+     {
+      "ns": 0,
+      "title": "Nobel Peace Prize",
+      "pageid": 26230922,
+      "snippet": "The <span class=\"searchmatch\">Nobel</span> <span class=\"searchmatch\">Peace</span> <span class=\"searchmatch\">Prize</span> is one of the five original <span class=\"searchmatch\">Nobel</span> <span class=\"searchmatch\">Prizes</span> established by the will of Swedish industrialist, inventor, and armaments manufacturer Alfred",
+      "timestamp": "2026-09-28T13:56:15Z"
+     },
+     {
+      "ns": 0,
+      "title": "2025 Nobel Peace Prize",
+      "pageid": 78880914,
+      "snippet": "The 2025 <span class=\"searchmatch\">Nobel</span> <span class=\"searchmatch\">Peace</span> <span class=\"searchmatch\">Prize</span>, an international <span class=\"searchmatch\">peace</span> <span class=\"searchmatch\">prize</span> established according to the will of Alfred <span class=\"searchmatch\">Nobel</span>, was announced on 10 October 2025 by the Norwegian",
+      "timestamp": "2026-09-29T21:09:59Z"
+     },
+     {
+      "ns": 0,
+      "title": "Nobel Prize controversies",
+      "pageid": 1528075,
+      "snippet": "Abel <span class=\"searchmatch\">Prize</span> have been described as the &quot;<span class=\"searchmatch\">Nobel</span> <span class=\"searchmatch\">Prize</span> of mathematics&quot;. The <span class=\"searchmatch\">most</span> notorious controversies have been over <span class=\"searchmatch\">prizes</span> for Literature, <span class=\"searchmatch\">Peace</span>, and",
+      "timestamp": "2026-08-21T08:56:38Z"
+     }
+    ]
+   }
+  }
+ }
+}

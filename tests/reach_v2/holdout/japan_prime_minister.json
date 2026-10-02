@@ -1,0 +1,96 @@
+{
+ "case_id": "japan_prime_minister",
+ "message": "Who is the current Prime Minister of Japan?",
+ "query": "current prime minister japan",
+ "request_url": "https://en.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&generator=search&gsrsearch=current+prime+minister+japan&gsrlimit=3&prop=extracts%7Cinfo&exintro=1&explaintext=1&exsentences=5&exlimit=3&inprop=url&list=search&srsearch=current+prime+minister+japan&srlimit=3&srprop=snippet",
+ "status": 200,
+ "captured_at": "2026-10-02T04:16:31+00:00",
+ "provider": "wikipedia",
+ "synthetic": false,
+ "body": {
+  "batchcomplete": true,
+  "continue": {
+   "sroffset": 3,
+   "gsroffset": 3,
+   "continue": "gsroffset||"
+  },
+  "query": {
+   "pages": [
+    {
+     "pageid": 24833,
+     "ns": 0,
+     "title": "Prime Minister of Japan",
+     "index": 2,
+     "extract": "The prime minister of Japan (内閣総理大臣, Naikaku Sōri Daijin; Japanese pronunciation: [naꜜi.ka.kɯ | soː.ɾʲi daꜜi.dʑiɴ]) is the head of government of Japan. The prime minister chairs the Cabinet of Japan and has the ability to select and dismiss its ministers of state. The prime minister also serves as the commander-in-chief of the Japan Self Defence Forces.\nThe National Diet (parliament) acts as an electoral college and both houses nominate the prime minister from among their members (typically from among the members of the House of Representatives). Each house conducts a ballot under the run-off system, though the nominee of the House of Representatives prevails if the two houses disagree on the nomination.",
+     "contentmodel": "wikitext",
+     "pagelanguage": "en",
+     "pagelanguagehtmlcode": "en",
+     "pagelanguagedir": "ltr",
+     "touched": "2026-10-01T16:03:13Z",
+     "lastrevid": 1373762867,
+     "length": 26834,
+     "fullurl": "https://en.wikipedia.org/wiki/Prime_Minister_of_Japan",
+     "editurl": "https://en.wikipedia.org/w/index.php?title=Prime_Minister_of_Japan&action=edit",
+     "canonicalurl": "https://en.wikipedia.org/wiki/Prime_Minister_of_Japan"
+    },
+    {
+     "pageid": 12082857,
+     "ns": 0,
+     "title": "Minister of Defense (Japan)",
+     "index": 3,
+     "extract": "The Minister of Defense (防衛大臣, Bōei Daijin), or Bōei-shō (防衛相), is a  member of the Japanese cabinet and is the leader of the Ministry of Defense, the executive department of the Japanese Armed Forces. The minister of defense's position of command and authority over the military is second only to that of the Prime Minister of Japan, who is the commander-in-chief.\nThe minister of defense is appointed by the Prime Minister and is a member of the National Security Council and the National Intelligence Council. The current Minister of Defense is Shinjirō Koizumi, who took office on October 21, 2025.",
+     "contentmodel": "wikitext",
+     "pagelanguage": "en",
+     "pagelanguagehtmlcode": "en",
+     "pagelanguagedir": "ltr",
+     "touched": "2026-09-30T18:50:55Z",
+     "lastrevid": 1373780615,
+     "length": 19655,
+     "fullurl": "https://en.wikipedia.org/wiki/Minister_of_Defense_(Japan)",
+     "editurl": "https://en.wikipedia.org/w/index.php?title=Minister_of_Defense_(Japan)&action=edit",
+     "canonicalurl": "https://en.wikipedia.org/wiki/Minister_of_Defense_(Japan)"
+    },
+    {
+     "pageid": 44345331,
+     "ns": 0,
+     "title": "List of spouses of prime ministers of Japan",
+     "index": 1,
+     "extract": "This is a list of spouses of prime ministers of Japan. \nThe media often refers to the spouse of a Japanese prime minister as the \"First Lady of Japan\" or \"First Gentleman of Japan.\" However, as the prime minister is not head of state but head of government, this differs considerably from its equivalent in the United States (the spouse of the head of state is the Empress of Japan).\nThe current prime minister, Sanae Takaichi, has been remarried to Taku Yamamoto since 2021; the couple were first married in 2004 and divorced in 2017.",
+     "contentmodel": "wikitext",
+     "pagelanguage": "en",
+     "pagelanguagehtmlcode": "en",
+     "pagelanguagedir": "ltr",
+     "touched": "2026-09-29T19:37:09Z",
+     "lastrevid": 1373761076,
+     "length": 37166,
+     "fullurl": "https://en.wikipedia.org/wiki/List_of_spouses_of_prime_ministers_of_Japan",
+     "editurl": "https://en.wikipedia.org/w/index.php?title=List_of_spouses_of_prime_ministers_of_Japan&action=edit",
+     "canonicalurl": "https://en.wikipedia.org/wiki/List_of_spouses_of_prime_ministers_of_Japan"
+    }
+   ],
+   "searchinfo": {
+    "totalhits": 13436
+   },
+   "search": [
+    {
+     "ns": 0,
+     "title": "List of spouses of prime ministers of Japan",
+     "pageid": 44345331,
+     "snippet": "<span class=\"searchmatch\">prime</span> <span class=\"searchmatch\">ministers</span> of <span class=\"searchmatch\">Japan</span>. The media often refers to the spouse of a <span class=\"searchmatch\">Japanese</span> <span class=\"searchmatch\">prime</span> <span class=\"searchmatch\">minister</span> as the &quot;First Lady of <span class=\"searchmatch\">Japan</span>&quot; or &quot;First Gentleman of <span class=\"searchmatch\">Japan</span>"
+    },
+    {
+     "ns": 0,
+     "title": "Prime Minister of Japan",
+     "pageid": 24833,
+     "snippet": "The <span class=\"searchmatch\">prime</span> <span class=\"searchmatch\">minister</span> of <span class=\"searchmatch\">Japan</span> (内閣総理大臣, Naikaku Sōri Daijin; <span class=\"searchmatch\">Japanese</span> pronunciation: [naꜜi.ka.kɯ | soː.ɾʲi daꜜi.dʑiɴ]) is the head of government of <span class=\"searchmatch\">Japan</span>. The"
+    },
+    {
+     "ns": 0,
+     "title": "Minister of Defense (Japan)",
+     "pageid": 12082857,
+     "snippet": "the <span class=\"searchmatch\">Japanese</span> Armed Forces. The <span class=\"searchmatch\">minister</span> of defense&#039;s position of command and authority over the military is second only to that of the <span class=\"searchmatch\">Prime</span> <span class=\"searchmatch\">Minister</span> of"
+    }
+   ]
+  }
+ }
+}

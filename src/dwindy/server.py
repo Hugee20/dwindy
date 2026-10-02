@@ -32,6 +32,9 @@ class ApiConfig:
     retrieval_index_path: str | None = None
     retrieval_context_tokens: int = 768
     retrieval_default: str | None = None  # "auto" | "off"; unset means auto when an index is configured
+    # Reach is disabled unless a provider is configured, and a provider never implies auto.
+    reach_provider: str | None = None     # "wikipedia" is the only M10 provider
+    reach_default: str | None = None      # "auto" | "off"; unset means off
 
     def validate(self) -> str | None:
         if not isinstance(self.host, str):
@@ -57,6 +60,18 @@ class ApiConfig:
                 raise ConfigError('retrieval_default must be "auto" or "off"; forced retrieval is per request only.')
             if self.retrieval_index_path is None:
                 raise ConfigError("retrieval_default requires retrieval_index_path.")
+        if self.reach_provider is not None and self.reach_provider != "wikipedia":
+            raise ConfigError('reach_provider must be "wikipedia" (the only M10 Reach provider).')
+        if self.reach_provider is not None:
+            from .reach import REACH_ADOPTED
+            if not REACH_ADOPTED:
+                raise ConfigError("Reach is not available in this release: it did not pass its M10 adoption "
+                                  "rule (see docs/M10_VALIDATION.md).")
+        if self.reach_default is not None:
+            if self.reach_default not in ("auto", "off"):
+                raise ConfigError('reach_default must be "auto" or "off"; forced Reach is per request only.')
+            if self.reach_provider is None:
+                raise ConfigError("reach_default requires reach_provider.")
         for name in ("allowed_hosts", "allowed_origins"):
             values = getattr(self, name)
             if not isinstance(values, (tuple, list)) or any(not isinstance(v, str) for v in values):
@@ -151,6 +166,10 @@ def main(argv=None) -> int:
             mode = api_config.retrieval_default or "auto"
             print(f"Local context: {mode} by default. Clients may send retrieval=false; "
                   f'set retrieval_default = "{"auto" if mode == "off" else "off"}" in the API configuration to change it.',
+                  file=sys.stderr)
+        if api_config.reach_provider is not None:
+            print(f"Reach: {api_config.reach_provider} permitted; {api_config.reach_default or 'off'} by default. "
+                  "Only a minimized query leaves this machine, and it is reported in response metadata.",
                   file=sys.stderr)
         server = uvicorn.Server(uvicorn.Config(app, host=api_config.host, port=api_config.port,
                     workers=1, reload=False, loop="asyncio", http="h11", ws="none",

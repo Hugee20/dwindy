@@ -1,0 +1,98 @@
+{
+ "case_id": "macos_version",
+ "message": "What is the latest version of macOS?",
+ "query": "latest version macos",
+ "request_url": "https://en.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&generator=search&gsrsearch=latest+version+macos&gsrlimit=3&prop=extracts%7Cinfo&exintro=1&explaintext=1&exsentences=5&exlimit=3&inprop=url&list=search&srsearch=latest+version+macos&srlimit=3&srprop=snippet",
+ "status": 200,
+ "captured_at": "2026-10-02T04:16:38+00:00",
+ "provider": "wikipedia",
+ "synthetic": false,
+ "body": {
+  "batchcomplete": true,
+  "continue": {
+   "sroffset": 3,
+   "gsroffset": 3,
+   "continue": "gsroffset||"
+  },
+  "query": {
+   "pages": [
+    {
+     "pageid": 162549,
+     "ns": 0,
+     "title": "MacOS version history",
+     "index": 1,
+     "extract": "The history of macOS, Apple's current Mac operating system (formerly named Mac OS X until 2011 and then OS X until 2016), began with the company's project to replace its classic Mac OS. That system, up to and including its final release Mac OS 9, was a direct descendant of the operating system Apple had used in its Mac computers since their introduction in 1984. The current macOS is a UNIX operating system built on technology that had been developed at NeXT from the 1980s until Apple purchased the company in early 1997.\nmacOS components derived from BSD include multiuser access, TCP/IP networking, and memory protection.\nAlthough it was originally marketed as simply \"version 10\" of Mac OS (indicated by the Roman numeral \"X\"), it has a completely different codebase from Mac OS 9, as well as substantial changes to its user interface (UI). The transition was a technologically and strategically significant one.",
+     "contentmodel": "wikitext",
+     "pagelanguage": "en",
+     "pagelanguagehtmlcode": "en",
+     "pagelanguagedir": "ltr",
+     "touched": "2026-10-01T14:28:40Z",
+     "lastrevid": 1377625857,
+     "length": 64248,
+     "fullurl": "https://en.wikipedia.org/wiki/MacOS_version_history",
+     "editurl": "https://en.wikipedia.org/w/index.php?title=MacOS_version_history&action=edit",
+     "canonicalurl": "https://en.wikipedia.org/wiki/MacOS_version_history"
+    },
+    {
+     "pageid": 80156866,
+     "ns": 0,
+     "title": "MacOS Tahoe",
+     "index": 3,
+     "extract": "macOS Tahoe (version 26) is the twenty-second major release of Apple's macOS operating system. The successor to macOS Sequoia, it was announced at WWDC 2025 on June 9, 2025, and its first developer beta was released the same day. It was released on September 15, 2025.\nIt was succeeded by macOS Golden Gate on September 14, 2026.\nTahoe is the final version of macOS that supports x86-64-based Macs with Intel processors – the 2020 iMac, the 2019 16-inch MacBook Pro, the 2020 four-port 13-inch MacBook Pro, and the 2019 Mac Pro models – as its successor, macOS Golden Gate, only works on Macs with Apple silicon systems on a chip (SoCs).",
+     "contentmodel": "wikitext",
+     "pagelanguage": "en",
+     "pagelanguagehtmlcode": "en",
+     "pagelanguagedir": "ltr",
+     "touched": "2026-10-01T02:45:38Z",
+     "lastrevid": 1377781774,
+     "length": 26358,
+     "fullurl": "https://en.wikipedia.org/wiki/MacOS_Tahoe",
+     "editurl": "https://en.wikipedia.org/w/index.php?title=MacOS_Tahoe&action=edit",
+     "canonicalurl": "https://en.wikipedia.org/wiki/MacOS_Tahoe"
+    },
+    {
+     "pageid": 83394206,
+     "ns": 0,
+     "title": "MacOS Golden Gate",
+     "index": 2,
+     "extract": "macOS Golden Gate (version 27) is the twenty-third major release of Apple's macOS operating system. The successor to macOS Tahoe, it was announced on June 8, 2026, at WWDC 2026, and it was released on September 14, 2026. It is the first version of macOS to run exclusively on Macs with Apple silicon and the last version with full Rosetta 2 functionality.\nIt is named after the Golden Gate, a strait between the Presidio of San Francisco and the Marin Headlands, which connects the San Francisco Bay and the Pacific Ocean.",
+     "contentmodel": "wikitext",
+     "pagelanguage": "en",
+     "pagelanguagehtmlcode": "en",
+     "pagelanguagedir": "ltr",
+     "touched": "2026-09-29T19:54:31Z",
+     "lastrevid": 1377472353,
+     "length": 14240,
+     "fullurl": "https://en.wikipedia.org/wiki/MacOS_Golden_Gate",
+     "editurl": "https://en.wikipedia.org/w/index.php?title=MacOS_Golden_Gate&action=edit",
+     "canonicalurl": "https://en.wikipedia.org/wiki/MacOS_Golden_Gate"
+    }
+   ],
+   "searchinfo": {
+    "totalhits": 1508,
+    "suggestion": "latest version marcos",
+    "suggestionsnippet": "latest version <em>marcos</em>"
+   },
+   "search": [
+    {
+     "ns": 0,
+     "title": "MacOS version history",
+     "pageid": 162549,
+     "snippet": "developers, <span class=\"searchmatch\">versions</span> 10.0 through 10.4 were able to run Mac OS 9 and its applications in the Classic Environment, a compatibility layer. <span class=\"searchmatch\">macOS</span> was first"
+    },
+    {
+     "ns": 0,
+     "title": "MacOS Golden Gate",
+     "pageid": 83394206,
+     "snippet": "<span class=\"searchmatch\">macOS</span> Golden Gate (<span class=\"searchmatch\">version</span> 27) is the twenty-third major release of Apple&#039;s <span class=\"searchmatch\">macOS</span> operating system. The successor to <span class=\"searchmatch\">macOS</span> Tahoe, it was announced on June"
+    },
+    {
+     "ns": 0,
+     "title": "MacOS Tahoe",
+     "pageid": 80156866,
+     "snippet": "<span class=\"searchmatch\">macOS</span> Tahoe (<span class=\"searchmatch\">version</span> 26) is the twenty-second major release of Apple&#039;s <span class=\"searchmatch\">macOS</span> operating system. The successor to <span class=\"searchmatch\">macOS</span> Sequoia, it was announced at WWDC"
+    }
+   ]
+  }
+ }
+}

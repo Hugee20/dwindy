@@ -1,0 +1,22 @@
+{
+  "README.md": "5d9b72026d209e3b839b27d3908d3497234278b7344b2529f306b4a75948ac16",
+  "e2e.jsonl": "8c0fa91e76b7fda8df406190c2ce7c438fd01d7d03d715a1e4ee7d0d31af6745",
+  "evaluate.py": "1958190a1345dedd6c3fbc1d86cf5a54cc4456ab1de05be59be2587ab4682f33",
+  "holdout/apple_stock.json": "4216817b949dfcd1c001bf4156a622df612e7c237dade80d69c42ad31d278548",
+  "holdout/ballon_dor.json": "b5d136e367d836a18e4e1de5f66081df64a783e68ac865dbf8e2d640b5ba7fba",
+  "holdout/best_picture.json": "2589c2b4d43490d970cdac1e93b8053f78ae41861b7f17de7ab894ac3c6a280e",
+  "holdout/france_president.json": "e0d23b12796042511f2c4519ba1eb92ccca75cd312cb6d4cc99e015a9bd01237",
+  "holdout/go_version.json": "2131a0a44b490ee0bdbe99213bf5224581a20c444eb4816d22db456458c865d6",
+  "holdout/japan_prime_minister.json": "ce11303b2cb64203ab1d980223b6c2cff803050071ce28db1ed9995e94291243",
+  "holdout/leyte_news.json": "72cca3d7cb1caa5cb52ce5a57b7cf4d25090f1f250ccb0e4a132814d5ce4ca43",
+  "holdout/macos_version.json": "b2bfcb64d16f669d8ce57cf704c0d86395cd6e7a02189f4a4e857b37d9f2a92c",
+  "holdout/nato_secretary_general.json": "91a0519965854c44bb1a383c1f3b55fb13b896794d1def348e83427a70eaf29b",
+  "holdout/peso_rate.json": "70ee9960b3e6d080a4ae71727efbe6b6dc49e548d406eb7f3fa7d8d84c703f6f",
+  "holdout/pixel_phone.json": "14636b954b1e07a5da47087d922f85311ea37f85800d6b5a835cf95b33c8918c",
+  "holdout/pope.json": "8f48d4a9f599d5e598b0c514aa5cc3aaa345136d727677a965631e76f9a8d1ae",
+  "holdout/rust_version.json": "9f265bcfd023a16384a63a93f3910db540f59b24dcb37ecb9739899e1fa21499",
+  "holdout/weekly_headlines.json": "b6c3ec7cb3274687b3b01d1985ab11162cb37d607492196b79e732a5a542a9a2",
+  "labels.jsonl": "1550597a295a186caefda4c5bedc7acf0996a619817b0a6e7340c8e6b32648de",
+  "notice.jsonl": "164a38192d2b7ce291239a84f52aacdfb1755fde79c739901800b84ebf6c24ad",
+  "rubric.md": "06f3b5da2b3689278342a1c7635952e7770e04cd9d08e223d3f6734abed9db8f"
+}

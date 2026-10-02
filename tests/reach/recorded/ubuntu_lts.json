@@ -1,0 +1,113 @@
+{
+ "case_id": "ubuntu_lts",
+ "message": "What is the latest long-term support release of Ubuntu?",
+ "capture_query": "latest long term support release ubuntu",
+ "captured_at": "2026-10-02T01:52:59+00:00",
+ "provider": "wikipedia",
+ "synthetic": false,
+ "extracts": {
+  "url": "https://en.wikipedia.org/w/api.php?action=query&generator=search&gsrsearch=latest+long+term+support+release+ubuntu&gsrlimit=3&prop=extracts%7Cinfo&exintro=1&explaintext=1&exsentences=5&exlimit=3&inprop=url&format=json&formatversion=2",
+  "status": 200,
+  "body": {
+   "batchcomplete": true,
+   "continue": {
+    "gsroffset": 3,
+    "continue": "gsroffset||"
+   },
+   "query": {
+    "pages": [
+     {
+      "pageid": 990298,
+      "ns": 0,
+      "title": "Ubuntu",
+      "index": 2,
+      "extract": "Ubuntu (  uu-BUUN-too) is a Linux distribution based on Debian and composed primarily of free and open-source software. Developed by the British company Canonical and a community of contributors under a meritocratic governance model, Ubuntu is released in multiple official editions: Desktop, Server, and Core for IoT and robotic devices.\nUbuntu is published on a six-month release cycle, with long-term support (LTS) versions issued every two years. Canonical provides security updates and support until each release reaches its designated end-of-life (EOL), with optional extended support available through the Ubuntu Pro and Expanded Security Maintenance (ESM) services.\nUbuntu can be installed directly on hardware or run within a virtual machine.",
+      "contentmodel": "wikitext",
+      "pagelanguage": "en",
+      "pagelanguagehtmlcode": "en",
+      "pagelanguagedir": "ltr",
+      "touched": "2026-09-30T16:26:48Z",
+      "lastrevid": 1377681616,
+      "length": 144062,
+      "fullurl": "https://en.wikipedia.org/wiki/Ubuntu",
+      "editurl": "https://en.wikipedia.org/w/index.php?title=Ubuntu&action=edit",
+      "canonicalurl": "https://en.wikipedia.org/wiki/Ubuntu"
+     },
+     {
+      "pageid": 19264489,
+      "ns": 0,
+      "title": "Ubuntu version history",
+      "index": 1,
+      "extract": "Releases of Ubuntu—a Linux operating system mostly composed of free and open-source software—are made semiannually by Canonical Ltd using the year and month of the release as a version number. The first Ubuntu release, for example, was Ubuntu 4.10 and was released on 20 October 2004. Consequently, version numbers for future versions are provisional; if the release is delayed until a different month (or even year) than planned, the version number will change accordingly.\nReleases are scheduled every April and October to incorporate new GNOME releases made every March and September. Free support is offered and includes security updates for \"main\" free software packaged.",
+      "contentmodel": "wikitext",
+      "pagelanguage": "en",
+      "pagelanguagehtmlcode": "en",
+      "pagelanguagedir": "ltr",
+      "touched": "2026-10-01T12:11:32Z",
+      "lastrevid": 1377602472,
+      "length": 195107,
+      "fullurl": "https://en.wikipedia.org/wiki/Ubuntu_version_history",
+      "editurl": "https://en.wikipedia.org/w/index.php?title=Ubuntu_version_history&action=edit",
+      "canonicalurl": "https://en.wikipedia.org/wiki/Ubuntu_version_history"
+     },
+     {
+      "pageid": 39437062,
+      "ns": 0,
+      "title": "Debian release version history",
+      "index": 3,
+      "extract": "Debian is a free and open-source operating system developed based on Linux. It is one of the oldest and most important Linux distributions and serves as the base for many other distributions. With one of the largest and most active communities in FOSS software, Debian is constantly being updated and improved by its developers. Major releases are made around every two years by the Debian Project although\nDebian releases do not follow a fixed schedule. The most recent version of Debian is Debian version 13, codename \"Trixie\".",
+      "contentmodel": "wikitext",
+      "pagelanguage": "en",
+      "pagelanguagehtmlcode": "en",
+      "pagelanguagedir": "ltr",
+      "touched": "2026-10-01T14:35:00Z",
+      "lastrevid": 1376577210,
+      "length": 138403,
+      "fullurl": "https://en.wikipedia.org/wiki/Debian_release_version_history",
+      "editurl": "https://en.wikipedia.org/w/index.php?title=Debian_release_version_history&action=edit",
+      "canonicalurl": "https://en.wikipedia.org/wiki/Debian_release_version_history"
+     }
+    ]
+   }
+  }
+ },
+ "snippets": {
+  "url": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=latest+long+term+support+release+ubuntu&srlimit=3&srprop=snippet%7Ctimestamp&format=json&formatversion=2",
+  "status": 200,
+  "body": {
+   "batchcomplete": true,
+   "continue": {
+    "sroffset": 3,
+    "continue": "-||"
+   },
+   "query": {
+    "searchinfo": {
+     "totalhits": 142
+    },
+    "search": [
+     {
+      "ns": 0,
+      "title": "Ubuntu",
+      "pageid": 990298,
+      "snippet": "fourth <span class=\"searchmatch\">release</span> receives <span class=\"searchmatch\">long</span>-<span class=\"searchmatch\">term</span> <span class=\"searchmatch\">support</span>. <span class=\"searchmatch\">Long</span>-<span class=\"searchmatch\">term</span> <span class=\"searchmatch\">support</span> includes updates for new hardware, security patches, and updates to the &#039;<span class=\"searchmatch\">Ubuntu</span> stack&#039; (cloud",
+      "timestamp": "2026-09-30T15:04:16Z"
+     },
+     {
+      "ns": 0,
+      "title": "Ubuntu version history",
+      "pageid": 19264489,
+      "snippet": "add-on extends <span class=\"searchmatch\">long</span>-<span class=\"searchmatch\">term</span> <span class=\"searchmatch\">support</span> to fifteen years. On 19 March 2013, the <span class=\"searchmatch\">Ubuntu</span> Technical Board reduced the <span class=\"searchmatch\">support</span> period for interim <span class=\"searchmatch\">releases</span> from eighteen",
+      "timestamp": "2026-09-30T03:45:19Z"
+     },
+     {
+      "ns": 0,
+      "title": "Debian release version history",
+      "pageid": 39437062,
+      "snippet": "are <span class=\"searchmatch\">supported</span>. Only 7 are candidates for stable <span class=\"searchmatch\">releases</span>. As of 7 May 2022. As of 28 September 2024. When a <span class=\"searchmatch\">release</span> transitions to <span class=\"searchmatch\">long</span>-<span class=\"searchmatch\">term</span> <span class=\"searchmatch\">support</span> phase",
+      "timestamp": "2026-09-25T01:30:02Z"
+     }
+    ]
+   }
+  }
+ }
+}

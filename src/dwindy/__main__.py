@@ -7,6 +7,7 @@ from .config import ConfigError, load_config
 from .capabilities import select as select_capabilities
 from .core import DwindyCore, TurnStarted
 from .evidence import Facts
+from .reach import decide as reach_decide, local_relevant as reach_local_relevant
 from .retrieval import RetrievalError
 
 
@@ -37,7 +38,12 @@ def terminal(core: DwindyCore, read=input, output=None, *, index=None, mode="off
                                             project_name=snapshot["name"] if snapshot else None)
             # Clock and calculator facts are computed per turn; host context does not apply here.
             computed = select_capabilities(user)
-            stream = core.chat(user, evidence=evidence, facts=Facts(tuple((f.name, f.text) for f in computed)))
+            # The terminal has no Reach provider: only the offline-honesty notice can apply.
+            snapshot = index.project_snapshot if index is not None else None
+            _, _, notice = reach_decide(user, "off", project_name=snapshot["name"] if snapshot else None,
+                                        local_relevant=reach_local_relevant(decision, evidence))
+            stream = core.chat(user, evidence=evidence, facts=Facts(tuple((f.name, f.text) for f in computed)),
+                               notice=notice)
             for event in stream:
                 if isinstance(event, TurnStarted):
                     retrieval = decision.metadata(event.retrieval) if decision else None

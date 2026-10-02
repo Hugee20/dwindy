@@ -1,0 +1,113 @@
+{
+ "case_id": "uk_prime_minister",
+ "message": "Who is the current Prime Minister of the United Kingdom?",
+ "capture_query": "current prime minister united kingdom",
+ "captured_at": "2026-10-02T01:54:02+00:00",
+ "provider": "wikipedia",
+ "synthetic": false,
+ "extracts": {
+  "url": "https://en.wikipedia.org/w/api.php?action=query&generator=search&gsrsearch=current+prime+minister+united+kingdom&gsrlimit=3&prop=extracts%7Cinfo&exintro=1&explaintext=1&exsentences=5&exlimit=3&inprop=url&format=json&formatversion=2",
+  "status": 200,
+  "body": {
+   "batchcomplete": true,
+   "continue": {
+    "gsroffset": 3,
+    "continue": "gsroffset||"
+   },
+   "query": {
+    "pages": [
+     {
+      "pageid": 24150,
+      "ns": 0,
+      "title": "Prime Minister of the United Kingdom",
+      "index": 2,
+      "extract": "The prime minister of the United Kingdom is the head of government of the United Kingdom. The prime minister advises the sovereign on the exercise of much of the royal prerogative, chairs the Cabinet, and selects its ministers. Modern prime ministers hold office by virtue of their ability to command the confidence of the House of Commons, so they are invariably members of Parliament. \nThe office of prime minister is not established by any statute or constitutional document, but exists only by long-established convention, whereby the monarch appoints as prime minister the person most likely to command the confidence of the House of Commons. In practice, this is the leader of the political party that holds the largest number of seats in the Commons.",
+      "contentmodel": "wikitext",
+      "pagelanguage": "en",
+      "pagelanguagehtmlcode": "en",
+      "pagelanguagedir": "ltr",
+      "touched": "2026-10-01T14:34:30Z",
+      "lastrevid": 1376685200,
+      "length": 132081,
+      "fullurl": "https://en.wikipedia.org/wiki/Prime_Minister_of_the_United_Kingdom",
+      "editurl": "https://en.wikipedia.org/w/index.php?title=Prime_Minister_of_the_United_Kingdom&action=edit",
+      "canonicalurl": "https://en.wikipedia.org/wiki/Prime_Minister_of_the_United_Kingdom"
+     },
+     {
+      "pageid": 2152548,
+      "ns": 0,
+      "title": "List of prime ministers of the United Kingdom",
+      "index": 1,
+      "extract": "The prime minister of the United Kingdom is the principal minister of the Crown of His Majesty's Government, and the head of the British Cabinet. \nThere is no specific date for when the office of prime minister first appeared, as the role was not created but rather evolved over time through a merger of duties. The term was regularly, if informally, used by Robert Walpole by the 1730s. It was used in the House of Commons as early as 1805, and it was certainly in parliamentary use by the 1880s, but did not become the official title until 1905, when Henry Campbell-Bannerman was prime minister.  \nHistorians generally consider Robert Walpole, who led the government of the Kingdom of Great Britain for over twenty years from 1721, to be the first prime minister.",
+      "contentmodel": "wikitext",
+      "pagelanguage": "en",
+      "pagelanguagehtmlcode": "en",
+      "pagelanguagedir": "ltr",
+      "touched": "2026-09-30T18:13:33Z",
+      "lastrevid": 1377050810,
+      "length": 148668,
+      "fullurl": "https://en.wikipedia.org/wiki/List_of_prime_ministers_of_the_United_Kingdom",
+      "editurl": "https://en.wikipedia.org/w/index.php?title=List_of_prime_ministers_of_the_United_Kingdom&action=edit",
+      "canonicalurl": "https://en.wikipedia.org/wiki/List_of_prime_ministers_of_the_United_Kingdom"
+     },
+     {
+      "pageid": 4693901,
+      "ns": 0,
+      "title": "Spouse of the prime minister of the United Kingdom",
+      "index": 3,
+      "extract": "To date, forty-seven women and three men have been married to a British prime minister in office. There have also been four bachelor and nine widower prime ministers; the last bachelor was Edward Heath (1970–1974) and the last widower was Ramsay MacDonald (1924, 1929–1935). The Duke of Grafton (1768–1770) and Boris Johnson (2019–2022) are the only prime ministers to have divorced and remarried while in office.\nThe current prime minister, Andy Burnham, has been married to Marie-France van Heel since 2000.",
+      "contentmodel": "wikitext",
+      "pagelanguage": "en",
+      "pagelanguagehtmlcode": "en",
+      "pagelanguagedir": "ltr",
+      "touched": "2026-09-30T16:29:34Z",
+      "lastrevid": 1373815564,
+      "length": 49791,
+      "fullurl": "https://en.wikipedia.org/wiki/Spouse_of_the_prime_minister_of_the_United_Kingdom",
+      "editurl": "https://en.wikipedia.org/w/index.php?title=Spouse_of_the_prime_minister_of_the_United_Kingdom&action=edit",
+      "canonicalurl": "https://en.wikipedia.org/wiki/Spouse_of_the_prime_minister_of_the_United_Kingdom"
+     }
+    ]
+   }
+  }
+ },
+ "snippets": {
+  "url": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=current+prime+minister+united+kingdom&srlimit=3&srprop=snippet%7Ctimestamp&format=json&formatversion=2",
+  "status": 200,
+  "body": {
+   "batchcomplete": true,
+   "continue": {
+    "sroffset": 3,
+    "continue": "-||"
+   },
+   "query": {
+    "searchinfo": {
+     "totalhits": 22009
+    },
+    "search": [
+     {
+      "ns": 0,
+      "title": "List of prime ministers of the United Kingdom",
+      "pageid": 2152548,
+      "snippet": "The <span class=\"searchmatch\">prime</span> <span class=\"searchmatch\">minister</span> of the <span class=\"searchmatch\">United</span> <span class=\"searchmatch\">Kingdom</span> is the principal <span class=\"searchmatch\">minister</span> of the Crown of His Majesty&#039;s Government, and the head of the British Cabinet. There",
+      "timestamp": "2026-09-27T17:42:19Z"
+     },
+     {
+      "ns": 0,
+      "title": "Prime Minister of the United Kingdom",
+      "pageid": 24150,
+      "snippet": "The <span class=\"searchmatch\">prime</span> <span class=\"searchmatch\">minister</span> of the <span class=\"searchmatch\">United</span> <span class=\"searchmatch\">Kingdom</span> is the head of government of the <span class=\"searchmatch\">United</span> <span class=\"searchmatch\">Kingdom</span>. The <span class=\"searchmatch\">prime</span> <span class=\"searchmatch\">minister</span> advises the sovereign on the exercise of much",
+      "timestamp": "2026-09-25T17:26:53Z"
+     },
+     {
+      "ns": 0,
+      "title": "Spouse of the prime minister of the United Kingdom",
+      "pageid": 4693901,
+      "snippet": "recent <span class=\"searchmatch\">prime</span> ministerial spouses, The Goldfish Bowl: Married to the <span class=\"searchmatch\">Prime</span> <span class=\"searchmatch\">Minister</span>, 1955–1997, in 2005. List of <span class=\"searchmatch\">prime</span> <span class=\"searchmatch\">ministers</span> of the <span class=\"searchmatch\">United</span> <span class=\"searchmatch\">Kingdom</span> Spouse",
+      "timestamp": "2026-09-08T02:42:12Z"
+     }
+    ]
+   }
+  }
+ }
+}

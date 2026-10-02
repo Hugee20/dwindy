@@ -1,0 +1,26 @@
+{"id": "android_version", "author": "seen", "role": "dev", "order": 1, "message": "What is the latest version of Android?", "expected": "answerable", "provenance": "reach_v2 dev"}
+{"id": "latest_python", "author": "seen", "role": "dev", "order": 2, "message": "What is the latest stable version of Python?", "expected": "answerable", "provenance": "reach_v2 dev"}
+{"id": "linux_kernel", "author": "seen", "role": "dev", "order": 3, "message": "What is the latest version of the Linux kernel?", "expected": "answerable", "provenance": "reach_v2 dev"}
+{"id": "uk_prime_minister", "author": "seen", "role": "dev", "order": 4, "message": "Who is the current Prime Minister of the United Kingdom?", "expected": "answerable", "provenance": "reach_v2 dev"}
+{"id": "un_secretary_general", "author": "seen", "role": "dev", "order": 5, "message": "Who is the current Secretary-General of the United Nations?", "expected": "answerable", "provenance": "reach_v2 dev"}
+{"id": "world_population", "author": "seen", "role": "dev", "order": 6, "message": "What is the current world population?", "expected": "answerable", "provenance": "reach_v2 dev"}
+{"id": "microsoft_ceo", "author": "seen", "role": "dev", "order": 7, "message": "Who is the current CEO of Microsoft?", "expected": "unanswerable", "provenance": "reach_v2 dev"}
+{"id": "nobel_peace", "author": "seen", "role": "dev", "order": 8, "message": "Who won the most recent Nobel Peace Prize?", "expected": "unanswerable", "provenance": "reach_v2 dev"}
+{"id": "world_cup", "author": "seen", "role": "dev", "order": 9, "message": "Who won the most recent FIFA World Cup?", "expected": "unanswerable", "provenance": "reach_v2 dev"}
+{"id": "ubuntu_lts", "author": "seen", "role": "dev", "order": 10, "message": "What is the latest long-term support release of Ubuntu?", "expected": "unanswerable", "provenance": "reach_v2 dev"}
+{"id": "ph_president", "author": "seen", "role": "dev", "order": 11, "message": "Who is the current President of the Philippines?", "expected": "unanswerable", "provenance": "reach_v2 dev"}
+{"id": "ph_economy_news", "author": "seen", "role": "dev", "order": 12, "message": "What is the latest news about the Philippine economy today?", "expected": "unanswerable", "provenance": "reach_v2 dev"}
+{"id": "france_president", "author": "seen", "role": "dev", "order": 13, "message": "Who is the current President of France?", "expected": "answerable", "provenance": "reach_v2 holdout"}
+{"id": "japan_prime_minister", "author": "seen", "role": "dev", "order": 14, "message": "Who is the current Prime Minister of Japan?", "expected": "answerable", "provenance": "reach_v2 holdout"}
+{"id": "nato_secretary_general", "author": "seen", "role": "dev", "order": 15, "message": "Who is the current Secretary-General of NATO?", "expected": "answerable", "provenance": "reach_v2 holdout"}
+{"id": "pope", "author": "seen", "role": "dev", "order": 16, "message": "Who is the current Pope?", "expected": "answerable", "provenance": "reach_v2 holdout"}
+{"id": "rust_version", "author": "seen", "role": "dev", "order": 17, "message": "What is the latest version of the Rust programming language?", "expected": "unanswerable", "provenance": "reach_v2 holdout"}
+{"id": "go_version", "author": "seen", "role": "dev", "order": 18, "message": "What is the latest version of the Go programming language?", "expected": "unanswerable", "provenance": "reach_v2 holdout"}
+{"id": "macos_version", "author": "seen", "role": "dev", "order": 19, "message": "What is the latest version of macOS?", "expected": "unanswerable", "provenance": "reach_v2 holdout"}
+{"id": "ballon_dor", "author": "seen", "role": "dev", "order": 20, "message": "Who won the most recent Ballon d'Or?", "expected": "unanswerable", "provenance": "reach_v2 holdout"}
+{"id": "best_picture", "author": "seen", "role": "dev", "order": 21, "message": "Who won the most recent Academy Award for Best Picture?", "expected": "unanswerable", "provenance": "reach_v2 holdout"}
+{"id": "pixel_phone", "author": "seen", "role": "dev", "order": 22, "message": "What is the newest Google Pixel phone?", "expected": "unanswerable", "provenance": "reach_v2 holdout"}
+{"id": "peso_rate", "author": "seen", "role": "dev", "order": 23, "message": "What is the peso to dollar exchange rate today?", "expected": "unanswerable", "provenance": "reach_v2 holdout"}
+{"id": "weekly_headlines", "author": "seen", "role": "dev", "order": 24, "message": "What were this week's top headlines?", "expected": "unanswerable", "provenance": "reach_v2 holdout"}
+{"id": "apple_stock", "author": "seen", "role": "dev", "order": 25, "message": "What is Apple's stock price today?", "expected": "unanswerable", "provenance": "reach_v2 holdout"}
+{"id": "leyte_news", "author": "seen", "role": "dev", "order": 26, "message": "What is the latest news about the Leyte provincial government?", "expected": "unanswerable", "provenance": "reach_v2 holdout"}

@@ -1,0 +1,96 @@
+{
+ "case_id": "apple_stock",
+ "message": "What is Apple's stock price today?",
+ "query": "apple stock price today",
+ "request_url": "https://en.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&generator=search&gsrsearch=apple+stock+price+today&gsrlimit=3&prop=extracts%7Cinfo&exintro=1&explaintext=1&exsentences=5&exlimit=3&inprop=url&list=search&srsearch=apple+stock+price+today&srlimit=3&srprop=snippet",
+ "status": 200,
+ "captured_at": "2026-10-02T04:17:41+00:00",
+ "provider": "wikipedia",
+ "synthetic": false,
+ "body": {
+  "batchcomplete": true,
+  "continue": {
+   "sroffset": 3,
+   "gsroffset": 3,
+   "continue": "gsroffset||"
+  },
+  "query": {
+   "pages": [
+    {
+     "pageid": 856,
+     "ns": 0,
+     "title": "Apple Inc.",
+     "index": 2,
+     "extract": "Apple Inc. is an American multinational technology company headquartered in Cupertino, California, in Silicon Valley, and known for consumer electronics, software and online services. Founded in 1976 as Apple Computer Company by Steve Jobs, Steve Wozniak and Ronald Wayne, the company was incorporated by Jobs and Wozniak as Apple Computer, Inc. the following year. Its current name was adopted in 2007 as the company expanded its focus from computers to consumer electronics.",
+     "contentmodel": "wikitext",
+     "pagelanguage": "en",
+     "pagelanguagehtmlcode": "en",
+     "pagelanguagedir": "ltr",
+     "touched": "2026-10-01T21:19:04Z",
+     "lastrevid": 1376757568,
+     "length": 272516,
+     "fullurl": "https://en.wikipedia.org/wiki/Apple_Inc.",
+     "editurl": "https://en.wikipedia.org/w/index.php?title=Apple_Inc.&action=edit",
+     "canonicalurl": "https://en.wikipedia.org/wiki/Apple_Inc."
+    },
+    {
+     "pageid": 43239050,
+     "ns": 0,
+     "title": "Apple Watch",
+     "index": 3,
+     "extract": "The Apple Watch is a line of smartwatches developed and marketed by Apple. It has fitness tracking, health-oriented capabilities, and wireless telecommunication, integrating with watchOS and other Apple products and services. The first Apple Watch was released in April 2015, and quickly became the world's best-selling wearable device. 4.2 million were sold in the second quarter of fiscal 2015, and more than 115 million people were estimated to use an Apple Watch as of December 2022. Apple has introduced a new generation of the Apple Watch with improved internal components each September – each labeled by Apple as a 'Series', with certain exceptions.",
+     "contentmodel": "wikitext",
+     "pagelanguage": "en",
+     "pagelanguagehtmlcode": "en",
+     "pagelanguagedir": "ltr",
+     "touched": "2026-10-01T14:28:40Z",
+     "lastrevid": 1376974366,
+     "length": 244826,
+     "fullurl": "https://en.wikipedia.org/wiki/Apple_Watch",
+     "editurl": "https://en.wikipedia.org/w/index.php?title=Apple_Watch&action=edit",
+     "canonicalurl": "https://en.wikipedia.org/wiki/Apple_Watch"
+    },
+    {
+     "pageid": 81854017,
+     "ns": 0,
+     "title": "2025–present global memory supply shortage",
+     "index": 1,
+     "extract": "A global computer memory supply shortage started in 2025 due to supply constraints and rapid price escalation in the semiconductor memory market, particularly affecting DRAM and NAND flash integrated circuits. This shortage has been referred to in media outlets as \"RAMmageddon\" or the \"RAMpocalypse\". Unlike the 2020–2023 global chip shortage, which stemmed primarily from pandemic-related supply chain disruptions from COVID-19, this shortage is driven by the intentional reallocation of manufacturing capacity toward highly profitable products intended for AI data center development, creating a scarcity of integrated circuits intended for the consumer and enterprise markets. According to a 2026 Kearney's PERLab analysis, the shortage is expected to last at least until 2030. In June 2026, Micron Technology CEO Sanjay Mehrotra expected the shortage to last through 2027, and supply to gradually improve by 2028.",
+     "contentmodel": "wikitext",
+     "pagelanguage": "en",
+     "pagelanguagehtmlcode": "en",
+     "pagelanguagedir": "ltr",
+     "touched": "2026-09-29T22:51:23Z",
+     "lastrevid": 1377538573,
+     "length": 35323,
+     "fullurl": "https://en.wikipedia.org/wiki/2025%E2%80%93present_global_memory_supply_shortage",
+     "editurl": "https://en.wikipedia.org/w/index.php?title=2025%E2%80%93present_global_memory_supply_shortage&action=edit",
+     "canonicalurl": "https://en.wikipedia.org/wiki/2025%E2%80%93present_global_memory_supply_shortage"
+    }
+   ],
+   "searchinfo": {
+    "totalhits": 2100
+   },
+   "search": [
+    {
+     "ns": 0,
+     "title": "2025–present global memory supply shortage",
+     "pageid": 81854017,
+     "snippet": "manufacture experienced <span class=\"searchmatch\">stock</span> <span class=\"searchmatch\">price</span> declines. <span class=\"searchmatch\">Prices</span> of memory kits also reduced in the following months, although still at inflated <span class=\"searchmatch\">prices</span>. In August 2026,"
+    },
+    {
+     "ns": 0,
+     "title": "Apple Inc.",
+     "pageid": 856,
+     "snippet": "the 1990s, <span class=\"searchmatch\">Apple</span> lost considerable market share to lower-<span class=\"searchmatch\">priced</span> Wintel computers, Intel-powered PC clones running Windows. By 1997, <span class=\"searchmatch\">Apple</span> was reporting"
+    },
+    {
+     "ns": 0,
+     "title": "Apple Watch",
+     "pageid": 43239050,
+     "snippet": "The <span class=\"searchmatch\">Apple</span> Watch is a line of smartwatches developed and marketed by <span class=\"searchmatch\">Apple</span>. It has fitness tracking, health-oriented capabilities, and wireless telecommunication"
+    }
+   ]
+  }
+ }
+}

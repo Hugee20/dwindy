@@ -552,7 +552,7 @@ Reach is built around a replaceable interface:
 SearchBackend.search(query)
 ```
 
-Provider selection is intentionally deferred until implementation and should weigh cost, privacy, rate limits, result quality, licensing, and whether a no-cost configuration is possible.
+Provider selection is intentionally deferred until implementation and should weigh cost, privacy, rate limits, result quality, licensing, and whether a no-cost configuration is possible. *M10:* Wikipedia (MediaWiki API) is the no-key reference backend; its coverage is narrower than general web search, and it rate-limits anonymous clients quickly.
 
 ---
 
@@ -779,7 +779,7 @@ M8  Context selection (routing foundation)
  │
 M9  Deterministic capabilities + host context
  │
-M10 Reach
+M10 Reach (external information)
  │   ├── privacy boundary
  │   └── web-grounding evaluation
  │
@@ -819,7 +819,7 @@ M12 Optimization + V1 hardening
 **M9: Deterministic capabilities and host context.** A small number of exact internal operations (a server-local clock; a calculator only if a frozen real-model measurement justifies it), plus authenticated, transient host-supplied context. *Amended at M9:* host context provides information, not actions; Dwindy-initiated host calls and host actions are deferred and would need separate evidence and a narrow, safe design.
 *Success:* appropriate tasks bypass unreliable language-model reasoning.
 
-**M10: Dwindy Reach.** Optional external retrieval behind `SearchBackend`, with the privacy contract enforced.
+**M10: Dwindy Reach.** Optional external retrieval behind `SearchBackend`, with the privacy contract enforced. *As evaluated:* freshness detection and an offline-honesty notice were adopted. The deployment-gated Wikipedia backend (fail-closed minimization, transparent metadata, snippet evidence) was built and frozen-evaluated but **not adopted**: about 9 s of added prefill per answer, misattributed sources, and more unsupported current claims than offline honesty. H1 compact selection was subsequently rejected by its frozen holdout recall gate. H2 is designed/prepared, but execution is deferred because the reference network cannot currently satisfy its connectivity requirements; it has neither failed nor been adopted. Online Reach remains disabled/not shipped, and the prepared H2 evaluation remains resumable without redesign. See [external information](REACH.md) and [M10 validation](M10_VALIDATION.md).
 *Success:* Dwindy answers selected freshness-dependent questions while remaining fully usable with Reach disabled, and Reach OFF performs no web retrieval.
 
 **M11: Evidence-aware response policy.** Behavior built on the existing provenance trail.

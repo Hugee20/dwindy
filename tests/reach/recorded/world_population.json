@@ -1,0 +1,113 @@
+{
+ "case_id": "world_population",
+ "message": "What is the current world population?",
+ "capture_query": "current world population",
+ "captured_at": "2026-10-02T01:54:16+00:00",
+ "provider": "wikipedia",
+ "synthetic": false,
+ "extracts": {
+  "url": "https://en.wikipedia.org/w/api.php?action=query&generator=search&gsrsearch=current+world+population&gsrlimit=3&prop=extracts%7Cinfo&exintro=1&explaintext=1&exsentences=5&exlimit=3&inprop=url&format=json&formatversion=2",
+  "status": 200,
+  "body": {
+   "batchcomplete": true,
+   "continue": {
+    "gsroffset": 3,
+    "continue": "gsroffset||"
+   },
+   "query": {
+    "pages": [
+     {
+      "pageid": 69058,
+      "ns": 0,
+      "title": "List of countries and dependencies by population",
+      "index": 2,
+      "extract": "As of 2026, the most populous country in the world is India, followed closely by China, with both exceeding 1.4 billion.",
+      "contentmodel": "wikitext",
+      "pagelanguage": "en",
+      "pagelanguagehtmlcode": "en",
+      "pagelanguagedir": "ltr",
+      "touched": "2026-10-02T01:03:57Z",
+      "lastrevid": 1377761777,
+      "length": 133874,
+      "fullurl": "https://en.wikipedia.org/wiki/List_of_countries_and_dependencies_by_population",
+      "editurl": "https://en.wikipedia.org/w/index.php?title=List_of_countries_and_dependencies_by_population&action=edit",
+      "canonicalurl": "https://en.wikipedia.org/wiki/List_of_countries_and_dependencies_by_population"
+     },
+     {
+      "pageid": 19017269,
+      "ns": 0,
+      "title": "World population",
+      "index": 1,
+      "extract": "In world demographics, the world population is the total number of humans currently alive. It was estimated by the United Nations to have exceeded 8 billion (8,000,000,000) on November 15, 2022. It took around 300,000 years of human prehistory and history for the human population to reach a billion and only 218 more years from there to reach 8 billion. As of 2026, the world population is approximately 8.3 billion. However, this figure is only a very rough approximation (see § History).",
+      "contentmodel": "wikitext",
+      "pagelanguage": "en",
+      "pagelanguagehtmlcode": "en",
+      "pagelanguagedir": "ltr",
+      "touched": "2026-10-01T14:34:52Z",
+      "lastrevid": 1374461423,
+      "length": 143041,
+      "fullurl": "https://en.wikipedia.org/wiki/World_population",
+      "editurl": "https://en.wikipedia.org/w/index.php?title=World_population&action=edit",
+      "canonicalurl": "https://en.wikipedia.org/wiki/World_population"
+     },
+     {
+      "pageid": 20928488,
+      "ns": 0,
+      "title": "List of countries by past and projected future population",
+      "index": 3,
+      "extract": "This article contains a list of countries by past and projected future population. This assumes that countries stay constant in the unforeseeable future, and does not take into account possible border changes.",
+      "contentmodel": "wikitext",
+      "pagelanguage": "en",
+      "pagelanguagehtmlcode": "en",
+      "pagelanguagedir": "ltr",
+      "touched": "2026-10-02T01:03:59Z",
+      "lastrevid": 1376095736,
+      "length": 207001,
+      "fullurl": "https://en.wikipedia.org/wiki/List_of_countries_by_past_and_projected_future_population",
+      "editurl": "https://en.wikipedia.org/w/index.php?title=List_of_countries_by_past_and_projected_future_population&action=edit",
+      "canonicalurl": "https://en.wikipedia.org/wiki/List_of_countries_by_past_and_projected_future_population"
+     }
+    ]
+   }
+  }
+ },
+ "snippets": {
+  "url": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=current+world+population&srlimit=3&srprop=snippet%7Ctimestamp&format=json&formatversion=2",
+  "status": 200,
+  "body": {
+   "batchcomplete": true,
+   "continue": {
+    "sroffset": 3,
+    "continue": "-||"
+   },
+   "query": {
+    "searchinfo": {
+     "totalhits": 80043
+    },
+    "search": [
+     {
+      "ns": 0,
+      "title": "World population",
+      "pageid": 19017269,
+      "snippet": "In <span class=\"searchmatch\">world</span> demographics, the <span class=\"searchmatch\">world</span> <span class=\"searchmatch\">population</span> is the total number of humans <span class=\"searchmatch\">currently</span> alive. It was estimated by the United Nations to have exceeded 8 billion",
+      "timestamp": "2026-09-12T04:58:46Z"
+     },
+     {
+      "ns": 0,
+      "title": "List of countries and dependencies by population",
+      "pageid": 69058,
+      "snippet": "3166-1. Also given in a percentage is each country&#039;s <span class=\"searchmatch\">population</span> compared with the <span class=\"searchmatch\">world</span> <span class=\"searchmatch\">population</span>, which the United Nations estimated at 8.232 billion",
+      "timestamp": "2026-10-01T01:03:44Z"
+     },
+     {
+      "ns": 0,
+      "title": "List of countries by past and projected future population",
+      "pageid": 20928488,
+      "snippet": "by <span class=\"searchmatch\">population</span> in 2015 List of largest empires by share of <span class=\"searchmatch\">world</span> <span class=\"searchmatch\">population</span> <span class=\"searchmatch\">World</span> <span class=\"searchmatch\">population</span> Estimates of historical <span class=\"searchmatch\">world</span> <span class=\"searchmatch\">population</span> Human <span class=\"searchmatch\">population</span> projections",
+      "timestamp": "2026-09-22T01:39:48Z"
+     }
+    ]
+   }
+  }
+ }
+}

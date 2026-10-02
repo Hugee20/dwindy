@@ -1,0 +1,98 @@
+{
+ "case_id": "pixel_phone",
+ "message": "What is the newest Google Pixel phone?",
+ "query": "newest google pixel phone",
+ "request_url": "https://en.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&generator=search&gsrsearch=newest+google+pixel+phone&gsrlimit=3&prop=extracts%7Cinfo&exintro=1&explaintext=1&exsentences=5&exlimit=3&inprop=url&list=search&srsearch=newest+google+pixel+phone&srlimit=3&srprop=snippet",
+ "status": 200,
+ "captured_at": "2026-10-02T04:17:13+00:00",
+ "provider": "wikipedia",
+ "synthetic": false,
+ "body": {
+  "batchcomplete": true,
+  "continue": {
+   "sroffset": 3,
+   "gsroffset": 3,
+   "continue": "gsroffset||"
+  },
+  "query": {
+   "pages": [
+    {
+     "pageid": 12610483,
+     "ns": 0,
+     "title": "Android (operating system)",
+     "index": 3,
+     "extract": "Android is an operating system developed by Google, designed primarily for smartphones and tablets (touchscreen-based mobile devices originally; later for other devices, such as TVs and PCs), based on a modified version of the Linux kernel and other open-source software. First released in 2008, Android is the world's most widely used operating system with 3.9 billion users, and the most used operating system for smartphones. The latest version, released on June 16, 2026, is Android 17.\nAt its core, the operating system is known as the Android Open Source Project (AOSP), was originally only made for a smartphone, and is free and open-source software (FOSS) primarily licensed under the Apache License. However, most devices run the proprietary Android open-core version developed by Google, which ships with additional proprietary closed-source software pre-installed, most notably Google Mobile Services (GMS), which includes core apps such as Google Chrome, the digital distribution platform Google Play, and the associated Google Play Services development platform.",
+     "contentmodel": "wikitext",
+     "pagelanguage": "en",
+     "pagelanguagehtmlcode": "en",
+     "pagelanguagedir": "ltr",
+     "touched": "2026-10-01T14:34:49Z",
+     "lastrevid": 1377019996,
+     "length": 395717,
+     "fullurl": "https://en.wikipedia.org/wiki/Android_(operating_system)",
+     "editurl": "https://en.wikipedia.org/w/index.php?title=Android_(operating_system)&action=edit",
+     "canonicalurl": "https://en.wikipedia.org/wiki/Android_(operating_system)"
+    },
+    {
+     "pageid": 30752816,
+     "ns": 0,
+     "title": "Android version history",
+     "index": 2,
+     "extract": "The version history of the Android mobile operating system began with the public release of its first beta on November 5, 2007. The first commercial version, Android 1.0, was released on September 23, 2008. The operating system has been developed by Google on a yearly schedule since at least 2011. New major releases are usually announced at Google I/O in May, along with beta testing, with the stable version released to the public between August and October. From 2025, new versions were announced in the first quarter and shipped in the second quarter.",
+     "contentmodel": "wikitext",
+     "pagelanguage": "en",
+     "pagelanguagehtmlcode": "en",
+     "pagelanguagedir": "ltr",
+     "touched": "2026-09-29T19:48:17Z",
+     "lastrevid": 1374336735,
+     "length": 233346,
+     "fullurl": "https://en.wikipedia.org/wiki/Android_version_history",
+     "editurl": "https://en.wikipedia.org/w/index.php?title=Android_version_history&action=edit",
+     "canonicalurl": "https://en.wikipedia.org/wiki/Android_version_history"
+    },
+    {
+     "pageid": 73363598,
+     "ns": 0,
+     "title": "Google Gemini",
+     "index": 1,
+     "extract": "Gemini, also known as Google Gemini (formerly known as Bard), is a generative artificial intelligence chatbot and virtual assistant developed by Google. It is powered by the family of large language models (LLMs) of the same name, after previously being based on LaMDA and PaLM 2.\nGoogle Gemini is the second largest generative artificial intelligence chatbot worldwide according to Statcounter, with OpenAI's ChatGPT being the first.\nThe Gemini architecture is trained natively on multiple data types, allowing the models to process and generate text, computer code, images, audio, and video simultaneously. Google distributes the technology in varying capacities, ranging from efficient on-device versions (\"Nano\") and cost-effective, high-throughput variants (\"Flash\") to high-compute models designed for complex reasoning (\"Pro\" and \"Ultra\").",
+     "contentmodel": "wikitext",
+     "pagelanguage": "en",
+     "pagelanguagehtmlcode": "en",
+     "pagelanguagedir": "ltr",
+     "touched": "2026-10-02T03:43:13Z",
+     "lastrevid": 1377792079,
+     "length": 152699,
+     "fullurl": "https://en.wikipedia.org/wiki/Google_Gemini",
+     "editurl": "https://en.wikipedia.org/w/index.php?title=Google_Gemini&action=edit",
+     "canonicalurl": "https://en.wikipedia.org/wiki/Google_Gemini"
+    }
+   ],
+   "searchinfo": {
+    "totalhits": 104,
+    "suggestion": "newell google pixel phone",
+    "suggestionsnippet": "<em>newell</em> google pixel phone"
+   },
+   "search": [
+    {
+     "ns": 0,
+     "title": "Google Gemini",
+     "pageid": 73363598,
+     "snippet": "February 12, 2023. Bradshaw, Kyle (May 4, 2023). &quot;<span class=\"searchmatch\">Google</span> working to bring Bard AI to <span class=\"searchmatch\">Pixel</span> <span class=\"searchmatch\">phones</span> as a homescreen widget&quot;. 9to5Google. Archived from"
+    },
+    {
+     "ns": 0,
+     "title": "Android version history",
+     "pageid": 30752816,
+     "snippet": "Android 16 was released on November 19, 2024. <span class=\"searchmatch\">Google</span> released the stable version on June 10, 2025 for <span class=\"searchmatch\">Pixel</span> <span class=\"searchmatch\">phones</span>. Android 17 is the seventeenth major release"
+    },
+    {
+     "ns": 0,
+     "title": "Android (operating system)",
+     "pageid": 12610483,
+     "snippet": " such as the <span class=\"searchmatch\">Google</span> Assistant, before wider rollout. The <span class=\"searchmatch\">Pixel</span> <span class=\"searchmatch\">phones</span> replaced the Nexus series, with a new generation of <span class=\"searchmatch\">Pixel</span> <span class=\"searchmatch\">phones</span> launched in October"
+    }
+   ]
+  }
+ }
+}

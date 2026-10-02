@@ -1,0 +1,113 @@
+{
+ "case_id": "microsoft_ceo",
+ "message": "Who is the current CEO of Microsoft?",
+ "capture_query": "current ceo microsoft",
+ "captured_at": "2026-10-02T01:53:48+00:00",
+ "provider": "wikipedia",
+ "synthetic": false,
+ "extracts": {
+  "url": "https://en.wikipedia.org/w/api.php?action=query&generator=search&gsrsearch=current+ceo+microsoft&gsrlimit=3&prop=extracts%7Cinfo&exintro=1&explaintext=1&exsentences=5&exlimit=3&inprop=url&format=json&formatversion=2",
+  "status": 200,
+  "body": {
+   "batchcomplete": true,
+   "continue": {
+    "gsroffset": 3,
+    "continue": "gsroffset||"
+   },
+   "query": {
+    "pages": [
+     {
+      "pageid": 19001,
+      "ns": 0,
+      "title": "Microsoft",
+      "index": 1,
+      "extract": "Microsoft Corporation is an American multinational technology company headquartered in Redmond, Washington. The company became influential in the rise of personal computers through software like Windows and has since expanded into areas such as Internet services, cloud computing, artificial intelligence, video gaming, and more. A Big Tech company, Microsoft is the largest software company by revenue, one of the most valuable public companies, and one of the most valuable brands globally.\nFounded in 1975 by Bill Gates and Paul Allen to market BASIC interpreters for the Altair 8800, Microsoft rose to dominate the PC operating system market with MS-DOS in the mid-1980s, followed by Windows. The company's 1986 initial public offering and the subsequent rise in its share price created three billionaires and an estimated 12,000 millionaires among Microsoft employees.",
+      "contentmodel": "wikitext",
+      "pagelanguage": "en",
+      "pagelanguagehtmlcode": "en",
+      "pagelanguagedir": "ltr",
+      "touched": "2026-10-01T14:34:30Z",
+      "lastrevid": 1377088612,
+      "length": 232610,
+      "fullurl": "https://en.wikipedia.org/wiki/Microsoft",
+      "editurl": "https://en.wikipedia.org/w/index.php?title=Microsoft&action=edit",
+      "canonicalurl": "https://en.wikipedia.org/wiki/Microsoft"
+     },
+     {
+      "pageid": 69821945,
+      "ns": 0,
+      "title": "Xbox (division)",
+      "index": 2,
+      "extract": "Xbox (stylized in all caps), formerly Microsoft Gaming, is the video game and digital entertainment division of Microsoft, an American multinational technology company based in Redmond, Washington. Established in 2022, it produces the namesake video game consoles and services, in addition to overseeing production and sales. Its six development and publishing labels consist of: Xbox Game Studios, Mojang Studios, King, Bethesda Softworks (publishing label of ZeniMax Media), Activision and Blizzard Entertainment (publishing labels of Activision Blizzard).\nPrior to 2022, Microsoft had several different video game-related product lines, including Xbox hardware, Xbox operations, and game development studios. Microsoft Gaming was created with the announcement of Microsoft's plans to acquire Activision Blizzard to unify all of Microsoft's gaming groups within a single division.",
+      "contentmodel": "wikitext",
+      "pagelanguage": "en",
+      "pagelanguagehtmlcode": "en",
+      "pagelanguagedir": "ltr",
+      "touched": "2026-10-01T12:13:02Z",
+      "lastrevid": 1377730382,
+      "length": 155892,
+      "fullurl": "https://en.wikipedia.org/wiki/Xbox_(division)",
+      "editurl": "https://en.wikipedia.org/w/index.php?title=Xbox_(division)&action=edit",
+      "canonicalurl": "https://en.wikipedia.org/wiki/Xbox_(division)"
+     },
+     {
+      "pageid": 69835706,
+      "ns": 0,
+      "title": "Acquisition of Activision Blizzard by Microsoft",
+      "index": 3,
+      "extract": "On January 18, 2022, Microsoft announced its intent to acquire Activision Blizzard for $68.7 billion. The acquisition was completed on October 13, 2023, with its total cost amounting to $75.4 billion. Under the terms of the agreement, Microsoft brought Activision Blizzard under its Microsoft Gaming business unit as a sibling division to Xbox Game Studios and ZeniMax Media. With it, Microsoft gained ownership of several franchises under Activision, Blizzard Entertainment, and King, including Call of Duty, Crash Bandicoot, Spyro, Warcraft, StarCraft, Diablo, Overwatch, and Candy Crush. It is the largest video game acquisition by transaction value in history.",
+      "contentmodel": "wikitext",
+      "pagelanguage": "en",
+      "pagelanguagehtmlcode": "en",
+      "pagelanguagedir": "ltr",
+      "touched": "2026-10-01T21:19:07Z",
+      "lastrevid": 1373845659,
+      "length": 107455,
+      "fullurl": "https://en.wikipedia.org/wiki/Acquisition_of_Activision_Blizzard_by_Microsoft",
+      "editurl": "https://en.wikipedia.org/w/index.php?title=Acquisition_of_Activision_Blizzard_by_Microsoft&action=edit",
+      "canonicalurl": "https://en.wikipedia.org/wiki/Acquisition_of_Activision_Blizzard_by_Microsoft"
+     }
+    ]
+   }
+  }
+ },
+ "snippets": {
+  "url": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=current+ceo+microsoft&srlimit=3&srprop=snippet%7Ctimestamp&format=json&formatversion=2",
+  "status": 200,
+  "body": {
+   "batchcomplete": true,
+   "continue": {
+    "sroffset": 3,
+    "continue": "-||"
+   },
+   "query": {
+    "searchinfo": {
+     "totalhits": 3387
+    },
+    "search": [
+     {
+      "ns": 0,
+      "title": "Microsoft",
+      "pageid": 19001,
+      "snippet": "000 millionaires among <span class=\"searchmatch\">Microsoft</span> employees. Since the 1990s, it has increasingly diversified its business. Steve Ballmer replaced Gates as <span class=\"searchmatch\">CEO</span> in 2000. He oversaw",
+      "timestamp": "2026-09-27T21:01:16Z"
+     },
+     {
+      "ns": 0,
+      "title": "Xbox (division)",
+      "pageid": 69821945,
+      "snippet": "hardware remained a separate division within <span class=\"searchmatch\">Microsoft</span>. After Steve Ballmer&#039;s departure as <span class=\"searchmatch\">Microsoft&#039;s</span> <span class=\"searchmatch\">CEO</span>, <span class=\"searchmatch\">Microsoft</span> investors attempted to exert pressure on",
+      "timestamp": "2026-09-30T21:02:11Z"
+     },
+     {
+      "ns": 0,
+      "title": "Acquisition of Activision Blizzard by Microsoft",
+      "pageid": 69835706,
+      "snippet": "Hexen: Beyond Heretic. Activision Blizzard&#039;s <span class=\"searchmatch\">CEO</span>, Bobby Kotick, stated that he, Spencer, and <span class=\"searchmatch\">Microsoft&#039;s</span> <span class=\"searchmatch\">CEO</span> Satya Nadella have had discussions in 2021",
+      "timestamp": "2026-09-08T07:46:29Z"
+     }
+    ]
+   }
+  }
+ }
+}

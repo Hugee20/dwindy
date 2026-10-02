@@ -1,0 +1,96 @@
+{
+ "case_id": "peso_rate",
+ "message": "What is the peso to dollar exchange rate today?",
+ "query": "peso dollar exchange rate today",
+ "request_url": "https://en.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&generator=search&gsrsearch=peso+dollar+exchange+rate+today&gsrlimit=3&prop=extracts%7Cinfo&exintro=1&explaintext=1&exsentences=5&exlimit=3&inprop=url&list=search&srsearch=peso+dollar+exchange+rate+today&srlimit=3&srprop=snippet",
+ "status": 200,
+ "captured_at": "2026-10-02T04:17:27+00:00",
+ "provider": "wikipedia",
+ "synthetic": false,
+ "body": {
+  "batchcomplete": true,
+  "continue": {
+   "sroffset": 3,
+   "gsroffset": 3,
+   "continue": "gsroffset||"
+  },
+  "query": {
+   "pages": [
+    {
+     "pageid": 171898,
+     "ns": 0,
+     "title": "Chilean peso",
+     "index": 2,
+     "extract": "The peso is the currency of Chile. The current peso has circulated since 1975, with a previous version circulating between 1817 and 1960. Its symbol is defined as a letter S with either one or two vertical bars superimposed prefixing the amount, $ or ; the single-bar symbol, available in most modern text systems, is almost always used. Both of these symbols are used by many currencies, most notably the United States dollar, and may be ambiguous without clarification, such as CLP$ or US$. The ISO 4217 code for the present peso is CLP. It was divided into 100 centavos until this subdivision was eliminated by law effective 1 January 1984, after inflation had rendered the centavo valueless, requiring accounts to be kept in whole pesos thereafter.",
+     "contentmodel": "wikitext",
+     "pagelanguage": "en",
+     "pagelanguagehtmlcode": "en",
+     "pagelanguagedir": "ltr",
+     "touched": "2026-09-30T06:19:49Z",
+     "lastrevid": 1374169895,
+     "length": 43265,
+     "fullurl": "https://en.wikipedia.org/wiki/Chilean_peso",
+     "editurl": "https://en.wikipedia.org/w/index.php?title=Chilean_peso&action=edit",
+     "canonicalurl": "https://en.wikipedia.org/wiki/Chilean_peso"
+    },
+    {
+     "pageid": 180311,
+     "ns": 0,
+     "title": "Exchange rate",
+     "index": 3,
+     "extract": "In  finance, an exchange rate is the rate at which one currency will be exchanged for another currency. Currencies are most commonly national currencies, but may be sub-national as in the case of Hong Kong or supra-national as in the case of the euro.\nThe exchange rate is also regarded as the value of one country's currency in relation to another currency. For example, an interbank exchange rate of 141 Japanese yen  to the United States dollar means that ¥141 will be exchanged for US$1 or that US$1 will be exchanged for ¥141. In this case it is said that the price of a dollar in relation to yen is ¥141, or equivalently that the price of a yen in relation to dollars is $1/141.",
+     "contentmodel": "wikitext",
+     "pagelanguage": "en",
+     "pagelanguagehtmlcode": "en",
+     "pagelanguagedir": "ltr",
+     "touched": "2026-09-30T16:25:43Z",
+     "lastrevid": 1375086784,
+     "length": 45814,
+     "fullurl": "https://en.wikipedia.org/wiki/Exchange_rate",
+     "editurl": "https://en.wikipedia.org/w/index.php?title=Exchange_rate&action=edit",
+     "canonicalurl": "https://en.wikipedia.org/wiki/Exchange_rate"
+    },
+    {
+     "pageid": 407877,
+     "ns": 0,
+     "title": "Argentine peso",
+     "index": 1,
+     "extract": "The peso (established as the peso convertible;  several older currencies were also named peso) is the currency of Argentina since 1992, identified within Argentina by the symbol $ preceding the amount in the same way as many countries using peso or dollar currencies. It is subdivided into 100 centavos, but with 10 pesos being worth about 1 US cent in early 2025, smaller denominations are not issued or in normal use. Its ISO 4217 code is ARS. It replaced the austral at a rate of 10,000 australes to one peso.\nArgentine currency has experienced severe inflation, with periods of hyperinflation, since the mid-20th century, with periodic change of the currency valuation to a new version at a rate ranging from 100:1 to 10,000:1. A new peso introduced in 1992, officially the peso convertible de curso legal, was worth 10,000,000,000,000 (ten trillion) pesos moneda nacional, the currency in use until 1970.",
+     "contentmodel": "wikitext",
+     "pagelanguage": "en",
+     "pagelanguagehtmlcode": "en",
+     "pagelanguagedir": "ltr",
+     "touched": "2026-09-29T18:59:05Z",
+     "lastrevid": 1369352709,
+     "length": 57875,
+     "fullurl": "https://en.wikipedia.org/wiki/Argentine_peso",
+     "editurl": "https://en.wikipedia.org/w/index.php?title=Argentine_peso&action=edit",
+     "canonicalurl": "https://en.wikipedia.org/wiki/Argentine_peso"
+    }
+   ],
+   "searchinfo": {
+    "totalhits": 313
+   },
+   "search": [
+    {
+     "ns": 0,
+     "title": "Argentine peso",
+     "pageid": 407877,
+     "snippet": "the current <span class=\"searchmatch\">peso</span> was introduced in the Convertibility plan of 1991. The official <span class=\"searchmatch\">exchange</span> <span class=\"searchmatch\">rate</span> for the United States <span class=\"searchmatch\">dollar</span> valued the <span class=\"searchmatch\">peso</span> convertible"
+    },
+    {
+     "ns": 0,
+     "title": "Chilean peso",
+     "pageid": 171898,
+     "snippet": "<span class=\"searchmatch\">pesos</span> per <span class=\"searchmatch\">dollar</span> within two months before the currency was allowed to float; by 1984 the <span class=\"searchmatch\">exchange</span> <span class=\"searchmatch\">rate</span> had reached approximately 100 <span class=\"searchmatch\">pesos</span> per <span class=\"searchmatch\">dollar</span>"
+    },
+    {
+     "ns": 0,
+     "title": "Exchange rate",
+     "pageid": 180311,
+     "snippet": "<span class=\"searchmatch\">dollars</span> is $1/141. The <span class=\"searchmatch\">exchange</span> <span class=\"searchmatch\">rate</span> may be quoted as a ratio, for instance, USD/EUR might be equal to 0.8625. Each country determines the <span class=\"searchmatch\">exchange</span> rate"
+    }
+   ]
+  }
+ }
+}

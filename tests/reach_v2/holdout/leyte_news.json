@@ -1,0 +1,98 @@
+{
+ "case_id": "leyte_news",
+ "message": "What is the latest news about the Leyte provincial government?",
+ "query": "latest news about leyte provincial government",
+ "request_url": "https://en.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&generator=search&gsrsearch=latest+news+about+leyte+provincial+government&gsrlimit=3&prop=extracts%7Cinfo&exintro=1&explaintext=1&exsentences=5&exlimit=3&inprop=url&list=search&srsearch=latest+news+about+leyte+provincial+government&srlimit=3&srprop=snippet",
+ "status": 200,
+ "captured_at": "2026-10-02T04:17:48+00:00",
+ "provider": "wikipedia",
+ "synthetic": false,
+ "body": {
+  "batchcomplete": true,
+  "continue": {
+   "sroffset": 3,
+   "gsroffset": 3,
+   "continue": "gsroffset||"
+  },
+  "query": {
+   "pages": [
+    {
+     "pageid": 2155954,
+     "ns": 0,
+     "title": "Sogod, Southern Leyte",
+     "index": 1,
+     "extract": "Sogod (IPA:Tagalog pronunciation: [ˈsuɡud]), officially the Municipality of Sogod (Cebuano: Lungsod sa Sogod; Tagalog: Bayan ng Sogod), is a 1st income class municipality in the province of Southern Leyte, Philippines. According to the 2024 census, it has a population of 48,815 people.\nSogod is located along the Southern Leyte section of the Pan-Philippine Highway, 126 kilometers (78 miles) south of Tacloban City, the regional center of Eastern Visayas. Rugged mountains envelop most of the town's northern terrain with numerous river systems flowing throughout the southern lowlands. Known as the center of trade, commerce and industry in the south-central region of Leyte, Sogod is also home to Southern Leyte State University (SLSU) Main Campus and Saint Thomas Aquinas College (STAC).",
+     "contentmodel": "wikitext",
+     "pagelanguage": "en",
+     "pagelanguagehtmlcode": "en",
+     "pagelanguagedir": "ltr",
+     "touched": "2026-10-01T14:40:15Z",
+     "lastrevid": 1375410890,
+     "length": 205595,
+     "fullurl": "https://en.wikipedia.org/wiki/Sogod,_Southern_Leyte",
+     "editurl": "https://en.wikipedia.org/w/index.php?title=Sogod,_Southern_Leyte&action=edit",
+     "canonicalurl": "https://en.wikipedia.org/wiki/Sogod,_Southern_Leyte"
+    },
+    {
+     "pageid": 23009594,
+     "ns": 0,
+     "title": "List of political families in the Philippines",
+     "index": 2,
+     "extract": "This is a list of notable members of political families of the Philippines and their areas of influence. Names in bold indicate the individual was or is a President or Vice President of the Philippines.\nThe Philippine political arena is mainly arranged and operated by families or alliances of families, rather than being organized around political parties.",
+     "contentmodel": "wikitext",
+     "pagelanguage": "en",
+     "pagelanguagehtmlcode": "en",
+     "pagelanguagedir": "ltr",
+     "touched": "2026-09-30T16:36:05Z",
+     "lastrevid": 1377573452,
+     "length": 300739,
+     "fullurl": "https://en.wikipedia.org/wiki/List_of_political_families_in_the_Philippines",
+     "editurl": "https://en.wikipedia.org/w/index.php?title=List_of_political_families_in_the_Philippines&action=edit",
+     "canonicalurl": "https://en.wikipedia.org/wiki/List_of_political_families_in_the_Philippines"
+    },
+    {
+     "pageid": 80804811,
+     "ns": 0,
+     "title": "Flood control projects scandal in the Philippines",
+     "index": 3,
+     "extract": "The flood control projects scandal in the Philippines involves allegations of corruption, mismanagement, and irregularities in government-funded flood control projects in the country. In 2025, it gained national attention after President Bongbong Marcos highlighted alleged anomalies in flood control projects during the 2025 State of the Nation Address. This was followed by inquiries in both chambers of Congress, the creation of the Independent Commission for Infrastructure (ICI), and widespread anti-corruption protests. The scandal concerns billions of pesos in government funding for flood control projects, with allegations of ghost projects, substandard construction, and the repeated awarding of contracts to a small group of contractors.",
+     "contentmodel": "wikitext",
+     "pagelanguage": "en",
+     "pagelanguagehtmlcode": "en",
+     "pagelanguagedir": "ltr",
+     "touched": "2026-09-30T18:13:45Z",
+     "lastrevid": 1375581990,
+     "length": 285674,
+     "fullurl": "https://en.wikipedia.org/wiki/Flood_control_projects_scandal_in_the_Philippines",
+     "editurl": "https://en.wikipedia.org/w/index.php?title=Flood_control_projects_scandal_in_the_Philippines&action=edit",
+     "canonicalurl": "https://en.wikipedia.org/wiki/Flood_control_projects_scandal_in_the_Philippines"
+    }
+   ],
+   "searchinfo": {
+    "totalhits": 88,
+    "suggestion": "largest news about leyte provincial government",
+    "suggestionsnippet": "<em>largest</em> news about leyte provincial government"
+   },
+   "search": [
+    {
+     "ns": 0,
+     "title": "Sogod, Southern Leyte",
+     "pageid": 2155954,
+     "snippet": "patron of the new district. The motion was approved by the <span class=\"searchmatch\">provincial</span> <span class=\"searchmatch\">government</span> of Southern <span class=\"searchmatch\">Leyte</span> in 1992. With an area of eleven (11) hectares, barangay"
+    },
+    {
+     "ns": 0,
+     "title": "List of political families in the Philippines",
+     "pageid": 23009594,
+     "snippet": "Loreto-Go — congresswoman, <span class=\"searchmatch\">Leyte</span> 5th District (1998–2001) Jose Veloso Loreto — mayor of Baybay (1980–1986), member of <span class=\"searchmatch\">Leyte</span> <span class=\"searchmatch\">Provincial</span> Board Asuncion Petilla"
+    },
+    {
+     "ns": 0,
+     "title": "Flood control projects scandal in the Philippines",
+     "pageid": 80804811,
+     "snippet": "million in 2022 to ₱8.72 billion in 2025. In Romualdez&#039;s home province of <span class=\"searchmatch\">Leyte</span>, flood-control projects rose from ₱2.17 billion to ₱10.06 billion. In Romualdez&#039;s"
+    }
+   ]
+  }
+ }
+}

@@ -1,0 +1,96 @@
+{
+ "case_id": "france_president",
+ "message": "Who is the current President of France?",
+ "query": "current president france",
+ "request_url": "https://en.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&generator=search&gsrsearch=current+president+france&gsrlimit=3&prop=extracts%7Cinfo&exintro=1&explaintext=1&exsentences=5&exlimit=3&inprop=url&list=search&srsearch=current+president+france&srlimit=3&srprop=snippet",
+ "status": 200,
+ "captured_at": "2026-10-02T04:16:52+00:00",
+ "provider": "wikipedia",
+ "synthetic": false,
+ "body": {
+  "batchcomplete": true,
+  "continue": {
+   "sroffset": 3,
+   "gsroffset": 3,
+   "continue": "gsroffset||"
+  },
+  "query": {
+   "pages": [
+    {
+     "pageid": 24899,
+     "ns": 0,
+     "title": "President of France",
+     "index": 1,
+     "extract": "The president of France (French: Président de la France), officially the president of the French Republic (French: Président de la République française) or president of the Republic (Président de la République), is the executive head of state of France, and the commander-in-chief of the French Armed Forces. As the presidency is the supreme magistracy of the country, the position is the highest office in France. The powers, functions and duties of prior presidential offices, in addition to their relation with the prime minister and government of France, have over time differed with the various constitutional documents since the Second Republic.\nThe president of France is the ex officio co-prince of Andorra, grand master of the Legion of Honour and of the National Order of Merit, and protector of the Institut de France in Paris. The officeholder is also honorary proto-canon of the Archbasilica of Saint John Lateran in Rome, although some have rejected the title in the past.",
+     "contentmodel": "wikitext",
+     "pagelanguage": "en",
+     "pagelanguagehtmlcode": "en",
+     "pagelanguagedir": "ltr",
+     "touched": "2026-10-01T15:50:48Z",
+     "lastrevid": 1375227378,
+     "length": 39147,
+     "fullurl": "https://en.wikipedia.org/wiki/President_of_France",
+     "editurl": "https://en.wikipedia.org/w/index.php?title=President_of_France&action=edit",
+     "canonicalurl": "https://en.wikipedia.org/wiki/President_of_France"
+    },
+    {
+     "pageid": 10736380,
+     "ns": 0,
+     "title": "List of presidents of France",
+     "index": 3,
+     "extract": "The president of France is the head of state of France, elected by popular vote for five years.\nThe first officeholder is considered to be Louis-Napoléon Bonaparte, who was elected in 1848 but provoked the 1851 self-coup to later proclaim himself emperor as Napoleon III. His coup, which proved popular as he sought the restoration of universal male suffrage previously abolished by the legislature, granted the newly-established Second Empire firm ground.\nA republican regime was given way again in 1870 through the Third Republic, after the fall of Napoleon III. A 1962 referendum held under the Fifth Republic at the request of President Charles de Gaulle transferred the election of the president of France from an electoral college to a popular vote. Since then, ten presidential elections have taken place. The 25th and current officeholder has been Emmanuel Macron since 14 May 2017.",
+     "contentmodel": "wikitext",
+     "pagelanguage": "en",
+     "pagelanguagehtmlcode": "en",
+     "pagelanguagedir": "ltr",
+     "touched": "2026-10-01T08:53:49Z",
+     "lastrevid": 1377822125,
+     "length": 65239,
+     "fullurl": "https://en.wikipedia.org/wiki/List_of_presidents_of_France",
+     "editurl": "https://en.wikipedia.org/w/index.php?title=List_of_presidents_of_France&action=edit",
+     "canonicalurl": "https://en.wikipedia.org/wiki/List_of_presidents_of_France"
+    },
+    {
+     "pageid": 42780751,
+     "ns": 0,
+     "title": "President of the Regional Council (France)",
+     "index": 2,
+     "extract": "The following is a list of current presidents of the regional councils of France.\nAll regions in metropolitan France are governed by a regional council, with their respective presidents elected by and among their members to lead the executive; the Corsican Assembly is the sole exception, as it controls the Executive Council. In overseas France, the local institutions vary across the five regions.",
+     "contentmodel": "wikitext",
+     "pagelanguage": "en",
+     "pagelanguagehtmlcode": "en",
+     "pagelanguagedir": "ltr",
+     "touched": "2026-09-30T18:51:00Z",
+     "lastrevid": 1377708623,
+     "length": 41616,
+     "fullurl": "https://en.wikipedia.org/wiki/President_of_the_Regional_Council_(France)",
+     "editurl": "https://en.wikipedia.org/w/index.php?title=President_of_the_Regional_Council_(France)&action=edit",
+     "canonicalurl": "https://en.wikipedia.org/wiki/President_of_the_Regional_Council_(France)"
+    }
+   ],
+   "searchinfo": {
+    "totalhits": 61527
+   },
+   "search": [
+    {
+     "ns": 0,
+     "title": "President of France",
+     "pageid": 24899,
+     "snippet": "The <span class=\"searchmatch\">president</span> of <span class=\"searchmatch\">France</span> (<span class=\"searchmatch\">French</span>: <span class=\"searchmatch\">Président</span> de la <span class=\"searchmatch\">France</span>), officially the <span class=\"searchmatch\">president</span> of the <span class=\"searchmatch\">French</span> Republic (<span class=\"searchmatch\">French</span>: <span class=\"searchmatch\">Président</span> de la République française)"
+    },
+    {
+     "ns": 0,
+     "title": "List of presidents of France",
+     "pageid": 10736380,
+     "snippet": "The <span class=\"searchmatch\">president</span> of <span class=\"searchmatch\">France</span> is the head of state of <span class=\"searchmatch\">France</span>, elected by popular vote for five years. The first officeholder is considered to be Louis-Napoléon"
+    },
+    {
+     "ns": 0,
+     "title": "President of the Regional Council (France)",
+     "pageid": 42780751,
+     "snippet": "The following is a list of <span class=\"searchmatch\">current</span> <span class=\"searchmatch\">presidents</span> of the regional councils of <span class=\"searchmatch\">France</span>. All regions in metropolitan <span class=\"searchmatch\">France</span> are governed by a regional council"
+    }
+   ]
+  }
+ }
+}

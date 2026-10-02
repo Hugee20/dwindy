@@ -20,9 +20,10 @@ from starlette.responses import JSONResponse, Response
 
 from .backend import Completion, ContextLimitError, TextDelta
 from .core import DwindyCore, TurnStarted
+from .config import ConfigError
 from .server import ApiConfig
 from .persistence import ConversationStore, StorageError
-from . import capabilities
+from . import capabilities, reach
 from .context_policy import ContextDecision, decide
 from .evidence import Evidence, Facts
 from .retrieval import RetrievalError, RetrievalIndex, match_query
@@ -62,12 +63,14 @@ class ChatRequest(BaseModel):
     host_context: list[HostContextItem] | None = Field(default=None, description=(
         "Bearer-authenticated requests only: 1-8 items of host-supplied information for this turn. "
         "Transient data, never instructions or actions."))
+    # Selects Reach behavior only where the deployment configured a provider; never grants it.
+    reach: bool | Literal["auto"] | None = None
 
-    @field_validator("retrieval")
+    @field_validator("retrieval", "reach")
     @classmethod
     def not_null(cls, value):
         if value is None:
-            raise ValueError("Retrieval must be true, false or \"auto\" when supplied.")
+            raise ValueError("Mode must be true, false or \"auto\" when supplied.")
         return value
 
     @field_validator("host_context")
@@ -135,6 +138,9 @@ class ChatReply(BaseModel):
     retrieval: RetrievalMetadata | None = None
     capabilities: list[dict] | None = Field(default=None, description=(
         "Deterministic capabilities and host context used for this turn; present only when used."))
+    reach: dict | None = Field(default=None, description=(
+        "External information: used, reason, provider, the exact minimized query that left the machine, "
+        "sources, notice. 'used' means external material was consulted, not that the answer was verified."))
 
 
 class RetrieveRequest(BaseModel):
@@ -283,6 +289,7 @@ class ApiState:
         self.index = None
         # A deliberately configured index means the deployment is an assistant for that material.
         self.default_mode = config.retrieval_default or ("auto" if config.retrieval_index_path else "off")
+        self.reach_backend = None  # Set only when the deployment configures a provider.
         self.storage_executor = (ThreadPoolExecutor(max_workers=1, thread_name_prefix="dwindy-storage")
                                  if config.database_path is not None or config.retrieval_index_path is not None else None)
         self.storage_lock = asyncio.Lock()
@@ -310,6 +317,11 @@ class ApiState:
                    if not entry.active and now - entry.touched >= self.config.conversation_idle_seconds]
         for key in expired:
             del self.conversations[key]
+
+    def reach_mode(self, body):
+        requested = body.reach
+        return ("on" if requested is True else "off" if requested is False else "auto" if requested == "auto"
+                else self.config.reach_default or "off")
 
     def mode(self, body):
         requested = body.retrieval
@@ -441,6 +453,19 @@ class ChatResponse(Response):
                         ("event: " + name + "\ndata: " + json.dumps(data, ensure_ascii=False) + "\n\n").encode("utf-8"),
                         "more_body": True})
 
+        async def reach_step(decision, local_evidence, host):
+            """Deployment-gated Reach; the one possible network call runs off the event loop."""
+            snapshot = state.index.project_snapshot if state.index is not None else None
+            run = lambda: reach.decide(
+                self.body.message, state.reach_mode(self.body), backend=state.reach_backend,
+                project_name=snapshot["name"] if snapshot else None, host_texts=[text for _, text in host],
+                local_supplied=local_evidence is not None,
+                local_relevant=reach.local_relevant(decision, local_evidence),
+                max_tokens=state.config.retrieval_context_tokens)
+            if state.reach_backend is None:
+                return run()  # No provider: no network path exists at all.
+            return await asyncio.get_running_loop().run_in_executor(None, run)
+
         async def select_context():
             mode, tokens = state.mode(self.body), state.config.retrieval_context_tokens
             if mode == "on":
@@ -501,7 +526,8 @@ class ChatResponse(Response):
             host = [(item.label, item.text) for item in self.body.host_context or ()]
             facts = Facts(tuple((f.name, f.text) for f in computed), tuple(host), HOST_CONTEXT_BUDGET_TOKENS)
             used = [f.metadata for f in computed] + ([dict(name="host_context", items=len(host))] if host else [])
-            stream = self.entry.core.chat(self.body.message, evidence=evidence, facts=facts)
+            reach_decision, web_evidence, notice = await reach_step(decision, evidence, host)
+            stream = self.entry.core.chat(self.body.message, evidence=web_evidence or evidence, facts=facts, notice=notice)
             started = await advance()
             if not isinstance(started, TurnStarted):
                 raise RuntimeError("Missing Core start")
@@ -511,11 +537,7 @@ class ChatResponse(Response):
                     (b"cache-control", b"no-store"), (b"x-accel-buffering", b"no")]})
                 headers_sent = True
                 start_data = {"conversation_id": self.key, "dropped_turns": started.dropped_turns}
-                retrieval = decision.metadata(started.retrieval)
-                if retrieval is not None:
-                    start_data["retrieval"] = retrieval
-                if used:
-                    start_data["capabilities"] = used
+                start_data.update(turn_metadata(decision, started, web_evidence, reach_decision, used))
                 await event("started", start_data)
                 exposed = True
             pieces = []
@@ -544,11 +566,7 @@ class ChatResponse(Response):
                         await send({"type": "http.response.body", "body": b"", "more_body": False})
                     else:
                         result.update(conversation_id=self.key, text="".join(pieces), dropped_turns=started.dropped_turns)
-                        retrieval = decision.metadata(started.retrieval)
-                        if retrieval is not None:
-                            result["retrieval"] = retrieval
-                        if used:
-                            result["capabilities"] = used
+                        result.update(turn_metadata(decision, started, web_evidence, reach_decision, used))
                         await JSONResponse(result, headers={"Cache-Control": "no-store"})(scope, receive, send)
                         exposed = True
                     break
@@ -594,8 +612,24 @@ class ChatResponse(Response):
                 pass
 
 
-def create_app(model_config, api_config=None, *, backend=None, chat_root=None):
-    """Application owns supplied or constructed backend; lifespan closes it once."""
+def turn_metadata(decision, started, web_evidence, reach_decision, used):
+    """Response metadata. Web results never masquerade as local retrieval sources."""
+    out = {}
+    retrieval = decision.metadata(None if web_evidence is not None else started.retrieval)
+    if retrieval is not None:
+        out["retrieval"] = retrieval
+    if used:
+        out["capabilities"] = used
+    if reach_decision is not None:
+        out["reach"] = reach_decision.metadata()
+        if web_evidence is not None:
+            out["reach"]["supplied"] = (started.retrieval or {}).get("status") == "supplied"
+    return out
+
+
+def create_app(model_config, api_config=None, *, backend=None, chat_root=None, reach_backend=None):
+    """Application owns supplied or constructed backend; lifespan closes it once.
+    reach_backend replaces the configured provider in tests; it never enables Reach on its own."""
     config = api_config or ApiConfig()
     token = config.validate()
     files = {}
@@ -603,6 +637,11 @@ def create_app(model_config, api_config=None, *, backend=None, chat_root=None):
         from .web_ui import frontend_files
         files = frontend_files(chat_root)
     state = ApiState(config, model_config)
+    if config.reach_provider is not None:
+        try:
+            state.reach_backend = reach_backend or reach.WikipediaBackend()
+        except ImportError as exc:
+            raise ConfigError(str(exc)) from exc
 
     @asynccontextmanager
     async def lifespan(app):
@@ -734,6 +773,9 @@ def create_app(model_config, api_config=None, *, backend=None, chat_root=None):
             # Without a configured token no caller is authenticated, so host data cannot be trusted.
             return error(403, "host_context_requires_token",
                          "Host context requires a configured API token and bearer authentication.")
+        if body.reach is True and state.reach_backend is None:
+            # A request can only select Reach behavior the deployment already permits.
+            return error(503, "reach_disabled", "Reach is not configured for this deployment.")
         if state.mode(body) == "on":
             try:
                 match_query(body.message)

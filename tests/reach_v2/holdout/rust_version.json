@@ -1,0 +1,96 @@
+{
+ "case_id": "rust_version",
+ "message": "What is the latest version of the Rust programming language?",
+ "query": "latest version rust programming language",
+ "request_url": "https://en.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&generator=search&gsrsearch=latest+version+rust+programming+language&gsrlimit=3&prop=extracts%7Cinfo&exintro=1&explaintext=1&exsentences=5&exlimit=3&inprop=url&list=search&srsearch=latest+version+rust+programming+language&srlimit=3&srprop=snippet",
+ "status": 200,
+ "captured_at": "2026-10-02T04:16:17+00:00",
+ "provider": "wikipedia",
+ "synthetic": false,
+ "body": {
+  "batchcomplete": true,
+  "continue": {
+   "sroffset": 3,
+   "gsroffset": 3,
+   "continue": "gsroffset||"
+  },
+  "query": {
+   "pages": [
+    {
+     "pageid": 23862,
+     "ns": 0,
+     "title": "Python (programming language)",
+     "index": 2,
+     "extract": "Python is a high-level, general-purpose programming language that emphasizes code readability, simplicity, and ease-of-writing with the use of significant indentation, an extensive (\"batteries-included\") standard library, and garbage collection. Python supports multiple programming paradigms but with an emphasis on object-oriented programming and dynamic typing.\nGuido van Rossum began working on Python in the late 1980s as a successor to the ABC programming language. Python 3.0, released in 2008, was a major revision and not completely backward-compatible with earlier versions. Beginning with Python 3.5, capabilities and keywords for typing were added to the language, allowing optional static typing.",
+     "contentmodel": "wikitext",
+     "pagelanguage": "en",
+     "pagelanguagehtmlcode": "en",
+     "pagelanguagedir": "ltr",
+     "touched": "2026-10-02T02:28:28Z",
+     "lastrevid": 1377929544,
+     "length": 144806,
+     "fullurl": "https://en.wikipedia.org/wiki/Python_(programming_language)",
+     "editurl": "https://en.wikipedia.org/w/index.php?title=Python_(programming_language)&action=edit",
+     "canonicalurl": "https://en.wikipedia.org/wiki/Python_(programming_language)"
+    },
+    {
+     "pageid": 29414838,
+     "ns": 0,
+     "title": "Rust (programming language)",
+     "index": 1,
+     "extract": "Rust is a general-purpose programming language that emphasizes performance, type safety, concurrency, and memory safety.\nRust supports multiple programming paradigms. It was influenced by ideas from functional programming, including immutability, higher-order functions, algebraic data types, and pattern matching. It also supports object-oriented programming via structs, enums, traits, and methods. Rust enforces memory safety (i.e., that all references point to valid memory) without a conventional garbage collector; instead, memory safety errors and data races are prevented by the \"borrow checker\", which tracks the object lifetime of references at compile time.",
+     "contentmodel": "wikitext",
+     "pagelanguage": "en",
+     "pagelanguagehtmlcode": "en",
+     "pagelanguagedir": "ltr",
+     "touched": "2026-10-02T03:55:29Z",
+     "lastrevid": 1375877769,
+     "length": 119486,
+     "fullurl": "https://en.wikipedia.org/wiki/Rust_(programming_language)",
+     "editurl": "https://en.wikipedia.org/w/index.php?title=Rust_(programming_language)&action=edit",
+     "canonicalurl": "https://en.wikipedia.org/wiki/Rust_(programming_language)"
+    },
+    {
+     "pageid": 81186004,
+     "ns": 0,
+     "title": "List of Rust software and tools",
+     "index": 3,
+     "extract": "This is a list of software and programming tools for the Rust programming language, including IDEs, compilers, libraries, verification and debugging tools, numerical and scientific computing libraries, and related projects.",
+     "contentmodel": "wikitext",
+     "pagelanguage": "en",
+     "pagelanguagehtmlcode": "en",
+     "pagelanguagedir": "ltr",
+     "touched": "2026-09-29T19:53:40Z",
+     "lastrevid": 1355411325,
+     "length": 7208,
+     "fullurl": "https://en.wikipedia.org/wiki/List_of_Rust_software_and_tools",
+     "editurl": "https://en.wikipedia.org/w/index.php?title=List_of_Rust_software_and_tools&action=edit",
+     "canonicalurl": "https://en.wikipedia.org/wiki/List_of_Rust_software_and_tools"
+    }
+   ],
+   "searchinfo": {
+    "totalhits": 321
+   },
+   "search": [
+    {
+     "ns": 0,
+     "title": "Rust (programming language)",
+     "pageid": 29414838,
+     "snippet": "<span class=\"searchmatch\">Rust</span> is a general-purpose <span class=\"searchmatch\">programming</span> <span class=\"searchmatch\">language</span> that emphasizes performance, type safety, concurrency, and memory safety. <span class=\"searchmatch\">Rust</span> supports multiple programming"
+    },
+    {
+     "ns": 0,
+     "title": "Python (programming language)",
+     "pageid": 23862,
+     "snippet": "collection. Python supports multiple <span class=\"searchmatch\">programming</span> paradigms but with an emphasis on object-oriented <span class=\"searchmatch\">programming</span> and dynamic typing. Guido van Rossum began"
+    },
+    {
+     "ns": 0,
+     "title": "List of Rust software and tools",
+     "pageid": 81186004,
+     "snippet": "This is a list of software and <span class=\"searchmatch\">programming</span> tools for the <span class=\"searchmatch\">Rust</span> <span class=\"searchmatch\">programming</span> <span class=\"searchmatch\">language</span>, including IDEs, compilers, libraries, verification and debugging tools"
+    }
+   ]
+  }
+ }
+}

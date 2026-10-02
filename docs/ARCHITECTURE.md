@@ -1,6 +1,6 @@
-# Dwindy architecture through M9
+# Dwindy architecture through M10
 
-Status: M1 runtime and template-kwargs correction, M2 Core, M3 local HTTP API, M4 chat interfaces, M5 opt-in SQLite persistence, M6 explicit local retrieval, M7 project awareness, M8 context selection, and M9 deterministic capabilities and host context.
+Status: M1 runtime and template-kwargs correction, M2 Core, M3 local HTTP API, M4 chat interfaces, M5 opt-in SQLite persistence, M6 explicit local retrieval, M7 project awareness, M8 context selection, M9 deterministic capabilities and host context, and M10 freshness detection and adopted offline honesty. Online Reach remains disabled/not shipped; v1 and H1 were rejected, and H2 evaluation execution is deferred.
 The project proposal remains the specification. This document records implemented decisions.
 
 ## Execution and ownership
@@ -8,7 +8,7 @@ The project proposal remains the specification. This document records implemente
 One Python process contains either the terminal application or the optional HTTP application
 and a CPU-only llama.cpp runtime accessed through llama-cpp-python. The terminal opens no
 listener; the API explicitly opens a loopback listener by default. No separate model service,
-database server or outbound-network client is created. Optional API persistence opens a local SQLite file. Dependencies and model files are
+database server or outbound-network client is created (the M10 Reach client was not adopted and cannot be configured). Optional API persistence opens a local SQLite file. Dependencies and model files are
 installed/supplied separately from execution.
 
 `core.py` owns an in-memory list of completed user/assistant turns for each `DwindyCore`.
@@ -34,7 +34,7 @@ variable. It launches one Uvicorn worker with reload, proxy-header trust, and ac
 ## Core boundary and lifecycle
 
 `DwindyCore(backend, *, options, system_prompt="")` represents one ephemeral conversation.
-Its public operations are synchronous `chat(user_text, *, evidence=None)`, `reset()`, `snapshot()` and `restore(messages)`. It borrows a
+Its public operations are synchronous `chat(user_text, *, evidence=None, facts=None, notice=None)`, `reset()`, `snapshot()` and `restore(messages)`. It borrows a
 `ModelBackend`; neither reset nor stream cleanup closes the model itself. It depends on
 `backend.py`, not configuration files, GGUF, llama.cpp, or template variables.
 
@@ -388,3 +388,37 @@ token it returns 403 `host_context_requires_token`. Host context provides inform
 Dwindy never calls the host, never runs an action, and never keeps the data. Replies add a
 `capabilities` list only when something was used. The terminal applies the clock and
 calculator. See [capabilities](CAPABILITIES.md) and the [M9 validation report](M9_VALIDATION.md).
+
+## Reach through M10
+
+**Status: freshness detection and the offline-honesty notice are adopted; the Reach backend is not.**
+It failed its frozen adoption rule (latency, misattribution, unsupported claims). The code below is
+dormant: `REACH_ADOPTED = False`, configuring `reach_provider` is refused, and no outbound client
+can be created. It is kept, and tested, for a future re-evaluation; see the M10 validation report.
+
+`reach.py` holds the whole M10 boundary:
+
+- freshness and explicit-search detection (a closed cue table, at most 25 entries);
+- fail-closed query minimization from the current message only;
+- the deployment-gated decision;
+- one `WikipediaBackend`, which makes one bounded HTTPS GET with OS-native verification
+  (`truststore` in the development environment only), no redirects, a 5-second overall deadline
+  and a 512 KiB cap. No `reach` extra or Reach runtime dependency is declared in this release.
+
+The following permission and evidence flow describes the dormant, experimentally evaluated
+design, not an available deployment mode. Current configuration rejects `reach_provider`, and
+`reach: true` returns 503 `reach_disabled`; requests cannot enable the backend.
+
+Results become `Evidence(origin="web")` with a framing line naming the provider and retrieval
+time, and are quoted as untrusted data under a web-specific instruction. They pass M8's
+usefulness check first and are never persisted. Core gained one transient `notice` parameter for
+the frozen offline-honesty instruction. With no notice and no web evidence, model input is
+byte-identical to M9. H1 compact selection was rejected by its frozen holdout recall gate.
+H2 is designed/prepared under `tests/reach_h2/`, with execution deferred because the reference
+network cannot currently meet the frozen connectivity requirements. H2 has not failed or been
+adopted; the frozen design and prepared evaluation remain unchanged and resumable.
+
+The API runs the one possible network call off the event loop. It reports a `reach` object
+(the exact query, provider, validated sources and reason), and keeps web results out of the M8
+`retrieval` metadata. The terminal applies only the offline notice. See
+[external information](REACH.md) and the [M10 validation report](M10_VALIDATION.md).

@@ -1,0 +1,113 @@
+{
+ "case_id": "world_cup",
+ "message": "Who won the most recent FIFA World Cup?",
+ "capture_query": "won most recent fifa world cup",
+ "captured_at": "2026-10-02T01:52:56+00:00",
+ "provider": "wikipedia",
+ "synthetic": false,
+ "extracts": {
+  "url": "https://en.wikipedia.org/w/api.php?action=query&generator=search&gsrsearch=won+most+recent+fifa+world+cup&gsrlimit=3&prop=extracts%7Cinfo&exintro=1&explaintext=1&exsentences=5&exlimit=3&inprop=url&format=json&formatversion=2",
+  "status": 200,
+  "body": {
+   "batchcomplete": true,
+   "continue": {
+    "gsroffset": 3,
+    "continue": "gsroffset||"
+   },
+   "query": {
+    "pages": [
+     {
+      "pageid": 75588123,
+      "ns": 0,
+      "title": "2026 FIFA U-20 Women's World Cup",
+      "index": 2,
+      "extract": "The 2026 FIFA U-20 Women's World Cup (Polish: Mistrzostwa Świata FIFA U-20 Kobiet Polska 2026) was the 12th edition of the FIFA U-20 Women's World Cup, the biennial international women's youth football championship contested by the under-20 national teams of the member associations of FIFA. It was hosted by Poland. It was the second time that Poland had hosted a FIFA tournament, having hosted the men's FIFA U-20 World Cup in 2019. It was the first time that Poland had hosted a FIFA women's tournament.\nSpain were crowned champions, their second title in this tournament. North Korea were the defending champions, having won a joint-record third title in 2024, but lost to Spain in the final.",
+      "contentmodel": "wikitext",
+      "pagelanguage": "en",
+      "pagelanguagehtmlcode": "en",
+      "pagelanguagedir": "ltr",
+      "touched": "2026-10-02T01:04:04Z",
+      "lastrevid": 1377548750,
+      "length": 87371,
+      "fullurl": "https://en.wikipedia.org/wiki/2026_FIFA_U-20_Women%27s_World_Cup",
+      "editurl": "https://en.wikipedia.org/w/index.php?title=2026_FIFA_U-20_Women%27s_World_Cup&action=edit",
+      "canonicalurl": "https://en.wikipedia.org/wiki/2026_FIFA_U-20_Women%27s_World_Cup"
+     },
+     {
+      "pageid": 81660180,
+      "ns": 0,
+      "title": "2026 FIFA World Cup Group A",
+      "index": 3,
+      "extract": "Group A of the 2026 FIFA World Cup took place from June 11 to 24, 2026. The group consisted of national football teams representing Mexico (co-host), South Africa, South Korea, and the Czech Republic. This also marked the return of the Czech Republic and South Africa to the World Cup, respectively, since 2006 and 2010. \nThe top two teams, Mexico and South Africa, secured their place in the round of 32. Mexico won the group, winning three consecutive games, while South Africa won one game and drew the other, having lost their opening match to Mexico.",
+      "contentmodel": "wikitext",
+      "pagelanguage": "en",
+      "pagelanguagehtmlcode": "en",
+      "pagelanguagedir": "ltr",
+      "touched": "2026-09-30T22:54:10Z",
+      "lastrevid": 1377266042,
+      "length": 56617,
+      "fullurl": "https://en.wikipedia.org/wiki/2026_FIFA_World_Cup_Group_A",
+      "editurl": "https://en.wikipedia.org/w/index.php?title=2026_FIFA_World_Cup_Group_A&action=edit",
+      "canonicalurl": "https://en.wikipedia.org/wiki/2026_FIFA_World_Cup_Group_A"
+     },
+     {
+      "pageid": 81667005,
+      "ns": 0,
+      "title": "2026 FIFA World Cup knockout stage",
+      "index": 1,
+      "extract": "The knockout stage of the 2026 FIFA World Cup was the second and final stage of the competition, following the group stage. Played from June 28 to July 19, 2026, the knockout stage ended with the final, held at MetLife Stadium in East Rutherford, New Jersey. The top two teams from each of the twelve groups, along with the best eight third-place teams, advanced to the knockout stage to compete in a single-elimination tournament. There were 32 matches in the knockout stage, including a match for third place.",
+      "contentmodel": "wikitext",
+      "pagelanguage": "en",
+      "pagelanguagehtmlcode": "en",
+      "pagelanguagedir": "ltr",
+      "touched": "2026-10-01T20:46:39Z",
+      "lastrevid": 1377824581,
+      "length": 154658,
+      "fullurl": "https://en.wikipedia.org/wiki/2026_FIFA_World_Cup_knockout_stage",
+      "editurl": "https://en.wikipedia.org/w/index.php?title=2026_FIFA_World_Cup_knockout_stage&action=edit",
+      "canonicalurl": "https://en.wikipedia.org/wiki/2026_FIFA_World_Cup_knockout_stage"
+     }
+    ]
+   }
+  }
+ },
+ "snippets": {
+  "url": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=won+most+recent+fifa+world+cup&srlimit=3&srprop=snippet%7Ctimestamp&format=json&formatversion=2",
+  "status": 200,
+  "body": {
+   "batchcomplete": true,
+   "continue": {
+    "sroffset": 3,
+    "continue": "-||"
+   },
+   "query": {
+    "searchinfo": {
+     "totalhits": 3434
+    },
+    "search": [
+     {
+      "ns": 0,
+      "title": "2026 FIFA World Cup knockout stage",
+      "pageid": 81667005,
+      "snippet": "The knockout stage of the 2026 <span class=\"searchmatch\">FIFA</span> <span class=\"searchmatch\">World</span> <span class=\"searchmatch\">Cup</span> was the second and final stage of the competition, following the group stage. Played from June 28 to July",
+      "timestamp": "2026-10-01T09:26:54Z"
+     },
+     {
+      "ns": 0,
+      "title": "2026 FIFA U-20 Women's World Cup",
+      "pageid": 75588123,
+      "snippet": "2026 <span class=\"searchmatch\">FIFA</span> U-20 Women&#039;s <span class=\"searchmatch\">World</span> <span class=\"searchmatch\">Cup</span> (Polish: Mistrzostwa Świata <span class=\"searchmatch\">FIFA</span> U-20 Kobiet Polska 2026) was the 12th edition of the <span class=\"searchmatch\">FIFA</span> U-20 Women&#039;s <span class=\"searchmatch\">World</span> <span class=\"searchmatch\">Cup</span>, the",
+      "timestamp": "2026-09-29T23:48:23Z"
+     },
+     {
+      "ns": 0,
+      "title": "2026 FIFA World Cup Group A",
+      "pageid": 81660180,
+      "snippet": "Group A of the 2026 <span class=\"searchmatch\">FIFA</span> <span class=\"searchmatch\">World</span> <span class=\"searchmatch\">Cup</span> took place from June 11 to 24, 2026. The group consisted of national football teams representing Mexico (co-host), South",
+      "timestamp": "2026-09-28T16:15:32Z"
+     }
+    ]
+   }
+  }
+ }
+}

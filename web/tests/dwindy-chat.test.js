@@ -52,6 +52,15 @@ export const tests = [
       }, {fetchImpl: async url => url.endsWith('/health') ? new Response(JSON.stringify(health)) : response()});
     }
   }],
+  ['external search is always shown with its exact query, and the widget has no Reach control', () => fixture(async chat => {
+    send(chat, 'latest python'); await complete(chat);
+    assert(chat.$('.retrieval-status').textContent === 'Searched externally for: latest version python');
+    assert(!chat.$('.retrieval-status').hidden);
+    assert(!chat.shadowRoot.innerHTML.toLowerCase().includes('reach'));
+  }, {fetchImpl: async url => url.endsWith('/health') ? new Response('{}') :
+      response(frame('started', {conversation_id: id, dropped_turns: 0, reach: {used: true, reason: 'used', provider: 'wikipedia',
+        query: 'latest version python', sources: [{title: 'Python', url: 'https://en.wikipedia.org/wiki/Python'}], notice: false}}) +
+        frame('delta', {text: 'OK'}) + done)})],
   ['auto default starts checked, opt-out sends false, and status stays truthful', async () => {
     const statuses = [{mode: 'auto', attempted: false, status: 'not_used', reason: 'conversational', sources: []},
                       {mode: 'auto', attempted: true, status: 'not_used', reason: 'weak_match', sources: []},

@@ -1,0 +1,24 @@
+{"id": "b_m01", "author": "b", "role": "main", "order": 1, "message": "Who is the current President of South Korea?", "expected": "answerable"}
+{"id": "b_m02", "author": "b", "role": "main", "order": 2, "message": "Who is the current Chancellor of Germany?", "expected": "answerable"}
+{"id": "b_m03", "author": "b", "role": "main", "order": 3, "message": "Who is the current Secretary-General of ASEAN?", "expected": "answerable"}
+{"id": "b_m04", "author": "b", "role": "main", "order": 4, "message": "Who is the current CEO of Nvidia?", "expected": "answerable"}
+{"id": "b_m05", "author": "b", "role": "main", "order": 5, "message": "What is the latest version of Debian?", "expected": "answerable"}
+{"id": "b_m06", "author": "b", "role": "main", "order": 6, "message": "What is the latest version of PostgreSQL?", "expected": "answerable"}
+{"id": "b_m07", "author": "b", "role": "main", "order": 7, "message": "Who won the most recent Tour de France?", "expected": "answerable"}
+{"id": "b_m08", "author": "b", "role": "main", "order": 8, "message": "Who won the most recent Nobel Prize in Literature?", "expected": "answerable"}
+{"id": "b_m09", "author": "b", "role": "main", "order": 9, "message": "Who is the current Governor of the Bangko Sentral ng Pilipinas?", "expected": "answerable"}
+{"id": "b_m10", "author": "b", "role": "main", "order": 10, "message": "Who is the current President of the International Olympic Committee?", "expected": "answerable"}
+{"id": "b_m11", "author": "b", "role": "main", "order": 11, "message": "What is the current price of gold per ounce?", "expected": "unanswerable"}
+{"id": "b_m12", "author": "b", "role": "main", "order": 12, "message": "What is the Bitcoin price right now?", "expected": "unanswerable"}
+{"id": "b_m13", "author": "b", "role": "main", "order": 13, "message": "What are the latest news headlines about typhoons in the Philippines?", "expected": "unanswerable"}
+{"id": "b_m14", "author": "b", "role": "main", "order": 14, "message": "What is the euro to yen exchange rate today?", "expected": "unanswerable"}
+{"id": "b_m15", "author": "b", "role": "main", "order": 15, "message": "What is the latest score of the Lakers game?", "expected": "unanswerable"}
+{"id": "b_m16", "author": "b", "role": "main", "order": 16, "message": "What is the newest Jollibee menu item released this week?", "expected": "unanswerable"}
+{"id": "b_m17", "author": "b", "role": "main", "order": 17, "message": "What is the latest firmware version for the Sony WH-1000XM6 headphones?", "expected": "unanswerable"}
+{"id": "b_m18", "author": "b", "role": "main", "order": 18, "message": "What is the traffic situation on EDSA right now?", "expected": "unanswerable"}
+{"id": "b_r01", "author": "b", "role": "reserve", "order": 1, "message": "Who is the current Prime Minister of Canada?", "expected": "answerable"}
+{"id": "b_r02", "author": "b", "role": "reserve", "order": 2, "message": "Who is the current Director-General of the World Health Organization?", "expected": "answerable"}
+{"id": "b_r03", "author": "b", "role": "reserve", "order": 3, "message": "What is the latest version of Kotlin?", "expected": "answerable"}
+{"id": "b_r04", "author": "b", "role": "reserve", "order": 4, "message": "Who won the most recent Eurovision Song Contest?", "expected": "answerable"}
+{"id": "b_r05", "author": "b", "role": "reserve", "order": 5, "message": "Who is the current CEO of Amazon?", "expected": "answerable"}
+{"id": "b_r06", "author": "b", "role": "reserve", "order": 6, "message": "Who is the current President of Indonesia?", "expected": "answerable"}
