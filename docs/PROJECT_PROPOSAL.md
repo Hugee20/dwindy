@@ -508,7 +508,7 @@ Dwindy maintains a deliberately small tool surface. Initial tools may eventually
 
 Tools are not added simply because they are possible. A small model becomes less reliable when it must select among many tools, so growth is driven by demonstrated use cases.
 
-**Direction for M9 (recorded at M8; not yet designed).** Following Capability Density (Section 4.8), M9 distinguishes Dwindy's own small internal deterministic operations, which are generally invisible implementation details, from host-application capabilities. Host capabilities are exposed through a narrow, explicit integration interface. The host keeps authentication, authorization, validation, transactions, and business logic. Results are untrusted data, like retrieved passages, and anything that changes data needs host-side authorization and confirmation. Selecting which host function applies should favor deterministic or explicitly declared applicability, evaluated at that milestone, over free-form function calling by a small model. M8 builds no tool or agent framework.
+**Direction for M9 (recorded at M8; not yet designed).** Following Capability Density (Section 4.8), M9 distinguishes Dwindy's own small internal deterministic operations, which are generally invisible implementation details, from host-application capabilities. Host capabilities are exposed through a narrow, explicit integration interface. The host keeps authentication, authorization, validation, transactions, and business logic. Results are untrusted data, like retrieved passages, and anything that changes data needs host-side authorization and confirmation. Selecting which host function applies should favor deterministic or explicitly declared applicability, evaluated at that milestone, over free-form function calling by a small model. M8 builds no tool or agent framework. *As implemented in M9:* see [capabilities](CAPABILITIES.md). Host-supplied context covers the "results" half; host functions and actions remain deferred.
 
 ---
 
@@ -777,7 +777,7 @@ M7  Project Awareness
 M8  Context selection (routing foundation)
  │   └── fallback and recovery behavior
  │
-M9  Tools
+M9  Deterministic capabilities + host context
  │
 M10 Reach
  │   ├── privacy boundary
@@ -816,7 +816,7 @@ M12 Optimization + V1 hardening
 **M8: Context selection.** A deterministic policy deciding per turn whether local or project evidence deserves model context, with conservative fallback and recovery. *Amended at M8:* tool and current-information triggers move to M9 and M10, which introduce those capabilities.
 *Success:* Dwindy avoids sending every request through every subsystem, and misroutes degrade gracefully.
 
-**M9: Deterministic tools.** A small number of useful operations.
+**M9: Deterministic capabilities and host context.** A small number of exact internal operations (a server-local clock; a calculator only if a frozen real-model measurement justifies it), plus authenticated, transient host-supplied context. *Amended at M9:* host context provides information, not actions; Dwindy-initiated host calls and host actions are deferred and would need separate evidence and a narrow, safe design.
 *Success:* appropriate tasks bypass unreliable language-model reasoning.
 
 **M10: Dwindy Reach.** Optional external retrieval behind `SearchBackend`, with the privacy contract enforced.

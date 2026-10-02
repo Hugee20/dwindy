@@ -1,6 +1,6 @@
-# Dwindy architecture through M8
+# Dwindy architecture through M9
 
-Status: M1 runtime and template-kwargs correction, M2 Core, M3 local HTTP API, M4 chat interfaces, M5 opt-in SQLite persistence, M6 explicit local retrieval, M7 project awareness, and M8 context selection.
+Status: M1 runtime and template-kwargs correction, M2 Core, M3 local HTTP API, M4 chat interfaces, M5 opt-in SQLite persistence, M6 explicit local retrieval, M7 project awareness, M8 context selection, and M9 deterministic capabilities and host context.
 The project proposal remains the specification. This document records implemented decisions.
 
 ## Execution and ownership
@@ -368,3 +368,23 @@ remains the only model call per turn. M6 ranking is unchanged: `retrieval.py` on
 query terms its search already used. The mode is resolved per request, then from
 `retrieval_default`, then `auto` when an index is configured. See [context selection](CONTEXT_SELECTION.md)
 and the [M8 validation report](M8_VALIDATION.md).
+
+## Deterministic capabilities and host context through M9
+
+`capabilities.py` computes small exact facts per turn: the server-local clock and, subject to
+its adoption rule, a calculator. It has no model, no I/O and no `eval`. Its cue table is capped
+at 30 entries, and arithmetic is a closed grammar parsed completely to a syntax tree before any
+bounded `Decimal` evaluation. The clock is read during each turn, never cached.
+
+Core gained one keyword, `chat(..., facts=Facts(...))`. Facts are rendered as a quoted block
+ahead of the question, with a short system instruction that they are data, not instructions,
+and that no action may be claimed. They combine with M6-M8 evidence and every fallback path.
+History and persistence still store only the user's message and the answer. Host data has its
+own token allowance and is rejected, never truncated, when too large. With no facts, model
+input is byte-identical to M8.
+
+The API accepts `host_context` only on bearer-authenticated requests. Without a configured
+token it returns 403 `host_context_requires_token`. Host context provides information only:
+Dwindy never calls the host, never runs an action, and never keeps the data. Replies add a
+`capabilities` list only when something was used. The terminal applies the clock and
+calculator. See [capabilities](CAPABILITIES.md) and the [M9 validation report](M9_VALIDATION.md).

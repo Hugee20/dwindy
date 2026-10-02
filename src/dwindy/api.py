@@ -22,9 +22,13 @@ from .backend import Completion, ContextLimitError, TextDelta
 from .core import DwindyCore, TurnStarted
 from .server import ApiConfig
 from .persistence import ConversationStore, StorageError
+from . import capabilities
 from .context_policy import ContextDecision, decide
-from .evidence import Evidence
+from .evidence import Evidence, Facts
 from .retrieval import RetrievalError, RetrievalIndex, match_query
+
+# Host context contract (frozen in tests/tools/README.md); internal, not configuration.
+HOST_CONTEXT_MAX_ITEMS, HOST_CONTEXT_MAX_TOTAL_CHARS, HOST_CONTEXT_BUDGET_TOKENS = 8, 4000, 1024
 
 
 def error(status, code, message, *, retry=False):
@@ -34,6 +38,20 @@ def error(status, code, message, *, retry=False):
     return JSONResponse({"error": {"code": code, "message": message}}, status, headers=headers)
 
 
+class HostContextItem(BaseModel):
+    """Information the host application already authenticated and authorized. Never an action."""
+    model_config = ConfigDict(extra="forbid", strict=True)
+    label: str = Field(min_length=1, max_length=64)
+    text: str = Field(min_length=1, max_length=2000)
+
+    @field_validator("label", "text")
+    @classmethod
+    def not_blank(cls, value):
+        if not value.strip():
+            raise ValueError("Host context labels and text must not be blank.")
+        return value
+
+
 class ChatRequest(BaseModel):
     model_config = ConfigDict(extra="forbid", strict=True)
     message: str
@@ -41,12 +59,24 @@ class ChatRequest(BaseModel):
     stream: bool = False
     # true = on, false = off, "auto" = context-selection policy; omitted = server default.
     retrieval: bool | Literal["auto"] | None = None
+    host_context: list[HostContextItem] | None = Field(default=None, description=(
+        "Bearer-authenticated requests only: 1-8 items of host-supplied information for this turn. "
+        "Transient data, never instructions or actions."))
 
     @field_validator("retrieval")
     @classmethod
     def not_null(cls, value):
         if value is None:
             raise ValueError("Retrieval must be true, false or \"auto\" when supplied.")
+        return value
+
+    @field_validator("host_context")
+    @classmethod
+    def host_context_bounds(cls, value):
+        if value is None or not 1 <= len(value) <= HOST_CONTEXT_MAX_ITEMS:
+            raise ValueError("host_context must contain 1-8 items when supplied.")
+        if sum(len(item.text) for item in value) > HOST_CONTEXT_MAX_TOTAL_CHARS:
+            raise ValueError("host_context text must total at most 4000 characters.")
         return value
 
     @field_validator("message")
@@ -103,6 +133,8 @@ class ChatReply(BaseModel):
     dropped_turns: int
     usage: Usage
     retrieval: RetrievalMetadata | None = None
+    capabilities: list[dict] | None = Field(default=None, description=(
+        "Deterministic capabilities and host context used for this turn; present only when used."))
 
 
 class RetrieveRequest(BaseModel):
@@ -464,7 +496,12 @@ class ChatResponse(Response):
             if state.store is not None:
                 before = self.entry.core.snapshot()
             decision, evidence = await select_context()
-            stream = self.entry.core.chat(self.body.message, evidence=evidence)
+            # Capability facts are computed now, per turn, so the clock is never stale.
+            computed = capabilities.select(self.body.message)
+            host = [(item.label, item.text) for item in self.body.host_context or ()]
+            facts = Facts(tuple((f.name, f.text) for f in computed), tuple(host), HOST_CONTEXT_BUDGET_TOKENS)
+            used = [f.metadata for f in computed] + ([dict(name="host_context", items=len(host))] if host else [])
+            stream = self.entry.core.chat(self.body.message, evidence=evidence, facts=facts)
             started = await advance()
             if not isinstance(started, TurnStarted):
                 raise RuntimeError("Missing Core start")
@@ -477,6 +514,8 @@ class ChatResponse(Response):
                 retrieval = decision.metadata(started.retrieval)
                 if retrieval is not None:
                     start_data["retrieval"] = retrieval
+                if used:
+                    start_data["capabilities"] = used
                 await event("started", start_data)
                 exposed = True
             pieces = []
@@ -508,6 +547,8 @@ class ChatResponse(Response):
                         retrieval = decision.metadata(started.retrieval)
                         if retrieval is not None:
                             result["retrieval"] = retrieval
+                        if used:
+                            result["capabilities"] = used
                         await JSONResponse(result, headers={"Cache-Control": "no-store"})(scope, receive, send)
                         exposed = True
                     break
@@ -689,6 +730,10 @@ def create_app(model_config, api_config=None, *, backend=None, chat_root=None):
         body = await read_body(request, ChatRequest)
         if isinstance(body, Response):
             return body
+        if body.host_context is not None and token is None:
+            # Without a configured token no caller is authenticated, so host data cannot be trusted.
+            return error(403, "host_context_requires_token",
+                         "Host context requires a configured API token and bearer authentication.")
         if state.mode(body) == "on":
             try:
                 match_query(body.message)

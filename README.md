@@ -11,6 +11,8 @@ extracted that conversation behavior into a reusable, in-process `DwindyCore`.
 snapshot of one explicitly configured project, searched by the unchanged M6 retrieval.
 **Milestone 8** adds context selection: when an index is configured, a deterministic policy
 decides per turn whether local evidence deserves model context, with no extra model call.
+**Milestone 9** adds deterministic capabilities (a server-local clock and an exact calculator)
+and authenticated, transient host-supplied context. These are information only: no host actions.
 The [project proposal](docs/PROJECT_PROPOSAL.md) is the specification;
 [architecture](docs/ARCHITECTURE.md) describes the implemented boundaries.
 
@@ -197,7 +199,9 @@ Chat POST requires `Content-Type: application/json`. Only these fields are accep
 32-character opaque ID previously returned by the server; omission or null creates a new
 conversation. `stream` is an optional strict boolean, default false. `retrieval` is optional and strict:
 `true` (forced), `false` (off) or `"auto"`; omitted means the server default. Unknown fields, coercion,
-client-selected IDs, and per-request model settings are rejected. Maximum raw body size is
+client-selected IDs, and per-request model settings are rejected. An optional `host_context` list
+is accepted only on bearer-authenticated requests (see [capabilities](docs/CAPABILITIES.md)).
+Maximum raw body size is
 65,536 bytes by default, including chunked requests; the model's context limit is separate.
 
 `retrieval:true` forces local passages for this turn with the unchanged M6 contract and limits

@@ -2,3 +2,4 @@
 tests/retrieval/** text eol=lf
 tests/project/** text eol=lf
 tests/context/** text eol=lf
+tests/tools/** text eol=lf

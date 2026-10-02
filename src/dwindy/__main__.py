@@ -4,7 +4,9 @@ import argparse
 import sys
 from .backend import BackendError, Completion, TextDelta
 from .config import ConfigError, load_config
+from .capabilities import select as select_capabilities
 from .core import DwindyCore, TurnStarted
+from .evidence import Facts
 from .retrieval import RetrievalError
 
 
@@ -33,7 +35,9 @@ def terminal(core: DwindyCore, read=input, output=None, *, index=None, mode="off
                 snapshot = index.project_snapshot
                 decision, evidence = decide(user, mode, search=index.search,
                                             project_name=snapshot["name"] if snapshot else None)
-            stream = core.chat(user, evidence=evidence)
+            # Clock and calculator facts are computed per turn; host context does not apply here.
+            computed = select_capabilities(user)
+            stream = core.chat(user, evidence=evidence, facts=Facts(tuple((f.name, f.text) for f in computed)))
             for event in stream:
                 if isinstance(event, TurnStarted):
                     retrieval = decision.metadata(event.retrieval) if decision else None
