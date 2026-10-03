@@ -1,0 +1,51 @@
+{
+  "freeze": "6c1b8a9e252a55a878987082dc0f0e599ac8175486819d6b2697a988072d2bca",
+  "eligibility": {
+    "B": {
+      "gates": {
+        "candidate_recall": true,
+        "relevant_top3": true,
+        "final_selection": false,
+        "gain": false,
+        "exact_retention": true,
+        "zero_false_supply": false,
+        "no_exact_loss": true,
+        "historical": true,
+        "mechanical": true,
+        "warm_absolute": false,
+        "warm_relative": true,
+        "build": true,
+        "size": true,
+        "rss": true
+      },
+      "eligible": false
+    },
+    "C": {
+      "gates": {
+        "candidate_recall": true,
+        "relevant_top3": true,
+        "final_selection": true,
+        "gain": true,
+        "exact_retention": true,
+        "zero_false_supply": false,
+        "no_exact_loss": true,
+        "historical": true,
+        "mechanical": true,
+        "warm_absolute": false,
+        "warm_relative": true,
+        "build": true,
+        "size": true,
+        "rss": true
+      },
+      "eligible": false
+    }
+  },
+  "recommendation": "stop morphology",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "python": "3.13.0 (tags/v3.13.0:60403a5, Oct  7 2024, 09:38:07) [MSC v.1941 64 bit (AMD64)]",
+  "sqlite": "3.45.3",
+  "model_calls": 0,
+  "network_calls": 0,
+  "holdout_run": false,
+  "runner_sha256": "16c662ad1d388f50e3f59dc888b4e76ebed19aef6981edb7ec74e6513214bbe0"
+}

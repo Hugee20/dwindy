@@ -9,3 +9,5 @@ tests/reach_h2/** text eol=lf
 tests/policy/** -text
 tests/policy_foundation_v1/** -text
 tests/policy_experiments/** -text
+tests/morphology_retrieval_v1/** -text
+tests/morphology_retrieval_v1_results/** -text

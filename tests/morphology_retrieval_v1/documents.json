@@ -1,0 +1,674 @@
+[
+  {
+    "id": "d000",
+    "path": "corpus/d000.md",
+    "name": "Note d000",
+    "split": "dev",
+    "source_type": "project_document"
+  },
+  {
+    "id": "d001",
+    "path": "corpus/d001.txt",
+    "name": "Note d001",
+    "split": "dev",
+    "source_type": "local_text"
+  },
+  {
+    "id": "d002",
+    "path": "corpus/d002.md",
+    "name": "Note d002",
+    "split": "dev",
+    "source_type": "project_document"
+  },
+  {
+    "id": "d003",
+    "path": "corpus/d003.txt",
+    "name": "Note d003",
+    "split": "dev",
+    "source_type": "local_text"
+  },
+  {
+    "id": "d004",
+    "path": "corpus/d004.md",
+    "name": "Note d004",
+    "split": "dev",
+    "source_type": "project_document"
+  },
+  {
+    "id": "d005",
+    "path": "corpus/d005.txt",
+    "name": "Note d005",
+    "split": "dev",
+    "source_type": "local_text"
+  },
+  {
+    "id": "d006",
+    "path": "corpus/d006.md",
+    "name": "Note d006",
+    "split": "holdout",
+    "source_type": "project_document"
+  },
+  {
+    "id": "d007",
+    "path": "corpus/d007.txt",
+    "name": "Note d007",
+    "split": "holdout",
+    "source_type": "local_text"
+  },
+  {
+    "id": "d008",
+    "path": "corpus/d008.md",
+    "name": "Note d008",
+    "split": "holdout",
+    "source_type": "project_document"
+  },
+  {
+    "id": "d009",
+    "path": "corpus/d009.txt",
+    "name": "Note d009",
+    "split": "holdout",
+    "source_type": "local_text"
+  },
+  {
+    "id": "d010",
+    "path": "corpus/d010.md",
+    "name": "Note d010",
+    "split": "holdout",
+    "source_type": "project_document"
+  },
+  {
+    "id": "d011",
+    "path": "corpus/d011.txt",
+    "name": "Note d011",
+    "split": "holdout",
+    "source_type": "local_text"
+  },
+  {
+    "id": "d012",
+    "path": "corpus/d012.md",
+    "name": "Note d012",
+    "split": "dev",
+    "source_type": "project_document"
+  },
+  {
+    "id": "d013",
+    "path": "corpus/d013.txt",
+    "name": "Note d013",
+    "split": "dev",
+    "source_type": "local_text"
+  },
+  {
+    "id": "d014",
+    "path": "corpus/d014.md",
+    "name": "Note d014",
+    "split": "dev",
+    "source_type": "project_document"
+  },
+  {
+    "id": "d015",
+    "path": "corpus/d015.txt",
+    "name": "Note d015",
+    "split": "dev",
+    "source_type": "local_text"
+  },
+  {
+    "id": "d016",
+    "path": "corpus/d016.md",
+    "name": "Note d016",
+    "split": "dev",
+    "source_type": "project_document"
+  },
+  {
+    "id": "d017",
+    "path": "corpus/d017.txt",
+    "name": "Note d017",
+    "split": "dev",
+    "source_type": "local_text"
+  },
+  {
+    "id": "d018",
+    "path": "corpus/d018.md",
+    "name": "Note d018",
+    "split": "holdout",
+    "source_type": "project_document"
+  },
+  {
+    "id": "d019",
+    "path": "corpus/d019.txt",
+    "name": "Note d019",
+    "split": "holdout",
+    "source_type": "local_text"
+  },
+  {
+    "id": "d020",
+    "path": "corpus/d020.md",
+    "name": "Note d020",
+    "split": "holdout",
+    "source_type": "project_document"
+  },
+  {
+    "id": "d021",
+    "path": "corpus/d021.txt",
+    "name": "Note d021",
+    "split": "holdout",
+    "source_type": "local_text"
+  },
+  {
+    "id": "d022",
+    "path": "corpus/d022.md",
+    "name": "Note d022",
+    "split": "holdout",
+    "source_type": "project_document"
+  },
+  {
+    "id": "d023",
+    "path": "corpus/d023.txt",
+    "name": "Note d023",
+    "split": "holdout",
+    "source_type": "local_text"
+  },
+  {
+    "id": "d024",
+    "path": "corpus/d024.md",
+    "name": "Note d024",
+    "split": "dev",
+    "source_type": "project_document"
+  },
+  {
+    "id": "d025",
+    "path": "corpus/d025.txt",
+    "name": "Note d025",
+    "split": "dev",
+    "source_type": "local_text"
+  },
+  {
+    "id": "d026",
+    "path": "corpus/d026.md",
+    "name": "Note d026",
+    "split": "dev",
+    "source_type": "project_document"
+  },
+  {
+    "id": "d027",
+    "path": "corpus/d027.txt",
+    "name": "Note d027",
+    "split": "dev",
+    "source_type": "local_text"
+  },
+  {
+    "id": "d028",
+    "path": "corpus/d028.md",
+    "name": "Note d028",
+    "split": "dev",
+    "source_type": "project_document"
+  },
+  {
+    "id": "d029",
+    "path": "corpus/d029.txt",
+    "name": "Note d029",
+    "split": "dev",
+    "source_type": "local_text"
+  },
+  {
+    "id": "d030",
+    "path": "corpus/d030.md",
+    "name": "Note d030",
+    "split": "holdout",
+    "source_type": "project_document"
+  },
+  {
+    "id": "d031",
+    "path": "corpus/d031.txt",
+    "name": "Note d031",
+    "split": "holdout",
+    "source_type": "local_text"
+  },
+  {
+    "id": "d032",
+    "path": "corpus/d032.md",
+    "name": "Note d032",
+    "split": "holdout",
+    "source_type": "project_document"
+  },
+  {
+    "id": "d033",
+    "path": "corpus/d033.txt",
+    "name": "Note d033",
+    "split": "holdout",
+    "source_type": "local_text"
+  },
+  {
+    "id": "d034",
+    "path": "corpus/d034.md",
+    "name": "Note d034",
+    "split": "holdout",
+    "source_type": "project_document"
+  },
+  {
+    "id": "d035",
+    "path": "corpus/d035.txt",
+    "name": "Note d035",
+    "split": "holdout",
+    "source_type": "local_text"
+  },
+  {
+    "id": "d036",
+    "path": "corpus/d036.md",
+    "name": "Note d036",
+    "split": "dev",
+    "source_type": "project_document"
+  },
+  {
+    "id": "d037",
+    "path": "corpus/d037.txt",
+    "name": "Note d037",
+    "split": "dev",
+    "source_type": "local_text"
+  },
+  {
+    "id": "d038",
+    "path": "corpus/d038.md",
+    "name": "Note d038",
+    "split": "dev",
+    "source_type": "project_document"
+  },
+  {
+    "id": "d039",
+    "path": "corpus/d039.txt",
+    "name": "Note d039",
+    "split": "dev",
+    "source_type": "local_text"
+  },
+  {
+    "id": "d040",
+    "path": "corpus/d040.md",
+    "name": "Note d040",
+    "split": "dev",
+    "source_type": "project_document"
+  },
+  {
+    "id": "d041",
+    "path": "corpus/d041.txt",
+    "name": "Note d041",
+    "split": "dev",
+    "source_type": "local_text"
+  },
+  {
+    "id": "d042",
+    "path": "corpus/d042.md",
+    "name": "Note d042",
+    "split": "holdout",
+    "source_type": "project_document"
+  },
+  {
+    "id": "d043",
+    "path": "corpus/d043.txt",
+    "name": "Note d043",
+    "split": "holdout",
+    "source_type": "local_text"
+  },
+  {
+    "id": "d044",
+    "path": "corpus/d044.md",
+    "name": "Note d044",
+    "split": "holdout",
+    "source_type": "project_document"
+  },
+  {
+    "id": "d045",
+    "path": "corpus/d045.txt",
+    "name": "Note d045",
+    "split": "holdout",
+    "source_type": "local_text"
+  },
+  {
+    "id": "d046",
+    "path": "corpus/d046.md",
+    "name": "Note d046",
+    "split": "holdout",
+    "source_type": "project_document"
+  },
+  {
+    "id": "d047",
+    "path": "corpus/d047.txt",
+    "name": "Note d047",
+    "split": "holdout",
+    "source_type": "local_text"
+  },
+  {
+    "id": "d048",
+    "path": "corpus/d048.md",
+    "name": "Note d048",
+    "split": "dev",
+    "source_type": "project_document"
+  },
+  {
+    "id": "d049",
+    "path": "corpus/d049.txt",
+    "name": "Note d049",
+    "split": "dev",
+    "source_type": "local_text"
+  },
+  {
+    "id": "d050",
+    "path": "corpus/d050.md",
+    "name": "Note d050",
+    "split": "dev",
+    "source_type": "project_document"
+  },
+  {
+    "id": "d051",
+    "path": "corpus/d051.txt",
+    "name": "Note d051",
+    "split": "dev",
+    "source_type": "local_text"
+  },
+  {
+    "id": "d052",
+    "path": "corpus/d052.md",
+    "name": "Note d052",
+    "split": "dev",
+    "source_type": "project_document"
+  },
+  {
+    "id": "d053",
+    "path": "corpus/d053.txt",
+    "name": "Note d053",
+    "split": "dev",
+    "source_type": "local_text"
+  },
+  {
+    "id": "d054",
+    "path": "corpus/d054.md",
+    "name": "Note d054",
+    "split": "holdout",
+    "source_type": "project_document"
+  },
+  {
+    "id": "d055",
+    "path": "corpus/d055.txt",
+    "name": "Note d055",
+    "split": "holdout",
+    "source_type": "local_text"
+  },
+  {
+    "id": "d056",
+    "path": "corpus/d056.md",
+    "name": "Note d056",
+    "split": "holdout",
+    "source_type": "project_document"
+  },
+  {
+    "id": "d057",
+    "path": "corpus/d057.txt",
+    "name": "Note d057",
+    "split": "holdout",
+    "source_type": "local_text"
+  },
+  {
+    "id": "d058",
+    "path": "corpus/d058.md",
+    "name": "Note d058",
+    "split": "holdout",
+    "source_type": "project_document"
+  },
+  {
+    "id": "d059",
+    "path": "corpus/d059.txt",
+    "name": "Note d059",
+    "split": "holdout",
+    "source_type": "local_text"
+  },
+  {
+    "id": "d060",
+    "path": "corpus/d060.md",
+    "name": "Note d060",
+    "split": "dev",
+    "source_type": "project_document"
+  },
+  {
+    "id": "d061",
+    "path": "corpus/d061.txt",
+    "name": "Note d061",
+    "split": "dev",
+    "source_type": "local_text"
+  },
+  {
+    "id": "d062",
+    "path": "corpus/d062.md",
+    "name": "Note d062",
+    "split": "dev",
+    "source_type": "project_document"
+  },
+  {
+    "id": "d063",
+    "path": "corpus/d063.txt",
+    "name": "Note d063",
+    "split": "dev",
+    "source_type": "local_text"
+  },
+  {
+    "id": "d064",
+    "path": "corpus/d064.md",
+    "name": "Note d064",
+    "split": "dev",
+    "source_type": "project_document"
+  },
+  {
+    "id": "d065",
+    "path": "corpus/d065.txt",
+    "name": "Note d065",
+    "split": "dev",
+    "source_type": "local_text"
+  },
+  {
+    "id": "d066",
+    "path": "corpus/d066.md",
+    "name": "Note d066",
+    "split": "holdout",
+    "source_type": "project_document"
+  },
+  {
+    "id": "d067",
+    "path": "corpus/d067.txt",
+    "name": "Note d067",
+    "split": "holdout",
+    "source_type": "local_text"
+  },
+  {
+    "id": "d068",
+    "path": "corpus/d068.md",
+    "name": "Note d068",
+    "split": "holdout",
+    "source_type": "project_document"
+  },
+  {
+    "id": "d069",
+    "path": "corpus/d069.txt",
+    "name": "Note d069",
+    "split": "holdout",
+    "source_type": "local_text"
+  },
+  {
+    "id": "d070",
+    "path": "corpus/d070.md",
+    "name": "Note d070",
+    "split": "holdout",
+    "source_type": "project_document"
+  },
+  {
+    "id": "d071",
+    "path": "corpus/d071.txt",
+    "name": "Note d071",
+    "split": "holdout",
+    "source_type": "local_text"
+  },
+  {
+    "id": "d072",
+    "path": "corpus/d072.md",
+    "name": "Note d072",
+    "split": "dev",
+    "source_type": "project_document"
+  },
+  {
+    "id": "d073",
+    "path": "corpus/d073.txt",
+    "name": "Note d073",
+    "split": "dev",
+    "source_type": "local_text"
+  },
+  {
+    "id": "d074",
+    "path": "corpus/d074.md",
+    "name": "Note d074",
+    "split": "dev",
+    "source_type": "project_document"
+  },
+  {
+    "id": "d075",
+    "path": "corpus/d075.txt",
+    "name": "Note d075",
+    "split": "dev",
+    "source_type": "local_text"
+  },
+  {
+    "id": "d076",
+    "path": "corpus/d076.md",
+    "name": "Note d076",
+    "split": "dev",
+    "source_type": "project_document"
+  },
+  {
+    "id": "d077",
+    "path": "corpus/d077.txt",
+    "name": "Note d077",
+    "split": "dev",
+    "source_type": "local_text"
+  },
+  {
+    "id": "d078",
+    "path": "corpus/d078.md",
+    "name": "Note d078",
+    "split": "holdout",
+    "source_type": "project_document"
+  },
+  {
+    "id": "d079",
+    "path": "corpus/d079.txt",
+    "name": "Note d079",
+    "split": "holdout",
+    "source_type": "local_text"
+  },
+  {
+    "id": "d080",
+    "path": "corpus/d080.md",
+    "name": "Note d080",
+    "split": "holdout",
+    "source_type": "project_document"
+  },
+  {
+    "id": "d081",
+    "path": "corpus/d081.txt",
+    "name": "Note d081",
+    "split": "holdout",
+    "source_type": "local_text"
+  },
+  {
+    "id": "d082",
+    "path": "corpus/d082.md",
+    "name": "Note d082",
+    "split": "holdout",
+    "source_type": "project_document"
+  },
+  {
+    "id": "d083",
+    "path": "corpus/d083.txt",
+    "name": "Note d083",
+    "split": "holdout",
+    "source_type": "local_text"
+  },
+  {
+    "id": "d084",
+    "path": "corpus/d084.md",
+    "name": "Note d084",
+    "split": "dev",
+    "source_type": "project_document"
+  },
+  {
+    "id": "d085",
+    "path": "corpus/d085.txt",
+    "name": "Note d085",
+    "split": "dev",
+    "source_type": "local_text"
+  },
+  {
+    "id": "d086",
+    "path": "corpus/d086.md",
+    "name": "Note d086",
+    "split": "dev",
+    "source_type": "project_document"
+  },
+  {
+    "id": "d087",
+    "path": "corpus/d087.txt",
+    "name": "Note d087",
+    "split": "dev",
+    "source_type": "local_text"
+  },
+  {
+    "id": "d088",
+    "path": "corpus/d088.md",
+    "name": "Note d088",
+    "split": "dev",
+    "source_type": "project_document"
+  },
+  {
+    "id": "d089",
+    "path": "corpus/d089.txt",
+    "name": "Note d089",
+    "split": "dev",
+    "source_type": "local_text"
+  },
+  {
+    "id": "d090",
+    "path": "corpus/d090.md",
+    "name": "Note d090",
+    "split": "holdout",
+    "source_type": "project_document"
+  },
+  {
+    "id": "d091",
+    "path": "corpus/d091.txt",
+    "name": "Note d091",
+    "split": "holdout",
+    "source_type": "local_text"
+  },
+  {
+    "id": "d092",
+    "path": "corpus/d092.md",
+    "name": "Note d092",
+    "split": "holdout",
+    "source_type": "project_document"
+  },
+  {
+    "id": "d093",
+    "path": "corpus/d093.txt",
+    "name": "Note d093",
+    "split": "holdout",
+    "source_type": "local_text"
+  },
+  {
+    "id": "d094",
+    "path": "corpus/d094.md",
+    "name": "Note d094",
+    "split": "holdout",
+    "source_type": "project_document"
+  },
+  {
+    "id": "d095",
+    "path": "corpus/d095.txt",
+    "name": "Note d095",
+    "split": "holdout",
+    "source_type": "local_text"
+  }
+]

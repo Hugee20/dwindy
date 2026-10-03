@@ -1,0 +1,3 @@
+Ledger revision has a local procedure note.
+
+Ledger revision requires a signed note.

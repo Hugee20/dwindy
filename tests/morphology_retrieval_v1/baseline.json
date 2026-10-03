@@ -1,0 +1,12 @@
+{
+  "commit": "a4b3b5d080e758f68003159832164ce66ff1bca2",
+  "files": {
+    "src/dwindy/backend.py": "920990bffa9141e075159b6da24aec5ff1c84b0fffcaf885903a60a54e58c4bd",
+    "src/dwindy/core.py": "2b5b8d7664b5337178072739fa68be9e04d87f71feceb93e5f29efcfb9f5eab5",
+    "src/dwindy/evidence.py": "0b4ffbcf73123029796b1c8d02699e0c04046cfdcd7bba0d4c533b62b7bf36c9",
+    "src/dwindy/ingest.py": "b1da726301fb2909a890eb85c7e7346a6693e1c386d55447e3d5a093c256a2c4",
+    "src/dwindy/retrieval.py": "b2d7807f82015aaae05165bef107a15d00e4389afac0fc664e5ceee34a5c5cec",
+    "src/dwindy/context_policy.py": "670deade409195e50df4d741b24e424b8068aae7e1f2a419943e8ce79735dcb5"
+  },
+  "note": "Production baseline pinned after independent M11/frontend/H2 checkpoints. No production experiment modifications."
+}

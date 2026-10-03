@@ -1,0 +1,122 @@
+[
+  {
+    "id": "native_porter",
+    "passed": true,
+    "scope": "synthetic mechanics only; no evaluation cases scored"
+  },
+  {
+    "id": "empty",
+    "passed": true,
+    "scope": "synthetic mechanics only; no evaluation cases scored"
+  },
+  {
+    "id": "unicode",
+    "passed": true,
+    "scope": "synthetic mechanics only; no evaluation cases scored"
+  },
+  {
+    "id": "scratch_bounds",
+    "passed": true,
+    "scope": "synthetic mechanics only; no evaluation cases scored"
+  },
+  {
+    "id": "scratch_cleanup",
+    "passed": true,
+    "scope": "synthetic mechanics only; no evaluation cases scored"
+  },
+  {
+    "id": "query_stopwords",
+    "passed": true,
+    "scope": "synthetic mechanics only; no evaluation cases scored"
+  },
+  {
+    "id": "query_limit",
+    "passed": true,
+    "scope": "synthetic mechanics only; no evaluation cases scored"
+  },
+  {
+    "id": "query_escaping",
+    "passed": true,
+    "scope": "synthetic mechanics only; no evaluation cases scored"
+  },
+  {
+    "id": "query_bytes",
+    "passed": true,
+    "scope": "synthetic mechanics only; no evaluation cases scored"
+  },
+  {
+    "id": "original_text",
+    "passed": true,
+    "scope": "synthetic mechanics only; no evaluation cases scored"
+  },
+  {
+    "id": "denominator",
+    "passed": true,
+    "scope": "synthetic mechanics only; no evaluation cases scored"
+  },
+  {
+    "id": "repeated_tokens",
+    "passed": true,
+    "scope": "synthetic mechanics only; no evaluation cases scored"
+  },
+  {
+    "id": "generated_exclusion",
+    "passed": true,
+    "scope": "synthetic mechanics only; no evaluation cases scored"
+  },
+  {
+    "id": "top_three_coverage",
+    "passed": true,
+    "scope": "synthetic mechanics only; no evaluation cases scored"
+  },
+  {
+    "id": "field_union",
+    "passed": true,
+    "scope": "synthetic mechanics only; no evaluation cases scored"
+  },
+  {
+    "id": "empty_query",
+    "passed": true,
+    "scope": "synthetic mechanics only; no evaluation cases scored"
+  },
+  {
+    "id": "threshold",
+    "passed": true,
+    "scope": "synthetic mechanics only; no evaluation cases scored"
+  },
+  {
+    "id": "baseline_parity",
+    "passed": true,
+    "scope": "synthetic mechanics only; no evaluation cases scored"
+  },
+  {
+    "id": "bc_candidate_parity",
+    "passed": true,
+    "scope": "synthetic mechanics only; no evaluation cases scored"
+  },
+  {
+    "id": "double_bottleneck",
+    "passed": true,
+    "scope": "synthetic mechanics only; no evaluation cases scored"
+  },
+  {
+    "id": "readonly",
+    "passed": true,
+    "scope": "synthetic mechanics only; no evaluation cases scored"
+  },
+  {
+    "id": "wrong_schema",
+    "passed": true,
+    "scope": "synthetic mechanics only; no evaluation cases scored"
+  },
+  {
+    "id": "duplicate_suppression",
+    "passed": true,
+    "scope": "synthetic mechanics only; no evaluation cases scored"
+  },
+  {
+    "id": "packet_lifecycle",
+    "passed": true,
+    "scope": "synthetic mechanics only; no evaluation cases scored"
+  }
+]

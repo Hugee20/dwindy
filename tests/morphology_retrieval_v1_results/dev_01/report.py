@@ -1,0 +1,95 @@
+"""Render recorded development artifacts without executing any evaluation case."""
+import hashlib
+import json
+from pathlib import Path
+
+P=Path(__file__).resolve().parent
+def read(name):return json.loads((P/name).read_text(encoding='utf-8'))
+d=read('development-report.json');h=read('historical-report.json');p=read('performance/summary.json');f=read('final.json')
+records=read('development-observations.json');by={(r['id'],r['arm']):r for r in records}
+rows=[]
+def line(s=''):rows.append(s)
+def table(headers,values):
+    line('| '+' | '.join(headers)+' |');line('| '+' | '.join('---' for _ in headers)+' |')
+    for row in values:line('| '+' | '.join(str(x).replace('|','\\|').replace('\n',' ') for x in row)+' |')
+    line()
+def frac(x,n):return f'{round(x*n)}/{n}' if x is not None else '—'
+def packet(r):return ', '.join(p['document_id']+':'+p['chunk_id'][:8] for p in r['supplied']) or 'none'
+def gate(v):return 'PASS' if v else 'FAIL'
+
+line('# morphology_retrieval_v1 development report')
+line()
+line('**Recommendation: stop morphology. Neither B nor C passes all frozen development gates.**')
+line()
+line('Freeze SHA-256: `'+f['freeze']+'`. Forty-eight development cases per arm; no fresh morphology holdout, either M11 holdout, model inference, network calls, dependency installation, production modification, staging or commit. Historical M6–M8 panels include their already-spent historical splits only. No tuning and no discarded trials.')
+line()
+line('Machine: '+f['platform']+'; Python '+f['python'].split()[0]+'; SQLite '+f['sqlite']+'.')
+line()
+line('## Fresh results')
+line()
+line('Thirty positive cases include 18 acceptance positives (12 morphological, six exact) and 12 diagnostic-only synonym/language cases. Eighteen negative controls are evaluated separately. Candidate recall includes explicitly marked post-hoc availability probes where context policy bypassed retrieval; those probes do not imply production admission or contribute timed selection. Admission null means bypassed, not rejected.')
+line()
+table(['Metric','A','B','C'],[[k,*[frac(d['summary'][a]['overall'][k],30) for a in 'ABC']] for k in ('candidate_recall12','relevant_recall3','final_selection_recall','answer_hit1','answer_hit3','final_answer_recall')]+[['answer_mrr3',*[f"{d['summary'][a]['overall']['answer_mrr3']:.3f}" for a in 'ABC']],['usefulness applied / admitted',*[f"{d['summary'][a]['overall']['useful_applied']} / {d['summary'][a]['overall']['useful_admitted']}" for a in 'ABC']],['irrelevant supply (18 controls)',*[f"{d['summary'][a]['overall']['irrelevant_supply']}/18" for a in 'ABC']]])
+line('Acceptance positives only: candidate@12 / relevant@3 / Hit@1 / Hit@3 = A 6/18, B 18/18, C 18/18; final relevant and final answer = A 6/18, B 6/18, C 18/18. MRR@3 = A 0.333, B 1.000, C 1.000. These are retrieval metrics, not generated-answer accuracy.')
+line()
+table(['Category (six each)','A candidate/final','B candidate/final','C candidate/final','A/B/C false supply'],[[cat,*[f"{frac(d['summary'][a]['categories'][cat]['candidate_recall12'],6)} / {frac(d['summary'][a]['categories'][cat]['final_selection_recall'],6)}" for a in 'ABC'],' / '.join(str(d['summary'][a]['categories'][cat]['irrelevant_supply']) for a in 'ABC')] for cat in d['summary']['A']['categories']])
+line('Within every positive category, answer Hit@1, Hit@3 and relevant@3 equal candidate@12; final answer recall equals final relevance. Synonym recall stays 0/6 and Filipino/Taglish stays 3/6 in all arms. English anchors explain the latter matches; neither result establishes semantic or multilingual matching.')
+line()
+line('## Frozen gates, independently assessed')
+line()
+table(['Gate','B','C'],[[k,gate(f['eligibility']['B']['gates'][k]),gate(f['eligibility']['C']['gates'][k])] for k in f['eligibility']['B']['gates']])
+line('B: morphology candidate/top-three 12/12, but final 0/12 and net gain zero. C: 12/12 at all three stages, net gain +12 with zero losses. Exact final retention 6/6 in every arm, no A successes lost. All 24 mechanical probes pass; historical false-positive gate passes both arms. Both fail zero irrelevant supply (2/18) and absolute warm p95 <=25 ms. Relative limit is '+f"{1.25*p['arms']['A']['warm_selection_p95_ms']+2:.3f}"+' ms; both pass. Neither is eligible; the simpler-arm tie-break does not apply.')
+line()
+line('## Individual failures and changes')
+line()
+line('Both negative failures occur unchanged in A/B/C:')
+line()
+table(['ID','Request','Unrelated supplied text','Mechanism'],[['ordinary_control_dev_3','Thanks, that helps.','Thanks cards are stored beside the gift shelf.','thanks covers 1/2 retained terms: threshold met'],['ordinary_control_dev_5','Why is the sky blue?','Blue receipt books are issued monthly.','blue covers 1/2 retained terms: threshold met']])
+line('Every inflection_dev_1–6 and derivation_dev_1–6 is a final-context miss in A and B and a success in C. In A no morphological candidate is found; B finds answer-bearing candidates but original usefulness rejects all 12. Every synonym_dev_1–6 remains a gold retrieval miss in all arms. The individual positive/negative failures, exact supplied passages, gold scores, and bypasses are enumerated below and in development-report.json / development-observations.json.')
+line()
+table(['Case','A candidate/admission/final','B candidate/admission/final','C candidate/admission/final'],[[r['id'],*[f"{d['every_case'][a][i]['candidate_recall12']} / {by[r['id'],a]['useful_admitted']} / {d['every_case'][a][i]['final_relevant']}" for a in 'ABC']] for i,r in enumerate(d['every_case']['A'])])
+line('### Every selection/decision change')
+line()
+for pair,changes in d['changes'].items():
+    line('#### '+pair+f' ({len(changes)} changes)');line()
+    table(['Case','Decision before → after','Admission before → after','Supplied before → after'],[[x['id'],x['before']['decision']+' → '+x['after']['decision'],str(x['before']['useful_admitted'])+' → '+str(x['after']['useful_admitted']),packet(x['before'])+' → '+packet(x['after'])] for x in changes])
+line('Final supplied evidence changes only on the 12 morphology cases for A→C/B→C; A→B changes candidate availability/weak-match reason but never supplies new evidence. Ranking changes include cases with no selection change:')
+line()
+for pair,changes in d['ranking_changes'].items():
+    line(pair+f' ({len(changes)}): '+', '.join(x['id'] for x in changes)+'.');line()
+line('Exact old/new candidate ranking, text, offsets and source identities for every ranking change are retained in development-report.json; full token audits are in development-observations.json.')
+line()
+line('### Every annotated Porter collision')
+line()
+table(['Case','Original query / source tokens','Porter stems','Maximum C coverage','Admission A/B/C'],[[r['id'],' / '.join(x['original'] for x in r['annotated_collision']),' / '.join(','.join(x['stems']) for x in r['annotated_collision']),f"{max([x['coverage'] for x in r['porter_audit']['passages']] or [0]):.3f}",' / '.join(str(by[r['id'],a]['useful_admitted']) for a in 'ABC')] for r in records if r['arm']=='C' and r['annotated_collision']])
+line('These collisions introduce misleading candidates; none changes admission to true. collision_dev_2 already has an unrelated exact counted match in A. Full original passage tokens, resulting stems, query-to-stem maps and original-term denominator are retained for every observed candidate, including incidental stem overlaps outside the annotated collision category. This is token correspondence, not semantic collision detection.')
+line()
+line('## Historical diagnostics (no fresh acceptance credit)')
+line()
+for milestone,arms in h['panels'].items():
+    line('### '+milestone);line()
+    table(['Arm','Original evaluator overall results'],[[a,json.dumps(res['overall'],sort_keys=True)] for a,res in arms.items()])
+    for pair,changes in h['changes'][milestone].items():
+        line('Every '+pair+f' change ({len(changes)}):');line()
+        table(['Case','Before','After'],[[x['id'],json.dumps(x['before'],sort_keys=True),json.dumps(x['after'],sort_keys=True)] for x in changes])
+line('M6 Porter improves Hit@1 15/20→17/20 but adds one negative nonempty retrieval; M7 Hit@1 declines 18/22→16/22 and adds one negative nonempty retrieval. Hit@3 stays 19/20 and 21/22 respectively. M8 C fixes implicit_project_4; B does not. Existing accidental_overlap_2 false supply and all four multilingual failures remain. The only historical acceptance gate is no NEW M8 direct/acceptable false supply: passed B/C. Other historical gains/regressions neither rescue nor reject the fresh acceptance result.')
+line()
+line('## Performance and resource measurements')
+line()
+line('Frozen workload: 1,000 documents, 9,829,000 logical UTF-8 bytes, 10,000 paragraph blocks; five isolated processes per arm, 200 identically permuted warm queries per trial (1,000 per arm). Build includes ingest/chunk/insert/commit; fixture generation precedes baseline/timing. RSS sampled every 10 ms; short peaks may be missed. No outliers/trials removed. All timings below are model-free. Actual C normalization is charged; audit-only replay/probes/serialization/IPC are excluded. Timing wrappers add small common instrumentation overhead. Inclusive columns nest normalization and must not be added together.')
+line()
+table(['Component','A p50/p95/max ms','B p50/p95/max ms','C p50/p95/max ms'],[[key,*[' / '.join(f"{p['arms'][a]['timing'].get(key,{}).get(n,0):.4f}" for n in ('p50_ms','p95_ms','max_ms')) for a in 'ABC']] for key in sorted(set().union(*(p['arms'][a]['timing'] for a in 'ABC'))) ])
+table(['Resource (median of five)','A','B','C'],[[key,*[f"{p['arms'][a][key]:.4f}" for a in 'ABC']] for key in ('build_seconds','index_bytes','rss_increment_bytes','startup_median_ms','first_query_median_ms','max_build_seconds','max_rss_increment_bytes')])
+line('Porter FTS normalization occurs inside SQLite search/indexing and cannot be separately timed here; query_normalization measures deterministic query-term/MATCH construction. C porter_normalization is additional scratch FTS/fts5vocab coverage work, already contained in usefulness_inclusive. Startup includes fresh connection/schema validation, quick/foreign-key checks and scratch setup; frozen ReferenceIndex initializes the scratch normalizer for all arms, including A/B. First query follows indexing with warm OS cache: it is not cold-disk latency. Isolated process startup before opening is outside startup_ms. No Qwen tokenizer, TTFT or generation measurement is claimed; the frozen UTF-8-quarter token oracle is used identically for all arms.')
+line()
+table(['Trial/arm','Build s','Bytes/chunks','Increment RSS bytes','Startup ms','First full selection ms'],[[f'{n}/{a}',f"{t['build_seconds']:.6f}",f"{t['index_bytes']}/{t['chunks']}",t['rss_increment_bytes'],f"{t['startup_ms']:.4f}",f"{t['first_query_ms']['complete_selection']:.4f}"] for n in range(1,6) for a in 'ABC' for t in [read(f'performance/trial-{n}-{a}.json')]])
+line('All 15 Windows trials closed connections and successfully renamed/deleted the index and removed temporary folders. Index is '+str(p['arms']['A']['index_bytes'])+' bytes A versus '+str(p['arms']['B']['index_bytes'])+' bytes B/C. Median incremental RSS C−A is '+str(p['arms']['C']['rss_increment_bytes']-p['arms']['A']['rss_increment_bytes'])+' bytes, well below +8 MiB.')
+line()
+line('## Integrity, artifacts and disposition')
+line()
+line('The frozen evaluator/fixtures/gates were used unchanged; production and 149 historical artifact hashes verified. No thresholds, term selection, stopwords, ranking, tokenizer parameters, language/synonym handling or fixtures were tuned. New artifacts exist only under ignored eval-results/morphology-dev-01/. Existing untracked frozen evaluation directory and sibling fixture-validation harness remain unstaged; no tracked changes. Artifact manifest lists hashes of every run output. Regression results are recorded separately in validation.json.')
+line()
+line('The experiment demonstrates both lexical bottlenecks, but fails adoption. Stop this morphology line, retain development evidence, and leave production unchanged. No candidate freeze or holdout request is recommended.')
+target=P/'REPORT.md'
+assert not target.exists()
+target.write_text('\n'.join(rows)+'\n',encoding='utf-8',newline='\n')

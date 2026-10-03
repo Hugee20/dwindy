@@ -1,0 +1,31 @@
+{
+  "identity": {
+    "documents": 1000,
+    "logical_source_bytes": 9829000,
+    "source_sha256": "3bb043a601a08f2dea283dec2ed92e237bcc73b154a22ae4f608d1a84e3dd0dc",
+    "query_sha256": "01ef7304b7e8423a4f841931b66ff8d9e12db5b6affaf129b9c2443053df548f"
+  },
+  "seed": 42,
+  "documents": 1000,
+  "blocks_per_document": 10,
+  "words_per_block": 150,
+  "maximum_block_chars_before_period": 980,
+  "trials_per_arm": 5,
+  "warm_queries_per_trial": 200,
+  "query_order_seeds": [
+    101,
+    102,
+    103,
+    104,
+    105
+  ],
+  "arm_order_seed": 17,
+  "p95": "nearest rank over all 1000 warm selection samples",
+  "resource_gate_statistic": "median of all five trials",
+  "rss_sample_interval_ms": 10,
+  "baseline": "pre-index generation/loading; no model; source fixture generation outside timing",
+  "audit_cost": "post-hoc traces excluded; actual C normalization included",
+  "first_query": "fresh connection after indexing, warm OS filesystem cache; not cold disk",
+  "network_calls": 0,
+  "model_calls": 0
+}

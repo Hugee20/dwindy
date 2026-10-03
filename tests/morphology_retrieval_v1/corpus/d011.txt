@@ -1,0 +1,3 @@
+Invoice printing has a local procedure note.
+
+Invoice printing uses the north kiosk.

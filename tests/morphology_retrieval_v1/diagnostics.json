@@ -1,0 +1,38 @@
+{
+  "panels": [
+    {
+      "milestone": "M6",
+      "path": "tests/retrieval",
+      "cases": "queries.jsonl",
+      "count": 24
+    },
+    {
+      "milestone": "M7",
+      "path": "tests/project",
+      "cases": "queries.jsonl",
+      "count": 32
+    },
+    {
+      "milestone": "M8",
+      "path": "tests/context",
+      "cases": "cases.jsonl",
+      "count": 56
+    }
+  ],
+  "known_failures": [
+    "M6:P4",
+    "M6:C1",
+    "M6:I1",
+    "M6:I2",
+    "M7:adversarial_1",
+    "M8:implicit_project_4",
+    "M8:accidental_overlap_2",
+    "M8:multilingual_1",
+    "M8:multilingual_2",
+    "M8:multilingual_3",
+    "M8:multilingual_4"
+  ],
+  "acceptance_credit": false,
+  "gated_comparison": "No new false supply over paired A on historical M8 direct controls, respecting unchanged acceptable outcomes; existing failures need not be repaired.",
+  "execution": "Not executed at freeze. Use original corpus builders, IDs, project name, labels and semantics. Historical spent holdouts are diagnostics, not either sealed M11 holdout."
+}

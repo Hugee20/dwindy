@@ -1,0 +1,39 @@
+{
+  "disposition": "development-stage rejection; no production adoption",
+  "evaluation_freeze_sha256": "6c1b8a9e252a55a878987082dc0f0e599ac8175486819d6b2697a988072d2bca",
+  "original_run_manifest_sha256": "41dfeea362febd3890bfcce8c3adeaa94c66fefcc943ec0146e385dc12c7a34c",
+  "archived_original_files": 26,
+  "byte_identical_to_original_run": true,
+  "historical_files_verified": 149,
+  "production_baseline_hashes_verified": true,
+  "python_regressions": {
+    "command": ".venv/Scripts/python.exe -B -m unittest discover -s tests -q",
+    "tests": 343,
+    "passed": 343,
+    "elapsed_seconds": 42.12
+  },
+  "mechanical_probes_preserved": {
+    "total": 24,
+    "passed": 24
+  },
+  "whitespace": {
+    "tracked_git_diff_check": "passed",
+    "untracked_no_index_checks": "no whitespace diagnostics; exit 1 indicates file additions",
+    "newline_attributes": "-text for frozen evaluation and archived development results"
+  },
+  "fresh_holdout": "sealed/unspent",
+  "m11_holdouts": "sealed/unspent",
+  "reach_h2": "deferred/unchanged",
+  "production_modified": false,
+  "staged": false,
+  "committed": false,
+  "semantic_planning": "not begun; follows reviewed and committed checkpoint",
+  "proposed_commit_subject": "test: conclude rejected morphology retrieval experiment",
+  "files_for_checkpoint": [
+    ".gitattributes",
+    "docs/MORPHOLOGY_RETRIEVAL_V1_CONCLUSION.md",
+    "tests/morphology_retrieval_v1/",
+    "tests/morphology_retrieval_v1_results/",
+    "tests/test_morphology_retrieval_fixtures.py"
+  ]
+}

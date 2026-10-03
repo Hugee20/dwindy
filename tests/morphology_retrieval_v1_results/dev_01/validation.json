@@ -1,0 +1,29 @@
+{
+  "freeze_sha256": "6c1b8a9e252a55a878987082dc0f0e599ac8175486819d6b2697a988072d2bca",
+  "historical_artifacts_verified": 149,
+  "production_baseline_hashes_verified": true,
+  "python_unittest": {
+    "command": ".venv/Scripts/python.exe -B -m unittest discover -s tests -q",
+    "tests": 343,
+    "passed": 343,
+    "seconds": 40.113
+  },
+  "mechanical_probes": {
+    "total": 24,
+    "passed": 24
+  },
+  "scratch_empty": true,
+  "tracked_and_staged_changes": [],
+  "unchanged_untracked": [
+    "tests/morphology_retrieval_v1/",
+    "tests/test_morphology_retrieval_fixtures.py"
+  ],
+  "holdout_evaluated": false,
+  "real_model_calls": 0,
+  "network_calls": 0,
+  "dependencies_installed": false,
+  "notes": [
+    "pytest was unavailable; used the documented unittest suite without installing anything",
+    "Browser checks were not rerun because production/browser code was unchanged"
+  ]
+}

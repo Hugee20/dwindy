@@ -1,0 +1,3 @@
+Cable connection has a local procedure note.
+
+Cable connection uses terminal violet.

@@ -1,0 +1,14 @@
+{
+  "morph_candidate_hits": 11,
+  "morph_top3_hits": 10,
+  "morph_final_hits": 10,
+  "morph_gain": 3,
+  "exact_hits": 6,
+  "false_supply": 0,
+  "warm_p95_ms": 25,
+  "latency_ratio": 1.25,
+  "latency_slack_ms": 2,
+  "build_ratio": 1.2,
+  "size_ratio": 1.2,
+  "extra_rss_bytes": 8388608
+}
