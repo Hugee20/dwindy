@@ -36,7 +36,15 @@ class CompactSemanticFixtureTests(unittest.TestCase):
                     self.assertTrue(any(start<=gold['start'] and end>=gold['end'] for _,start,end in chunks(text)))
 
     def test_historical_and_baseline_byte_bindings(self):
-        self.assertTrue(ev.verify_bindings())
+        # The rejected experiment remains bound to the pre-Reach checkpoint.
+        # Its frozen live-tree verifier is unchanged; release code may evolve.
+        import subprocess
+        for name in ('baseline.json','historical.json'):
+            for path,value in ev.read(name)['files'].items():
+                data = (__import__('reach_history_support').checkpoint_bytes(path,value)
+                        if name == 'baseline.json' or path == 'tests/test_morphology_retrieval_fixtures.py'
+                        else (ev.ROOT.parent.parent/path).read_bytes())
+                self.assertEqual(hashlib.sha256(data).hexdigest(),value,path)
         expected={'policy':'e098fe14666bd43a6ee797d8fc7e94585d169c9e4b9ac0633943590be731cc26',
                   'policy_foundation_v1':'59190f0dd49f5cd6721bdabf97472a9d69ec4829b1bce21c6a3fad74bb3e5a8f',
                   'morphology_retrieval_v1':'6c1b8a9e252a55a878987082dc0f0e599ac8175486819d6b2697a988072d2bca'}

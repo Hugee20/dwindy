@@ -86,15 +86,36 @@ export const tests = [
       }, {fetchImpl: async url => url.endsWith('/health') ? new Response(JSON.stringify(health)) : response()});
     }
   }],
-  ['external search is always shown with its exact query, and the widget has no Reach control', () => fixture(async chat => {
+  ['Reach has a deployment-gated opt-in and exact supplied source links', () => fixture(async (chat,calls) => {
+    await waitFor(() => !chat.$('.reach-setting').hidden);
+    assert(!chat.$('.use-reach').checked);
+    chat.$('.use-reach').checked = true;
     send(chat, 'latest python'); await complete(chat);
-    assert(chat.$('.retrieval-status').textContent === 'Searched externally for: latest version python');
-    assert(!chat.$('.retrieval-status').hidden);
-    assert(!chat.shadowRoot.innerHTML.toLowerCase().includes('reach'));
-  }, {fetchImpl: async url => url.endsWith('/health') ? new Response('{}') :
-      response(frame('started', {conversation_id: id, dropped_turns: 0, reach: {used: true, reason: 'used', provider: 'wikipedia',
-        query: 'latest version python', sources: [{title: 'Python', url: 'https://en.wikipedia.org/wiki/Python'}], notice: false}}) +
+    const post=JSON.parse(calls.find(c=>c.options.method==='POST').options.body);
+    assert(post.reach === 'auto');
+    assert(chat.$('.reach-status').textContent.includes('latest version python'));
+    assert(chat.$('.reach-status').textContent.includes('does not verify'));
+    const link=chat.$('.assistant:last-child .reach-receipt a');
+    assert(link.textContent === 'Referenced from Wikipedia ? <Python>');
+    assert(link.href === 'https://en.wikipedia.org/wiki/Python' && link.rel.includes('noopener'));
+    assert(!chat.shadowRoot.querySelector('Python'));
+    await chat.resetConversation(); assert(chat.$('.reach-status').hidden);
+  }, {fetchImpl: async (url,options) => options.method === 'DELETE' ? new Response(null,{status:204}) : url.endsWith('/health') ? new Response('{"reach_enabled":true,"reach_default":"off"}') :
+      response(frame('started', {conversation_id: id, dropped_turns: 0, reach: {state:'supplied',attempted:true,reason:'supplied',provider:'wikipedia',
+        query: 'latest version python', sources: [{title: '<Python>', url: 'https://en.wikipedia.org/wiki/Python'}]}}) +
         frame('delta', {text: 'OK'}) + done)})],
+  ['Reach status stays separate from local status and never invents a supplied link', async () => {
+    for (const state of ['disabled','not_attempted','unavailable','not_supplied']) {
+      await fixture(async chat => {
+        send(chat,'hello'); await complete(chat);
+        assert(!chat.$('.reach-status').hidden);
+        assert(!chat.$('.reach-status').querySelector('a'));
+        assert(chat.$('.retrieval-status').hidden);
+        assert(chat.$('.reach-setting').hidden);
+      }, {fetchImpl: async url=>url.endsWith('/health')?new Response('{}'):
+        response(frame('started',{conversation_id:id,dropped_turns:0,reach:{state,attempted:false,reason:'control',sources:[]}})+frame('delta',{text:'OK'})+done)});
+    }
+  }],
   ['auto default starts checked, opt-out sends false, and status stays truthful', async () => {
     const statuses = [{mode: 'auto', attempted: false, status: 'not_used', reason: 'conversational', sources: []},
                       {mode: 'auto', attempted: true, status: 'not_used', reason: 'weak_match', sources: []},

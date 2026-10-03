@@ -13,12 +13,13 @@ import secrets
 import time
 from unittest.mock import patch
 
-from dwindy import capabilities, reach
+from dwindy import capabilities
+from reach_history_support import reach, module
 from dwindy.backend import TextDelta
 from dwindy.config import load_config
 from dwindy.context_policy import decide as select_context
-from dwindy.core import DwindyCore
-from dwindy.evidence import Facts
+DwindyCore = module("core").DwindyCore
+Facts = module("evidence").Facts
 from dwindy.llama_backend import LlamaBackend
 from context_run import fixture_index
 from reach.evaluate import load

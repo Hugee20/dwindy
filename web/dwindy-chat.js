@@ -1,4 +1,4 @@
-import {ChatClient, apiBase} from './api-client.js';
+import {ChatClient, apiBase, validWikipediaUrl} from './api-client.js';
 
 const asset = name => new URL(`../assets/${name}`, import.meta.url).href;
 const idle = asset('chatheads/dwindy-idle.png');
@@ -37,6 +37,8 @@ export class DwindyChat extends HTMLElement {
         </details>
         <label class="retrieval-setting" hidden><input class="use-retrieval" type="checkbox"> <span class="retrieval-label">Use local documents</span></label>
         <p class="retrieval-status" role="status" hidden></p>
+        <label class="reach-setting" hidden><input class="use-reach" type="checkbox"> Use Wikipedia <span>(sends a minimized query online)</span></label>
+        <p class="reach-status" role="status" hidden></p>
         <div class="transcript" role="region" aria-label="Conversation" tabindex="0">
           <div class="empty"><img alt=""><h3>Hello. What’s on your mind?</h3><p>Ask a question, explore an idea, or work through a thought.</p></div>
           <p class="pruned" hidden>Older messages were removed from this display.</p>
@@ -163,9 +165,12 @@ export class DwindyChat extends HTMLElement {
     this.#client = new ChatClient({base, token: this.#token});
     this.#persistent = null;
     this.$('.persistence').hidden = true;
+    this.$('.reach-setting').hidden = true;
+    this.$('.use-reach').checked = false;
     this.$('.retrieval-setting').hidden = true;
     this.$('.use-retrieval').checked = false;
     this.$('.retrieval-status').hidden = true;
+    this.$('.reach-status').hidden = true;
     this.$('.error').hidden = true;
     this.$('.status').textContent = 'Connection ready to use. Send a message to begin.';
     if (this.#inline || this.hasAttribute('open')) this.#checkHealth();
@@ -233,6 +238,10 @@ export class DwindyChat extends HTMLElement {
           this.$('.use-retrieval').checked = health.retrieval_default === 'auto';
         this.$('.retrieval-setting').hidden = health.retrieval_enabled !== true;
         if (health.retrieval_enabled !== true) this.$('.use-retrieval').checked = false;
+        if (this.$('.reach-setting').hidden && health.reach_enabled === true)
+          this.$('.use-reach').checked = health.reach_default === 'auto';
+        this.$('.reach-setting').hidden = health.reach_enabled !== true;
+        if (health.reach_enabled !== true) this.$('.use-reach').checked = false;
         this.$('.retrieval-label').textContent = health.project_snapshot ? 'Use local project context' : 'Use local documents';
       }
       if (!controller.signal.aborted && !this.#busy && !this.#client.uncertain && !this.$('.messages').children.length)
@@ -263,6 +272,7 @@ export class DwindyChat extends HTMLElement {
     this.$('.send').textContent = this.#busy ? 'Stop' : 'Send';
     this.$('.send').disabled = this.#resetting || (!this.#busy && (!this.#client || this.#client.uncertain));
     this.$('.reset').disabled = this.#busy || this.#resetting;
+    this.$('.use-reach').disabled = this.#busy || this.#resetting;
     this.$('.use-retrieval').disabled = this.#busy || this.#resetting;
     for (const button of this.shadowRoot.querySelectorAll('.persistence button, .resume-id')) button.disabled = this.#busy || this.#resetting;
     this.$('.conversation-id').value = this.#client?.conversationId || '';
@@ -303,9 +313,11 @@ export class DwindyChat extends HTMLElement {
     input.value = ''; this.#scroll();
     let complete = false, dropped = 0;
     this.$('.retrieval-status').hidden = true;
+    this.$('.reach-status').hidden = true;
     try {
       const retrieval = this.$('.retrieval-setting').hidden ? undefined : this.$('.use-retrieval').checked ? 'auto' : false;
-      for await (const item of this.#client.chat(message, {retrieval})) {
+      const reach = this.$('.reach-setting').hidden ? undefined : this.$('.use-reach').checked ? 'auto' : false;
+      for await (const item of this.#client.chat(message, {retrieval, reach})) {
         if (item.event === 'started') {
           dropped = item.data.dropped_turns; this.#controls();
           const info = item.data.retrieval;
@@ -316,11 +328,15 @@ export class DwindyChat extends HTMLElement {
               info.status === 'no_match' ? 'No matching local passages found.' : 'Matching passages did not fit the local context budget.';
             this.$('.retrieval-status').hidden = false;
           }
-          // Whenever a query left the machine, show exactly what was sent (Reach, M10).
           const external = item.data.reach;
-          if (external && typeof external.provider === 'string' && typeof external.query === 'string') {
-            this.$('.retrieval-status').textContent = `Searched externally for: ${external.query}`;
-            this.$('.retrieval-status').hidden = false;
+          if (external) {
+            const status = this.$('.reach-status');
+            this.#reachStatus(status, external);
+            status.hidden = false;
+            const receipt = document.createElement('p');
+            receipt.className = 'reach-receipt';
+            this.#reachStatus(receipt, external);
+            assistant.li.append(receipt);
           }
         }
         if (item.event === 'delta') {
@@ -346,6 +362,23 @@ export class DwindyChat extends HTMLElement {
     } finally {
       this.#busy = false; this.#controls(); this.#prune();
       if (!complete) this.$('.announcement').textContent = 'No completed answer received.';
+    }
+  }
+
+  #reachStatus(node, info) {
+    const labels = {disabled: 'Reach is off.', not_attempted: 'Reach was not attempted.',
+      unavailable: 'Wikipedia unavailable; continuing locally.',
+      not_supplied: 'Wikipedia checked; no web material supplied.', supplied: 'Wikipedia material supplied. This does not verify the answer.'};
+    node.textContent = labels[info.state] || '';
+    if (info.attempted && typeof info.query === 'string')
+      node.append(document.createTextNode(` Query sent: ${info.query}.`));
+    for (const source of info.sources || []) {
+      if (!validWikipediaUrl(source.url)) continue;
+      node.append(document.createElement('br'));
+      const link = document.createElement('a');
+      link.textContent = `Referenced from Wikipedia ? ${source.title}`;
+      link.href = source.url; link.target = '_blank'; link.rel = 'noopener noreferrer';
+      node.append(link);
     }
   }
 
@@ -375,6 +408,7 @@ export class DwindyChat extends HTMLElement {
     this.$('.delete-confirm').hidden = true;
     this.$('.resume-id').value = '';
     this.$('.retrieval-status').hidden = true;
+    this.$('.reach-status').hidden = true;
   }
 
   async newConversation() {

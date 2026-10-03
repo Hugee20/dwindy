@@ -12,12 +12,14 @@ import secrets
 import time
 from unittest.mock import patch
 
-from dwindy import capabilities, reach
+from dwindy import capabilities
+from reach_history_support import reach, module
 from dwindy.backend import Message, TextDelta
 from dwindy.config import load_config
 from dwindy.context_policy import decide as select_context
-from dwindy.core import DwindyCore
-from dwindy.evidence import Facts, evidence_question
+DwindyCore = module("core").DwindyCore
+Facts = module("evidence").Facts
+evidence_question = module("evidence").evidence_question
 from dwindy.llama_backend import LlamaBackend
 from context_run import fixture_index
 from reach_support import ReplayTransport, combined_body, no_network

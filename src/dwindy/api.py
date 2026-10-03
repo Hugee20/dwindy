@@ -139,8 +139,8 @@ class ChatReply(BaseModel):
     capabilities: list[dict] | None = Field(default=None, description=(
         "Deterministic capabilities and host context used for this turn; present only when used."))
     reach: dict | None = Field(default=None, description=(
-        "External information: used, reason, provider, the exact minimized query that left the machine, "
-        "sources, notice. 'used' means external material was consulted, not that the answer was verified."))
+        "Deterministic Reach state/reason, attempted query, admission IDs, actual supplied IDs and article sources. "
+        "Sources describe information supplied to the model, not answer verification."))
 
 
 class RetrieveRequest(BaseModel):
@@ -170,6 +170,9 @@ class HealthReply(BaseModel):
     retrieval_enabled: bool
     retrieval_default: Literal["auto", "off"] | None = None
     project_snapshot: ProjectSnapshot | None = None
+    reach_enabled: bool | None = None
+    reach_default: Literal["auto", "off"] | None = None
+    reach_provider: str | None = None
 
 
 ERROR_SCHEMA = {"type": "object", "required": ["error"], "properties": {"error": {
@@ -621,9 +624,7 @@ def turn_metadata(decision, started, web_evidence, reach_decision, used):
     if used:
         out["capabilities"] = used
     if reach_decision is not None:
-        out["reach"] = reach_decision.metadata()
-        if web_evidence is not None:
-            out["reach"]["supplied"] = (started.retrieval or {}).get("status") == "supplied"
+        out["reach"] = reach_decision.metadata(started.retrieval if web_evidence is not None else None)
     return out
 
 
@@ -640,8 +641,8 @@ def create_app(model_config, api_config=None, *, backend=None, chat_root=None, r
     if config.reach_provider is not None:
         try:
             state.reach_backend = reach_backend or reach.WikipediaBackend()
-        except ImportError as exc:
-            raise ConfigError(str(exc)) from exc
+        except (ImportError, OSError):
+            state.reach_backend = reach.UnavailableBackend()
 
     @asynccontextmanager
     async def lifespan(app):
@@ -690,6 +691,8 @@ def create_app(model_config, api_config=None, *, backend=None, chat_root=None, r
                     await finish_cleanup(asyncio.create_task(state.storage(state.index.close, internal=True)))
                 if state.storage_executor is not None:
                     state.storage_executor.shutdown(wait=True)
+                if state.reach_backend is not None and hasattr(state.reach_backend, "close"):
+                    state.reach_backend.close()
                 state.conversations.clear()
                 state.executor.shutdown(wait=True)
 
@@ -718,7 +721,10 @@ def create_app(model_config, api_config=None, *, backend=None, chat_root=None, r
         return {"status": "ready", "busy": state.busy, "persistence_enabled": state.store is not None,
                 "retrieval_enabled": state.index is not None,
                 "retrieval_default": state.default_mode if state.index is not None else None,
-                "project_snapshot": state.index.project_snapshot if state.index is not None else None}
+                "project_snapshot": state.index.project_snapshot if state.index is not None else None,
+                "reach_enabled": True if config.reach_provider else None,
+                "reach_provider": config.reach_provider,
+                "reach_default": (config.reach_default or "off") if config.reach_provider else None}
 
     @app.delete("/v1/conversations/{conversation_id}", status_code=204)
     async def delete(conversation_id: str):
@@ -773,9 +779,6 @@ def create_app(model_config, api_config=None, *, backend=None, chat_root=None, r
             # Without a configured token no caller is authenticated, so host data cannot be trusted.
             return error(403, "host_context_requires_token",
                          "Host context requires a configured API token and bearer authentication.")
-        if body.reach is True and state.reach_backend is None:
-            # A request can only select Reach behavior the deployment already permits.
-            return error(503, "reach_disabled", "Reach is not configured for this deployment.")
         if state.mode(body) == "on":
             try:
                 match_query(body.message)

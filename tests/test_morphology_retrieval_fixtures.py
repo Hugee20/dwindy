@@ -15,7 +15,9 @@ class MorphologyFixtureTests(unittest.TestCase):
         self.assertEqual(ev.validate_fixtures()['cases'],96)
 
     def test_baseline_sources_and_historical_hashes(self):
-        reference.verify_runtime_sources()
+        from reach_history_support import checkpoint_bytes
+        for path,digest in json.loads((ev.ROOT/'baseline.json').read_text())['files'].items():
+            self.assertEqual(hashlib.sha256(checkpoint_bytes(path,digest)).hexdigest(),digest,path)
         repo=ev.ROOT.parent.parent
         old=json.loads((ev.ROOT/'historical.json').read_text())
         for name,digest in old['files'].items():

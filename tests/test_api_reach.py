@@ -1,3 +1,4 @@
+from reach_history_support import reach, module
 from contextlib import closing
 import os
 from pathlib import Path
@@ -15,11 +16,11 @@ except ImportError:
 
 from project_support import materialize
 from reach_support import ReplayTransport, combined_body, no_network
-from test_api import create_app, TestClient
+from test_api import TestClient
+create_app = module("api").create_app
 from test_terminal import FakeBackend
-from dwindy import reach
 from dwindy.config import Config, ConfigError
-from dwindy.server import ApiConfig
+ApiConfig = module("server").ApiConfig
 
 sys.path.insert(0, str(Path(__file__).parent))
 from reach.evaluate import evaluate_permission

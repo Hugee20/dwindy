@@ -19,6 +19,19 @@ const drain = async stream => { const events = []; for await (const e of stream)
 const errorResponse = (status, code) => new Response(JSON.stringify({error: {code, message: 'Safe error'}}), {status});
 
 export const tests = [
+  ['Reach modes are explicit and unsafe or unsupplied source links are rejected', async () => {
+    const bodies=[];
+    const client=new ChatClient({fetchImpl:async (url,options)=>{bodies.push(JSON.parse(options.body));return response();}});
+    await drain(client.chat('one'));await drain(client.chat('two',{reach:'auto'}));await drain(client.chat('three',{reach:false}));
+    assert(!('reach' in bodies[0]) && bodies[1].reach==='auto' && bodies[2].reach===false);
+    await rejects(()=>drain(client.chat('bad',{reach:'force'})),'invalid_request');
+    for (const [state,url] of [['supplied','javascript:alert(1)'],['supplied','https://en.wikipedia.org.evil/wiki/A'],['not_supplied','https://en.wikipedia.org/wiki/A']]) {
+      const c=new ChatClient({fetchImpl:async()=>response(frame('started',{conversation_id:id,dropped_turns:0,
+        reach:{state,reason:'test',attempted:true,sources:[{title:'A',url}]}})+done)});
+      await rejects(()=>drain(c.chat('test')),'protocol');
+    }
+  }],
+
   ['retrieval is opt-in and absent requests preserve the old shape', async () => {
     const bodies = [];
     const client = new ChatClient({fetchImpl: async (url,options) => { bodies.push(JSON.parse(options.body)); return response(); }});

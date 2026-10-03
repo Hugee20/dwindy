@@ -3,7 +3,8 @@ from pathlib import Path
 import unittest
 sys.path.insert(0,str(Path(__file__).parent))
 from policy.evaluate import evaluate_contract,verify_freeze
-from policy_probes import observe
+from reach_history_support import module
+observe = module("policy_probes").observe
 
 class PolicyContractTests(unittest.TestCase):
     def test_all_48_frozen_contract_profiles(self):

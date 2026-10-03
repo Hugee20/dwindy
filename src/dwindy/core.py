@@ -6,7 +6,7 @@ from typing import Generator, Sequence
 from .backend import BackendError, Completion, ContextLimitError, GenerationOptions, Message, ModelBackend, TextDelta
 from .evidence import (Evidence, Facts, GUIDANCE, UNAVAILABLE_GUIDANCE, WEB_GUIDANCE, WEB_SENTENCE_GUIDANCE,
                        evidence_question,
-                       facts_block, policy_guidance, host_block, web_facts_block, web_facts_guidance, web_host_block)
+                       facts_block, policy_guidance, host_block)
 
 
 @dataclass(frozen=True)
@@ -140,18 +140,16 @@ class DwindyCore:
         self._active = True
         try:
             system, retrieval = self._system_prompt, None
-            web = evidence is not None and evidence.origin != "local"
             prefix = ""
-            extra = "" if web else policy_guidance(facts)
+            extra = policy_guidance(facts)
             content = user_text
             if facts:
                 # Host data has its own allowance; it is rejected, never truncated, when too large.
-                block = web_host_block(facts) if web else host_block(facts)
+                block = host_block(facts)
                 if block and (self._backend.count_tokens([Message("user", block)]) -
                               self._backend.count_tokens([Message("user", "")])) > facts.host_budget:
                     raise ContextLimitError("Host context exceeds its token allowance.")
-                prefix = web_facts_block(facts) if web else facts_block(facts)
-                if web: extra = web_facts_guidance(facts)
+                prefix = facts_block(facts)
                 content = prefix + "User question:\n" + user_text
             if notice:
                 extra = (extra + "\n\n" if extra else "") + notice

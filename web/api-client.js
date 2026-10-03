@@ -116,18 +116,19 @@ export class ChatClient {
     this.uncertain = false;
   }
 
-  async *chat(message, {retrieval} = {}) {
+  async *chat(message, {retrieval, reach} = {}) {
     if (this.#controller) throw new ApiError('conversation_busy', 'A request is already active.', 409);
     if (this.uncertain) throw new ApiError('uncertain', 'Start a new conversation before sending again.');
     if (typeof message !== 'string' || !message.trim()) throw new ApiError('invalid_request', 'Enter a message.');
     if (![undefined, true, false, 'auto'].includes(retrieval)) throw new ApiError('invalid_request', 'Retrieval must be true, false or "auto".');
+    if (![undefined, true, false, 'auto'].includes(reach)) throw new ApiError('invalid_request', 'Invalid Reach mode.');
     const controller = new AbortController();
     this.#controller = controller;
     let settled = false, started = false;
     try {
       const response = await this.#request('chat', {method: 'POST', signal: controller.signal,
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({message, conversation_id: this.conversationId, stream: true, ...(retrieval === undefined ? {} : {retrieval})})});
+        body: JSON.stringify({message, conversation_id: this.conversationId, stream: true, ...(retrieval === undefined ? {} : {retrieval}), ...(reach === undefined ? {} : {reach})})});
       if (!response.ok) {
         const failure = await responseError(response);
         settled = failure.status < 500 || ['backend_busy', 'conversation_capacity', 'unavailable', 'inference_failed', 'storage_busy', 'storage_full', 'retrieval_disabled', 'retrieval_busy', 'retrieval_unavailable'].includes(failure.code);
@@ -144,6 +145,14 @@ export class ChatClient {
           this.conversationId = data.conversation_id;
           if (data.retrieval !== undefined && (!['supplied','no_match','budget_exhausted','not_used','unavailable'].includes(data.retrieval?.status) ||
               !Array.isArray(data.retrieval.sources) || data.retrieval.sources.length > 3)) throw protocolError();
+          if (data.reach !== undefined) {
+            const r = data.reach;
+            if (!['disabled','not_attempted','unavailable','not_supplied','supplied'].includes(r?.state) ||
+                typeof r.reason !== 'string' || typeof r.attempted !== 'boolean' ||
+                !Array.isArray(r.sources) || r.sources.length > 3 ||
+                (r.state !== 'supplied' && r.sources.length) ||
+                r.sources.some(s => typeof s.title !== 'string' || !validWikipediaUrl(s.url))) throw protocolError();
+          }
           started = true;
         } else if (item.event === 'delta' && started) {
           if (typeof data.text !== 'string') throw protocolError();
@@ -167,4 +176,12 @@ export class ChatClient {
       this.#controller = null;
     }
   }
+}
+
+export function validWikipediaUrl(value) {
+  try {
+    const u = new URL(value);
+    return u.protocol === 'https:' && u.host === 'en.wikipedia.org' && !u.username && !u.password &&
+      u.pathname.startsWith('/wiki/') && u.pathname.length > 6 && !u.search && !u.hash;
+  } catch { return false; }
 }

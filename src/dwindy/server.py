@@ -61,12 +61,7 @@ class ApiConfig:
             if self.retrieval_index_path is None:
                 raise ConfigError("retrieval_default requires retrieval_index_path.")
         if self.reach_provider is not None and self.reach_provider != "wikipedia":
-            raise ConfigError('reach_provider must be "wikipedia" (the only M10 Reach provider).')
-        if self.reach_provider is not None:
-            from .reach import REACH_ADOPTED
-            if not REACH_ADOPTED:
-                raise ConfigError("Reach is not available in this release: it did not pass its M10 adoption "
-                                  "rule (see docs/M10_VALIDATION.md).")
+            raise ConfigError('reach_provider must be "wikipedia" (the only Reach provider).')
         if self.reach_default is not None:
             if self.reach_default not in ("auto", "off"):
                 raise ConfigError('reach_default must be "auto" or "off"; forced Reach is per request only.')

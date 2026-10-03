@@ -12,10 +12,11 @@ from pathlib import Path
 
 from reach_support import ReplayTransport, combined_body, no_network
 from test_terminal import FakeBackend
-from dwindy import reach
+from reach_history_support import reach, module
 from dwindy.backend import GenerationOptions, Message
-from dwindy.core import DwindyCore
-from dwindy.evidence import GUIDANCE, WEB_GUIDANCE
+DwindyCore = module("core").DwindyCore
+GUIDANCE = module("evidence").GUIDANCE
+WEB_GUIDANCE = module("evidence").WEB_GUIDANCE
 
 sys.path.insert(0, str(Path(__file__).parent))
 from reach.evaluate import CUE_TABLE_CAP, REACH_BOUNDS, evaluate_contract, evaluate_privacy

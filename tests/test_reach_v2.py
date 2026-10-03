@@ -1,3 +1,4 @@
+from reach_history_support import reach, module
 import itertools
 import os
 from pathlib import Path
@@ -14,14 +15,14 @@ except ImportError:
 
 from project_support import materialize
 from reach_support import ReplayTransport, combined_body, no_network
-from test_api import create_app, TestClient
+from test_api import TestClient
+create_app = module("api").create_app
 from test_terminal import FakeBackend
-from dwindy import reach
 from dwindy.backend import GenerationOptions
 from dwindy.config import Config
-from dwindy.core import DwindyCore
-from dwindy.evidence import WEB_SENTENCE_GUIDANCE
-from dwindy.server import ApiConfig
+DwindyCore = module("core").DwindyCore
+WEB_SENTENCE_GUIDANCE = module("evidence").WEB_SENTENCE_GUIDANCE
+ApiConfig = module("server").ApiConfig
 
 sys.path.insert(0, str(Path(__file__).parent))
 from reach_v2.evaluate import GRID, MAX_CHARS, evaluate_notice, load, reference_select

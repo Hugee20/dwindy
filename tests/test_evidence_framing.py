@@ -1,3 +1,5 @@
+from reach_history_support import bind_foundation
+bind_foundation()
 """Production infrastructure checks, not semantic model-policy acceptance."""
 from contextlib import closing
 from dataclasses import replace
@@ -120,6 +122,7 @@ class ProductionFramingTests(unittest.TestCase):
             self.assertEqual(c.snapshot(),old.snapshot())
 
     def test_dormant_web_facts_path_exactly_m10(self):
+        from reach_history_support import module as historical_reach
         for origin in ('web','web_sentences'):
             for facts in (None,Facts(computed=(('calculator','4'),)),Facts(host=(('record','R'),)),
                           Facts(computed=(('clock','DATE'),),host=(('record','R'),))):
@@ -127,7 +130,7 @@ class ProductionFramingTests(unittest.TestCase):
                     for passages in ((),(passage(project=None),)):
                         for notice in (None,'NOTICE'):
                             kwargs=dict(evidence=Evidence(passages,fallback=fallback,origin=origin,framing='Provider at TIME'),facts=facts,notice=notice)
-                            b,c=self.core();oldb,old=self.core(core_type=baseline_core())
+                            b,c=self.core(core_type=historical_reach('core').DwindyCore);oldb,old=self.core(core_type=baseline_core())
                             history=(Message('user','old'),Message('assistant','reply'));c.restore(history);old.restore(history)
                             list(c.chat('q',**kwargs));list(old.chat('q',**baseline_inputs(kwargs)))
                             self.assertEqual(b.requests,oldb.requests,(origin,facts,fallback,passages,notice))

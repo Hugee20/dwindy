@@ -23,3 +23,7 @@ max_request_bytes = 65536
 # With an index, automatic context selection is the default. Set "off" to require explicit
 # retrieval=true per request (the M6/M7 behavior). "on" is not accepted here.
 # retrieval_default = "auto"
+
+# Optional Wikipedia Reach. Install .[api,reach]; configuration permits, not opts in.
+# reach_provider = "wikipedia"
+# reach_default = "off" # Use "auto" only when minimized online queries are permitted.

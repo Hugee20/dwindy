@@ -16,6 +16,7 @@ eval = ["psutil>=5.9,<8"]
 api = ["fastapi==0.142.2", "pydantic==2.13.5", "starlette==1.7.0", "uvicorn==0.54.0"]
 api-test = ["httpx==0.28.1"]
 project = ["pathspec==1.1.1"]
+reach = ["truststore==0.10.4"]
 
 [project.scripts]
 dwindy = "dwindy.__main__:main"
