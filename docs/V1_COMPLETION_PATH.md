@@ -20,16 +20,21 @@ remain blockers.
    status. Verify existing metadata against the actual Core packet, independently
    of generated wording. Reuse the shipped paths; do not require a new framework
    or a new generic information-result abstraction merely to finish v1.
-2. Complete the existing hardening/release checks: documented clean installation,
+2. Practical Reach is now required by the amended v1 decision: one bounded Wikipedia
+   request, disabled by default, deterministic acquisition/admission/actual-supply status,
+   source identity and graceful local fallback. H2 remains preserved/deferred; its response
+   quality gates are not v1 acceptance gates. Use ordinary tests and the five approved live
+   checks, then return directly to final assembled-runtime verification.
+3. Complete the existing hardening/release checks: documented clean installation,
    offline conversation and local retrieval, reference-machine CPU/context limits,
    authentication and allowed-origin behavior, persistence on/off, restart/reset,
    cancellation/rollback, manual snapshot update/deletion, and graceful unavailable
    states. Fix demonstrated requirement defects, then rerun affected checks.
    These are release checks, not claims that new defects have already been found.
-3. Reconcile user-facing capability/limitation documentation and the release
+4. Reconcile user-facing capability/limitation documentation and the release
    checklist. Describe source metadata as actual information flow, not verified
    grounding. State that host context is information, no host-action executor is
-   provided, semantic matching is not adopted, and online Reach is not shipped.
+   provided, semantic matching is not adopted, and practical optional Reach reports actual supply.
    Keep the independent standalone connection fix. Inventory remaining requirement
    defects and close them before declaring v1 complete.
 
@@ -43,9 +48,6 @@ system outputs; it does not need Qwen to verbalize them correctly.
 
 - Further semantic retrieval only if separately justified/approved; this bounded
   development experiment is not adopted. Lexical limitations are acceptable for v1.
-- Resume optional Reach as an infrastructure extension with acquisition, admission,
-  actual supply, provider/source identity and deterministic availability/error
-  reporting. Existing H2 remains preserved/deferred, not resumed by this plan.
 - Additional file formats, broader multilingual coverage and interface polish when
   they serve a measured product need. None is a new prerequisite for release.
 

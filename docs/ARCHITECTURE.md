@@ -1,14 +1,14 @@
-# Dwindy architecture through M10
+# Dwindy v1 architecture
 
-Status: M1 runtime and template-kwargs correction, M2 Core, M3 local HTTP API, M4 chat interfaces, M5 opt-in SQLite persistence, M6 explicit local retrieval, M7 project awareness, M8 context selection, M9 deterministic capabilities and host context, and M10 freshness detection and adopted offline honesty. Online Reach remains disabled/not shipped; v1 and H1 were rejected, and H2 evaluation execution is deferred.
+Status: M1 runtime and template-kwargs correction, M2 Core, M3 local HTTP API, M4 chat interfaces, M5 opt-in SQLite persistence, M6 explicit local retrieval, M7 project awareness, M8 context selection, M9 deterministic capabilities and host context, and M10 freshness detection and adopted offline honesty. Practical optional Wikipedia Reach reports deterministic acquisition/admission/supply state; earlier v1/H1 policy experiments were rejected and H2 remains deferred.
 The project proposal remains the specification. This document records implemented decisions.
 
 ## Execution and ownership
 
 One Python process contains either the terminal application or the optional HTTP application
 and a CPU-only llama.cpp runtime accessed through llama-cpp-python. The terminal opens no
-listener; the API explicitly opens a loopback listener by default. No separate model service,
-database server or outbound-network client is created (the M10 Reach client was not adopted and cannot be configured). Optional API persistence opens a local SQLite file. Dependencies and model files are
+listener; the API explicitly opens a loopback listener by default. No separate model service or
+database server is required. An outbound Wikipedia client is created only when Reach is explicitly configured. Optional API persistence opens a local SQLite file. Dependencies and model files are
 installed/supplied separately from execution.
 
 `core.py` owns an in-memory list of completed user/assistant turns for each `DwindyCore`.
@@ -389,39 +389,30 @@ Dwindy never calls the host, never runs an action, and never keeps the data. Rep
 `capabilities` list only when something was used. The terminal applies the clock and
 calculator. See [capabilities](CAPABILITIES.md) and the [M9 validation report](M9_VALIDATION.md).
 
-## Reach through M10
+## Practical Reach for v1
 
-**Status: freshness detection and the offline-honesty notice are adopted; the Reach backend is not.**
-It failed its frozen adoption rule (latency, misattribution, unsupported claims). The code below is
-dormant: `REACH_ADOPTED = False`, configuring `reach_provider` is refused, and no outbound client
-can be created. It is kept, and tested, for a future re-evaluation; see the M10 validation report.
+The API owns one optional Wikipedia backend. Existing closed freshness cues and current-message
+privacy minimization select whether a turn may acquire external material. One MediaWiki call
+returns at most three bounded intro/snippet results, using verified TLS, no redirects or retries,
+a five-second deadline and a 512 KiB body ceiling. An unfinished timed-out transport retains its
+single slot; subsequent turns fail locally rather than enqueue more work.
 
-`reach.py` holds the whole M10 boundary:
+Admission reuses bounded lexical usefulness with subject terms. It is not answer verification.
+Core then applies its existing exact-token budget, history trimming and maximum three supplied
+entries. Only Core's surviving WEB IDs determine source metadata. Rejected candidates and
+budget-excluded entries never appear as referenced sources. Native history, persistence and
+one generation per turn are unchanged. WEB entries receive compact information/origin framing;
+there is no instruction asking Qwen to announce Reach success, failure or source attribution.
 
-- freshness and explicit-search detection (a closed cue table, at most 25 entries);
-- fail-closed query minimization from the current message only;
-- the deployment-gated decision;
-- one `WikipediaBackend`, which makes one bounded HTTPS GET with OS-native verification
-  (`truststore` in the development environment only), no redirects, a 5-second overall deadline
-  and a 512 KiB cap. No `reach` extra or Reach runtime dependency is declared in this release.
+The JSON/SSE Reach record exposes five states and structured reasons. The browser renders status,
+the exact attempted query and validated article links outside the conversational answer. Distinct
+internal entry IDs may collapse into one article link. Source supply does not verify generated
+claims. See [Reach](REACH_V1.md) for configuration, privacy and known limitations.
 
-The following permission and evidence flow describes the dormant, experimentally evaluated
-design, not an available deployment mode. Current configuration rejects `reach_provider`, and
-`reach: true` returns 503 `reach_disabled`; requests cannot enable the backend.
-
-Results become `Evidence(origin="web")` with a framing line naming the provider and retrieval
-time, and are quoted as untrusted data under a web-specific instruction. They pass M8's
-usefulness check first and are never persisted. Core gained one transient `notice` parameter for
-the frozen offline-honesty instruction. At the M10 checkpoint, with no notice and no web evidence, model input was
-byte-identical to M9. M11 later changed local supplied-entry framing as described below. H1 compact selection was rejected by its frozen holdout recall gate.
-H2 is designed/prepared under `tests/reach_h2/`, with execution deferred because the reference
-network cannot currently meet the frozen connectivity requirements. H2 has not failed or been
-adopted; the frozen design and prepared evaluation remain unchanged and resumable.
-
-The API runs the one possible network call off the event loop. It reports a `reach` object
-(the exact query, provider, validated sources and reason), and keeps web results out of the M8
-`retrieval` metadata. The terminal applies only the offline notice. See
-[external information](REACH.md) and the [M10 validation report](M10_VALIDATION.md).
+Historical M10/H1 policy acceptance outcomes remain rejected; H2's prepared evaluation and four
+paired captures remain deferred and unchanged. The historical test wrapper loads checkpoint
+`228f023` instead of silently using the practical implementation. This is ordinary infrastructure
+engineering, not a replacement evaluation or a retroactive pass of those experiments.
 
 ## M11 retained infrastructure; response-policy hypotheses not adopted
 
@@ -449,7 +440,7 @@ One generation, no verifier, no new setting/dependency/confidence contract. Retr
 freshness, persistence, authentication and public API/SSE behavior remain unchanged.
 
 Experiment-only history rendering/bounding hooks were removed. Dormant WEB/facts inputs are
-restored to pinned M10, including its guidance and quoted facts; online Reach remains disabled.
+restored to pinned M10 at M11 closure, including its guidance and quoted facts. The later practical Reach path replaces only that dormant WEB framing with compact supplied information; historical M11 implementations remain bound to their archives.
 Historical candidate source lives under `tests/policy_experiments/`, checked against hashes and
 loaded into distinct test-only modules. Historical runners no longer measure production under
 old candidate names. Production tests assert native messages directly, without history decoding.

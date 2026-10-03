@@ -3,7 +3,7 @@
 M9 adds two kinds of exact, non-model information to a turn:
 
 - **Deterministic capabilities:** small internal operations Dwindy computes itself. These are
-  the server-local clock and, if it passes its adoption rule, a calculator.
+  the server-local clock and the adopted bounded calculator.
 - **Host-supplied context:** information the host application's backend has already
   authenticated and authorized, attached to one chat request.
 
@@ -20,7 +20,9 @@ no extra model call.
 | Supply host-provided information for one turn | Perform host actions ("renew this loan"), call the host, or keep host data |
 
 Host context provides **information, not actions**. A request like "renew this loan" stays
-unsupported: no host operation runs, and the model is told never to claim it performed one.
+unsupported: no host operation runs. The supplied runtime-capability fact describes Dwindy's
+lack of a host-action executor. It does not guarantee that the model will verbalize this
+boundary correctly; generated prose cannot establish that an action happened.
 Host actions may be evaluated separately in the future, if evidence shows a need and a narrow,
 safe design exists.
 
@@ -55,7 +57,7 @@ codes as arithmetic. It never uses `eval`.
 - expressions beyond the bounds (200 characters, 30-digit numbers, nesting depth 10, exponents
   up to 100, results up to 100 digits) are rejected, and no fact is supplied.
 
-Whether the calculator ships at all is decided by a frozen real-model rule; see the
+The calculator passed its historical adoption rule and ships; see the
 [M9 validation report](M9_VALIDATION.md).
 
 Neither capability has a setting, toggle or threshold. They are part of Dwindy.
@@ -85,8 +87,8 @@ the context and token. Never ship the token to the browser.
   header gives the existing 401.
 - It is supplied whenever present, within its own 1,024-token allowance. Too large gives 422
   `context_limit`; it is never truncated.
-- It is framed as quoted data: role markers and instructions inside it are escaped and never
-  obeyed.
+- It is framed as quoted data with lossless delimiter escaping. This enforces representation,
+  not model obedience or immunity to prompt injection.
 - It is **never stored**. Persisted conversations keep only the user's message and the answer,
   and a resumed turn sees host context only if the host attaches it again.
 

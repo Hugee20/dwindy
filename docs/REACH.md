@@ -1,4 +1,8 @@
-# M10 Reach: external information
+# Historical M10 Reach: external information
+
+This page preserves the experimental design and its historical findings. Current production
+configuration and deterministic infrastructure behavior are documented in [Practical Reach for v1](REACH_V1.md).
+H2 now has four partial paired captures; its execution/scoring remains deferred and unchanged.
 
 > **Status (M10): not adopted.** Freshness detection and the offline-honesty notice ship. The Reach
 > backend described below was implemented and evaluated against its frozen rule. It failed on

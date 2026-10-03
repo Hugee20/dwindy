@@ -13,12 +13,13 @@ snapshot of one explicitly configured project, searched by the unchanged M6 retr
 decides per turn whether local evidence deserves model context, with no extra model call.
 **Milestone 9** adds deterministic capabilities (a server-local clock and an exact calculator)
 and authenticated, transient host-supplied context. These are information only: no host actions.
-**Milestone 10** adds freshness detection and honest "may be outdated" answers for questions about
-current information. Offline-honesty behavior is adopted. Online Reach is **disabled and not
-shipped**: v1 was rejected experimentally, and H1 compact selection failed its frozen holdout
-recall gate. H2 is designed/prepared, but execution is deferred because the reference network
-cannot currently satisfy its connectivity requirements. H2 has neither failed nor been adopted;
-its prepared evaluation is preserved for later resumption. See [Reach status](docs/REACH.md).
+**Milestone 10** established freshness detection and the adopted offline-honesty notice.
+**Practical Reach for v1** adds optional, bounded Wikipedia acquisition and deterministic
+retrieval/source status. It is disabled by default. Dwindy reports only WEB entries that
+survive Core budgeting; Qwen's answer does not determine retrieval success or citations.
+Earlier M10/H1 policy experiments retain their rejected results; H2 remains deferred,
+with its four partial paired captures preserved. Practical Reach does not pass or redefine
+those experimental gates. See [Reach](docs/REACH_V1.md).
 
 **Milestone 11 development is concluded**: original and Foundation response-policy hypotheses
 were not adopted as complete policies; both holdouts remain sealed/unspent. Production retains
@@ -34,9 +35,10 @@ Persistence and retrieval are disabled by default; once an index is configured, 
 context selection is its default (see [context selection](docs/CONTEXT_SELECTION.md)). See
 [local retrieval](docs/RETRIEVAL.md) for manifest ingestion, configuration, HTTP contracts
 and measured limitations, and [project awareness](docs/PROJECT_AWARENESS.md) for project snapshots. A snapshot covers
-only selected files; Dwindy never runs project code or scans a project during chat. There is
-no tool execution and no outbound request ([external information](docs/REACH.md) was evaluated
-in M10 and not adopted). Dwindy never selects or downloads a model. Model licenses are separate
+only selected files; Dwindy never runs project code or scans a project during chat.
+Dwindy computes bounded calculator and clock results itself; it executes no host actions,
+shell commands or project code. Optional [Reach](docs/REACH_V1.md) sends minimized queries only
+when the deployment permits it and the turn selects it. Dwindy never selects or downloads a model. Model licenses are separate
 from the Apache-2.0 source license.
 
 ## Windows setup
@@ -216,8 +218,9 @@ conversation. `stream` is an optional strict boolean, default false. `retrieval`
 `true` (forced), `false` (off) or `"auto"`; omitted means the server default. Unknown fields, coercion,
 client-selected IDs, and per-request model settings are rejected. An optional `host_context` list
 is accepted only on bearer-authenticated requests (see [capabilities](docs/CAPABILITIES.md)).
-An optional `reach` field (`true`, `false` or `"auto"`) is validated; Reach is unavailable in this
-release, so `true` returns 503 `reach_disabled`.
+Optional `reach` (`true`, `false` or `"auto"`) selects permitted Wikipedia retrieval.
+A request cannot enable an unconfigured provider; it continues locally with `disabled` status.
+See [Reach configuration, privacy and states](docs/REACH_V1.md).
 Maximum raw body size is
 65,536 bytes by default, including chunked requests; the model's context limit is separate.
 
