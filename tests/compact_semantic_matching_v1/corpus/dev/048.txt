@@ -1,0 +1,1 @@
+Tala accepts equipment-repair requests through the maintenance form.

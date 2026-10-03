@@ -1,0 +1,1 @@
+Wren's rotate_key() function rotates a display legend in the UI.

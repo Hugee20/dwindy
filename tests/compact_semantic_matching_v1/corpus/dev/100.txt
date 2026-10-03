@@ -1,0 +1,1 @@
+Xenon reads configs/releases.toml during dashboard rendering.

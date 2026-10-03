@@ -1,0 +1,1 @@
+Fern marks an item as received only after the recipient signs the handover sheet.

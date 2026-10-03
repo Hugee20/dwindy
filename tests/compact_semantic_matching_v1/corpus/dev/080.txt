@@ -1,0 +1,1 @@
+Pearl runs its weekly cleanup at 03:30 UTC.

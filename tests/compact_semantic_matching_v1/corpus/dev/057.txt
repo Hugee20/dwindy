@@ -1,0 +1,1 @@
+Echo accepts attachments no larger than twenty megabytes each.

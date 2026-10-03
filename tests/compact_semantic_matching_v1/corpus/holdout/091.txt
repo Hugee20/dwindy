@@ -1,0 +1,1 @@
+Lyric writes logs/audit.ndjson beneath the protected runtime folder.

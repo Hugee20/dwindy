@@ -1,0 +1,1 @@
+Muse's /v2/leases endpoint returns a list of historical leases.

@@ -1,0 +1,1 @@
+Kestrel allows each account at most three simultaneous jobs.

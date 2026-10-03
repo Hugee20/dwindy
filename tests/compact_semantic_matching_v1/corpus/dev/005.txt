@@ -1,0 +1,1 @@
+Cedar requires sign-off from the intake steward before a request advances.

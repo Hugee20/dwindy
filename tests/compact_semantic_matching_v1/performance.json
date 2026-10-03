@@ -1,0 +1,55 @@
+{
+  "identity": {
+    "documents": 1000,
+    "expected_chunks": 10000,
+    "logical_source_bytes": 9829000,
+    "source_sha256": "54c29a0231006c9e43620a4828e29c9f54eb481779efa0ea735fcde00591c978",
+    "query_sha256": "21d622773e52bcae051de3ad9ff016d7823c0504c21b2cf9eb498d2f193d02c7"
+  },
+  "reference": {
+    "cpu": "Intel Core i3-1215U",
+    "ram_gib": 8,
+    "os": "Windows",
+    "python": "3.13",
+    "device": "CPU"
+  },
+  "isolated_trials": 5,
+  "warm_queries_per_trial": 200,
+  "query_order_seeds": [
+    8164,
+    8165,
+    8166,
+    8167,
+    8168
+  ],
+  "arm_order_seed": 8169,
+  "ort_intra_op_threads": 2,
+  "ort_inter_op_threads": 1,
+  "blas_threads": 1,
+  "tokenizer_parallelism": false,
+  "startup": "Fresh process: import, load local pinned model/tokenizer, validate hashes, create session; time before first encoding. Warm OS cache; not cold disk.",
+  "first_query": "First query encoding and complete selection after initialization, separately reported.",
+  "warm": "20 untimed fixed workload queries; 200 timed queries per trial, no outlier removal; report all 1000 samples. Query-embedding caches disabled. Bypassed ordinary turns have no encoding and are identified separately; also report encoding-only distribution for actually encoded queries.",
+  "p95": "Nearest rank over pooled 1000 samples; construction probes are not performance samples.",
+  "trial_gate": "Startup/first-query/build/steady RSS median of five trials; peak RSS maximum observed across five; compressed/installed/index/artifact bytes exact.",
+  "timing_components": [
+    "query_tokenization",
+    "query_encoding",
+    "lexical_search",
+    "dense_search",
+    "candidate_fusion",
+    "admission",
+    "core_packet",
+    "complete_selection"
+  ],
+  "timing": "Exclusive component timings; full selection includes query encoding, search, fusion, admission and unchanged Core preparation. Post-hoc gold/audit serialization excluded.",
+  "build": "Current chunking plus all corpus encoding and vector writing/validation; acquisition and fixture generation excluded and separately reported.",
+  "baseline": "Same sources, current FTS writer/search/usefulness, packet oracle, query order and settings. RSS delta against same interpreter/dependency-import baseline before encoder/vector load; additionally report total fresh-process RSS so imports are not hidden.",
+  "rss_sample_interval_ms": 10,
+  "scale": "10,000 current chunks; raw float32 vectors, stable identity table; report disk and resident copies.",
+  "footprint": "Complete incremental dependency closure relative to clean Dwindy base, not only currently installed wheels. Downloads and encoder acquisition forbidden in this construction phase.",
+  "offline": "Acquisition separate and explicit; evaluation blocks all network calls, uses an explicit local model directory, rejects missing/corrupt artifacts without auto-download. No private corpus or query leaves process.",
+  "missing_model": "unavailable, never no_match; baseline behavior remains usable and no silent semantic adoption.",
+  "generation_calls": 0,
+  "network_calls": 0
+}

@@ -1,0 +1,1 @@
+Echo retains attachments for twenty days after closure.

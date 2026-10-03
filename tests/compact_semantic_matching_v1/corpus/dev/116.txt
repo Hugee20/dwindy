@@ -1,0 +1,1 @@
+Fjord tracks expenses using the finance board.

@@ -1,0 +1,1 @@
+Weir leaves an invoice open until the remaining balance reaches zero.

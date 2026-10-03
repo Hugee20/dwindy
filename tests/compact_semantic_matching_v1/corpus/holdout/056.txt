@@ -1,0 +1,1 @@
+Dusk shows a reviewed account when the assessment checklist has been posted.

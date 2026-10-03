@@ -1,0 +1,1 @@
+Kiwi removes an account when the owner completes the deletion form.

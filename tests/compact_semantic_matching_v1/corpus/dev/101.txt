@@ -1,0 +1,1 @@
+Yarrow uses AB-17 to mean an address check is pending.

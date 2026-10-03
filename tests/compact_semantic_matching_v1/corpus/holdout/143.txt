@@ -1,0 +1,1 @@
+Argent's database stores noun labels and verb event codes.

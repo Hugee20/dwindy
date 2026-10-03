@@ -1,0 +1,1 @@
+Auric's overload monitor pauses background jobs at peak load.

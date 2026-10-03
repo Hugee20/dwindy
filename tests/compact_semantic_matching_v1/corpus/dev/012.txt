@@ -1,0 +1,1 @@
+Flint retains denied submission logs for thirty days.

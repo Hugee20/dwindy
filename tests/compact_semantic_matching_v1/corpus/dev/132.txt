@@ -1,0 +1,1 @@
+Auric uses PAYMENT_READY_1 to mark a completed payment review.

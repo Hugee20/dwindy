@@ -1,0 +1,1 @@
+ATLAS_BATCH_SIZE sets the nightly batch size to 64 records.

@@ -1,0 +1,1 @@
+Auric's status dashboard uses blue for queued work.

@@ -1,0 +1,1 @@
+Alder ignores a message after its identifier has been recorded in the receipt ledger.

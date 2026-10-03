@@ -1,0 +1,1 @@
+Lynx's compression happens in the export area.

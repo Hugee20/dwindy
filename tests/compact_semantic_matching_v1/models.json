@@ -1,0 +1,35 @@
+{
+  "note": "Metadata pins only. No weights downloaded or runtimes installed. Candidate absence/failure is an operational result, never no_match. Exact transitive closures require a separate authorized acquisition preflight; no unpinned substitute model.",
+  "runtime_profiles": {
+    "direct_onnx": {"onnxruntime": "1.30.0", "tokenizers": "0.23.2", "numpy": "2.5.3", "device": "CPU"},
+    "fastembed": {"fastembed": "0.8.1", "same_artifact_parity_required": true, "note": "Compare against direct ONNX on identical graph/tokenizer/recipe, not an unrelated default model. If custom-model parity unavailable, report unsupported; do not silently substitute."},
+    "static_model2vec": {"model2vec": "0.9.0", "note": "Native static encoding, not a handwritten embedding implementation."}
+  },
+  "encoders": [
+    {
+      "id": "e5", "repository": "intfloat/multilingual-e5-small", "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3", "license": "MIT", "dimension": 384,
+      "metadata_url": "https://huggingface.co/api/models/intfloat/multilingual-e5-small/revision/614241f622f53c4eeff9890bdc4f31cfecc418b3?blobs=true",
+      "graph": {"path": "onnx/model_qint8_avx512_vnni.onnx", "bytes": 118346824, "sha256": "dd476dd0c2514e9b9be83aeb3853fac0763e0bdf4a71645407587d77c48a2d88"},
+      "tokenizer": {"path": "tokenizer.json", "bytes": 17082730, "sha256": "0b44a9d7b51c3c62626640cda0e2c2f70fdacdc25bbbd68038369d14ebdf4c39"},
+      "configuration_git_blobs": {"config.json": "60a2a84020f1d74cc53ea9e8c4e91cf4af6c2b68", "1_Pooling/config.json": "acbd4014202bf4dbc6c03229bcbeef7c4feafb58", "sentence_bert_config.json": "4eca68d85ecd3034cf4174d8a4033a75344ea62d", "tokenizer_config.json": "059214673d9d6d2ee319411e2ffec8c024b816d5", "special_tokens_map.json": "e0b1d18ecd0ae4ff1d47bd297d910c0cf83e504b", "modules.json": "ac2039abdf6ff023b27c919bb9675cfe378cb10f"},
+      "recipe": {"max_tokens": 512, "query_prefix": "query: ", "passage_prefix": "passage: ", "pooling": "attention-mask mean of token embeddings then L2 normalization", "truncation": "right; audit retained original span"},
+      "cpu_preflight": "Graph filename is not proof of host CPU compatibility. Validate on the reference CPU; if unsupported, report unavailable, do not substitute a graph after outputs."
+    },
+    {
+      "id": "minilm", "repository": "sentence-transformers/all-MiniLM-L6-v2", "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41", "license": "Apache-2.0", "dimension": 384,
+      "metadata_url": "https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2/revision/1110a243fdf4706b3f48f1d95db1a4f5529b4d41?blobs=true",
+      "graph": {"path": "onnx/model_quint8_avx2.onnx", "bytes": 23046789, "sha256": "b941bf19f1f1283680f449fa6a7336bb5600bdcd5f84d10ddc5cd72218a0fd21"},
+      "tokenizer": {"path": "tokenizer.json", "bytes": 466247, "git_blob_sha1": "cb202bfe2e3c98645018a6d12f182a434c9d3e02"},
+      "configuration_git_blobs": {"config.json": "72b987fd805cfa2b58c4c8c952b274a11bfd5a00", "1_Pooling/config.json": "d1514c3162bbe87b343f565fadc62e6c06f04f03", "sentence_bert_config.json": "59d594003bf59880a884c574bf88ef7555bb0202", "tokenizer_config.json": "c79f2b6a0cea6f4b564fed1938984bace9d30ff0", "special_tokens_map.json": "e7b0375001f109a6b8873d756ad4f7bbb15fbaa5", "modules.json": "952a9b81c0bfd99800fabf352f69c7ccd46c5e43"},
+      "recipe": {"max_tokens": 256, "query_prefix": "", "passage_prefix": "", "pooling": "attention-mask mean of token embeddings then L2 normalization", "truncation": "right; audit retained original span"}
+    },
+    {
+      "id": "potion", "repository": "minishlab/potion-base-8M", "revision": "bf8b056651a2c21b8d2565580b8569da283cab23", "license": "MIT", "dimension": 256,
+      "metadata_url": "https://huggingface.co/api/models/minishlab/potion-base-8M/revision/bf8b056651a2c21b8d2565580b8569da283cab23?blobs=true",
+      "graph": {"path": "model.safetensors", "bytes": 30236760, "sha256": "f65d0f325faadc1e121c319e2faa41170d3fa07d8c89abd48ca5358d9a223de2"},
+      "tokenizer": {"path": "tokenizer.json", "bytes": 683666, "git_blob_sha1": "3e511f68ccf95c33b9ffd214a94c6d25bdb3034f"},
+      "configuration_git_blobs": {"config.json": "7df26884a1aaaefbd7a30b37c32a25477cfb4c0e", "modules.json": "87267c74884fa9da7667436a871449167532bca2", "special_tokens_map.json": "ea5749ac4944681a4041bb1f9a446137f4f61447", "tokenizer_config.json": "438de4d478304fd499f1ef3f6f7fe38acd7a9620"},
+      "recipe": {"max_tokens": 512, "query_prefix": "", "passage_prefix": "", "pooling": "published Model2vec native static encoding and normalization", "truncation": "bounded token view; audit original span; native weighting preserved"}
+    }
+  ]
+}

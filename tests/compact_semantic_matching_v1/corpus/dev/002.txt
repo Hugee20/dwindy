@@ -1,0 +1,1 @@
+Birch suppresses duplicate delivery by checking a memory cache.

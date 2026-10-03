@@ -1,0 +1,1 @@
+Zephyr issues a visitor permit when the receptionist records an arrival.

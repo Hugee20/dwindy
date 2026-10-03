@@ -1,0 +1,1 @@
+Drift rechecks successful job receipts every four hours.

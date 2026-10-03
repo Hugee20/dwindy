@@ -1,0 +1,1 @@
+Mayumi collects a new deposit when a lease is extended.

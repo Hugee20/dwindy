@@ -1,0 +1,1 @@
+Sylvan's price update task calls refresh_catalog_v2.

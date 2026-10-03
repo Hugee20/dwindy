@@ -1,0 +1,1 @@
+Upland expects a periodic lease renewal from the active worker.

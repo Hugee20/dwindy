@@ -1,0 +1,32 @@
+{
+  "quality": {
+    "semantic_candidates": 33,
+    "semantic_final": 30,
+    "semantic_each_language": 9,
+    "semantic_answers": 27,
+    "semantic_net_gain": 9,
+    "exact_retention": 16,
+    "morphology": 7,
+    "short_local": 3,
+    "false_supply": 0
+  },
+  "resources": {
+    "dependency_compressed_bytes": 52428800,
+    "dependency_installed_bytes": 157286400,
+    "model_artifact_bytes": 167772160,
+    "steady_incremental_rss_bytes": 402653184,
+    "peak_incremental_rss_bytes": 536870912,
+    "startup_ms": 4000,
+    "first_query_ms": 250,
+    "encoding_p95_ms": 100,
+    "selection_p95_ms": 150,
+    "build_ms": 300000,
+    "additional_index_bytes": 33554432
+  },
+  "additional": {
+    "selection_delta_ms": 125,
+    "mechanical_passes": 32,
+    "historical_new_false_supply": 0
+  },
+  "interpretation": "All gates conjunctive, separately for each frozen model/arm; no weighted average, no holdout without review."
+}

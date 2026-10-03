@@ -1,0 +1,1 @@
+Swift's scheduling is handled by the route planner.

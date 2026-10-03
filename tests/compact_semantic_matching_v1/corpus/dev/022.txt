@@ -1,0 +1,1 @@
+Kestrel permits three administrators for each account.

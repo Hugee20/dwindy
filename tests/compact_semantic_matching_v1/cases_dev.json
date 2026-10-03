@@ -1,0 +1,2322 @@
+[
+  {
+    "id": "dev_english_semantic_01",
+    "split": "dev",
+    "category": "english_semantic",
+    "query": "How does Alder stop duplicate deliveries?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "dev-entry-001",
+        "source_id": "dev-entry-001",
+        "start": 0,
+        "end": 85,
+        "text": "Alder ignores a message after its identifier has been recorded in the receipt ledger."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "dev-entry-001",
+        "source_id": "dev-entry-001",
+        "start": 70,
+        "end": 84,
+        "text": "receipt ledger"
+      }
+    ],
+    "distractors": [
+      "dev-entry-002"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "dev_english_semantic_02",
+    "split": "dev",
+    "category": "english_semantic",
+    "query": "Where can Briar users recover an erased note?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "dev-entry-003",
+        "source_id": "dev-entry-003",
+        "start": 0,
+        "end": 67,
+        "text": "Briar retains discarded notes in the recycle drawer for seven days."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "dev-entry-003",
+        "source_id": "dev-entry-003",
+        "start": 37,
+        "end": 51,
+        "text": "recycle drawer"
+      }
+    ],
+    "distractors": [
+      "dev-entry-004"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "dev_english_semantic_03",
+    "split": "dev",
+    "category": "english_semantic",
+    "query": "Who decides whether Cedar requests may proceed?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "dev-entry-005",
+        "source_id": "dev-entry-005",
+        "start": 0,
+        "end": 74,
+        "text": "Cedar requires sign-off from the intake steward before a request advances."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "dev-entry-005",
+        "source_id": "dev-entry-005",
+        "start": 33,
+        "end": 47,
+        "text": "intake steward"
+      }
+    ],
+    "distractors": [
+      "dev-entry-006"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "dev_english_semantic_04",
+    "split": "dev",
+    "category": "english_semantic",
+    "query": "How does Drift keep failed jobs from running forever?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "dev-entry-007",
+        "source_id": "dev-entry-007",
+        "start": 0,
+        "end": 56,
+        "text": "Drift ends unsuccessful attempts after the fourth retry."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "dev-entry-007",
+        "source_id": "dev-entry-007",
+        "start": 43,
+        "end": 55,
+        "text": "fourth retry"
+      }
+    ],
+    "distractors": [
+      "dev-entry-008"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "dev_english_semantic_05",
+    "split": "dev",
+    "category": "english_semantic",
+    "query": "Where does Elm place work that is waiting for a person?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "dev-entry-009",
+        "source_id": "dev-entry-009",
+        "start": 0,
+        "end": 62,
+        "text": "Elm parks tasks needing human intervention in the review tray."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "dev-entry-009",
+        "source_id": "dev-entry-009",
+        "start": 50,
+        "end": 61,
+        "text": "review tray"
+      }
+    ],
+    "distractors": [
+      "dev-entry-010"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "dev_english_semantic_06",
+    "split": "dev",
+    "category": "english_semantic",
+    "query": "When may Flint clients ask again after a denial?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "dev-entry-011",
+        "source_id": "dev-entry-011",
+        "start": 0,
+        "end": 82,
+        "text": "Flint permits another submission once the cooling interval reaches thirty seconds."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "dev-entry-011",
+        "source_id": "dev-entry-011",
+        "start": 67,
+        "end": 81,
+        "text": "thirty seconds"
+      }
+    ],
+    "distractors": [
+      "dev-entry-012"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "dev_english_semantic_07",
+    "split": "dev",
+    "category": "english_semantic",
+    "query": "What protects Grove records from two simultaneous writers?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "dev-entry-013",
+        "source_id": "dev-entry-013",
+        "start": 0,
+        "end": 49,
+        "text": "Grove serializes updates with a per-record mutex."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "dev-entry-013",
+        "source_id": "dev-entry-013",
+        "start": 32,
+        "end": 48,
+        "text": "per-record mutex"
+      }
+    ],
+    "distractors": [
+      "dev-entry-014"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "dev_english_semantic_08",
+    "split": "dev",
+    "category": "english_semantic",
+    "query": "How does Harbor restore the last good configuration?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "dev-entry-015",
+        "source_id": "dev-entry-015",
+        "start": 0,
+        "end": 69,
+        "text": "Harbor rolls settings back by loading the previous approved snapshot."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "dev-entry-015",
+        "source_id": "dev-entry-015",
+        "start": 42,
+        "end": 68,
+        "text": "previous approved snapshot"
+      }
+    ],
+    "distractors": [
+      "dev-entry-016"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "dev_english_semantic_09",
+    "split": "dev",
+    "category": "english_semantic",
+    "query": "What determines which Ivy task is served next?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "dev-entry-017",
+        "source_id": "dev-entry-017",
+        "start": 0,
+        "end": 59,
+        "text": "Ivy dispatches pending tasks according to arrival sequence."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "dev-entry-017",
+        "source_id": "dev-entry-017",
+        "start": 42,
+        "end": 58,
+        "text": "arrival sequence"
+      }
+    ],
+    "distractors": [
+      "dev-entry-018"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "dev_english_semantic_10",
+    "split": "dev",
+    "category": "english_semantic",
+    "query": "Where does Juniper keep material that cannot be read?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "dev-entry-019",
+        "source_id": "dev-entry-019",
+        "start": 0,
+        "end": 60,
+        "text": "Juniper moves undecodable uploads into the quarantine vault."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "dev-entry-019",
+        "source_id": "dev-entry-019",
+        "start": 43,
+        "end": 59,
+        "text": "quarantine vault"
+      }
+    ],
+    "distractors": [
+      "dev-entry-020"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "dev_english_semantic_11",
+    "split": "dev",
+    "category": "english_semantic",
+    "query": "How does Kestrel limit a user's active work?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "dev-entry-021",
+        "source_id": "dev-entry-021",
+        "start": 0,
+        "end": 60,
+        "text": "Kestrel allows each account at most three simultaneous jobs."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "dev-entry-021",
+        "source_id": "dev-entry-021",
+        "start": 36,
+        "end": 59,
+        "text": "three simultaneous jobs"
+      }
+    ],
+    "distractors": [
+      "dev-entry-022"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "dev_english_semantic_12",
+    "split": "dev",
+    "category": "english_semantic",
+    "query": "When does Larch discard idle connections?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "dev-entry-023",
+        "source_id": "dev-entry-023",
+        "start": 0,
+        "end": 65,
+        "text": "Larch closes an inactive session after ninety seconds of silence."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "dev-entry-023",
+        "source_id": "dev-entry-023",
+        "start": 39,
+        "end": 53,
+        "text": "ninety seconds"
+      }
+    ],
+    "distractors": [
+      "dev-entry-024"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "dev_filipino_01",
+    "split": "dev",
+    "category": "filipino",
+    "query": "Saan makikita ang mga resibong nakansela sa Amihan?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "dev-entry-025",
+        "source_id": "dev-entry-025",
+        "start": 0,
+        "end": 70,
+        "text": "Sa Amihan, inililipat ang mga kinanselang resibo sa hiwalay na talaan."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "dev-entry-025",
+        "source_id": "dev-entry-025",
+        "start": 52,
+        "end": 69,
+        "text": "hiwalay na talaan"
+      }
+    ],
+    "distractors": [
+      "dev-entry-026"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": true
+  },
+  {
+    "id": "dev_filipino_02",
+    "split": "dev",
+    "category": "filipino",
+    "query": "Sino ang dapat mag-apruba ng bakasyon sa Balangay?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "dev-entry-027",
+        "source_id": "dev-entry-027",
+        "start": 0,
+        "end": 70,
+        "text": "Balangay leave applications require approval from the team supervisor."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "dev-entry-027",
+        "source_id": "dev-entry-027",
+        "start": 54,
+        "end": 69,
+        "text": "team supervisor"
+      }
+    ],
+    "distractors": [
+      "dev-entry-028"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": true
+  },
+  {
+    "id": "dev_filipino_03",
+    "split": "dev",
+    "category": "filipino",
+    "query": "Gaano katagal puwedeng baguhin ang naipadalang ulat sa Dalisay?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "dev-entry-029",
+        "source_id": "dev-entry-029",
+        "start": 0,
+        "end": 72,
+        "text": "Maaaring itama ang naipadalang ulat sa Dalisay sa loob ng dalawang araw."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "dev-entry-029",
+        "source_id": "dev-entry-029",
+        "start": 58,
+        "end": 71,
+        "text": "dalawang araw"
+      }
+    ],
+    "distractors": [
+      "dev-entry-030"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": true
+  },
+  {
+    "id": "dev_filipino_04",
+    "split": "dev",
+    "category": "filipino",
+    "query": "Ano ang gagawin kapag nawala ang kard sa Hiraya?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "dev-entry-031",
+        "source_id": "dev-entry-031",
+        "start": 0,
+        "end": 81,
+        "text": "Hiraya replaces a missing access card after the owner submits a loss declaration."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "dev-entry-031",
+        "source_id": "dev-entry-031",
+        "start": 64,
+        "end": 80,
+        "text": "loss declaration"
+      }
+    ],
+    "distractors": [
+      "dev-entry-032"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": true
+  },
+  {
+    "id": "dev_filipino_05",
+    "split": "dev",
+    "category": "filipino",
+    "query": "Saan dinadala ang mga sirang kagamitan sa Ilaw?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "dev-entry-033",
+        "source_id": "dev-entry-033",
+        "start": 0,
+        "end": 63,
+        "text": "Dinadala ang sirang kagamitan ng Ilaw sa silid ng pagkukumpuni."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "dev-entry-033",
+        "source_id": "dev-entry-033",
+        "start": 41,
+        "end": 62,
+        "text": "silid ng pagkukumpuni"
+      }
+    ],
+    "distractors": [
+      "dev-entry-034"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": true
+  },
+  {
+    "id": "dev_filipino_06",
+    "split": "dev",
+    "category": "filipino",
+    "query": "Kailan puwedeng kunin ang sertipiko sa Lakbay?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "dev-entry-035",
+        "source_id": "dev-entry-035",
+        "start": 0,
+        "end": 72,
+        "text": "Lakbay releases certificates on the next working day after verification."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "dev-entry-035",
+        "source_id": "dev-entry-035",
+        "start": 36,
+        "end": 52,
+        "text": "next working day"
+      }
+    ],
+    "distractors": [
+      "dev-entry-036"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": true
+  },
+  {
+    "id": "dev_filipino_07",
+    "split": "dev",
+    "category": "filipino",
+    "query": "Paano malalaman kung sino ang kumuha ng susi sa Luntian?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "dev-entry-037",
+        "source_id": "dev-entry-037",
+        "start": 0,
+        "end": 72,
+        "text": "Itinatala sa logbook ng Luntian ang pangalan ng bawat humihiram ng susi."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "dev-entry-037",
+        "source_id": "dev-entry-037",
+        "start": 13,
+        "end": 20,
+        "text": "logbook"
+      }
+    ],
+    "distractors": [
+      "dev-entry-038"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": true
+  },
+  {
+    "id": "dev_filipino_08",
+    "split": "dev",
+    "category": "filipino",
+    "query": "Ano ang kailangan para maibalik ang deposito sa Mayumi?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "dev-entry-039",
+        "source_id": "dev-entry-039",
+        "start": 0,
+        "end": 79,
+        "text": "Mayumi refunds a deposit upon presentation of the original acknowledgment slip."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "dev-entry-039",
+        "source_id": "dev-entry-039",
+        "start": 50,
+        "end": 78,
+        "text": "original acknowledgment slip"
+      }
+    ],
+    "distractors": [
+      "dev-entry-040"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": true
+  },
+  {
+    "id": "dev_filipino_09",
+    "split": "dev",
+    "category": "filipino",
+    "query": "Ilang bisita ang puwedeng isama sa Narra?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "dev-entry-041",
+        "source_id": "dev-entry-041",
+        "start": 0,
+        "end": 74,
+        "text": "Sa Narra, maaaring magsama ang isang residente ng hanggang apat na bisita."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "dev-entry-041",
+        "source_id": "dev-entry-041",
+        "start": 59,
+        "end": 73,
+        "text": "apat na bisita"
+      }
+    ],
+    "distractors": [
+      "dev-entry-042"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": true
+  },
+  {
+    "id": "dev_filipino_10",
+    "split": "dev",
+    "category": "filipino",
+    "query": "Sino ang tatawagan kapag tumagas ang tubo sa Pahina?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "dev-entry-043",
+        "source_id": "dev-entry-043",
+        "start": 0,
+        "end": 60,
+        "text": "Pahina directs plumbing leak reports to the facilities desk."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "dev-entry-043",
+        "source_id": "dev-entry-043",
+        "start": 44,
+        "end": 59,
+        "text": "facilities desk"
+      }
+    ],
+    "distractors": [
+      "dev-entry-044"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": true
+  },
+  {
+    "id": "dev_filipino_11",
+    "split": "dev",
+    "category": "filipino",
+    "query": "Paano itinatama ang maling pangalan sa talaan ng Salin?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "dev-entry-045",
+        "source_id": "dev-entry-045",
+        "start": 0,
+        "end": 79,
+        "text": "Sa Salin, kailangang magpakita ng wastong ID bago itama ang pangalan sa talaan."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "dev-entry-045",
+        "source_id": "dev-entry-045",
+        "start": 34,
+        "end": 44,
+        "text": "wastong ID"
+      }
+    ],
+    "distractors": [
+      "dev-entry-046"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": true
+  },
+  {
+    "id": "dev_filipino_12",
+    "split": "dev",
+    "category": "filipino",
+    "query": "Saan ilalagay ang kahilingan para sa dagdag na upuan sa Tala?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "dev-entry-047",
+        "source_id": "dev-entry-047",
+        "start": 0,
+        "end": 63,
+        "text": "Tala accepts extra-seat requests through the room-booking form."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "dev-entry-047",
+        "source_id": "dev-entry-047",
+        "start": 45,
+        "end": 62,
+        "text": "room-booking form"
+      }
+    ],
+    "distractors": [
+      "dev-entry-048"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": true
+  },
+  {
+    "id": "dev_taglish_01",
+    "split": "dev",
+    "category": "taglish",
+    "query": "Paano mag-reschedule ng appointment sa Aster?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "dev-entry-049",
+        "source_id": "dev-entry-049",
+        "start": 0,
+        "end": 76,
+        "text": "Aster lets a client move a visit by contacting the booking desk before noon."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "dev-entry-049",
+        "source_id": "dev-entry-049",
+        "start": 51,
+        "end": 63,
+        "text": "booking desk"
+      }
+    ],
+    "distractors": [
+      "dev-entry-050"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": true
+  },
+  {
+    "id": "dev_taglish_02",
+    "split": "dev",
+    "category": "taglish",
+    "query": "Saan ang backup copies ng files sa Beacon?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "dev-entry-051",
+        "source_id": "dev-entry-051",
+        "start": 0,
+        "end": 59,
+        "text": "Beacon stores recovery copies on the isolated archive disk."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "dev-entry-051",
+        "source_id": "dev-entry-051",
+        "start": 37,
+        "end": 58,
+        "text": "isolated archive disk"
+      }
+    ],
+    "distractors": [
+      "dev-entry-052"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": true
+  },
+  {
+    "id": "dev_taglish_03",
+    "split": "dev",
+    "category": "taglish",
+    "query": "May waiting period ba bago ma-activate ang Coral account?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "dev-entry-053",
+        "source_id": "dev-entry-053",
+        "start": 0,
+        "end": 57,
+        "text": "Coral activates a newly verified account after six hours."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "dev-entry-053",
+        "source_id": "dev-entry-053",
+        "start": 47,
+        "end": 56,
+        "text": "six hours"
+      }
+    ],
+    "distractors": [
+      "dev-entry-054"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": true
+  },
+  {
+    "id": "dev_taglish_04",
+    "split": "dev",
+    "category": "taglish",
+    "query": "Who can mag-unlock ng cabinet sa Dawn?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "dev-entry-055",
+        "source_id": "dev-entry-055",
+        "start": 0,
+        "end": 69,
+        "text": "Sa Dawn, ang opisyal na tagapag-ingat lamang ang may susi sa kabinet."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "dev-entry-055",
+        "source_id": "dev-entry-055",
+        "start": 13,
+        "end": 37,
+        "text": "opisyal na tagapag-ingat"
+      }
+    ],
+    "distractors": [
+      "dev-entry-056"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": true
+  },
+  {
+    "id": "dev_taglish_05",
+    "split": "dev",
+    "category": "taglish",
+    "query": "Ano ang limit ng file uploads sa Echo?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "dev-entry-057",
+        "source_id": "dev-entry-057",
+        "start": 0,
+        "end": 62,
+        "text": "Echo accepts attachments no larger than twenty megabytes each."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "dev-entry-057",
+        "source_id": "dev-entry-057",
+        "start": 40,
+        "end": 56,
+        "text": "twenty megabytes"
+      }
+    ],
+    "distractors": [
+      "dev-entry-058"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": true
+  },
+  {
+    "id": "dev_taglish_06",
+    "split": "dev",
+    "category": "taglish",
+    "query": "Paano i-check kung delivered na ang parcel sa Fern?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "dev-entry-059",
+        "source_id": "dev-entry-059",
+        "start": 0,
+        "end": 81,
+        "text": "Fern marks an item as received only after the recipient signs the handover sheet."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "dev-entry-059",
+        "source_id": "dev-entry-059",
+        "start": 66,
+        "end": 80,
+        "text": "handover sheet"
+      }
+    ],
+    "distractors": [
+      "dev-entry-060"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": true
+  },
+  {
+    "id": "dev_taglish_07",
+    "split": "dev",
+    "category": "taglish",
+    "query": "Kailan available ang lunch vouchers sa Glade?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "dev-entry-061",
+        "source_id": "dev-entry-061",
+        "start": 0,
+        "end": 52,
+        "text": "Glade distributes meal coupons every Monday morning."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "dev-entry-061",
+        "source_id": "dev-entry-061",
+        "start": 37,
+        "end": 51,
+        "text": "Monday morning"
+      }
+    ],
+    "distractors": [
+      "dev-entry-062"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": true
+  },
+  {
+    "id": "dev_taglish_08",
+    "split": "dev",
+    "category": "taglish",
+    "query": "Saan mag-report ng missing payment sa Haven?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "dev-entry-063",
+        "source_id": "dev-entry-063",
+        "start": 0,
+        "end": 67,
+        "text": "Haven routes absent remittance reports to the reconciliation queue."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "dev-entry-063",
+        "source_id": "dev-entry-063",
+        "start": 46,
+        "end": 66,
+        "text": "reconciliation queue"
+      }
+    ],
+    "distractors": [
+      "dev-entry-064"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": true
+  },
+  {
+    "id": "dev_taglish_09",
+    "split": "dev",
+    "category": "taglish",
+    "query": "Ano ang process para i-close ang Indigo ticket?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "dev-entry-065",
+        "source_id": "dev-entry-065",
+        "start": 0,
+        "end": 88,
+        "text": "Sa Indigo, isinasara ang ticket matapos kumpirmahin ng humiling na nalutas ang problema."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "dev-entry-065",
+        "source_id": "dev-entry-065",
+        "start": 40,
+        "end": 63,
+        "text": "kumpirmahin ng humiling"
+      }
+    ],
+    "distractors": [
+      "dev-entry-066"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": true
+  },
+  {
+    "id": "dev_taglish_10",
+    "split": "dev",
+    "category": "taglish",
+    "query": "Can I borrow overnight ang Jade laptop?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "dev-entry-067",
+        "source_id": "dev-entry-067",
+        "start": 0,
+        "end": 82,
+        "text": "Jade permits overnight equipment loans with written permission from the custodian."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "dev-entry-067",
+        "source_id": "dev-entry-067",
+        "start": 44,
+        "end": 62,
+        "text": "written permission"
+      }
+    ],
+    "distractors": [
+      "dev-entry-068"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": true
+  },
+  {
+    "id": "dev_taglish_11",
+    "split": "dev",
+    "category": "taglish",
+    "query": "Paano mag-opt out ng Kiwi reminders?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "dev-entry-069",
+        "source_id": "dev-entry-069",
+        "start": 0,
+        "end": 79,
+        "text": "Kiwi disables notifications when the subscriber clears the reminder preference."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "dev-entry-069",
+        "source_id": "dev-entry-069",
+        "start": 59,
+        "end": 78,
+        "text": "reminder preference"
+      }
+    ],
+    "distractors": [
+      "dev-entry-070"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": true
+  },
+  {
+    "id": "dev_taglish_12",
+    "split": "dev",
+    "category": "taglish",
+    "query": "Sino ang contact for late shipment sa Lotus?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "dev-entry-071",
+        "source_id": "dev-entry-071",
+        "start": 0,
+        "end": 70,
+        "text": "Lotus assigns delayed dispatch inquiries to the logistics coordinator."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "dev-entry-071",
+        "source_id": "dev-entry-071",
+        "start": 48,
+        "end": 69,
+        "text": "logistics coordinator"
+      }
+    ],
+    "distractors": [
+      "dev-entry-072"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": true
+  },
+  {
+    "id": "dev_lexical_01",
+    "split": "dev",
+    "category": "lexical",
+    "query": "What is Mica's receipt retention period?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "dev-entry-073",
+        "source_id": "dev-entry-073",
+        "start": 0,
+        "end": 49,
+        "text": "Mica's receipt retention period is twelve months."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "dev-entry-073",
+        "source_id": "dev-entry-073",
+        "start": 35,
+        "end": 48,
+        "text": "twelve months"
+      }
+    ],
+    "distractors": [
+      "dev-entry-074"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "dev_lexical_02",
+    "split": "dev",
+    "category": "lexical",
+    "query": "Where is Nacre's incident register stored?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "dev-entry-075",
+        "source_id": "dev-entry-075",
+        "start": 0,
+        "end": 58,
+        "text": "Nacre's incident register is stored in the safety cabinet."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "dev-entry-075",
+        "source_id": "dev-entry-075",
+        "start": 43,
+        "end": 57,
+        "text": "safety cabinet"
+      }
+    ],
+    "distractors": [
+      "dev-entry-076"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "dev_lexical_03",
+    "split": "dev",
+    "category": "lexical",
+    "query": "Who approves Opal's purchase orders?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "dev-entry-077",
+        "source_id": "dev-entry-077",
+        "start": 0,
+        "end": 58,
+        "text": "Opal purchase orders are approved by the procurement lead."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "dev-entry-077",
+        "source_id": "dev-entry-077",
+        "start": 41,
+        "end": 57,
+        "text": "procurement lead"
+      }
+    ],
+    "distractors": [
+      "dev-entry-078"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "dev_lexical_04",
+    "split": "dev",
+    "category": "lexical",
+    "query": "What is Pearl's nightly export time?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "dev-entry-079",
+        "source_id": "dev-entry-079",
+        "start": 0,
+        "end": 43,
+        "text": "Pearl runs its nightly export at 02:15 UTC."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "dev-entry-079",
+        "source_id": "dev-entry-079",
+        "start": 33,
+        "end": 42,
+        "text": "02:15 UTC"
+      }
+    ],
+    "distractors": [
+      "dev-entry-080"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "dev_lexical_05",
+    "split": "dev",
+    "category": "lexical",
+    "query": "How many copies does Quartz's print job make?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "dev-entry-081",
+        "source_id": "dev-entry-081",
+        "start": 0,
+        "end": 47,
+        "text": "Quartz's print job makes two copies by default."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "dev-entry-081",
+        "source_id": "dev-entry-081",
+        "start": 25,
+        "end": 35,
+        "text": "two copies"
+      }
+    ],
+    "distractors": [
+      "dev-entry-082"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "dev_lexical_06",
+    "split": "dev",
+    "category": "lexical",
+    "query": "Which port does Reed's status service use?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "dev-entry-083",
+        "source_id": "dev-entry-083",
+        "start": 0,
+        "end": 37,
+        "text": "Reed's status service uses port 7342."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "dev-entry-083",
+        "source_id": "dev-entry-083",
+        "start": 32,
+        "end": 36,
+        "text": "7342"
+      }
+    ],
+    "distractors": [
+      "dev-entry-084"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "dev_lexical_07",
+    "split": "dev",
+    "category": "lexical",
+    "query": "What is Sable's maximum booking duration?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "dev-entry-085",
+        "source_id": "dev-entry-085",
+        "start": 0,
+        "end": 48,
+        "text": "Sable's maximum booking duration is three hours."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "dev-entry-085",
+        "source_id": "dev-entry-085",
+        "start": 36,
+        "end": 47,
+        "text": "three hours"
+      }
+    ],
+    "distractors": [
+      "dev-entry-086"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "dev_lexical_08",
+    "split": "dev",
+    "category": "lexical",
+    "query": "Where is Thistle's returns counter?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "dev-entry-087",
+        "source_id": "dev-entry-087",
+        "start": 0,
+        "end": 55,
+        "text": "Thistle's returns counter is beside the north entrance."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "dev-entry-087",
+        "source_id": "dev-entry-087",
+        "start": 40,
+        "end": 54,
+        "text": "north entrance"
+      }
+    ],
+    "distractors": [
+      "dev-entry-088"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "dev_identifier_01",
+    "split": "dev",
+    "category": "identifier",
+    "query": "What does CACHE_TTL_MINUTES control in Umber?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "dev-entry-089",
+        "source_id": "dev-entry-089",
+        "start": 0,
+        "end": 75,
+        "text": "In Umber, CACHE_TTL_MINUTES sets cached response lifetime to eight minutes."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "dev-entry-089",
+        "source_id": "dev-entry-089",
+        "start": 61,
+        "end": 74,
+        "text": "eight minutes"
+      }
+    ],
+    "distractors": [
+      "dev-entry-090"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "dev_identifier_02",
+    "split": "dev",
+    "category": "identifier",
+    "query": "Where does Vale write exports/summary.json?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "dev-entry-091",
+        "source_id": "dev-entry-091",
+        "start": 0,
+        "end": 63,
+        "text": "Vale writes exports/summary.json beneath the session directory."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "dev-entry-091",
+        "source_id": "dev-entry-091",
+        "start": 45,
+        "end": 62,
+        "text": "session directory"
+      }
+    ],
+    "distractors": [
+      "dev-entry-092"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "dev_identifier_03",
+    "split": "dev",
+    "category": "identifier",
+    "query": "What uses Violet's /v1/archive endpoint?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "dev-entry-093",
+        "source_id": "dev-entry-093",
+        "start": 0,
+        "end": 69,
+        "text": "Violet's /v1/archive endpoint accepts closed-record archive requests."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "dev-entry-093",
+        "source_id": "dev-entry-093",
+        "start": 38,
+        "end": 68,
+        "text": "closed-record archive requests"
+      }
+    ],
+    "distractors": [
+      "dev-entry-094"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "dev_identifier_04",
+    "split": "dev",
+    "category": "identifier",
+    "query": "What is Willow's queue_retry_limit value?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "dev-entry-095",
+        "source_id": "dev-entry-095",
+        "start": 0,
+        "end": 35,
+        "text": "Willow sets queue_retry_limit to 5."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "dev-entry-095",
+        "source_id": "dev-entry-095",
+        "start": 33,
+        "end": 34,
+        "text": "5"
+      }
+    ],
+    "distractors": [
+      "dev-entry-096"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "dev_identifier_05",
+    "split": "dev",
+    "category": "identifier",
+    "query": "What happens in Wren's rotate_keys() function?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "dev-entry-097",
+        "source_id": "dev-entry-097",
+        "start": 0,
+        "end": 63,
+        "text": "Wren's rotate_keys() function retires the previous signing key."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "dev-entry-097",
+        "source_id": "dev-entry-097",
+        "start": 30,
+        "end": 62,
+        "text": "retires the previous signing key"
+      }
+    ],
+    "distractors": [
+      "dev-entry-098"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "dev_identifier_06",
+    "split": "dev",
+    "category": "identifier",
+    "query": "Where is Xenon's configs/release.toml read?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "dev-entry-099",
+        "source_id": "dev-entry-099",
+        "start": 0,
+        "end": 60,
+        "text": "Xenon reads configs/release.toml during release preparation."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "dev-entry-099",
+        "source_id": "dev-entry-099",
+        "start": 40,
+        "end": 59,
+        "text": "release preparation"
+      }
+    ],
+    "distractors": [
+      "dev-entry-100"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "dev_identifier_07",
+    "split": "dev",
+    "category": "identifier",
+    "query": "What does Yarrow's AB-17 status mean?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "dev-entry-101",
+        "source_id": "dev-entry-101",
+        "start": 0,
+        "end": 54,
+        "text": "Yarrow uses AB-17 to mean an address check is pending."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "dev-entry-101",
+        "source_id": "dev-entry-101",
+        "start": 29,
+        "end": 53,
+        "text": "address check is pending"
+      }
+    ],
+    "distractors": [
+      "dev-entry-102"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "dev_identifier_08",
+    "split": "dev",
+    "category": "identifier",
+    "query": "Which Zinc job uses build_manifest_v2?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "dev-entry-103",
+        "source_id": "dev-entry-103",
+        "start": 0,
+        "end": 44,
+        "text": "Zinc's packaging job uses build_manifest_v2."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "dev-entry-103",
+        "source_id": "dev-entry-103",
+        "start": 7,
+        "end": 20,
+        "text": "packaging job"
+      }
+    ],
+    "distractors": [
+      "dev-entry-104"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "dev_morphology_01",
+    "split": "dev",
+    "category": "morphology",
+    "query": "How does Amber approve requests?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "dev-entry-105",
+        "source_id": "dev-entry-105",
+        "start": 0,
+        "end": 49,
+        "text": "Amber records approvals in the authorization log."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "dev-entry-105",
+        "source_id": "dev-entry-105",
+        "start": 31,
+        "end": 48,
+        "text": "authorization log"
+      }
+    ],
+    "distractors": [
+      "dev-entry-106"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "dev_morphology_02",
+    "split": "dev",
+    "category": "morphology",
+    "query": "Where are Brook cancellations recorded?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "dev-entry-107",
+        "source_id": "dev-entry-107",
+        "start": 0,
+        "end": 63,
+        "text": "Brook records each canceled reservation in the booking journal."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "dev-entry-107",
+        "source_id": "dev-entry-107",
+        "start": 47,
+        "end": 62,
+        "text": "booking journal"
+      }
+    ],
+    "distractors": [
+      "dev-entry-108"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "dev_morphology_03",
+    "split": "dev",
+    "category": "morphology",
+    "query": "How does Crest retry failed calls?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "dev-entry-109",
+        "source_id": "dev-entry-109",
+        "start": 0,
+        "end": 45,
+        "text": "Crest retries unsuccessful calls three times."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "dev-entry-109",
+        "source_id": "dev-entry-109",
+        "start": 33,
+        "end": 44,
+        "text": "three times"
+      }
+    ],
+    "distractors": [
+      "dev-entry-110"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "dev_morphology_04",
+    "split": "dev",
+    "category": "morphology",
+    "query": "When does Delta archive records?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "dev-entry-111",
+        "source_id": "dev-entry-111",
+        "start": 0,
+        "end": 41,
+        "text": "Delta's archiving task runs every Sunday."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "dev-entry-111",
+        "source_id": "dev-entry-111",
+        "start": 28,
+        "end": 40,
+        "text": "every Sunday"
+      }
+    ],
+    "distractors": [
+      "dev-entry-112"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "dev_morphology_05",
+    "split": "dev",
+    "category": "morphology",
+    "query": "Who handles Ember validations?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "dev-entry-113",
+        "source_id": "dev-entry-113",
+        "start": 0,
+        "end": 55,
+        "text": "Ember validates submissions through the review officer."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "dev-entry-113",
+        "source_id": "dev-entry-113",
+        "start": 40,
+        "end": 54,
+        "text": "review officer"
+      }
+    ],
+    "distractors": [
+      "dev-entry-114"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "dev_morphology_06",
+    "split": "dev",
+    "category": "morphology",
+    "query": "Where does Fjord store assignments?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "dev-entry-115",
+        "source_id": "dev-entry-115",
+        "start": 0,
+        "end": 45,
+        "text": "Fjord assigns cases using the workload board."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "dev-entry-115",
+        "source_id": "dev-entry-115",
+        "start": 30,
+        "end": 44,
+        "text": "workload board"
+      }
+    ],
+    "distractors": [
+      "dev-entry-116"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "dev_morphology_07",
+    "split": "dev",
+    "category": "morphology",
+    "query": "What is Garnet's reporting destination?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "dev-entry-117",
+        "source_id": "dev-entry-117",
+        "start": 0,
+        "end": 45,
+        "text": "Garnet reports incidents to the duty manager."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "dev-entry-117",
+        "source_id": "dev-entry-117",
+        "start": 32,
+        "end": 44,
+        "text": "duty manager"
+      }
+    ],
+    "distractors": [
+      "dev-entry-118"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "dev_morphology_08",
+    "split": "dev",
+    "category": "morphology",
+    "query": "How does Hazel authenticate users?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "dev-entry-119",
+        "source_id": "dev-entry-119",
+        "start": 0,
+        "end": 48,
+        "text": "Hazel's authentication requires a one-time code."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "dev-entry-119",
+        "source_id": "dev-entry-119",
+        "start": 34,
+        "end": 47,
+        "text": "one-time code"
+      }
+    ],
+    "distractors": [
+      "dev-entry-120"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "dev_short_local_01",
+    "split": "dev",
+    "category": "short_local",
+    "query": "Acorn opening time?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "dev-entry-121",
+        "source_id": "dev-entry-121",
+        "start": 0,
+        "end": 36,
+        "text": "Acorn's service desk opens at 08:30."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "dev-entry-121",
+        "source_id": "dev-entry-121",
+        "start": 30,
+        "end": 35,
+        "text": "08:30"
+      }
+    ],
+    "distractors": [
+      "dev-entry-122"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "dev_short_local_02",
+    "split": "dev",
+    "category": "short_local",
+    "query": "Brume refund contact?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "dev-entry-123",
+        "source_id": "dev-entry-123",
+        "start": 0,
+        "end": 37,
+        "text": "Brume sends refund inquiries to Mara."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "dev-entry-123",
+        "source_id": "dev-entry-123",
+        "start": 32,
+        "end": 36,
+        "text": "Mara"
+      }
+    ],
+    "distractors": [
+      "dev-entry-124"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "dev_short_local_03",
+    "split": "dev",
+    "category": "short_local",
+    "query": "Cairn locker fee?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "dev-entry-125",
+        "source_id": "dev-entry-125",
+        "start": 0,
+        "end": 46,
+        "text": "Cairn charges forty pesos for a locker rental."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "dev-entry-125",
+        "source_id": "dev-entry-125",
+        "start": 14,
+        "end": 25,
+        "text": "forty pesos"
+      }
+    ],
+    "distractors": [
+      "dev-entry-126"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "dev_short_local_04",
+    "split": "dev",
+    "category": "short_local",
+    "query": "Dune pickup point?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "dev-entry-127",
+        "source_id": "dev-entry-127",
+        "start": 0,
+        "end": 37,
+        "text": "Dune's parcel pickup point is Gate C."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "dev-entry-127",
+        "source_id": "dev-entry-127",
+        "start": 30,
+        "end": 36,
+        "text": "Gate C"
+      }
+    ],
+    "distractors": [
+      "dev-entry-128"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "dev_no_supply_01",
+    "split": "dev",
+    "category": "no_supply",
+    "query": "What is Auric's refund deadline?",
+    "context_expected": false,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [],
+    "answer_gold": [],
+    "distractors": [
+      "dev-entry-129"
+    ],
+    "negative_kind": "wrong_entity",
+    "rationale": "A different named service is not authority for Auric.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "dev_no_supply_02",
+    "split": "dev",
+    "category": "no_supply",
+    "query": "How do I repair an Auric payment terminal?",
+    "context_expected": false,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [],
+    "answer_gold": [],
+    "distractors": [
+      "dev-entry-130"
+    ],
+    "negative_kind": "wrong_procedure",
+    "rationale": "Installation instructions do not describe repair.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "dev_no_supply_03",
+    "split": "dev",
+    "category": "no_supply",
+    "query": "What is Auric's production log limit?",
+    "context_expected": false,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [],
+    "answer_gold": [],
+    "distractors": [
+      "dev-entry-131"
+    ],
+    "negative_kind": "wrong_scope",
+    "rationale": "Sandbox settings do not establish production limits.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "dev_no_supply_04",
+    "split": "dev",
+    "category": "no_supply",
+    "query": "What does Auric's PAYMENT_READY_2 mean?",
+    "context_expected": false,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [],
+    "answer_gold": [],
+    "distractors": [
+      "dev-entry-132"
+    ],
+    "negative_kind": "identifier_near_miss",
+    "rationale": "Different exact status IDs are not interchangeable.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "dev_no_supply_05",
+    "split": "dev",
+    "category": "no_supply",
+    "query": "Thanks, that helped.",
+    "context_expected": false,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [],
+    "answer_gold": [],
+    "distractors": [
+      "dev-entry-133"
+    ],
+    "negative_kind": "conversation",
+    "rationale": "An acknowledgment does not authorize local context.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "dev_no_supply_06",
+    "split": "dev",
+    "category": "no_supply",
+    "query": "Hi there.",
+    "context_expected": false,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [],
+    "answer_gold": [],
+    "distractors": [
+      "dev-entry-134"
+    ],
+    "negative_kind": "conversation",
+    "rationale": "Greeting terminology is accidental overlap.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "dev_no_supply_07",
+    "split": "dev",
+    "category": "no_supply",
+    "query": "I'm feeling a bit overwhelmed today.",
+    "context_expected": false,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [],
+    "answer_gold": [],
+    "distractors": [
+      "dev-entry-135"
+    ],
+    "negative_kind": "conversation",
+    "rationale": "Human feelings are not a monitoring query.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "dev_no_supply_08",
+    "split": "dev",
+    "category": "no_supply",
+    "query": "That sounds good to me.",
+    "context_expected": false,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [],
+    "answer_gold": [],
+    "distractors": [
+      "dev-entry-136"
+    ],
+    "negative_kind": "conversation",
+    "rationale": "Conversational assent is not an equipment question.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "dev_no_supply_09",
+    "split": "dev",
+    "category": "no_supply",
+    "query": "Rewrite this politely: Send the receipt now.",
+    "context_expected": false,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [],
+    "answer_gold": [],
+    "distractors": [
+      "dev-entry-137"
+    ],
+    "negative_kind": "transformation",
+    "rationale": "Rewrite only supplied text; don't import process facts.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "dev_no_supply_10",
+    "split": "dev",
+    "category": "no_supply",
+    "query": "Translate this to English: Pakisara ang pinto.",
+    "context_expected": false,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [],
+    "answer_gold": [],
+    "distractors": [
+      "dev-entry-138"
+    ],
+    "negative_kind": "transformation",
+    "rationale": "Translation of quoted text needs no project evidence.",
+    "fluent_review_required": true
+  },
+  {
+    "id": "dev_no_supply_11",
+    "split": "dev",
+    "category": "no_supply",
+    "query": "Shorten this: Our meeting will begin at nine tomorrow morning.",
+    "context_expected": false,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [],
+    "answer_gold": [],
+    "distractors": [
+      "dev-entry-139"
+    ],
+    "negative_kind": "transformation",
+    "rationale": "External schedule must not alter a text transformation.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "dev_no_supply_12",
+    "split": "dev",
+    "category": "no_supply",
+    "query": "Turn this into a bullet: Back up the notes and label the folder.",
+    "context_expected": false,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [],
+    "answer_gold": [],
+    "distractors": [
+      "dev-entry-140"
+    ],
+    "negative_kind": "transformation",
+    "rationale": "Formatting a supplied sentence needs no local facts.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "dev_no_supply_13",
+    "split": "dev",
+    "category": "no_supply",
+    "query": "Write a short poem about keys and rain.",
+    "context_expected": false,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [],
+    "answer_gold": [],
+    "distractors": [
+      "dev-entry-141"
+    ],
+    "negative_kind": "writing",
+    "rationale": "Creative output must not import an unrelated local policy.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "dev_no_supply_14",
+    "split": "dev",
+    "category": "no_supply",
+    "query": "Give me a name for a fictional archive.",
+    "context_expected": false,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [],
+    "answer_gold": [],
+    "distractors": [
+      "dev-entry-142"
+    ],
+    "negative_kind": "writing",
+    "rationale": "Fictional naming is not a request for local settings.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "dev_no_supply_15",
+    "split": "dev",
+    "category": "no_supply",
+    "query": "Why is the sky blue?",
+    "context_expected": false,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [],
+    "answer_gold": [],
+    "distractors": [
+      "dev-entry-143"
+    ],
+    "negative_kind": "general_knowledge",
+    "rationale": "Shared color terminology is not relevance.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "dev_no_supply_16",
+    "split": "dev",
+    "category": "no_supply",
+    "query": "What is seven times eight?",
+    "context_expected": false,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [],
+    "answer_gold": [],
+    "distractors": [
+      "dev-entry-144"
+    ],
+    "negative_kind": "general_reasoning",
+    "rationale": "Arithmetic does not require matching invoice evidence.",
+    "fluent_review_required": false
+  }
+]

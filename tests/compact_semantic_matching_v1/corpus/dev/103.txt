@@ -1,0 +1,1 @@
+Zinc's packaging job uses build_manifest_v2.

@@ -1,0 +1,1 @@
+Meridian refreshes stock totals at the end of each shift.

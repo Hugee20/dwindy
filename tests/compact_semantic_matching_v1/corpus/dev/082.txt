@@ -1,0 +1,1 @@
+Quartz's scan job captures four pages by default.

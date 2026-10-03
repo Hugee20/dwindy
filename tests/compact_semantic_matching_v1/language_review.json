@@ -1,0 +1,502 @@
+{
+  "requirement": "Fluent human review before freeze; no automatic sign-off.",
+  "entries": [
+    {
+      "id": "dev_filipino_01",
+      "case_sha256": "a0aaf6b1e31aacab0268b95c91f985ff22f787bca3ccd88e453534451e8d3f2a",
+      "status": "approved",
+      "reviewer": "Eugene (user)",
+      "reviewed_at": "2026-10-03",
+      "comments": "Approved by user language review; preserve wording, including colloquial code-switching."
+    },
+    {
+      "id": "dev_filipino_02",
+      "case_sha256": "d7c24a981a1b580269b20ed2422c54f6a40e509a4f37891ec11d56a25f6a8b66",
+      "status": "approved",
+      "reviewer": "Eugene (user)",
+      "reviewed_at": "2026-10-03",
+      "comments": "Approved by user language review; preserve wording, including colloquial code-switching."
+    },
+    {
+      "id": "dev_filipino_03",
+      "case_sha256": "a174bd980fc6140fd8e054312bd183e59fe5bf1398ddbce105dce90c2a66179c",
+      "status": "approved",
+      "reviewer": "Eugene (user)",
+      "reviewed_at": "2026-10-03",
+      "comments": "Approved by user language review; preserve wording, including colloquial code-switching."
+    },
+    {
+      "id": "dev_filipino_04",
+      "case_sha256": "4f53b17230a6f487809b9c3f50fc770101a38fbc37728c01b6b8f83f83b0b0eb",
+      "status": "approved",
+      "reviewer": "Eugene (user)",
+      "reviewed_at": "2026-10-03",
+      "comments": "Approved by user language review; preserve wording, including colloquial code-switching."
+    },
+    {
+      "id": "dev_filipino_05",
+      "case_sha256": "08d5ec4d37798764b8f74297d633ed640bda221ba1530f6d7b6ef928423abee3",
+      "status": "approved",
+      "reviewer": "Eugene (user)",
+      "reviewed_at": "2026-10-03",
+      "comments": "Approved by user language review; preserve wording, including colloquial code-switching."
+    },
+    {
+      "id": "dev_filipino_06",
+      "case_sha256": "8a30f53ef1065631a7cc72ecbd9a3e77f855e814d07d221eefdc884621f16b0a",
+      "status": "approved",
+      "reviewer": "Eugene (user)",
+      "reviewed_at": "2026-10-03",
+      "comments": "Approved by user language review; preserve wording, including colloquial code-switching."
+    },
+    {
+      "id": "dev_filipino_07",
+      "case_sha256": "fc5efd934cca9a9366c16937815a537f19fcefcc855915a06b15b8449454aac6",
+      "status": "approved",
+      "reviewer": "Eugene (user)",
+      "reviewed_at": "2026-10-03",
+      "comments": "Approved by user language review; preserve wording, including colloquial code-switching."
+    },
+    {
+      "id": "dev_filipino_08",
+      "case_sha256": "10f6f1b3f7fe3c92cccfb7334788f52b88a48db0188574208df96397b7fc3fdf",
+      "status": "approved",
+      "reviewer": "Eugene (user)",
+      "reviewed_at": "2026-10-03",
+      "comments": "Approved by user language review; preserve wording, including colloquial code-switching."
+    },
+    {
+      "id": "dev_filipino_09",
+      "case_sha256": "1b08011029eb41eb114884e7f226af71712ce158e1fbc16c6b0cfbe7f2b76da4",
+      "status": "approved",
+      "reviewer": "Eugene (user)",
+      "reviewed_at": "2026-10-03",
+      "comments": "Approved by user language review; preserve wording, including colloquial code-switching."
+    },
+    {
+      "id": "dev_filipino_10",
+      "case_sha256": "0c0da5158f0da501acd1b5e5ae14402a3ff6c512b2c5ec755e6c242107199f7e",
+      "status": "approved",
+      "reviewer": "Eugene (user)",
+      "reviewed_at": "2026-10-03",
+      "comments": "Approved by user language review; preserve wording, including colloquial code-switching."
+    },
+    {
+      "id": "dev_filipino_11",
+      "case_sha256": "30792be9bc5db58196d38da67d89d40d4c94e09a7ad0a91d60f4cabf8a99d446",
+      "status": "approved",
+      "reviewer": "Eugene (user)",
+      "reviewed_at": "2026-10-03",
+      "comments": "Approved by user language review; preserve wording, including colloquial code-switching."
+    },
+    {
+      "id": "dev_filipino_12",
+      "case_sha256": "d59a97d420706bf0787be2954fb9cdb8318c6c01a4116c3ec9ec0f2facd380b1",
+      "status": "approved",
+      "reviewer": "Eugene (user)",
+      "reviewed_at": "2026-10-03",
+      "comments": "Approved by user language review; preserve wording, including colloquial code-switching."
+    },
+    {
+      "id": "dev_taglish_01",
+      "case_sha256": "bd9228c53c7348ab0985e2f582ad4bdfa092aa7edb9048d1753f7371c2cf4e18",
+      "status": "approved",
+      "reviewer": "Eugene (user)",
+      "reviewed_at": "2026-10-03",
+      "comments": "Approved by user language review; preserve wording, including colloquial code-switching."
+    },
+    {
+      "id": "dev_taglish_02",
+      "case_sha256": "b004d23d4a424bff0c72d31f387a3609e025f2b5b2fc0b8be1c7f78ce04c6c58",
+      "status": "approved",
+      "reviewer": "Eugene (user)",
+      "reviewed_at": "2026-10-03",
+      "comments": "Approved by user language review; preserve wording, including colloquial code-switching."
+    },
+    {
+      "id": "dev_taglish_03",
+      "case_sha256": "64540189c99ac71046c8a6005d0fc590b591926aee1d5cf65c26e44706209c12",
+      "status": "approved",
+      "reviewer": "Eugene (user)",
+      "reviewed_at": "2026-10-03",
+      "comments": "Approved by user language review; preserve wording, including colloquial code-switching."
+    },
+    {
+      "id": "dev_taglish_04",
+      "case_sha256": "c8d364444f62bc6e8dc0f950a6b30c326413de8b54b3a4c6decfea1ab4ab96fa",
+      "status": "approved",
+      "reviewer": "Eugene (user)",
+      "reviewed_at": "2026-10-03",
+      "comments": "Approved by user language review; preserve wording, including colloquial code-switching."
+    },
+    {
+      "id": "dev_taglish_05",
+      "case_sha256": "f61f7a813239104b2f214ed57775929bffe891af3344ed7f272eae1aabe5005b",
+      "status": "approved",
+      "reviewer": "Eugene (user)",
+      "reviewed_at": "2026-10-03",
+      "comments": "Approved by user language review; preserve wording, including colloquial code-switching."
+    },
+    {
+      "id": "dev_taglish_06",
+      "case_sha256": "74ed9c93b1b876059ff0b4d319c2ad58d5550cc78ab6e01250d3baefa01a4a6f",
+      "status": "approved",
+      "reviewer": "Eugene (user)",
+      "reviewed_at": "2026-10-03",
+      "comments": "Approved by user language review; preserve wording, including colloquial code-switching."
+    },
+    {
+      "id": "dev_taglish_07",
+      "case_sha256": "a651f1767f01be1196a129d06ab3005d2ba1af45a330160e22508000e5df9df4",
+      "status": "approved",
+      "reviewer": "Eugene (user)",
+      "reviewed_at": "2026-10-03",
+      "comments": "Approved by user language review; preserve wording, including colloquial code-switching."
+    },
+    {
+      "id": "dev_taglish_08",
+      "case_sha256": "d4e91d0779e28b90f1ce407efcccece7e438e1df9aab5861378333bf4f725345",
+      "status": "approved",
+      "reviewer": "Eugene (user)",
+      "reviewed_at": "2026-10-03",
+      "comments": "Approved by user language review; preserve wording, including colloquial code-switching."
+    },
+    {
+      "id": "dev_taglish_09",
+      "case_sha256": "85c2e65e2fd7a2bc09e321b6542c0ab7f51456b3ff2a93b0f5876f1de5a6cf29",
+      "status": "approved",
+      "reviewer": "Eugene (user)",
+      "reviewed_at": "2026-10-03",
+      "comments": "Approved by user language review; preserve wording, including colloquial code-switching."
+    },
+    {
+      "id": "dev_taglish_10",
+      "case_sha256": "a784cc33dc6caaa71e52618e4e769d625b514df2131014beccc1a7f2f48ad245",
+      "status": "approved",
+      "reviewer": "Eugene (user)",
+      "reviewed_at": "2026-10-03",
+      "comments": "Approved by user language review; preserve wording, including colloquial code-switching."
+    },
+    {
+      "id": "dev_taglish_11",
+      "case_sha256": "40983b179a7244bef6a7058aeb72d8cfb4678e9dbd15b382af8a6f3430eebbef",
+      "status": "approved",
+      "reviewer": "Eugene (user)",
+      "reviewed_at": "2026-10-03",
+      "comments": "Approved by user language review; preserve wording, including colloquial code-switching."
+    },
+    {
+      "id": "dev_taglish_12",
+      "case_sha256": "c4d7412b2c12f1265ba744192d06777580a090846f9dca218832e9a9d9f2ebb9",
+      "status": "approved",
+      "reviewer": "Eugene (user)",
+      "reviewed_at": "2026-10-03",
+      "comments": "Approved by user language review; preserve wording, including colloquial code-switching."
+    },
+    {
+      "id": "dev_no_supply_10",
+      "case_sha256": "0028eff10ae599de77fe444b16c1713c67b98e6fa240740e7d82f27edecc2f02",
+      "status": "approved",
+      "reviewer": "Eugene (user)",
+      "reviewed_at": "2026-10-03",
+      "comments": "Approved by user language review; preserve wording, including colloquial code-switching."
+    },
+    {
+      "id": "holdout_filipino_01",
+      "case_sha256": "596445e7a63955a0c43361e4d98049c3a37c564d0f9982e3ff5e144a3cf8098c",
+      "status": "approved",
+      "reviewer": "Eugene (user)",
+      "reviewed_at": "2026-10-03",
+      "comments": "Approved by user language review; preserve wording, including colloquial code-switching."
+    },
+    {
+      "id": "holdout_filipino_02",
+      "case_sha256": "bb52fb52be42b0aceee6d059aa11518fad8b0d14fd4b5df0c52c75d3d91fade6",
+      "status": "approved",
+      "reviewer": "Eugene (user)",
+      "reviewed_at": "2026-10-03",
+      "comments": "Approved by user language review; preserve wording, including colloquial code-switching."
+    },
+    {
+      "id": "holdout_filipino_03",
+      "case_sha256": "514d73b9c40212c21e5e243564f0ca900a1be148d9ad32b510b60ca01f4a7f56",
+      "status": "approved",
+      "reviewer": "Eugene (user)",
+      "reviewed_at": "2026-10-03",
+      "comments": "Specified correction applied; finalization approved by user completion directive on 2026-10-03."
+    },
+    {
+      "id": "holdout_filipino_04",
+      "case_sha256": "5b9c10f6dd520481c5d7ff25e5581ae3804f20acf52a6933b041d7c3c1a379ee",
+      "status": "approved",
+      "reviewer": "Eugene (user)",
+      "reviewed_at": "2026-10-03",
+      "comments": "Approved by user language review; preserve wording, including colloquial code-switching."
+    },
+    {
+      "id": "holdout_filipino_05",
+      "case_sha256": "bdcc0703269a9427b842647523aafed25db2d9c5bbfd88beb5a889c2c945bc4d",
+      "status": "approved",
+      "reviewer": "Eugene (user)",
+      "reviewed_at": "2026-10-03",
+      "comments": "Approved by user language review; preserve wording, including colloquial code-switching."
+    },
+    {
+      "id": "holdout_filipino_06",
+      "case_sha256": "a6f10388f36a63815d14f129b2b4149df4f985f58f276048ca7b07c6ccabd805",
+      "status": "approved",
+      "reviewer": "Eugene (user)",
+      "reviewed_at": "2026-10-03",
+      "comments": "Approved by user language review; preserve wording, including colloquial code-switching."
+    },
+    {
+      "id": "holdout_filipino_07",
+      "case_sha256": "7ba8bff70e35a1c6868a0ac79715203b8f385e0826680e5ec551163fbc3d8137",
+      "status": "approved",
+      "reviewer": "Eugene (user)",
+      "reviewed_at": "2026-10-03",
+      "comments": "Approved by user language review; preserve wording, including colloquial code-switching."
+    },
+    {
+      "id": "holdout_filipino_08",
+      "case_sha256": "55a2b9f717816147eebffcd7de7e2d9f7784f458e3647543c2da474398d55b3b",
+      "status": "approved",
+      "reviewer": "Eugene (user)",
+      "reviewed_at": "2026-10-03",
+      "comments": "Approved by user language review; preserve wording, including colloquial code-switching."
+    },
+    {
+      "id": "holdout_filipino_09",
+      "case_sha256": "ff4d28e3c34f1791f1f76877e6275b30e4aad5333bcb513eb2d83cefec8fc01d",
+      "status": "approved",
+      "reviewer": "Eugene (user)",
+      "reviewed_at": "2026-10-03",
+      "comments": "Approved by user language review; preserve wording, including colloquial code-switching."
+    },
+    {
+      "id": "holdout_filipino_10",
+      "case_sha256": "dbbc2e4524edf2122fdff1ad6ecad5297652e109c7bd09cc16f9ec8816585f60",
+      "status": "approved",
+      "reviewer": "Eugene (user)",
+      "reviewed_at": "2026-10-03",
+      "comments": "Specified correction applied; finalization approved by user completion directive on 2026-10-03."
+    },
+    {
+      "id": "holdout_filipino_11",
+      "case_sha256": "70cbc6743fab59583d88d1247a01cec5e26ab1b83ceedb48670e076266cb1e0a",
+      "status": "approved",
+      "reviewer": "Eugene (user)",
+      "reviewed_at": "2026-10-03",
+      "comments": "Approved by user language review; preserve wording, including colloquial code-switching."
+    },
+    {
+      "id": "holdout_filipino_12",
+      "case_sha256": "6f6c489e842b6aea5c8b8647a10b4cb6b7f1e5d541cb683ff3d3c7e21aa7f842",
+      "status": "approved",
+      "reviewer": "Eugene (user)",
+      "reviewed_at": "2026-10-03",
+      "comments": "Approved by user language review; preserve wording, including colloquial code-switching."
+    },
+    {
+      "id": "holdout_taglish_01",
+      "case_sha256": "9c8b1ae99067c70f9d91ab306cfc76c4d644dc03316fe392b14e560b583fb2a9",
+      "status": "approved",
+      "reviewer": "Eugene (user)",
+      "reviewed_at": "2026-10-03",
+      "comments": "Approved by user language review; preserve wording, including colloquial code-switching."
+    },
+    {
+      "id": "holdout_taglish_02",
+      "case_sha256": "987f4c3fa7c20c9d8beaf2e48e27b31da9f9e56e8a2121720f408e631d73d973",
+      "status": "approved",
+      "reviewer": "Eugene (user)",
+      "reviewed_at": "2026-10-03",
+      "comments": "Approved by user language review; preserve wording, including colloquial code-switching."
+    },
+    {
+      "id": "holdout_taglish_03",
+      "case_sha256": "2deb616b4482e1b1386b3d83d7078eab1027a9581f1e696ccf1bd21b2d5a62ae",
+      "status": "approved",
+      "reviewer": "Eugene (user)",
+      "reviewed_at": "2026-10-03",
+      "comments": "Specified correction applied; finalization approved by user completion directive on 2026-10-03."
+    },
+    {
+      "id": "holdout_taglish_04",
+      "case_sha256": "352645688d5f0d3b4784f8444e1bdcf132f0e38817e01e7d2b4ddf1a0bf9ca93",
+      "status": "approved",
+      "reviewer": "Eugene (user)",
+      "reviewed_at": "2026-10-03",
+      "comments": "Approved by user language review; preserve wording, including colloquial code-switching."
+    },
+    {
+      "id": "holdout_taglish_05",
+      "case_sha256": "2060751d4ad45415a490dc5a5f0a30b1210935904a275d0e2dc78904e27f7c76",
+      "status": "approved",
+      "reviewer": "Eugene (user)",
+      "reviewed_at": "2026-10-03",
+      "comments": "Approved by user language review; preserve wording, including colloquial code-switching."
+    },
+    {
+      "id": "holdout_taglish_06",
+      "case_sha256": "7a790f50c0653b20195e191c8fda31a4eff71d1a0476030b1cf3b377c74819fb",
+      "status": "approved",
+      "reviewer": "Eugene (user)",
+      "reviewed_at": "2026-10-03",
+      "comments": "Approved by user language review; preserve wording, including colloquial code-switching."
+    },
+    {
+      "id": "holdout_taglish_07",
+      "case_sha256": "9e5af5608dbf76d7d4e334cc35b1e931bcc5455405691c9b257ff269bab4e06c",
+      "status": "approved",
+      "reviewer": "Eugene (user)",
+      "reviewed_at": "2026-10-03",
+      "comments": "Approved by user language review; preserve wording, including colloquial code-switching."
+    },
+    {
+      "id": "holdout_taglish_08",
+      "case_sha256": "6e54c990e516ca9f26f556b4fc152945a470cb6f5066a0fef0698ed366ff3883",
+      "status": "approved",
+      "reviewer": "Eugene (user)",
+      "reviewed_at": "2026-10-03",
+      "comments": "Approved by user language review; preserve wording, including colloquial code-switching."
+    },
+    {
+      "id": "holdout_taglish_09",
+      "case_sha256": "5a0308e93fc94786a3c6c2e20d2aa02efc447ae96bed54efd3a72ad4788ef694",
+      "status": "approved",
+      "reviewer": "Eugene (user)",
+      "reviewed_at": "2026-10-03",
+      "comments": "Approved by user language review; preserve wording, including colloquial code-switching."
+    },
+    {
+      "id": "holdout_taglish_10",
+      "case_sha256": "97ae0b1de5d28427eb53b7c8866cd2571674e39e67c560b44a5412da7cbbaadb",
+      "status": "approved",
+      "reviewer": "Eugene (user)",
+      "reviewed_at": "2026-10-03",
+      "comments": "Specified correction applied; finalization approved by user completion directive on 2026-10-03."
+    },
+    {
+      "id": "holdout_taglish_11",
+      "case_sha256": "10ad16e894a0a23ea9c92891f26e2f9f2dedbfad920e3f453cc9f9f442515c9a",
+      "status": "approved",
+      "reviewer": "Eugene (user)",
+      "reviewed_at": "2026-10-03",
+      "comments": "Approved by user language review; preserve wording, including colloquial code-switching."
+    },
+    {
+      "id": "holdout_taglish_12",
+      "case_sha256": "cb3a2f36fb78e4b5c40dfc695801aa69116b0355da22adde7276ee70aa1a465c",
+      "status": "approved",
+      "reviewer": "Eugene (user)",
+      "reviewed_at": "2026-10-03",
+      "comments": "Approved by user language review; preserve wording, including colloquial code-switching."
+    }
+  ],
+  "review_completed_by": "Eugene (user)",
+  "review_completed_on": "2026-10-03",
+  "freeze_instruction": "Freeze authorized by the user Dwindy completion directive on 2026-10-03 after the four specified corrections. Stop language-fixture work.",
+  "corrections": [
+    {
+      "id": "holdout_filipino_03",
+      "before_case_sha256": "20d904f778e34e17a220ea79a6a8319113f0f1899393272a7460e191e0b045bf",
+      "after_case_sha256": "514d73b9c40212c21e5e243564f0ca900a1be148d9ad32b510b60ca01f4a7f56",
+      "before_query": "Saan puwedeng mag-charge ng bisikleta sa Gabay?",
+      "after_query": "Saan puwedeng mag-charge ng de-kuryenteng bisikleta sa Gabay?",
+      "before_answer_gold": [
+        {
+          "document_id": "holdout-entry-029",
+          "source_id": "holdout-entry-029",
+          "start": 47,
+          "end": 62,
+          "text": "likod ng gusali"
+        }
+      ],
+      "after_answer_gold": [
+        {
+          "document_id": "holdout-entry-029",
+          "source_id": "holdout-entry-029",
+          "start": 61,
+          "end": 76,
+          "text": "likod ng gusali"
+        }
+      ]
+    },
+    {
+      "id": "holdout_filipino_10",
+      "before_case_sha256": "b317f9b23ac6bb80df961092e5bf3f1af9df1c3c35812e930419d05bb2495666",
+      "after_case_sha256": "dbbc2e4524edf2122fdff1ad6ecad5297652e109c7bd09cc16f9ec8816585f60",
+      "before_query": "Kailan puwedeng sumali ang bisita sa ensayo ng Sampaguita?",
+      "after_query": "Kailan puwedeng sumali ang bisita sa ensayo ng Sampaguita?",
+      "before_answer_gold": [
+        {
+          "document_id": "holdout-entry-043",
+          "source_id": "holdout-entry-043",
+          "start": 33,
+          "end": 48,
+          "text": "final rehearsal"
+        }
+      ],
+      "after_answer_gold": [
+        {
+          "document_id": "holdout-entry-043",
+          "source_id": "holdout-entry-043",
+          "start": 33,
+          "end": 60,
+          "text": "final rehearsal on Saturday"
+        }
+      ]
+    },
+    {
+      "id": "holdout_taglish_03",
+      "before_case_sha256": "4be30a2976234a6fb26a78c75e0d64cf75a99277c7cf312c3fed0e6ece5d08e7",
+      "after_case_sha256": "2deb616b4482e1b1386b3d83d7078eab1027a9581f1e696ccf1bd21b2d5a62ae",
+      "before_query": "Where ang drop box for Comet survey forms?",
+      "after_query": "Where ang drop box for Comet survey forms?",
+      "before_answer_gold": [
+        {
+          "document_id": "holdout-entry-053",
+          "source_id": "holdout-entry-053",
+          "start": 37,
+          "end": 47,
+          "text": "sealed box"
+        }
+      ],
+      "after_answer_gold": [
+        {
+          "document_id": "holdout-entry-053",
+          "source_id": "holdout-entry-053",
+          "start": 37,
+          "end": 64,
+          "text": "sealed box beside reception"
+        }
+      ]
+    },
+    {
+      "id": "holdout_taglish_10",
+      "before_case_sha256": "b534c912dfa6d2d3f3da04cbf7d8c1753ddb323cfd09fcc815d5cad285e90795",
+      "after_case_sha256": "97ae0b1de5d28427eb53b7c8866cd2571674e39e67c560b44a5412da7cbbaadb",
+      "before_query": "Ano ang pickup window ng Lumina supplies?",
+      "after_query": "Ano ang pickup window ng Lumina supplies?",
+      "before_answer_gold": [
+        {
+          "document_id": "holdout-entry-067",
+          "source_id": "holdout-entry-067",
+          "start": 41,
+          "end": 53,
+          "text": "one and four"
+        }
+      ],
+      "after_answer_gold": [
+        {
+          "document_id": "holdout-entry-067",
+          "source_id": "holdout-entry-067",
+          "start": 41,
+          "end": 70,
+          "text": "one and four in the afternoon"
+        }
+      ]
+    }
+  ]
+}

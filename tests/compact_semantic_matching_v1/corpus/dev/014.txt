@@ -1,0 +1,1 @@
+Grove checks record integrity with a checksum after an update.

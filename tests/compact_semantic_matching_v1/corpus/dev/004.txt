@@ -1,0 +1,1 @@
+Briar permanently purges notes when the recycle drawer retention period expires.

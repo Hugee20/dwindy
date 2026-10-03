@@ -1,0 +1,1 @@
+Lyric writes logs/audits.json beneath the shared report folder.

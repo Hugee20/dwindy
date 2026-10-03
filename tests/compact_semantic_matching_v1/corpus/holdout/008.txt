@@ -1,0 +1,1 @@
+Palisade retains pinned entries until the owner removes them.

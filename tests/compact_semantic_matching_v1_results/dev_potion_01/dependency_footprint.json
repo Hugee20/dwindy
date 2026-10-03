@@ -1,0 +1,259 @@
+{
+  "clean_base_closure": [
+    "diskcache",
+    "jinja2",
+    "llama-cpp-python",
+    "markupsafe",
+    "numpy",
+    "typing-extensions"
+  ],
+  "incremental_packages": 20,
+  "full_packages": 24,
+  "incremental_compressed_bytes": 9861945,
+  "incremental_installed_record_bytes": 38298300,
+  "full_compressed_bytes": 22617693,
+  "full_installed_record_bytes": 93837016,
+  "method": "RequiresDist default markers from current clean llama-cpp-python base; wheel bytes and installed RECORD file sizes, including recorded bytecode/scripts. No optional API/project extras credited.",
+  "packages": [
+    {
+      "name": "anyio",
+      "version": "4.15.1",
+      "wheel": "anyio-4.15.1-py3-none-any.whl",
+      "sha256": "6152fdbbf9a77fdec97731721bebf7c4c44f7c29b424b0065826173efc7ed101",
+      "compressed_bytes": 132079,
+      "installed_record_bytes": 1289606,
+      "unpacked_bytes": 539217,
+      "in_clean_dwindy_base": false
+    },
+    {
+      "name": "certifi",
+      "version": "2026.7.22",
+      "wheel": "certifi-2026.7.22-py3-none-any.whl",
+      "sha256": "62f22742b58a1a33014a2b6b706588a8d7e2a88ae7bd1a6ebe8c992928483775",
+      "compressed_bytes": 136983,
+      "installed_record_bytes": 254336,
+      "unpacked_bytes": 248921,
+      "in_clean_dwindy_base": false
+    },
+    {
+      "name": "click",
+      "version": "8.5.0",
+      "wheel": "click-8.5.0-py3-none-any.whl",
+      "sha256": "255bc9599cf7748b4b1a446ccc735421bd08a2ae529a8b88597d3de5664ee360",
+      "compressed_bytes": 125251,
+      "installed_record_bytes": 953782,
+      "unpacked_bytes": 447719,
+      "in_clean_dwindy_base": false
+    },
+    {
+      "name": "cloudpickle",
+      "version": "3.1.2",
+      "wheel": "cloudpickle-3.1.2-py3-none-any.whl",
+      "sha256": "9acb47f6afd73f60dc1df93bb801b472f05ff42fa6c84167d25cb206be1fbf4a",
+      "compressed_bytes": 22228,
+      "installed_record_bytes": 125621,
+      "unpacked_bytes": 68989,
+      "in_clean_dwindy_base": false
+    },
+    {
+      "name": "colorama",
+      "version": "0.4.6",
+      "wheel": "colorama-0.4.6-py2.py3-none-any.whl",
+      "sha256": "4f1d9991f5acc0ca119f9d443620b77f9d6b33703e51011c16baf57afb285fc6",
+      "compressed_bytes": 25335,
+      "installed_record_bytes": 170897,
+      "unpacked_bytes": 77669,
+      "in_clean_dwindy_base": false
+    },
+    {
+      "name": "filelock",
+      "version": "4.0.9",
+      "wheel": "filelock-4.0.9-py3-none-any.whl",
+      "sha256": "9287fd61b99a806e5202be29a83034c0808a1b9830e820537c2f5773981f7eeb",
+      "compressed_bytes": 110368,
+      "installed_record_bytes": 822564,
+      "unpacked_bytes": 384982,
+      "in_clean_dwindy_base": false
+    },
+    {
+      "name": "fsspec",
+      "version": "2026.9.0",
+      "wheel": "fsspec-2026.9.0-py3-none-any.whl",
+      "sha256": "8dd6e646e99ea382bd85f97a45e6b526a442d79423a7dc673f1e2756d05fcb5f",
+      "compressed_bytes": 221738,
+      "installed_record_bytes": 1831518,
+      "unpacked_bytes": 810582,
+      "in_clean_dwindy_base": false
+    },
+    {
+      "name": "h11",
+      "version": "0.16.0",
+      "wheel": "h11-0.16.0-py3-none-any.whl",
+      "sha256": "63cf8bbe7522de3bf65932fda1d9c2772064ffb3dae62d55932da54b31cb6c86",
+      "compressed_bytes": 37515,
+      "installed_record_bytes": 186740,
+      "unpacked_bytes": 103935,
+      "in_clean_dwindy_base": false
+    },
+    {
+      "name": "hf-xet",
+      "version": "1.6.0",
+      "wheel": "hf_xet-1.6.0-cp38-abi3-win_amd64.whl",
+      "sha256": "fb4fadde1b2b70bf4c0c14a6dccbe7194b1c28947fefd5bbe3fed9d940676c3b",
+      "compressed_bytes": 4033128,
+      "installed_record_bytes": 9805838,
+      "unpacked_bytes": 9805289,
+      "in_clean_dwindy_base": false
+    },
+    {
+      "name": "httpcore",
+      "version": "1.0.9",
+      "wheel": "httpcore-1.0.9-py3-none-any.whl",
+      "sha256": "2d400746a40668fc9dec9810239072b40b4484b640a8c38fd654a024c7a1bf55",
+      "compressed_bytes": 78784,
+      "installed_record_bytes": 632981,
+      "unpacked_bytes": 288016,
+      "in_clean_dwindy_base": false
+    },
+    {
+      "name": "httpx",
+      "version": "0.28.1",
+      "wheel": "httpx-0.28.1-py3-none-any.whl",
+      "sha256": "d909fcccc110f8c7faf814ca82a9a4d816bc5a6dbfea25d6591d6985b8ba59ad",
+      "compressed_bytes": 73517,
+      "installed_record_bytes": 746439,
+      "unpacked_bytes": 295303,
+      "in_clean_dwindy_base": false
+    },
+    {
+      "name": "huggingface-hub",
+      "version": "1.33.0",
+      "wheel": "huggingface_hub-1.33.0-py3-none-any.whl",
+      "sha256": "04e434b06e100eddbce9a6e817d72693a7884b10a79bd67ab48080d5c07eb899",
+      "compressed_bytes": 846435,
+      "installed_record_bytes": 7023719,
+      "unpacked_bytes": 3291113,
+      "in_clean_dwindy_base": false
+    },
+    {
+      "name": "idna",
+      "version": "3.20",
+      "wheel": "idna-3.20-py3-none-any.whl",
+      "sha256": "ab7ae7122974553370f0bdb919e1a960b2cd1bc1ef0276416d896db81c14582c",
+      "compressed_bytes": 69583,
+      "installed_record_bytes": 627097,
+      "unpacked_bytes": 342091,
+      "in_clean_dwindy_base": false
+    },
+    {
+      "name": "jinja2",
+      "version": "3.1.6",
+      "wheel": "jinja2-3.1.6-py3-none-any.whl",
+      "sha256": "85ece4451f492d0c13c5dd7c13a64681a86afae63a5f347908daf103ce6d2f67",
+      "compressed_bytes": 134899,
+      "installed_record_bytes": 1177228,
+      "unpacked_bytes": 496892,
+      "in_clean_dwindy_base": true
+    },
+    {
+      "name": "joblib",
+      "version": "1.6.0",
+      "wheel": "joblib-1.6.0-py3-none-any.whl",
+      "sha256": "3dbbf9f6e4b592a2357b854608e980fe6390d131d7a82f011a377ef2ebef7aba",
+      "compressed_bytes": 306115,
+      "installed_record_bytes": 1947344,
+      "unpacked_bytes": 921902,
+      "in_clean_dwindy_base": false
+    },
+    {
+      "name": "markupsafe",
+      "version": "3.0.4",
+      "wheel": "markupsafe-3.0.4-cp313-cp313-win_amd64.whl",
+      "sha256": "1f1f9477e174582b0a1b583d60b66e1f2cf5d3fe12cee985e4aedf44766600e5",
+      "compressed_bytes": 14313,
+      "installed_record_bytes": 57923,
+      "unpacked_bytes": 35603,
+      "in_clean_dwindy_base": true
+    },
+    {
+      "name": "model2vec",
+      "version": "0.9.0",
+      "wheel": "model2vec-0.9.0-py3-none-any.whl",
+      "sha256": "8bcf3258d5668678739c13226a562d39eeaeb8fcac9b142bc4aceef8800d5b9d",
+      "compressed_bytes": 59865,
+      "installed_record_bytes": 358756,
+      "unpacked_bytes": 175694,
+      "in_clean_dwindy_base": false
+    },
+    {
+      "name": "numpy",
+      "version": "2.5.3",
+      "wheel": "numpy-2.5.3-cp313-cp313-win_amd64.whl",
+      "sha256": "71cad2b2a7451ab79d8f5e71b453485b6775963d5cf794179144a7463fe6e8ec",
+      "compressed_bytes": 12560965,
+      "installed_record_bytes": 53954910,
+      "unpacked_bytes": 41908179,
+      "in_clean_dwindy_base": true
+    },
+    {
+      "name": "packaging",
+      "version": "26.3",
+      "wheel": "packaging-26.3-py3-none-any.whl",
+      "sha256": "d7193f7c8e4e93f444fde0262bf90af30e16fa0ad0ad44cb553c87339b23cd1c",
+      "compressed_bytes": 129956,
+      "installed_record_bytes": 996560,
+      "unpacked_bytes": 499179,
+      "in_clean_dwindy_base": false
+    },
+    {
+      "name": "pyyaml",
+      "version": "6.0.3",
+      "wheel": "pyyaml-6.0.3-cp313-cp313-win_amd64.whl",
+      "sha256": "79005a0d97d5ddabfeeea4cf676af11e647e41d81c9a7722a193022accdb6b7c",
+      "compressed_bytes": 154090,
+      "installed_record_bytes": 739081,
+      "unpacked_bytes": 478269,
+      "in_clean_dwindy_base": false
+    },
+    {
+      "name": "safetensors",
+      "version": "0.8.0",
+      "wheel": "safetensors-0.8.0-cp310-abi3-win_amd64.whl",
+      "sha256": "096ec1a98435df7beb08853bb5aa9081a84f23d0adc67ed1a0a10550f608373f",
+      "compressed_bytes": 355540,
+      "installed_record_bytes": 910032,
+      "unpacked_bytes": 848323,
+      "in_clean_dwindy_base": false
+    },
+    {
+      "name": "tokenizers",
+      "version": "0.23.2",
+      "wheel": "tokenizers-0.23.2-cp310-abi3-win_amd64.whl",
+      "sha256": "2e96f5699d5249c9c64aa8412e044f727aae3a4098cf830f9901ec1afc361cde",
+      "compressed_bytes": 2863236,
+      "installed_record_bytes": 8316258,
+      "unpacked_bytes": 8240520,
+      "in_clean_dwindy_base": false
+    },
+    {
+      "name": "tqdm",
+      "version": "4.70.1",
+      "wheel": "tqdm-4.70.1-py3-none-any.whl",
+      "sha256": "c293e525e6fef9c20e8728fd4612df02a0aa31bb5fe91ecd93e123b1b7bffa73",
+      "compressed_bytes": 80199,
+      "installed_record_bytes": 559131,
+      "unpacked_bytes": 233479,
+      "in_clean_dwindy_base": false
+    },
+    {
+      "name": "typing-extensions",
+      "version": "4.16.0",
+      "wheel": "typing_extensions-4.16.0-py3-none-any.whl",
+      "sha256": "481caa481374e813c1b176ada14e97f1f67a4539ce9cfeb3f350d78d6370c2e8",
+      "compressed_bytes": 45571,
+      "installed_record_bytes": 348655,
+      "unpacked_bytes": 182767,
+      "in_clean_dwindy_base": true
+    }
+  ]
+}

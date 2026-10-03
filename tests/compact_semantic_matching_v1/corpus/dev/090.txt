@@ -1,0 +1,1 @@
+In Umber, CACHE_TTL_SECONDS configures a separate test cache.

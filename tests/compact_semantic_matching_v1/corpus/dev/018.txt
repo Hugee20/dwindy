@@ -1,0 +1,1 @@
+Ivy orders the completed-task report by task name.

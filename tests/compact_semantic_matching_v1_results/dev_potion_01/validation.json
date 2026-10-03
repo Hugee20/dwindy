@@ -1,0 +1,148 @@
+{
+  "freeze_sha256": "8b61db931e3382e47edb1f1a36a9c1eb17262ebd971f829b970ec1ac4f95138a",
+  "mechanical": [
+    {
+      "id": "separate_stages",
+      "passed": true
+    },
+    {
+      "id": "exact_source_identity",
+      "passed": true
+    },
+    {
+      "id": "exact_entry_identity",
+      "passed": true
+    },
+    {
+      "id": "lossless_text",
+      "passed": true
+    },
+    {
+      "id": "stable_order",
+      "passed": true
+    },
+    {
+      "id": "independent_admission",
+      "passed": true
+    },
+    {
+      "id": "budget_exhaustion",
+      "passed": true
+    },
+    {
+      "id": "partial_packet",
+      "passed": true
+    },
+    {
+      "id": "absent_model",
+      "passed": true
+    },
+    {
+      "id": "corrupt_model",
+      "passed": true
+    },
+    {
+      "id": "stale_index",
+      "passed": true
+    },
+    {
+      "id": "no_match_state",
+      "passed": true
+    },
+    {
+      "id": "model_only_bypass",
+      "passed": true
+    },
+    {
+      "id": "no_public_similarity",
+      "passed": true
+    },
+    {
+      "id": "no_public_confidence",
+      "passed": true
+    },
+    {
+      "id": "source_level_grouping",
+      "passed": true
+    },
+    {
+      "id": "unsupplied_not_public",
+      "passed": true
+    },
+    {
+      "id": "duplicate_candidate",
+      "passed": true
+    },
+    {
+      "id": "duplicate_supply",
+      "passed": true
+    },
+    {
+      "id": "candidate_limit",
+      "passed": true
+    },
+    {
+      "id": "supply_limit",
+      "passed": true
+    },
+    {
+      "id": "dwindy_owned_capability",
+      "passed": true
+    },
+    {
+      "id": "no_host_inference",
+      "passed": true
+    },
+    {
+      "id": "untrusted_text_data",
+      "passed": true
+    },
+    {
+      "id": "encoder_view_separate",
+      "passed": true
+    },
+    {
+      "id": "gold_offsets_unicode",
+      "passed": true
+    },
+    {
+      "id": "gold_relevance_not_answer",
+      "passed": true
+    },
+    {
+      "id": "history_transient",
+      "passed": true
+    },
+    {
+      "id": "history_native",
+      "passed": true
+    },
+    {
+      "id": "core_actual_packet",
+      "passed": true
+    },
+    {
+      "id": "core_budget_exhaustion",
+      "passed": true
+    },
+    {
+      "id": "no_generation",
+      "passed": true
+    }
+  ],
+  "historical_bindings": 295,
+  "production_bindings": 6,
+  "historical_and_production_bindings_valid": true,
+  "python_tests": 370,
+  "python_passed": true,
+  "browser_tests": 45,
+  "browser_passed": true,
+  "browser_backend": "fake; no Qwen generation",
+  "independent_cross_origin_frontend_connection_passed": true,
+  "python": "3.13.0 (tags/v3.13.0:60403a5, Oct  7 2024, 09:38:07) [MSC v.1941 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "resource_validation": "Incomplete: quality screens failed; no scale resource eligibility claimed.",
+  "holdout_evaluated": false,
+  "reach_h2_executed": false,
+  "production_modified": false
+}

@@ -1,0 +1,1 @@
+Brook records each canceled reservation in the booking journal.

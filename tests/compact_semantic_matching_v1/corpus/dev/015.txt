@@ -1,0 +1,1 @@
+Harbor rolls settings back by loading the previous approved snapshot.

@@ -1,0 +1,1 @@
+Meridian refreshes price labels at the start of each month.

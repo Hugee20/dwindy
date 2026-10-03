@@ -1,0 +1,1 @@
+Tundra compares a newly computed digest with the recorded fingerprint.

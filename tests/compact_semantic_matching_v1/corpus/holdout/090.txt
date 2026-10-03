@@ -1,0 +1,1 @@
+ATLAS_BATCH_BYTES sets a separate byte limit for diagnostics.

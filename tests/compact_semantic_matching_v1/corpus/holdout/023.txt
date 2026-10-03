@@ -1,0 +1,1 @@
+Xylem releases a shipment after customs clearance is recorded.

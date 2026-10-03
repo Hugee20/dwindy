@@ -1,0 +1,1 @@
+Marigold publishes an upload only after an atomic rename of the finished staging file.

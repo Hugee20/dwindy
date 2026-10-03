@@ -1,0 +1,1 @@
+Dusk shows a cleared account when the settlement receipt has been posted.

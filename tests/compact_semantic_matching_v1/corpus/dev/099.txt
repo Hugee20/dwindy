@@ -1,0 +1,1 @@
+Xenon reads configs/release.toml during release preparation.

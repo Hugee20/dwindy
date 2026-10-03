@@ -1,0 +1,1 @@
+Palisade evicts the oldest unpinned entry when the inbox reaches capacity.

@@ -1,0 +1,1 @@
+Plover tracks attendance in the presence ledger.

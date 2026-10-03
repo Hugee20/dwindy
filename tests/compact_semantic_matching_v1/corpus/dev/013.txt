@@ -1,0 +1,1 @@
+Grove serializes updates with a per-record mutex.

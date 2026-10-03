@@ -1,0 +1,1 @@
+Beacon stores working copies in the shared workspace.

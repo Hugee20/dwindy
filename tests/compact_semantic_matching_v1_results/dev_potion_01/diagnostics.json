@@ -1,0 +1,3110 @@
+{
+  "freeze_sha256": "8b61db931e3382e47edb1f1a36a9c1eb17262ebd971f829b970ec1ac4f95138a",
+  "profiles": [
+    {
+      "threshold": 0.35,
+      "arms": {
+        "A": {
+          "positive_denominator": 64,
+          "candidate_relevant": 55,
+          "candidate_relevant3": 51,
+          "admitted_relevant": 26,
+          "final_relevant": 26,
+          "answer_hit1": 35,
+          "answer_hit3": 51,
+          "answer_mrr3": 0.6614583333333334,
+          "final_answer": 26,
+          "semantic_candidates": 27,
+          "semantic_final": 6,
+          "semantic_final_answer": 6,
+          "language_final": {
+            "english_semantic": 0,
+            "filipino": 6,
+            "taglish": 0
+          },
+          "negative_supply": [
+            "dev_no_supply_01",
+            "dev_no_supply_02",
+            "dev_no_supply_04",
+            "dev_no_supply_15"
+          ],
+          "nongold_positive_entries": 51,
+          "nongold_negative_entries": 10,
+          "timing_ms": {
+            "query_encoding": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.0,
+              "p95": 0.0,
+              "maximum": 0.0
+            },
+            "lexical_search": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.34410000080242753,
+              "p95": 1.0116999910678715,
+              "maximum": 1.5190000121947378
+            },
+            "dense_search": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.0,
+              "p95": 0.0,
+              "maximum": 0.0
+            },
+            "fusion": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.0,
+              "p95": 0.0,
+              "maximum": 0.0
+            },
+            "admission": {
+              "n": 80,
+              "minimum": 0.05919999966863543,
+              "median": 0.1327499921899289,
+              "p95": 0.2800999936880544,
+              "maximum": 0.821399997221306
+            },
+            "core_packet": {
+              "n": 80,
+              "minimum": 0.007700000423938036,
+              "median": 0.028150003345217556,
+              "p95": 0.15139998868107796,
+              "maximum": 0.22069999249652028
+            },
+            "selection": {
+              "n": 80,
+              "minimum": 0.10070001007989049,
+              "median": 0.5254499992588535,
+              "p95": 1.49049999890849,
+              "maximum": 1.9717999966815114
+            }
+          },
+          "encoded_queries": 0,
+          "encoding_only_ms": null,
+          "first_selection_ms": 1.0937999904854223,
+          "history_trimmed_cases": [],
+          "truncated_candidates": 0
+        },
+        "R": {
+          "positive_denominator": 64,
+          "candidate_relevant": 55,
+          "candidate_relevant3": 49,
+          "admitted_relevant": 49,
+          "final_relevant": 46,
+          "answer_hit1": 35,
+          "answer_hit3": 49,
+          "answer_mrr3": 0.65625,
+          "final_answer": 46,
+          "semantic_candidates": 27,
+          "semantic_final": 18,
+          "semantic_final_answer": 18,
+          "language_final": {
+            "english_semantic": 9,
+            "filipino": 6,
+            "taglish": 3
+          },
+          "negative_supply": [
+            "dev_no_supply_01",
+            "dev_no_supply_02",
+            "dev_no_supply_03",
+            "dev_no_supply_04",
+            "dev_no_supply_11",
+            "dev_no_supply_14"
+          ],
+          "nongold_positive_entries": 114,
+          "nongold_negative_entries": 14,
+          "timing_ms": {
+            "query_encoding": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.21864999871468171,
+              "p95": 0.5354000022634864,
+              "maximum": 1.9803000031970441
+            },
+            "lexical_search": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.3260000012232922,
+              "p95": 0.6828000041423365,
+              "maximum": 0.9033000096678734
+            },
+            "dense_search": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.0843499947222881,
+              "p95": 0.22430000535678118,
+              "maximum": 0.8154999959515408
+            },
+            "fusion": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.004999994416721165,
+              "p95": 0.011800002539530396,
+              "maximum": 0.03270000161137432
+            },
+            "admission": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.0074499985203146935,
+              "p95": 0.013600001693703234,
+              "maximum": 0.027699992642737925
+            },
+            "core_packet": {
+              "n": 80,
+              "minimum": 0.0052000104915350676,
+              "median": 0.07344999903580174,
+              "p95": 0.15920000441838056,
+              "maximum": 0.2300000051036477
+            },
+            "selection": {
+              "n": 80,
+              "minimum": 0.06999999459367245,
+              "median": 0.7934500026749447,
+              "p95": 1.7301000043516979,
+              "maximum": 2.92250000347849
+            }
+          },
+          "encoded_queries": 77,
+          "encoding_only_ms": {
+            "n": 77,
+            "minimum": 0.09750000026542693,
+            "median": 0.22139999782666564,
+            "p95": 0.5816999910166487,
+            "maximum": 1.9803000031970441
+          },
+          "first_selection_ms": 1.6620999958831817,
+          "history_trimmed_cases": [],
+          "truncated_candidates": 0,
+          "final_positive_gains": [
+            "dev_english_semantic_01",
+            "dev_english_semantic_02",
+            "dev_english_semantic_03",
+            "dev_english_semantic_04",
+            "dev_english_semantic_05",
+            "dev_english_semantic_07",
+            "dev_english_semantic_09",
+            "dev_english_semantic_11",
+            "dev_english_semantic_12",
+            "dev_taglish_03",
+            "dev_taglish_09",
+            "dev_taglish_10",
+            "dev_morphology_01",
+            "dev_morphology_02",
+            "dev_morphology_04",
+            "dev_morphology_05",
+            "dev_morphology_06",
+            "dev_morphology_07",
+            "dev_morphology_08",
+            "dev_short_local_01"
+          ],
+          "final_positive_losses": []
+        },
+        "S": {
+          "positive_denominator": 64,
+          "candidate_relevant": 52,
+          "candidate_relevant3": 48,
+          "admitted_relevant": 48,
+          "final_relevant": 46,
+          "answer_hit1": 35,
+          "answer_hit3": 48,
+          "answer_mrr3": 0.6458333333333334,
+          "final_answer": 46,
+          "semantic_candidates": 24,
+          "semantic_final": 18,
+          "semantic_final_answer": 18,
+          "language_final": {
+            "english_semantic": 9,
+            "filipino": 6,
+            "taglish": 3
+          },
+          "negative_supply": [
+            "dev_no_supply_01",
+            "dev_no_supply_02",
+            "dev_no_supply_03",
+            "dev_no_supply_04",
+            "dev_no_supply_11",
+            "dev_no_supply_14"
+          ],
+          "nongold_positive_entries": 119,
+          "nongold_negative_entries": 16,
+          "timing_ms": {
+            "query_encoding": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.1833500064094551,
+              "p95": 0.40929998795036227,
+              "maximum": 0.6418000120902434
+            },
+            "lexical_search": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.0,
+              "p95": 0.0,
+              "maximum": 0.0
+            },
+            "dense_search": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.7279999990714714,
+              "p95": 1.517600001534447,
+              "maximum": 1.806199987186119
+            },
+            "fusion": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.0006499976734630764,
+              "p95": 0.0014999968698248267,
+              "maximum": 0.0018999999156221747
+            },
+            "admission": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.0077500008046627045,
+              "p95": 0.018999999156221747,
+              "maximum": 0.04359999729786068
+            },
+            "core_packet": {
+              "n": 80,
+              "minimum": 0.0042000028770416975,
+              "median": 0.07035000453470275,
+              "p95": 0.14429999282583594,
+              "maximum": 0.3437999985180795
+            },
+            "selection": {
+              "n": 80,
+              "minimum": 0.06430000939872116,
+              "median": 1.11934999586083,
+              "p95": 2.240800007712096,
+              "maximum": 2.4883000005502254
+            }
+          },
+          "encoded_queries": 77,
+          "encoding_only_ms": {
+            "n": 77,
+            "minimum": 0.08380001236218959,
+            "median": 0.18709999858401716,
+            "p95": 0.4697999975178391,
+            "maximum": 0.6418000120902434
+          },
+          "first_selection_ms": 2.1453999943332747,
+          "history_trimmed_cases": [],
+          "truncated_candidates": 0,
+          "final_positive_gains": [
+            "dev_english_semantic_01",
+            "dev_english_semantic_02",
+            "dev_english_semantic_03",
+            "dev_english_semantic_04",
+            "dev_english_semantic_05",
+            "dev_english_semantic_07",
+            "dev_english_semantic_09",
+            "dev_english_semantic_11",
+            "dev_english_semantic_12",
+            "dev_taglish_03",
+            "dev_taglish_09",
+            "dev_taglish_10",
+            "dev_morphology_01",
+            "dev_morphology_02",
+            "dev_morphology_04",
+            "dev_morphology_05",
+            "dev_morphology_06",
+            "dev_morphology_07",
+            "dev_morphology_08",
+            "dev_short_local_01"
+          ],
+          "final_positive_losses": []
+        },
+        "H": {
+          "positive_denominator": 64,
+          "candidate_relevant": 53,
+          "candidate_relevant3": 51,
+          "admitted_relevant": 49,
+          "final_relevant": 48,
+          "answer_hit1": 39,
+          "answer_hit3": 51,
+          "answer_mrr3": 0.6979166666666666,
+          "final_answer": 48,
+          "semantic_candidates": 25,
+          "semantic_final": 20,
+          "semantic_final_answer": 20,
+          "language_final": {
+            "english_semantic": 9,
+            "filipino": 6,
+            "taglish": 5
+          },
+          "negative_supply": [
+            "dev_no_supply_01",
+            "dev_no_supply_02",
+            "dev_no_supply_03",
+            "dev_no_supply_04",
+            "dev_no_supply_11",
+            "dev_no_supply_14"
+          ],
+          "nongold_positive_entries": 117,
+          "nongold_negative_entries": 16,
+          "timing_ms": {
+            "query_encoding": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.15885000175330788,
+              "p95": 0.5176999984541908,
+              "maximum": 1.5907000051811337
+            },
+            "lexical_search": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.3648999991128221,
+              "p95": 0.830000004498288,
+              "maximum": 1.0077000042656437
+            },
+            "dense_search": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.799899993580766,
+              "p95": 1.7540999979246408,
+              "maximum": 2.2339999995892867
+            },
+            "fusion": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.033050004276447,
+              "p95": 0.06839999696239829,
+              "maximum": 0.2429999876767397
+            },
+            "admission": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.008100003469735384,
+              "p95": 0.019500002963468432,
+              "maximum": 0.16480000340379775
+            },
+            "core_packet": {
+              "n": 80,
+              "minimum": 0.0044000043999403715,
+              "median": 0.07400000322377309,
+              "p95": 0.17449998995289207,
+              "maximum": 0.3741999971680343
+            },
+            "selection": {
+              "n": 80,
+              "minimum": 0.07680000271648169,
+              "median": 1.568399995448999,
+              "p95": 3.1581000075675547,
+              "maximum": 4.0791000064928085
+            }
+          },
+          "encoded_queries": 77,
+          "encoding_only_ms": {
+            "n": 77,
+            "minimum": 0.09410000347997993,
+            "median": 0.1596000074641779,
+            "p95": 0.5418000073404983,
+            "maximum": 1.5907000051811337
+          },
+          "first_selection_ms": 1.3198999949963763,
+          "history_trimmed_cases": [],
+          "truncated_candidates": 0,
+          "final_positive_gains": [
+            "dev_english_semantic_01",
+            "dev_english_semantic_02",
+            "dev_english_semantic_03",
+            "dev_english_semantic_04",
+            "dev_english_semantic_05",
+            "dev_english_semantic_07",
+            "dev_english_semantic_09",
+            "dev_english_semantic_11",
+            "dev_english_semantic_12",
+            "dev_taglish_03",
+            "dev_taglish_04",
+            "dev_taglish_09",
+            "dev_taglish_10",
+            "dev_taglish_11",
+            "dev_morphology_01",
+            "dev_morphology_02",
+            "dev_morphology_04",
+            "dev_morphology_05",
+            "dev_morphology_06",
+            "dev_morphology_07",
+            "dev_morphology_08",
+            "dev_short_local_01"
+          ],
+          "final_positive_losses": []
+        }
+      },
+      "quality_screens": {
+        "R": {
+          "semantic_candidates": false,
+          "semantic_final": false,
+          "semantic_each_language": false,
+          "semantic_answers": false,
+          "semantic_net_gain": true,
+          "exact_retention": true,
+          "morphology": true,
+          "short_local": true,
+          "no_false_supply": false
+        },
+        "S": {
+          "semantic_candidates": false,
+          "semantic_final": false,
+          "semantic_each_language": false,
+          "semantic_answers": false,
+          "semantic_net_gain": true,
+          "exact_retention": true,
+          "morphology": true,
+          "short_local": true,
+          "no_false_supply": false
+        },
+        "H": {
+          "semantic_candidates": false,
+          "semantic_final": false,
+          "semantic_each_language": false,
+          "semantic_answers": false,
+          "semantic_net_gain": true,
+          "exact_retention": true,
+          "morphology": true,
+          "short_local": true,
+          "no_false_supply": false
+        }
+      },
+      "pairwise_change_counts": {
+        "A->R": 73,
+        "A->S": 77,
+        "A->H": 77,
+        "R->S": 77,
+        "R->H": 77,
+        "S->H": 65
+      }
+    },
+    {
+      "threshold": 0.45,
+      "arms": {
+        "A": {
+          "positive_denominator": 64,
+          "candidate_relevant": 55,
+          "candidate_relevant3": 51,
+          "admitted_relevant": 26,
+          "final_relevant": 26,
+          "answer_hit1": 35,
+          "answer_hit3": 51,
+          "answer_mrr3": 0.6614583333333334,
+          "final_answer": 26,
+          "semantic_candidates": 27,
+          "semantic_final": 6,
+          "semantic_final_answer": 6,
+          "language_final": {
+            "english_semantic": 0,
+            "filipino": 6,
+            "taglish": 0
+          },
+          "negative_supply": [
+            "dev_no_supply_01",
+            "dev_no_supply_02",
+            "dev_no_supply_04",
+            "dev_no_supply_15"
+          ],
+          "nongold_positive_entries": 51,
+          "nongold_negative_entries": 10,
+          "timing_ms": {
+            "query_encoding": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.0,
+              "p95": 0.0,
+              "maximum": 0.0
+            },
+            "lexical_search": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.38610000046901405,
+              "p95": 0.8178999996744096,
+              "maximum": 1.1898000084329396
+            },
+            "dense_search": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.0,
+              "p95": 0.0,
+              "maximum": 0.0
+            },
+            "fusion": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.0,
+              "p95": 0.0,
+              "maximum": 0.0
+            },
+            "admission": {
+              "n": 80,
+              "minimum": 0.06229999416973442,
+              "median": 0.13454999862005934,
+              "p95": 0.26029998844023794,
+              "maximum": 0.4521999944699928
+            },
+            "core_packet": {
+              "n": 80,
+              "minimum": 0.0092999980552122,
+              "median": 0.026699999580159783,
+              "p95": 0.12140000762883574,
+              "maximum": 0.2876999933505431
+            },
+            "selection": {
+              "n": 80,
+              "minimum": 0.13609998859465122,
+              "median": 0.5864999984623864,
+              "p95": 1.2826000020140782,
+              "maximum": 1.495100004831329
+            }
+          },
+          "encoded_queries": 0,
+          "encoding_only_ms": null,
+          "first_selection_ms": 1.124400005210191,
+          "history_trimmed_cases": [],
+          "truncated_candidates": 0
+        },
+        "R": {
+          "positive_denominator": 64,
+          "candidate_relevant": 55,
+          "candidate_relevant3": 49,
+          "admitted_relevant": 42,
+          "final_relevant": 42,
+          "answer_hit1": 35,
+          "answer_hit3": 49,
+          "answer_mrr3": 0.65625,
+          "final_answer": 42,
+          "semantic_candidates": 27,
+          "semantic_final": 14,
+          "semantic_final_answer": 14,
+          "language_final": {
+            "english_semantic": 5,
+            "filipino": 6,
+            "taglish": 3
+          },
+          "negative_supply": [
+            "dev_no_supply_01",
+            "dev_no_supply_02",
+            "dev_no_supply_03",
+            "dev_no_supply_04",
+            "dev_no_supply_11"
+          ],
+          "nongold_positive_entries": 93,
+          "nongold_negative_entries": 10,
+          "timing_ms": {
+            "query_encoding": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.2364000101806596,
+              "p95": 0.5645999917760491,
+              "maximum": 0.9879000135697424
+            },
+            "lexical_search": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.3511499962769449,
+              "p95": 0.843299989355728,
+              "maximum": 1.2222999939695
+            },
+            "dense_search": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.09169999975711107,
+              "p95": 0.25769999774638563,
+              "maximum": 0.4228000034345314
+            },
+            "fusion": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.00549999822396785,
+              "p95": 0.016700010746717453,
+              "maximum": 0.0374000082956627
+            },
+            "admission": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.006900008884258568,
+              "p95": 0.01610000617802143,
+              "maximum": 0.025500004994682968
+            },
+            "core_packet": {
+              "n": 80,
+              "minimum": 0.009499999578110874,
+              "median": 0.069650006480515,
+              "p95": 0.13359999866224825,
+              "maximum": 0.24280000070575625
+            },
+            "selection": {
+              "n": 80,
+              "minimum": 0.12280000373721123,
+              "median": 0.8980999991763383,
+              "p95": 1.842100013163872,
+              "maximum": 2.5817999994615093
+            }
+          },
+          "encoded_queries": 77,
+          "encoding_only_ms": {
+            "n": 77,
+            "minimum": 0.12080000306013972,
+            "median": 0.24110000231303275,
+            "p95": 0.5947000026935712,
+            "maximum": 0.9879000135697424
+          },
+          "first_selection_ms": 2.5817999994615093,
+          "history_trimmed_cases": [],
+          "truncated_candidates": 0,
+          "final_positive_gains": [
+            "dev_english_semantic_01",
+            "dev_english_semantic_02",
+            "dev_english_semantic_03",
+            "dev_english_semantic_04",
+            "dev_english_semantic_11",
+            "dev_taglish_03",
+            "dev_taglish_09",
+            "dev_taglish_10",
+            "dev_morphology_01",
+            "dev_morphology_02",
+            "dev_morphology_04",
+            "dev_morphology_05",
+            "dev_morphology_06",
+            "dev_morphology_07",
+            "dev_morphology_08",
+            "dev_short_local_01"
+          ],
+          "final_positive_losses": []
+        },
+        "S": {
+          "positive_denominator": 64,
+          "candidate_relevant": 52,
+          "candidate_relevant3": 48,
+          "admitted_relevant": 42,
+          "final_relevant": 42,
+          "answer_hit1": 35,
+          "answer_hit3": 48,
+          "answer_mrr3": 0.6458333333333334,
+          "final_answer": 42,
+          "semantic_candidates": 24,
+          "semantic_final": 14,
+          "semantic_final_answer": 14,
+          "language_final": {
+            "english_semantic": 5,
+            "filipino": 6,
+            "taglish": 3
+          },
+          "negative_supply": [
+            "dev_no_supply_01",
+            "dev_no_supply_02",
+            "dev_no_supply_03",
+            "dev_no_supply_04",
+            "dev_no_supply_11"
+          ],
+          "nongold_positive_entries": 93,
+          "nongold_negative_entries": 10,
+          "timing_ms": {
+            "query_encoding": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.1755499979481101,
+              "p95": 0.5038999952375889,
+              "maximum": 0.7634000066900626
+            },
+            "lexical_search": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.0,
+              "p95": 0.0,
+              "maximum": 0.0
+            },
+            "dense_search": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.8161500009009615,
+              "p95": 2.096199998049997,
+              "maximum": 3.231099995900877
+            },
+            "fusion": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.000600004568696022,
+              "p95": 0.0012999953469261527,
+              "maximum": 0.0048000074457377195
+            },
+            "admission": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.0075499992817640305,
+              "p95": 0.017700003809295595,
+              "maximum": 0.10869999823626131
+            },
+            "core_packet": {
+              "n": 80,
+              "minimum": 0.009199997293762863,
+              "median": 0.06664999818895012,
+              "p95": 0.17610000213608146,
+              "maximum": 0.331600007484667
+            },
+            "selection": {
+              "n": 80,
+              "minimum": 0.11480000102892518,
+              "median": 1.2566000004881062,
+              "p95": 2.603599990834482,
+              "maximum": 4.23590000718832
+            }
+          },
+          "encoded_queries": 77,
+          "encoding_only_ms": {
+            "n": 77,
+            "minimum": 0.10629999451339245,
+            "median": 0.1816000003600493,
+            "p95": 0.5566999898292124,
+            "maximum": 0.7634000066900626
+          },
+          "first_selection_ms": 1.3478999899234623,
+          "history_trimmed_cases": [],
+          "truncated_candidates": 0,
+          "final_positive_gains": [
+            "dev_english_semantic_01",
+            "dev_english_semantic_02",
+            "dev_english_semantic_03",
+            "dev_english_semantic_04",
+            "dev_english_semantic_11",
+            "dev_taglish_03",
+            "dev_taglish_09",
+            "dev_taglish_10",
+            "dev_morphology_01",
+            "dev_morphology_02",
+            "dev_morphology_04",
+            "dev_morphology_05",
+            "dev_morphology_06",
+            "dev_morphology_07",
+            "dev_morphology_08",
+            "dev_short_local_01"
+          ],
+          "final_positive_losses": []
+        },
+        "H": {
+          "positive_denominator": 64,
+          "candidate_relevant": 53,
+          "candidate_relevant3": 51,
+          "admitted_relevant": 42,
+          "final_relevant": 42,
+          "answer_hit1": 39,
+          "answer_hit3": 51,
+          "answer_mrr3": 0.6979166666666666,
+          "final_answer": 42,
+          "semantic_candidates": 25,
+          "semantic_final": 14,
+          "semantic_final_answer": 14,
+          "language_final": {
+            "english_semantic": 5,
+            "filipino": 6,
+            "taglish": 3
+          },
+          "negative_supply": [
+            "dev_no_supply_01",
+            "dev_no_supply_02",
+            "dev_no_supply_03",
+            "dev_no_supply_04",
+            "dev_no_supply_11"
+          ],
+          "nongold_positive_entries": 93,
+          "nongold_negative_entries": 10,
+          "timing_ms": {
+            "query_encoding": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.19370000518392771,
+              "p95": 0.5306000093696639,
+              "maximum": 0.9099000017158687
+            },
+            "lexical_search": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.40979999903356656,
+              "p95": 0.9181999921565875,
+              "maximum": 1.2294999905861914
+            },
+            "dense_search": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.8744000006117858,
+              "p95": 2.2874999995110556,
+              "maximum": 3.6853999918093905
+            },
+            "fusion": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.0337999954354018,
+              "p95": 0.09669999417383224,
+              "maximum": 0.1269000058528036
+            },
+            "admission": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.0076500000432133675,
+              "p95": 0.018100006855092943,
+              "maximum": 0.09460000728722662
+            },
+            "core_packet": {
+              "n": 80,
+              "minimum": 0.008799994247965515,
+              "median": 0.07169999298639596,
+              "p95": 0.17640000442042947,
+              "maximum": 0.3708999865921214
+            },
+            "selection": {
+              "n": 80,
+              "minimum": 0.1137000072048977,
+              "median": 1.873950008302927,
+              "p95": 3.476200014119968,
+              "maximum": 5.164299989701249
+            }
+          },
+          "encoded_queries": 77,
+          "encoding_only_ms": {
+            "n": 77,
+            "minimum": 0.10240000847261399,
+            "median": 0.19890000112354755,
+            "p95": 0.6046000053174794,
+            "maximum": 0.9099000017158687
+          },
+          "first_selection_ms": 2.063599997200072,
+          "history_trimmed_cases": [],
+          "truncated_candidates": 0,
+          "final_positive_gains": [
+            "dev_english_semantic_01",
+            "dev_english_semantic_02",
+            "dev_english_semantic_03",
+            "dev_english_semantic_04",
+            "dev_english_semantic_11",
+            "dev_taglish_03",
+            "dev_taglish_09",
+            "dev_taglish_10",
+            "dev_morphology_01",
+            "dev_morphology_02",
+            "dev_morphology_04",
+            "dev_morphology_05",
+            "dev_morphology_06",
+            "dev_morphology_07",
+            "dev_morphology_08",
+            "dev_short_local_01"
+          ],
+          "final_positive_losses": []
+        }
+      },
+      "quality_screens": {
+        "R": {
+          "semantic_candidates": false,
+          "semantic_final": false,
+          "semantic_each_language": false,
+          "semantic_answers": false,
+          "semantic_net_gain": false,
+          "exact_retention": true,
+          "morphology": true,
+          "short_local": true,
+          "no_false_supply": false
+        },
+        "S": {
+          "semantic_candidates": false,
+          "semantic_final": false,
+          "semantic_each_language": false,
+          "semantic_answers": false,
+          "semantic_net_gain": false,
+          "exact_retention": true,
+          "morphology": true,
+          "short_local": true,
+          "no_false_supply": false
+        },
+        "H": {
+          "semantic_candidates": false,
+          "semantic_final": false,
+          "semantic_each_language": false,
+          "semantic_answers": false,
+          "semantic_net_gain": false,
+          "exact_retention": true,
+          "morphology": true,
+          "short_local": true,
+          "no_false_supply": false
+        }
+      },
+      "pairwise_change_counts": {
+        "A->R": 73,
+        "A->S": 77,
+        "A->H": 77,
+        "R->S": 77,
+        "R->H": 77,
+        "S->H": 65
+      }
+    },
+    {
+      "threshold": 0.55,
+      "arms": {
+        "A": {
+          "positive_denominator": 64,
+          "candidate_relevant": 55,
+          "candidate_relevant3": 51,
+          "admitted_relevant": 26,
+          "final_relevant": 26,
+          "answer_hit1": 35,
+          "answer_hit3": 51,
+          "answer_mrr3": 0.6614583333333334,
+          "final_answer": 26,
+          "semantic_candidates": 27,
+          "semantic_final": 6,
+          "semantic_final_answer": 6,
+          "language_final": {
+            "english_semantic": 0,
+            "filipino": 6,
+            "taglish": 0
+          },
+          "negative_supply": [
+            "dev_no_supply_01",
+            "dev_no_supply_02",
+            "dev_no_supply_04",
+            "dev_no_supply_15"
+          ],
+          "nongold_positive_entries": 51,
+          "nongold_negative_entries": 10,
+          "timing_ms": {
+            "query_encoding": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.0,
+              "p95": 0.0,
+              "maximum": 0.0
+            },
+            "lexical_search": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.6295499988482334,
+              "p95": 1.229399989824742,
+              "maximum": 1.6517999902134761
+            },
+            "dense_search": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.0,
+              "p95": 0.0,
+              "maximum": 0.0
+            },
+            "fusion": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.0,
+              "p95": 0.0,
+              "maximum": 0.0
+            },
+            "admission": {
+              "n": 80,
+              "minimum": 0.06560000474564731,
+              "median": 0.2056499943137169,
+              "p95": 0.4256000102031976,
+              "maximum": 0.5468000163091347
+            },
+            "core_packet": {
+              "n": 80,
+              "minimum": 0.0044000043999403715,
+              "median": 0.038100006349850446,
+              "p95": 0.22149999858811498,
+              "maximum": 0.3626000107033178
+            },
+            "selection": {
+              "n": 80,
+              "minimum": 0.07520000508520752,
+              "median": 1.0192500049015507,
+              "p95": 1.7444999975850806,
+              "maximum": 2.2557000047527254
+            }
+          },
+          "encoded_queries": 0,
+          "encoding_only_ms": null,
+          "first_selection_ms": 1.0921999928541481,
+          "history_trimmed_cases": [],
+          "truncated_candidates": 0
+        },
+        "R": {
+          "positive_denominator": 64,
+          "candidate_relevant": 55,
+          "candidate_relevant3": 49,
+          "admitted_relevant": 29,
+          "final_relevant": 29,
+          "answer_hit1": 35,
+          "answer_hit3": 49,
+          "answer_mrr3": 0.65625,
+          "final_answer": 29,
+          "semantic_candidates": 27,
+          "semantic_final": 6,
+          "semantic_final_answer": 6,
+          "language_final": {
+            "english_semantic": 0,
+            "filipino": 6,
+            "taglish": 0
+          },
+          "negative_supply": [
+            "dev_no_supply_04"
+          ],
+          "nongold_positive_entries": 53,
+          "nongold_negative_entries": 3,
+          "timing_ms": {
+            "query_encoding": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.4039999985252507,
+              "p95": 0.6874999962747097,
+              "maximum": 1.0101000079885125
+            },
+            "lexical_search": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.5686999938916415,
+              "p95": 1.104700000723824,
+              "maximum": 1.524300008895807
+            },
+            "dense_search": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.1998999941861257,
+              "p95": 0.4335999983595684,
+              "maximum": 0.870000003487803
+            },
+            "fusion": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.008600007276982069,
+              "p95": 0.0168999977177009,
+              "maximum": 0.01889999839477241
+            },
+            "admission": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.005399997462518513,
+              "p95": 0.01999999221879989,
+              "maximum": 0.035899996873922646
+            },
+            "core_packet": {
+              "n": 80,
+              "minimum": 0.0043000036384910345,
+              "median": 0.0474499975098297,
+              "p95": 0.16929999401327223,
+              "maximum": 0.3170000127283856
+            },
+            "selection": {
+              "n": 80,
+              "minimum": 0.06999999459367245,
+              "median": 1.4740999977220781,
+              "p95": 2.4571999965701252,
+              "maximum": 3.163700006552972
+            }
+          },
+          "encoded_queries": 77,
+          "encoding_only_ms": {
+            "n": 77,
+            "minimum": 0.1283999881707132,
+            "median": 0.41110000165645033,
+            "p95": 0.753100001020357,
+            "maximum": 1.0101000079885125
+          },
+          "first_selection_ms": 1.6246000013779849,
+          "history_trimmed_cases": [],
+          "truncated_candidates": 0,
+          "final_positive_gains": [
+            "dev_morphology_02",
+            "dev_morphology_07",
+            "dev_short_local_01"
+          ],
+          "final_positive_losses": []
+        },
+        "S": {
+          "positive_denominator": 64,
+          "candidate_relevant": 52,
+          "candidate_relevant3": 48,
+          "admitted_relevant": 29,
+          "final_relevant": 29,
+          "answer_hit1": 35,
+          "answer_hit3": 48,
+          "answer_mrr3": 0.6458333333333334,
+          "final_answer": 29,
+          "semantic_candidates": 24,
+          "semantic_final": 6,
+          "semantic_final_answer": 6,
+          "language_final": {
+            "english_semantic": 0,
+            "filipino": 6,
+            "taglish": 0
+          },
+          "negative_supply": [
+            "dev_no_supply_04"
+          ],
+          "nongold_positive_entries": 53,
+          "nongold_negative_entries": 3,
+          "timing_ms": {
+            "query_encoding": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.29414999880827963,
+              "p95": 0.6584999937331304,
+              "maximum": 0.7512000011047348
+            },
+            "lexical_search": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.0,
+              "p95": 0.0,
+              "maximum": 0.0
+            },
+            "dense_search": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 1.6064500014181249,
+              "p95": 2.9522999975597486,
+              "maximum": 4.044300003442913
+            },
+            "fusion": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.0008999923011288047,
+              "p95": 0.0025000044843181968,
+              "maximum": 0.013700002455152571
+            },
+            "admission": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.006100002792663872,
+              "p95": 0.027299989596940577,
+              "maximum": 0.03859998832922429
+            },
+            "core_packet": {
+              "n": 80,
+              "minimum": 0.004399989848025143,
+              "median": 0.0360000049113296,
+              "p95": 0.2862999972421676,
+              "maximum": 0.519900000654161
+            },
+            "selection": {
+              "n": 80,
+              "minimum": 0.06849999772384763,
+              "median": 2.185949997510761,
+              "p95": 3.8729999942006543,
+              "maximum": 5.05739999061916
+            }
+          },
+          "encoded_queries": 77,
+          "encoding_only_ms": {
+            "n": 77,
+            "minimum": 0.10489999840501696,
+            "median": 0.295300007564947,
+            "p95": 0.6861000001663342,
+            "maximum": 0.7512000011047348
+          },
+          "first_selection_ms": 2.02170001284685,
+          "history_trimmed_cases": [],
+          "truncated_candidates": 0,
+          "final_positive_gains": [
+            "dev_morphology_02",
+            "dev_morphology_07",
+            "dev_short_local_01"
+          ],
+          "final_positive_losses": []
+        },
+        "H": {
+          "positive_denominator": 64,
+          "candidate_relevant": 53,
+          "candidate_relevant3": 51,
+          "admitted_relevant": 29,
+          "final_relevant": 29,
+          "answer_hit1": 39,
+          "answer_hit3": 51,
+          "answer_mrr3": 0.6979166666666666,
+          "final_answer": 29,
+          "semantic_candidates": 25,
+          "semantic_final": 6,
+          "semantic_final_answer": 6,
+          "language_final": {
+            "english_semantic": 0,
+            "filipino": 6,
+            "taglish": 0
+          },
+          "negative_supply": [
+            "dev_no_supply_04"
+          ],
+          "nongold_positive_entries": 53,
+          "nongold_negative_entries": 3,
+          "timing_ms": {
+            "query_encoding": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.25209999876096845,
+              "p95": 0.6080000021029264,
+              "maximum": 0.7614999922225252
+            },
+            "lexical_search": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.6523500051116571,
+              "p95": 1.191799994558096,
+              "maximum": 1.4455999917117879
+            },
+            "dense_search": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 1.850550004746765,
+              "p95": 3.4097000025212765,
+              "maximum": 3.78249998902902
+            },
+            "fusion": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.061650003772228956,
+              "p95": 0.1736000122036785,
+              "maximum": 0.4397000011522323
+            },
+            "admission": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.0068500085035339,
+              "p95": 0.02370000584051013,
+              "maximum": 0.03399999695830047
+            },
+            "core_packet": {
+              "n": 80,
+              "minimum": 0.0037999998312443495,
+              "median": 0.05955000233370811,
+              "p95": 0.21249998826533556,
+              "maximum": 0.29039999935775995
+            },
+            "selection": {
+              "n": 80,
+              "minimum": 0.06839999696239829,
+              "median": 3.035850008018315,
+              "p95": 5.240399987087585,
+              "maximum": 6.288200005656108
+            }
+          },
+          "encoded_queries": 77,
+          "encoding_only_ms": {
+            "n": 77,
+            "minimum": 0.09509999654255807,
+            "median": 0.25340000865980983,
+            "p95": 0.6785000005038455,
+            "maximum": 0.7614999922225252
+          },
+          "first_selection_ms": 3.3621000038692728,
+          "history_trimmed_cases": [],
+          "truncated_candidates": 0,
+          "final_positive_gains": [
+            "dev_morphology_02",
+            "dev_morphology_07",
+            "dev_short_local_01"
+          ],
+          "final_positive_losses": []
+        }
+      },
+      "quality_screens": {
+        "R": {
+          "semantic_candidates": false,
+          "semantic_final": false,
+          "semantic_each_language": false,
+          "semantic_answers": false,
+          "semantic_net_gain": false,
+          "exact_retention": true,
+          "morphology": false,
+          "short_local": true,
+          "no_false_supply": false
+        },
+        "S": {
+          "semantic_candidates": false,
+          "semantic_final": false,
+          "semantic_each_language": false,
+          "semantic_answers": false,
+          "semantic_net_gain": false,
+          "exact_retention": true,
+          "morphology": false,
+          "short_local": true,
+          "no_false_supply": false
+        },
+        "H": {
+          "semantic_candidates": false,
+          "semantic_final": false,
+          "semantic_each_language": false,
+          "semantic_answers": false,
+          "semantic_net_gain": false,
+          "exact_retention": true,
+          "morphology": false,
+          "short_local": true,
+          "no_false_supply": false
+        }
+      },
+      "pairwise_change_counts": {
+        "A->R": 73,
+        "A->S": 77,
+        "A->H": 77,
+        "R->S": 77,
+        "R->H": 77,
+        "S->H": 65
+      }
+    },
+    {
+      "threshold": 0.65,
+      "arms": {
+        "A": {
+          "positive_denominator": 64,
+          "candidate_relevant": 55,
+          "candidate_relevant3": 51,
+          "admitted_relevant": 26,
+          "final_relevant": 26,
+          "answer_hit1": 35,
+          "answer_hit3": 51,
+          "answer_mrr3": 0.6614583333333334,
+          "final_answer": 26,
+          "semantic_candidates": 27,
+          "semantic_final": 6,
+          "semantic_final_answer": 6,
+          "language_final": {
+            "english_semantic": 0,
+            "filipino": 6,
+            "taglish": 0
+          },
+          "negative_supply": [
+            "dev_no_supply_01",
+            "dev_no_supply_02",
+            "dev_no_supply_04",
+            "dev_no_supply_15"
+          ],
+          "nongold_positive_entries": 51,
+          "nongold_negative_entries": 10,
+          "timing_ms": {
+            "query_encoding": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.0,
+              "p95": 0.0,
+              "maximum": 0.0
+            },
+            "lexical_search": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.5387500059441663,
+              "p95": 1.3938000047346577,
+              "maximum": 1.7915999924298376
+            },
+            "dense_search": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.0,
+              "p95": 0.0,
+              "maximum": 0.0
+            },
+            "fusion": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.0,
+              "p95": 0.0,
+              "maximum": 0.0
+            },
+            "admission": {
+              "n": 80,
+              "minimum": 0.0501000031363219,
+              "median": 0.18825000006472692,
+              "p95": 0.3890000225510448,
+              "maximum": 0.4929000133415684
+            },
+            "core_packet": {
+              "n": 80,
+              "minimum": 0.008200004231184721,
+              "median": 0.03565000224625692,
+              "p95": 0.2561999863246456,
+              "maximum": 0.3032000095117837
+            },
+            "selection": {
+              "n": 80,
+              "minimum": 0.14170000213198364,
+              "median": 0.822049994894769,
+              "p95": 1.8397999956505373,
+              "maximum": 2.5854999985313043
+            }
+          },
+          "encoded_queries": 0,
+          "encoding_only_ms": null,
+          "first_selection_ms": 0.9612000139895827,
+          "history_trimmed_cases": [],
+          "truncated_candidates": 0
+        },
+        "R": {
+          "positive_denominator": 64,
+          "candidate_relevant": 55,
+          "candidate_relevant3": 49,
+          "admitted_relevant": 25,
+          "final_relevant": 25,
+          "answer_hit1": 35,
+          "answer_hit3": 49,
+          "answer_mrr3": 0.65625,
+          "final_answer": 25,
+          "semantic_candidates": 27,
+          "semantic_final": 6,
+          "semantic_final_answer": 6,
+          "language_final": {
+            "english_semantic": 0,
+            "filipino": 6,
+            "taglish": 0
+          },
+          "negative_supply": [
+            "dev_no_supply_04"
+          ],
+          "nongold_positive_entries": 33,
+          "nongold_negative_entries": 3,
+          "timing_ms": {
+            "query_encoding": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.3224000029149465,
+              "p95": 0.731200008885935,
+              "maximum": 0.9996000007959083
+            },
+            "lexical_search": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.5612500026472844,
+              "p95": 1.1929000029340386,
+              "maximum": 1.3947999977972358
+            },
+            "dense_search": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.1287500053877011,
+              "p95": 0.5410000012489036,
+              "maximum": 0.7155000057537109
+            },
+            "fusion": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.006599992047995329,
+              "p95": 0.016999998479150236,
+              "maximum": 0.023300002794712782
+            },
+            "admission": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.0035999983083456755,
+              "p95": 0.014999997802078724,
+              "maximum": 0.027799993404187262
+            },
+            "core_packet": {
+              "n": 80,
+              "minimum": 0.009000010322779417,
+              "median": 0.03235000622225925,
+              "p95": 0.24550000671297312,
+              "maximum": 0.3530000103637576
+            },
+            "selection": {
+              "n": 80,
+              "minimum": 0.13420000323094428,
+              "median": 1.206850000016857,
+              "p95": 2.5391999952262267,
+              "maximum": 3.0624000064563006
+            }
+          },
+          "encoded_queries": 77,
+          "encoding_only_ms": {
+            "n": 77,
+            "minimum": 0.1213000068673864,
+            "median": 0.33549999352544546,
+            "p95": 0.7676000095671043,
+            "maximum": 0.9996000007959083
+          },
+          "first_selection_ms": 1.8660999921848997,
+          "history_trimmed_cases": [],
+          "truncated_candidates": 0,
+          "final_positive_gains": [
+            "dev_morphology_02"
+          ],
+          "final_positive_losses": [
+            "dev_morphology_03",
+            "dev_short_local_03"
+          ]
+        },
+        "S": {
+          "positive_denominator": 64,
+          "candidate_relevant": 52,
+          "candidate_relevant3": 48,
+          "admitted_relevant": 25,
+          "final_relevant": 25,
+          "answer_hit1": 35,
+          "answer_hit3": 48,
+          "answer_mrr3": 0.6458333333333334,
+          "final_answer": 25,
+          "semantic_candidates": 24,
+          "semantic_final": 6,
+          "semantic_final_answer": 6,
+          "language_final": {
+            "english_semantic": 0,
+            "filipino": 6,
+            "taglish": 0
+          },
+          "negative_supply": [
+            "dev_no_supply_04"
+          ],
+          "nongold_positive_entries": 33,
+          "nongold_negative_entries": 3,
+          "timing_ms": {
+            "query_encoding": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.2786499971989542,
+              "p95": 0.6471999950008467,
+              "maximum": 0.7960999937495217
+            },
+            "lexical_search": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.0,
+              "p95": 0.0,
+              "maximum": 0.0
+            },
+            "dense_search": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 1.6179000012925826,
+              "p95": 2.777100002276711,
+              "maximum": 3.773200005525723
+            },
+            "fusion": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.000800006091594696,
+              "p95": 0.0026000052457675338,
+              "maximum": 0.006499991286545992
+            },
+            "admission": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.005000001692678779,
+              "p95": 0.02130000211764127,
+              "maximum": 0.08489999163430184
+            },
+            "core_packet": {
+              "n": 80,
+              "minimum": 0.007800001185387373,
+              "median": 0.03945000935345888,
+              "p95": 0.22790000366512686,
+              "maximum": 0.4413999995449558
+            },
+            "selection": {
+              "n": 80,
+              "minimum": 0.11920000542886555,
+              "median": 2.3306000002776273,
+              "p95": 3.687600008561276,
+              "maximum": 4.853299993555993
+            }
+          },
+          "encoded_queries": 77,
+          "encoding_only_ms": {
+            "n": 77,
+            "minimum": 0.09539999882690609,
+            "median": 0.28480000037234277,
+            "p95": 0.6500000017695129,
+            "maximum": 0.7960999937495217
+          },
+          "first_selection_ms": 1.9328000053064898,
+          "history_trimmed_cases": [],
+          "truncated_candidates": 0,
+          "final_positive_gains": [
+            "dev_morphology_02"
+          ],
+          "final_positive_losses": [
+            "dev_morphology_03",
+            "dev_short_local_03"
+          ]
+        },
+        "H": {
+          "positive_denominator": 64,
+          "candidate_relevant": 53,
+          "candidate_relevant3": 51,
+          "admitted_relevant": 25,
+          "final_relevant": 25,
+          "answer_hit1": 39,
+          "answer_hit3": 51,
+          "answer_mrr3": 0.6979166666666666,
+          "final_answer": 25,
+          "semantic_candidates": 25,
+          "semantic_final": 6,
+          "semantic_final_answer": 6,
+          "language_final": {
+            "english_semantic": 0,
+            "filipino": 6,
+            "taglish": 0
+          },
+          "negative_supply": [
+            "dev_no_supply_04"
+          ],
+          "nongold_positive_entries": 33,
+          "nongold_negative_entries": 3,
+          "timing_ms": {
+            "query_encoding": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.2994499955093488,
+              "p95": 0.7365000055870041,
+              "maximum": 0.866600006702356
+            },
+            "lexical_search": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.5870999957551248,
+              "p95": 1.2553999986266717,
+              "maximum": 1.7267000075662509
+            },
+            "dense_search": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 1.477300000260584,
+              "p95": 2.7179000026080757,
+              "maximum": 3.257300006225705
+            },
+            "fusion": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.052100003813393414,
+              "p95": 0.1917999907163903,
+              "maximum": 0.36890000046696514
+            },
+            "admission": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.0044000043999403715,
+              "p95": 0.015400000847876072,
+              "maximum": 0.1112000027205795
+            },
+            "core_packet": {
+              "n": 80,
+              "minimum": 0.007100010407157242,
+              "median": 0.035250006476417184,
+              "p95": 0.1568000006955117,
+              "maximum": 0.556800005142577
+            },
+            "selection": {
+              "n": 80,
+              "minimum": 0.11979999544564635,
+              "median": 2.7718499914044514,
+              "p95": 4.633999997167848,
+              "maximum": 5.626800004392862
+            }
+          },
+          "encoded_queries": 77,
+          "encoding_only_ms": {
+            "n": 77,
+            "minimum": 0.10050000855699182,
+            "median": 0.3149999974993989,
+            "p95": 0.7418999884976074,
+            "maximum": 0.866600006702356
+          },
+          "first_selection_ms": 1.6675999941071495,
+          "history_trimmed_cases": [],
+          "truncated_candidates": 0,
+          "final_positive_gains": [
+            "dev_morphology_02"
+          ],
+          "final_positive_losses": [
+            "dev_morphology_03",
+            "dev_short_local_03"
+          ]
+        }
+      },
+      "quality_screens": {
+        "R": {
+          "semantic_candidates": false,
+          "semantic_final": false,
+          "semantic_each_language": false,
+          "semantic_answers": false,
+          "semantic_net_gain": false,
+          "exact_retention": true,
+          "morphology": false,
+          "short_local": false,
+          "no_false_supply": false
+        },
+        "S": {
+          "semantic_candidates": false,
+          "semantic_final": false,
+          "semantic_each_language": false,
+          "semantic_answers": false,
+          "semantic_net_gain": false,
+          "exact_retention": true,
+          "morphology": false,
+          "short_local": false,
+          "no_false_supply": false
+        },
+        "H": {
+          "semantic_candidates": false,
+          "semantic_final": false,
+          "semantic_each_language": false,
+          "semantic_answers": false,
+          "semantic_net_gain": false,
+          "exact_retention": true,
+          "morphology": false,
+          "short_local": false,
+          "no_false_supply": false
+        }
+      },
+      "pairwise_change_counts": {
+        "A->R": 73,
+        "A->S": 77,
+        "A->H": 77,
+        "R->S": 77,
+        "R->H": 77,
+        "S->H": 65
+      }
+    },
+    {
+      "threshold": 0.75,
+      "arms": {
+        "A": {
+          "positive_denominator": 64,
+          "candidate_relevant": 55,
+          "candidate_relevant3": 51,
+          "admitted_relevant": 26,
+          "final_relevant": 26,
+          "answer_hit1": 35,
+          "answer_hit3": 51,
+          "answer_mrr3": 0.6614583333333334,
+          "final_answer": 26,
+          "semantic_candidates": 27,
+          "semantic_final": 6,
+          "semantic_final_answer": 6,
+          "language_final": {
+            "english_semantic": 0,
+            "filipino": 6,
+            "taglish": 0
+          },
+          "negative_supply": [
+            "dev_no_supply_01",
+            "dev_no_supply_02",
+            "dev_no_supply_04",
+            "dev_no_supply_15"
+          ],
+          "nongold_positive_entries": 51,
+          "nongold_negative_entries": 10,
+          "timing_ms": {
+            "query_encoding": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.0,
+              "p95": 0.0,
+              "maximum": 0.0
+            },
+            "lexical_search": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.5252999981166795,
+              "p95": 1.1629999935394153,
+              "maximum": 1.3236999948276207
+            },
+            "dense_search": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.0,
+              "p95": 0.0,
+              "maximum": 0.0
+            },
+            "fusion": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.0,
+              "p95": 0.0,
+              "maximum": 0.0
+            },
+            "admission": {
+              "n": 80,
+              "minimum": 0.07169999298639596,
+              "median": 0.2024000059464015,
+              "p95": 0.4079999926034361,
+              "maximum": 0.5529000191017985
+            },
+            "core_packet": {
+              "n": 80,
+              "minimum": 0.0048000074457377195,
+              "median": 0.025850007659755647,
+              "p95": 0.2173000102629885,
+              "maximum": 0.2643000043462962
+            },
+            "selection": {
+              "n": 80,
+              "minimum": 0.08209999941755086,
+              "median": 0.8470499960822053,
+              "p95": 1.6137000056914985,
+              "maximum": 1.865199999883771
+            }
+          },
+          "encoded_queries": 0,
+          "encoding_only_ms": null,
+          "first_selection_ms": 0.7154000049922615,
+          "history_trimmed_cases": [],
+          "truncated_candidates": 0
+        },
+        "R": {
+          "positive_denominator": 64,
+          "candidate_relevant": 55,
+          "candidate_relevant3": 49,
+          "admitted_relevant": 13,
+          "final_relevant": 13,
+          "answer_hit1": 35,
+          "answer_hit3": 49,
+          "answer_mrr3": 0.65625,
+          "final_answer": 13,
+          "semantic_candidates": 27,
+          "semantic_final": 2,
+          "semantic_final_answer": 2,
+          "language_final": {
+            "english_semantic": 0,
+            "filipino": 2,
+            "taglish": 0
+          },
+          "negative_supply": [
+            "dev_no_supply_04"
+          ],
+          "nongold_positive_entries": 13,
+          "nongold_negative_entries": 3,
+          "timing_ms": {
+            "query_encoding": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.3694500046549365,
+              "p95": 0.6928999937372282,
+              "maximum": 1.2215000024298206
+            },
+            "lexical_search": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.5556499963859096,
+              "p95": 1.0956000041915104,
+              "maximum": 1.632999992580153
+            },
+            "dense_search": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.12314999912632629,
+              "p95": 0.3828000044450164,
+              "maximum": 0.5578000127570704
+            },
+            "fusion": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.007100003131199628,
+              "p95": 0.018399994587525725,
+              "maximum": 0.02510000194888562
+            },
+            "admission": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.0026999914553016424,
+              "p95": 0.012199991033412516,
+              "maximum": 0.027699992642737925
+            },
+            "core_packet": {
+              "n": 80,
+              "minimum": 0.005599998985417187,
+              "median": 0.024300003133248538,
+              "p95": 0.1905999961309135,
+              "maximum": 0.3056999994441867
+            },
+            "selection": {
+              "n": 80,
+              "minimum": 0.08699999307282269,
+              "median": 1.2856500034104101,
+              "p95": 2.371900001890026,
+              "maximum": 3.115500003332272
+            }
+          },
+          "encoded_queries": 77,
+          "encoding_only_ms": {
+            "n": 77,
+            "minimum": 0.1334000116912648,
+            "median": 0.37680000241380185,
+            "p95": 0.720500000170432,
+            "maximum": 1.2215000024298206
+          },
+          "first_selection_ms": 1.1735000007320195,
+          "history_trimmed_cases": [],
+          "truncated_candidates": 0,
+          "final_positive_gains": [],
+          "final_positive_losses": [
+            "dev_filipino_03",
+            "dev_filipino_05",
+            "dev_filipino_07",
+            "dev_filipino_09",
+            "dev_lexical_03",
+            "dev_lexical_04",
+            "dev_lexical_06",
+            "dev_lexical_08",
+            "dev_identifier_03",
+            "dev_identifier_07",
+            "dev_morphology_03",
+            "dev_short_local_03",
+            "dev_short_local_04"
+          ]
+        },
+        "S": {
+          "positive_denominator": 64,
+          "candidate_relevant": 52,
+          "candidate_relevant3": 48,
+          "admitted_relevant": 13,
+          "final_relevant": 13,
+          "answer_hit1": 35,
+          "answer_hit3": 48,
+          "answer_mrr3": 0.6458333333333334,
+          "final_answer": 13,
+          "semantic_candidates": 24,
+          "semantic_final": 2,
+          "semantic_final_answer": 2,
+          "language_final": {
+            "english_semantic": 0,
+            "filipino": 2,
+            "taglish": 0
+          },
+          "negative_supply": [
+            "dev_no_supply_04"
+          ],
+          "nongold_positive_entries": 13,
+          "nongold_negative_entries": 3,
+          "timing_ms": {
+            "query_encoding": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.2703000063775107,
+              "p95": 0.5845000123372301,
+              "maximum": 0.6672000017715618
+            },
+            "lexical_search": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.0,
+              "p95": 0.0,
+              "maximum": 0.0
+            },
+            "dense_search": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 1.4659500011475757,
+              "p95": 3.0599000019719824,
+              "maximum": 3.942000010283664
+            },
+            "fusion": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.0008999923011288047,
+              "p95": 0.0024000037228688598,
+              "maximum": 0.019799990695901215
+            },
+            "admission": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.003149994881823659,
+              "p95": 0.016600009985268116,
+              "maximum": 0.05200000305194408
+            },
+            "core_packet": {
+              "n": 80,
+              "minimum": 0.004999994416721165,
+              "median": 0.02409999433439225,
+              "p95": 0.16199999663513154,
+              "maximum": 0.2779000060399994
+            },
+            "selection": {
+              "n": 80,
+              "minimum": 0.08230000094044954,
+              "median": 2.067500005068723,
+              "p95": 3.8904999964870512,
+              "maximum": 4.9938000011025
+            }
+          },
+          "encoded_queries": 77,
+          "encoding_only_ms": {
+            "n": 77,
+            "minimum": 0.11219999578315765,
+            "median": 0.2830000012181699,
+            "p95": 0.6160000048112124,
+            "maximum": 0.6672000017715618
+          },
+          "first_selection_ms": 2.258399996208027,
+          "history_trimmed_cases": [],
+          "truncated_candidates": 0,
+          "final_positive_gains": [],
+          "final_positive_losses": [
+            "dev_filipino_03",
+            "dev_filipino_05",
+            "dev_filipino_07",
+            "dev_filipino_09",
+            "dev_lexical_03",
+            "dev_lexical_04",
+            "dev_lexical_06",
+            "dev_lexical_08",
+            "dev_identifier_03",
+            "dev_identifier_07",
+            "dev_morphology_03",
+            "dev_short_local_03",
+            "dev_short_local_04"
+          ]
+        },
+        "H": {
+          "positive_denominator": 64,
+          "candidate_relevant": 53,
+          "candidate_relevant3": 51,
+          "admitted_relevant": 13,
+          "final_relevant": 13,
+          "answer_hit1": 39,
+          "answer_hit3": 51,
+          "answer_mrr3": 0.6979166666666666,
+          "final_answer": 13,
+          "semantic_candidates": 25,
+          "semantic_final": 2,
+          "semantic_final_answer": 2,
+          "language_final": {
+            "english_semantic": 0,
+            "filipino": 2,
+            "taglish": 0
+          },
+          "negative_supply": [
+            "dev_no_supply_04"
+          ],
+          "nongold_positive_entries": 13,
+          "nongold_negative_entries": 3,
+          "timing_ms": {
+            "query_encoding": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.2506500022718683,
+              "p95": 0.644800005829893,
+              "maximum": 0.7745000038994476
+            },
+            "lexical_search": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.6195499954628758,
+              "p95": 1.144699999713339,
+              "maximum": 1.642199989873916
+            },
+            "dense_search": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 1.724300003843382,
+              "p95": 3.385300005902536,
+              "maximum": 4.538599998340942
+            },
+            "fusion": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.05819999205414206,
+              "p95": 0.1353999978164211,
+              "maximum": 0.19969999266322702
+            },
+            "admission": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.0035000048228539526,
+              "p95": 0.02030000905506313,
+              "maximum": 0.031000003218650818
+            },
+            "core_packet": {
+              "n": 80,
+              "minimum": 0.004799992893822491,
+              "median": 0.02814999606925994,
+              "p95": 0.1615999935893342,
+              "maximum": 0.4464999947231263
+            },
+            "selection": {
+              "n": 80,
+              "minimum": 0.08080000407062471,
+              "median": 3.0049499982851557,
+              "p95": 5.4219000012381,
+              "maximum": 6.697999997413717
+            }
+          },
+          "encoded_queries": 77,
+          "encoding_only_ms": {
+            "n": 77,
+            "minimum": 0.10999999358318746,
+            "median": 0.25490000552963465,
+            "p95": 0.6455999973695725,
+            "maximum": 0.7745000038994476
+          },
+          "first_selection_ms": 4.758600000059232,
+          "history_trimmed_cases": [],
+          "truncated_candidates": 0,
+          "final_positive_gains": [],
+          "final_positive_losses": [
+            "dev_filipino_03",
+            "dev_filipino_05",
+            "dev_filipino_07",
+            "dev_filipino_09",
+            "dev_lexical_03",
+            "dev_lexical_04",
+            "dev_lexical_06",
+            "dev_lexical_08",
+            "dev_identifier_03",
+            "dev_identifier_07",
+            "dev_morphology_03",
+            "dev_short_local_03",
+            "dev_short_local_04"
+          ]
+        }
+      },
+      "quality_screens": {
+        "R": {
+          "semantic_candidates": false,
+          "semantic_final": false,
+          "semantic_each_language": false,
+          "semantic_answers": false,
+          "semantic_net_gain": false,
+          "exact_retention": false,
+          "morphology": false,
+          "short_local": false,
+          "no_false_supply": false
+        },
+        "S": {
+          "semantic_candidates": false,
+          "semantic_final": false,
+          "semantic_each_language": false,
+          "semantic_answers": false,
+          "semantic_net_gain": false,
+          "exact_retention": false,
+          "morphology": false,
+          "short_local": false,
+          "no_false_supply": false
+        },
+        "H": {
+          "semantic_candidates": false,
+          "semantic_final": false,
+          "semantic_each_language": false,
+          "semantic_answers": false,
+          "semantic_net_gain": false,
+          "exact_retention": false,
+          "morphology": false,
+          "short_local": false,
+          "no_false_supply": false
+        }
+      },
+      "pairwise_change_counts": {
+        "A->R": 73,
+        "A->S": 77,
+        "A->H": 77,
+        "R->S": 77,
+        "R->H": 77,
+        "S->H": 65
+      }
+    },
+    {
+      "threshold": 0.85,
+      "arms": {
+        "A": {
+          "positive_denominator": 64,
+          "candidate_relevant": 55,
+          "candidate_relevant3": 51,
+          "admitted_relevant": 26,
+          "final_relevant": 26,
+          "answer_hit1": 35,
+          "answer_hit3": 51,
+          "answer_mrr3": 0.6614583333333334,
+          "final_answer": 26,
+          "semantic_candidates": 27,
+          "semantic_final": 6,
+          "semantic_final_answer": 6,
+          "language_final": {
+            "english_semantic": 0,
+            "filipino": 6,
+            "taglish": 0
+          },
+          "negative_supply": [
+            "dev_no_supply_01",
+            "dev_no_supply_02",
+            "dev_no_supply_04",
+            "dev_no_supply_15"
+          ],
+          "nongold_positive_entries": 51,
+          "nongold_negative_entries": 10,
+          "timing_ms": {
+            "query_encoding": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.0,
+              "p95": 0.0,
+              "maximum": 0.0
+            },
+            "lexical_search": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.5842500031576492,
+              "p95": 1.3466000091284513,
+              "maximum": 1.7593000084161758
+            },
+            "dense_search": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.0,
+              "p95": 0.0,
+              "maximum": 0.0
+            },
+            "fusion": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.0,
+              "p95": 0.0,
+              "maximum": 0.0
+            },
+            "admission": {
+              "n": 80,
+              "minimum": 0.05289998080115765,
+              "median": 0.18795000505633652,
+              "p95": 0.40660001104697585,
+              "maximum": 0.5098000110592693
+            },
+            "core_packet": {
+              "n": 80,
+              "minimum": 0.007099995855242014,
+              "median": 0.03309999738121405,
+              "p95": 0.22849999368190765,
+              "maximum": 0.3555000002961606
+            },
+            "selection": {
+              "n": 80,
+              "minimum": 0.10299999848939478,
+              "median": 0.8433500042883679,
+              "p95": 1.7943999991985038,
+              "maximum": 2.595500001916662
+            }
+          },
+          "encoded_queries": 0,
+          "encoding_only_ms": null,
+          "first_selection_ms": 1.218299992615357,
+          "history_trimmed_cases": [],
+          "truncated_candidates": 0
+        },
+        "R": {
+          "positive_denominator": 64,
+          "candidate_relevant": 55,
+          "candidate_relevant3": 49,
+          "admitted_relevant": 6,
+          "final_relevant": 6,
+          "answer_hit1": 35,
+          "answer_hit3": 49,
+          "answer_mrr3": 0.65625,
+          "final_answer": 6,
+          "semantic_candidates": 27,
+          "semantic_final": 0,
+          "semantic_final_answer": 0,
+          "language_final": {
+            "english_semantic": 0,
+            "filipino": 0,
+            "taglish": 0
+          },
+          "negative_supply": [
+            "dev_no_supply_04"
+          ],
+          "nongold_positive_entries": 12,
+          "nongold_negative_entries": 3,
+          "timing_ms": {
+            "query_encoding": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.33350000012433156,
+              "p95": 0.641100006760098,
+              "maximum": 0.898300000699237
+            },
+            "lexical_search": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.5288499960443005,
+              "p95": 1.2335000064922497,
+              "maximum": 1.4926000003470108
+            },
+            "dense_search": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.18485000327927992,
+              "p95": 0.4381000035209581,
+              "maximum": 0.6188000115798786
+            },
+            "fusion": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.006950009264983237,
+              "p95": 0.019099999917671084,
+              "maximum": 0.039699996705166996
+            },
+            "admission": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.0026999987312592566,
+              "p95": 0.010499992640689015,
+              "maximum": 0.023999993572942913
+            },
+            "core_packet": {
+              "n": 80,
+              "minimum": 0.00549999822396785,
+              "median": 0.023799999326001853,
+              "p95": 0.11170000652782619,
+              "maximum": 0.3834999952232465
+            },
+            "selection": {
+              "n": 80,
+              "minimum": 0.06940000457689166,
+              "median": 1.3210500037530437,
+              "p95": 2.320800005691126,
+              "maximum": 3.2648000051267445
+            }
+          },
+          "encoded_queries": 77,
+          "encoding_only_ms": {
+            "n": 77,
+            "minimum": 0.13580000086221844,
+            "median": 0.34070000401698053,
+            "p95": 0.7296000112546608,
+            "maximum": 0.898300000699237
+          },
+          "first_selection_ms": 1.6967000119620934,
+          "history_trimmed_cases": [],
+          "truncated_candidates": 0,
+          "final_positive_gains": [],
+          "final_positive_losses": [
+            "dev_filipino_01",
+            "dev_filipino_03",
+            "dev_filipino_05",
+            "dev_filipino_07",
+            "dev_filipino_09",
+            "dev_filipino_11",
+            "dev_lexical_01",
+            "dev_lexical_02",
+            "dev_lexical_03",
+            "dev_lexical_04",
+            "dev_lexical_05",
+            "dev_lexical_06",
+            "dev_lexical_07",
+            "dev_lexical_08",
+            "dev_identifier_03",
+            "dev_identifier_07",
+            "dev_morphology_03",
+            "dev_short_local_02",
+            "dev_short_local_03",
+            "dev_short_local_04"
+          ]
+        },
+        "S": {
+          "positive_denominator": 64,
+          "candidate_relevant": 52,
+          "candidate_relevant3": 48,
+          "admitted_relevant": 6,
+          "final_relevant": 6,
+          "answer_hit1": 35,
+          "answer_hit3": 48,
+          "answer_mrr3": 0.6458333333333334,
+          "final_answer": 6,
+          "semantic_candidates": 24,
+          "semantic_final": 0,
+          "semantic_final_answer": 0,
+          "language_final": {
+            "english_semantic": 0,
+            "filipino": 0,
+            "taglish": 0
+          },
+          "negative_supply": [
+            "dev_no_supply_04"
+          ],
+          "nongold_positive_entries": 12,
+          "nongold_negative_entries": 3,
+          "timing_ms": {
+            "query_encoding": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.27159999444847926,
+              "p95": 0.625100001343526,
+              "maximum": 0.8533999935025349
+            },
+            "lexical_search": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.0,
+              "p95": 0.0,
+              "maximum": 0.0
+            },
+            "dense_search": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 1.651400001719594,
+              "p95": 3.0725000106031075,
+              "maximum": 3.645599994342774
+            },
+            "fusion": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.00100000761449337,
+              "p95": 0.0023000029614195228,
+              "maximum": 0.024900000425986946
+            },
+            "admission": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.003349996404722333,
+              "p95": 0.0109999964479357,
+              "maximum": 0.022499996703118086
+            },
+            "core_packet": {
+              "n": 80,
+              "minimum": 0.0046000059228390455,
+              "median": 0.02720000338740647,
+              "p95": 0.142400007462129,
+              "maximum": 0.2597999991849065
+            },
+            "selection": {
+              "n": 80,
+              "minimum": 0.0686999992467463,
+              "median": 2.285249996930361,
+              "p95": 3.9453999925171956,
+              "maximum": 4.496699999435805
+            }
+          },
+          "encoded_queries": 77,
+          "encoding_only_ms": {
+            "n": 77,
+            "minimum": 0.09459999273531139,
+            "median": 0.2759000053629279,
+            "p95": 0.7451999990735203,
+            "maximum": 0.8533999935025349
+          },
+          "first_selection_ms": 3.989799995906651,
+          "history_trimmed_cases": [],
+          "truncated_candidates": 0,
+          "final_positive_gains": [],
+          "final_positive_losses": [
+            "dev_filipino_01",
+            "dev_filipino_03",
+            "dev_filipino_05",
+            "dev_filipino_07",
+            "dev_filipino_09",
+            "dev_filipino_11",
+            "dev_lexical_01",
+            "dev_lexical_02",
+            "dev_lexical_03",
+            "dev_lexical_04",
+            "dev_lexical_05",
+            "dev_lexical_06",
+            "dev_lexical_07",
+            "dev_lexical_08",
+            "dev_identifier_03",
+            "dev_identifier_07",
+            "dev_morphology_03",
+            "dev_short_local_02",
+            "dev_short_local_03",
+            "dev_short_local_04"
+          ]
+        },
+        "H": {
+          "positive_denominator": 64,
+          "candidate_relevant": 53,
+          "candidate_relevant3": 51,
+          "admitted_relevant": 6,
+          "final_relevant": 6,
+          "answer_hit1": 39,
+          "answer_hit3": 51,
+          "answer_mrr3": 0.6979166666666666,
+          "final_answer": 6,
+          "semantic_candidates": 25,
+          "semantic_final": 0,
+          "semantic_final_answer": 0,
+          "language_final": {
+            "english_semantic": 0,
+            "filipino": 0,
+            "taglish": 0
+          },
+          "negative_supply": [
+            "dev_no_supply_04"
+          ],
+          "nongold_positive_entries": 12,
+          "nongold_negative_entries": 3,
+          "timing_ms": {
+            "query_encoding": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.29350000113481656,
+              "p95": 0.635599993984215,
+              "maximum": 0.7119999936548993
+            },
+            "lexical_search": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.5661500035785139,
+              "p95": 1.2433999945642427,
+              "maximum": 1.472099989769049
+            },
+            "dense_search": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 1.7124000005424023,
+              "p95": 2.8697999950964004,
+              "maximum": 3.4946000087074935
+            },
+            "fusion": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.056949997087940574,
+              "p95": 0.1286000042455271,
+              "maximum": 0.17420000222045928
+            },
+            "admission": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.003050001396331936,
+              "p95": 0.014999997802078724,
+              "maximum": 0.02710000262595713
+            },
+            "core_packet": {
+              "n": 80,
+              "minimum": 0.010799994925037026,
+              "median": 0.025499997718725353,
+              "p95": 0.17460000526625663,
+              "maximum": 0.32839999767020345
+            },
+            "selection": {
+              "n": 80,
+              "minimum": 0.16070000128820539,
+              "median": 2.795100001094397,
+              "p95": 4.889500007266179,
+              "maximum": 5.3518999920925125
+            }
+          },
+          "encoded_queries": 77,
+          "encoding_only_ms": {
+            "n": 77,
+            "minimum": 0.08889999298844486,
+            "median": 0.29680000443477184,
+            "p95": 0.6523000047309324,
+            "maximum": 0.7119999936548993
+          },
+          "first_selection_ms": 3.69590001355391,
+          "history_trimmed_cases": [],
+          "truncated_candidates": 0,
+          "final_positive_gains": [],
+          "final_positive_losses": [
+            "dev_filipino_01",
+            "dev_filipino_03",
+            "dev_filipino_05",
+            "dev_filipino_07",
+            "dev_filipino_09",
+            "dev_filipino_11",
+            "dev_lexical_01",
+            "dev_lexical_02",
+            "dev_lexical_03",
+            "dev_lexical_04",
+            "dev_lexical_05",
+            "dev_lexical_06",
+            "dev_lexical_07",
+            "dev_lexical_08",
+            "dev_identifier_03",
+            "dev_identifier_07",
+            "dev_morphology_03",
+            "dev_short_local_02",
+            "dev_short_local_03",
+            "dev_short_local_04"
+          ]
+        }
+      },
+      "quality_screens": {
+        "R": {
+          "semantic_candidates": false,
+          "semantic_final": false,
+          "semantic_each_language": false,
+          "semantic_answers": false,
+          "semantic_net_gain": false,
+          "exact_retention": false,
+          "morphology": false,
+          "short_local": false,
+          "no_false_supply": false
+        },
+        "S": {
+          "semantic_candidates": false,
+          "semantic_final": false,
+          "semantic_each_language": false,
+          "semantic_answers": false,
+          "semantic_net_gain": false,
+          "exact_retention": false,
+          "morphology": false,
+          "short_local": false,
+          "no_false_supply": false
+        },
+        "H": {
+          "semantic_candidates": false,
+          "semantic_final": false,
+          "semantic_each_language": false,
+          "semantic_answers": false,
+          "semantic_net_gain": false,
+          "exact_retention": false,
+          "morphology": false,
+          "short_local": false,
+          "no_false_supply": false
+        }
+      },
+      "pairwise_change_counts": {
+        "A->R": 73,
+        "A->S": 77,
+        "A->H": 77,
+        "R->S": 77,
+        "R->H": 77,
+        "S->H": 65
+      }
+    },
+    {
+      "threshold": 0.95,
+      "arms": {
+        "A": {
+          "positive_denominator": 64,
+          "candidate_relevant": 55,
+          "candidate_relevant3": 51,
+          "admitted_relevant": 26,
+          "final_relevant": 26,
+          "answer_hit1": 35,
+          "answer_hit3": 51,
+          "answer_mrr3": 0.6614583333333334,
+          "final_answer": 26,
+          "semantic_candidates": 27,
+          "semantic_final": 6,
+          "semantic_final_answer": 6,
+          "language_final": {
+            "english_semantic": 0,
+            "filipino": 6,
+            "taglish": 0
+          },
+          "negative_supply": [
+            "dev_no_supply_01",
+            "dev_no_supply_02",
+            "dev_no_supply_04",
+            "dev_no_supply_15"
+          ],
+          "nongold_positive_entries": 51,
+          "nongold_negative_entries": 10,
+          "timing_ms": {
+            "query_encoding": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.0,
+              "p95": 0.0,
+              "maximum": 0.0
+            },
+            "lexical_search": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.5933000065851957,
+              "p95": 1.298800008953549,
+              "maximum": 1.7826999974204227
+            },
+            "dense_search": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.0,
+              "p95": 0.0,
+              "maximum": 0.0
+            },
+            "fusion": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.0,
+              "p95": 0.0,
+              "maximum": 0.0
+            },
+            "admission": {
+              "n": 80,
+              "minimum": 0.05469999450724572,
+              "median": 0.19489999249344692,
+              "p95": 0.4405999934533611,
+              "maximum": 0.6126000080257654
+            },
+            "core_packet": {
+              "n": 80,
+              "minimum": 0.009200011845678091,
+              "median": 0.030499999411404133,
+              "p95": 0.23820000933483243,
+              "maximum": 0.35509999725036323
+            },
+            "selection": {
+              "n": 80,
+              "minimum": 0.15589999384246767,
+              "median": 0.8653499971842393,
+              "p95": 1.8979000014951453,
+              "maximum": 2.388200009590946
+            }
+          },
+          "encoded_queries": 0,
+          "encoding_only_ms": null,
+          "first_selection_ms": 0.9569000103510916,
+          "history_trimmed_cases": [],
+          "truncated_candidates": 0
+        },
+        "R": {
+          "positive_denominator": 64,
+          "candidate_relevant": 55,
+          "candidate_relevant3": 49,
+          "admitted_relevant": 6,
+          "final_relevant": 6,
+          "answer_hit1": 35,
+          "answer_hit3": 49,
+          "answer_mrr3": 0.65625,
+          "final_answer": 6,
+          "semantic_candidates": 27,
+          "semantic_final": 0,
+          "semantic_final_answer": 0,
+          "language_final": {
+            "english_semantic": 0,
+            "filipino": 0,
+            "taglish": 0
+          },
+          "negative_supply": [
+            "dev_no_supply_04"
+          ],
+          "nongold_positive_entries": 12,
+          "nongold_negative_entries": 3,
+          "timing_ms": {
+            "query_encoding": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.371450005332008,
+              "p95": 0.709100000676699,
+              "maximum": 1.3921000063419342
+            },
+            "lexical_search": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.5082999996375293,
+              "p95": 1.1528000031830743,
+              "maximum": 1.6883999924175441
+            },
+            "dense_search": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.11139999696752056,
+              "p95": 0.4317999992053956,
+              "maximum": 0.6647000118391588
+            },
+            "fusion": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.006399997801054269,
+              "p95": 0.016399993910454214,
+              "maximum": 0.05629999213851988
+            },
+            "admission": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.0022000021999701858,
+              "p95": 0.007700000423938036,
+              "maximum": 0.1120000088121742
+            },
+            "core_packet": {
+              "n": 80,
+              "minimum": 0.010200004908256233,
+              "median": 0.021649997506756335,
+              "p95": 0.09499999578110874,
+              "maximum": 0.2545000024838373
+            },
+            "selection": {
+              "n": 80,
+              "minimum": 0.14279999595601112,
+              "median": 1.2057499989168718,
+              "p95": 2.6018999924417585,
+              "maximum": 3.323700002511032
+            }
+          },
+          "encoded_queries": 77,
+          "encoding_only_ms": {
+            "n": 77,
+            "minimum": 0.12709999282378703,
+            "median": 0.38610000046901405,
+            "p95": 0.7257000106619671,
+            "maximum": 1.3921000063419342
+          },
+          "first_selection_ms": 0.9961000032490119,
+          "history_trimmed_cases": [],
+          "truncated_candidates": 0,
+          "final_positive_gains": [],
+          "final_positive_losses": [
+            "dev_filipino_01",
+            "dev_filipino_03",
+            "dev_filipino_05",
+            "dev_filipino_07",
+            "dev_filipino_09",
+            "dev_filipino_11",
+            "dev_lexical_01",
+            "dev_lexical_02",
+            "dev_lexical_03",
+            "dev_lexical_04",
+            "dev_lexical_05",
+            "dev_lexical_06",
+            "dev_lexical_07",
+            "dev_lexical_08",
+            "dev_identifier_03",
+            "dev_identifier_07",
+            "dev_morphology_03",
+            "dev_short_local_02",
+            "dev_short_local_03",
+            "dev_short_local_04"
+          ]
+        },
+        "S": {
+          "positive_denominator": 64,
+          "candidate_relevant": 52,
+          "candidate_relevant3": 48,
+          "admitted_relevant": 6,
+          "final_relevant": 6,
+          "answer_hit1": 35,
+          "answer_hit3": 48,
+          "answer_mrr3": 0.6458333333333334,
+          "final_answer": 6,
+          "semantic_candidates": 24,
+          "semantic_final": 0,
+          "semantic_final_answer": 0,
+          "language_final": {
+            "english_semantic": 0,
+            "filipino": 0,
+            "taglish": 0
+          },
+          "negative_supply": [
+            "dev_no_supply_04"
+          ],
+          "nongold_positive_entries": 12,
+          "nongold_negative_entries": 3,
+          "timing_ms": {
+            "query_encoding": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.23550000332761556,
+              "p95": 0.5182999884709716,
+              "maximum": 0.7012999994913116
+            },
+            "lexical_search": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.0,
+              "p95": 0.0,
+              "maximum": 0.0
+            },
+            "dense_search": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 1.367799995932728,
+              "p95": 2.905300003476441,
+              "maximum": 3.790699993260205
+            },
+            "fusion": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.000800006091594696,
+              "p95": 0.0025000044843181968,
+              "maximum": 0.01410000550094992
+            },
+            "admission": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.0027999922167509794,
+              "p95": 0.007799986633472145,
+              "maximum": 0.030700000934302807
+            },
+            "core_packet": {
+              "n": 80,
+              "minimum": 0.008100003469735384,
+              "median": 0.020899999071843922,
+              "p95": 0.0678999931551516,
+              "maximum": 0.27040000713896006
+            },
+            "selection": {
+              "n": 80,
+              "minimum": 0.12270000297576189,
+              "median": 1.8129500022041611,
+              "p95": 3.5442000080365688,
+              "maximum": 4.714499998954125
+            }
+          },
+          "encoded_queries": 77,
+          "encoding_only_ms": {
+            "n": 77,
+            "minimum": 0.10279999696649611,
+            "median": 0.26050000451505184,
+            "p95": 0.5317999894032255,
+            "maximum": 0.7012999994913116
+          },
+          "first_selection_ms": 1.5238999912980944,
+          "history_trimmed_cases": [],
+          "truncated_candidates": 0,
+          "final_positive_gains": [],
+          "final_positive_losses": [
+            "dev_filipino_01",
+            "dev_filipino_03",
+            "dev_filipino_05",
+            "dev_filipino_07",
+            "dev_filipino_09",
+            "dev_filipino_11",
+            "dev_lexical_01",
+            "dev_lexical_02",
+            "dev_lexical_03",
+            "dev_lexical_04",
+            "dev_lexical_05",
+            "dev_lexical_06",
+            "dev_lexical_07",
+            "dev_lexical_08",
+            "dev_identifier_03",
+            "dev_identifier_07",
+            "dev_morphology_03",
+            "dev_short_local_02",
+            "dev_short_local_03",
+            "dev_short_local_04"
+          ]
+        },
+        "H": {
+          "positive_denominator": 64,
+          "candidate_relevant": 53,
+          "candidate_relevant3": 51,
+          "admitted_relevant": 6,
+          "final_relevant": 6,
+          "answer_hit1": 39,
+          "answer_hit3": 51,
+          "answer_mrr3": 0.6979166666666666,
+          "final_answer": 6,
+          "semantic_candidates": 25,
+          "semantic_final": 0,
+          "semantic_final_answer": 0,
+          "language_final": {
+            "english_semantic": 0,
+            "filipino": 0,
+            "taglish": 0
+          },
+          "negative_supply": [
+            "dev_no_supply_04"
+          ],
+          "nongold_positive_entries": 12,
+          "nongold_negative_entries": 3,
+          "timing_ms": {
+            "query_encoding": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.26575000083539635,
+              "p95": 0.6060000014258549,
+              "maximum": 0.7397000008495525
+            },
+            "lexical_search": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.5119000052218325,
+              "p95": 1.4090999902691692,
+              "maximum": 1.7472000035922974
+            },
+            "dense_search": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 1.4875000051688403,
+              "p95": 3.0562000029021874,
+              "maximum": 3.4334999945713207
+            },
+            "fusion": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.05239999882178381,
+              "p95": 0.1517000055173412,
+              "maximum": 0.18080000882036984
+            },
+            "admission": {
+              "n": 80,
+              "minimum": 0.0,
+              "median": 0.003050001396331936,
+              "p95": 0.013299999409355223,
+              "maximum": 0.1049999991664663
+            },
+            "core_packet": {
+              "n": 80,
+              "minimum": 0.008800008799880743,
+              "median": 0.025249988539144397,
+              "p95": 0.07449999975506216,
+              "maximum": 0.20840000070165843
+            },
+            "selection": {
+              "n": 80,
+              "minimum": 0.1320000010309741,
+              "median": 2.5917999955709092,
+              "p95": 4.724400001578033,
+              "maximum": 5.601600001682527
+            }
+          },
+          "encoded_queries": 77,
+          "encoding_only_ms": {
+            "n": 77,
+            "minimum": 0.09750000026542693,
+            "median": 0.2707000094233081,
+            "p95": 0.6139000033726916,
+            "maximum": 0.7397000008495525
+          },
+          "first_selection_ms": 2.0207999914418906,
+          "history_trimmed_cases": [],
+          "truncated_candidates": 0,
+          "final_positive_gains": [],
+          "final_positive_losses": [
+            "dev_filipino_01",
+            "dev_filipino_03",
+            "dev_filipino_05",
+            "dev_filipino_07",
+            "dev_filipino_09",
+            "dev_filipino_11",
+            "dev_lexical_01",
+            "dev_lexical_02",
+            "dev_lexical_03",
+            "dev_lexical_04",
+            "dev_lexical_05",
+            "dev_lexical_06",
+            "dev_lexical_07",
+            "dev_lexical_08",
+            "dev_identifier_03",
+            "dev_identifier_07",
+            "dev_morphology_03",
+            "dev_short_local_02",
+            "dev_short_local_03",
+            "dev_short_local_04"
+          ]
+        }
+      },
+      "quality_screens": {
+        "R": {
+          "semantic_candidates": false,
+          "semantic_final": false,
+          "semantic_each_language": false,
+          "semantic_answers": false,
+          "semantic_net_gain": false,
+          "exact_retention": false,
+          "morphology": false,
+          "short_local": false,
+          "no_false_supply": false
+        },
+        "S": {
+          "semantic_candidates": false,
+          "semantic_final": false,
+          "semantic_each_language": false,
+          "semantic_answers": false,
+          "semantic_net_gain": false,
+          "exact_retention": false,
+          "morphology": false,
+          "short_local": false,
+          "no_false_supply": false
+        },
+        "H": {
+          "semantic_candidates": false,
+          "semantic_final": false,
+          "semantic_each_language": false,
+          "semantic_answers": false,
+          "semantic_net_gain": false,
+          "exact_retention": false,
+          "morphology": false,
+          "short_local": false,
+          "no_false_supply": false
+        }
+      },
+      "pairwise_change_counts": {
+        "A->R": 73,
+        "A->S": 77,
+        "A->H": 77,
+        "R->S": 77,
+        "R->H": 77,
+        "S->H": 65
+      }
+    }
+  ],
+  "measurement_scope": "80 development queries/profile, fixed case and arm order; descriptive quality-run timing only, not the five-trial 10000-chunk performance protocol. No resource eligibility claimed.",
+  "historical_performance_status": "Not run: all candidates failed frozen quality screens; protocol requires stopping this line."
+}

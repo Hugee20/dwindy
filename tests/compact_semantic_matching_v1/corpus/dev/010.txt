@@ -1,0 +1,1 @@
+Elm sends completed tasks to the delivery tray.

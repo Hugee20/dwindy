@@ -1,0 +1,1 @@
+In Umber, CACHE_TTL_MINUTES sets cached response lifetime to eight minutes.

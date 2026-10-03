@@ -1,0 +1,1 @@
+Auric's sandbox logs are capped at six megabytes.

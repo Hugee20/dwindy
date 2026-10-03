@@ -1,0 +1,1 @@
+Larch records an active session heartbeat every nine seconds.

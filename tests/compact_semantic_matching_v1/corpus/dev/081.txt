@@ -1,0 +1,1 @@
+Quartz's print job makes two copies by default.

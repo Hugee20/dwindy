@@ -1,0 +1,1 @@
+Solace's delivery cutoff is 16:45.

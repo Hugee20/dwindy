@@ -11,3 +11,10 @@ tests/policy_foundation_v1/** -text
 tests/policy_experiments/** -text
 tests/morphology_retrieval_v1/** -text
 tests/morphology_retrieval_v1_results/** -text
+tests/compact_semantic_matching_v1/** -text whitespace=cr-at-eol,-blank-at-eof
+tests/compact_semantic_matching_v1_results/** -text whitespace=cr-at-eol
+tests/compact_semantic_matching_v1_run/** -text whitespace=cr-at-eol
+tests/test_compact_semantic_matching_fixtures.py -text whitespace=cr-at-eol
+tests/test_compact_semantic_runner.py -text whitespace=cr-at-eol
+docs/COMPACT_SEMANTIC_MATCHING_V1_CONCLUSION.md -text
+docs/V1_COMPLETION_PATH.md -text

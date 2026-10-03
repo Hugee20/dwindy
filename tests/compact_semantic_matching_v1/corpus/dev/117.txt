@@ -1,0 +1,1 @@
+Garnet reports incidents to the duty manager.

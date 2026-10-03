@@ -1,0 +1,1 @@
+Xylem accepts a shipment when the warehouse intake scan is recorded.

@@ -1,0 +1,1 @@
+Pike uses assets/policy.yaml for local rule loading.

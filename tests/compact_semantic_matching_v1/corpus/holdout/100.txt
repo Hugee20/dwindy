@@ -1,0 +1,1 @@
+Pike uses assets/policies.yaml for website navigation.

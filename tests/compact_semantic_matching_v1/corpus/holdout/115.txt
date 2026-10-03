@@ -1,0 +1,1 @@
+Plover evaluates submissions in the assessment ledger.

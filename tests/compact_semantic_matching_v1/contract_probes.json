@@ -1,0 +1,194 @@
+[
+  {
+    "id": "separate_stages",
+    "kind": "concept_contract",
+    "generation_calls": 0,
+    "network_calls": 0
+  },
+  {
+    "id": "exact_source_identity",
+    "kind": "concept_contract",
+    "generation_calls": 0,
+    "network_calls": 0
+  },
+  {
+    "id": "exact_entry_identity",
+    "kind": "concept_contract",
+    "generation_calls": 0,
+    "network_calls": 0
+  },
+  {
+    "id": "lossless_text",
+    "kind": "concept_contract",
+    "generation_calls": 0,
+    "network_calls": 0
+  },
+  {
+    "id": "stable_order",
+    "kind": "concept_contract",
+    "generation_calls": 0,
+    "network_calls": 0
+  },
+  {
+    "id": "independent_admission",
+    "kind": "concept_contract",
+    "generation_calls": 0,
+    "network_calls": 0
+  },
+  {
+    "id": "budget_exhaustion",
+    "kind": "concept_contract",
+    "generation_calls": 0,
+    "network_calls": 0
+  },
+  {
+    "id": "partial_packet",
+    "kind": "concept_contract",
+    "generation_calls": 0,
+    "network_calls": 0
+  },
+  {
+    "id": "absent_model",
+    "kind": "concept_contract",
+    "generation_calls": 0,
+    "network_calls": 0
+  },
+  {
+    "id": "corrupt_model",
+    "kind": "concept_contract",
+    "generation_calls": 0,
+    "network_calls": 0
+  },
+  {
+    "id": "stale_index",
+    "kind": "concept_contract",
+    "generation_calls": 0,
+    "network_calls": 0
+  },
+  {
+    "id": "no_match_state",
+    "kind": "concept_contract",
+    "generation_calls": 0,
+    "network_calls": 0
+  },
+  {
+    "id": "model_only_bypass",
+    "kind": "concept_contract",
+    "generation_calls": 0,
+    "network_calls": 0
+  },
+  {
+    "id": "no_public_similarity",
+    "kind": "concept_contract",
+    "generation_calls": 0,
+    "network_calls": 0
+  },
+  {
+    "id": "no_public_confidence",
+    "kind": "concept_contract",
+    "generation_calls": 0,
+    "network_calls": 0
+  },
+  {
+    "id": "source_level_grouping",
+    "kind": "concept_contract",
+    "generation_calls": 0,
+    "network_calls": 0
+  },
+  {
+    "id": "unsupplied_not_public",
+    "kind": "concept_contract",
+    "generation_calls": 0,
+    "network_calls": 0
+  },
+  {
+    "id": "duplicate_candidate",
+    "kind": "concept_contract",
+    "generation_calls": 0,
+    "network_calls": 0
+  },
+  {
+    "id": "duplicate_supply",
+    "kind": "concept_contract",
+    "generation_calls": 0,
+    "network_calls": 0
+  },
+  {
+    "id": "candidate_limit",
+    "kind": "concept_contract",
+    "generation_calls": 0,
+    "network_calls": 0
+  },
+  {
+    "id": "supply_limit",
+    "kind": "concept_contract",
+    "generation_calls": 0,
+    "network_calls": 0
+  },
+  {
+    "id": "dwindy_owned_capability",
+    "kind": "concept_contract",
+    "generation_calls": 0,
+    "network_calls": 0
+  },
+  {
+    "id": "no_host_inference",
+    "kind": "concept_contract",
+    "generation_calls": 0,
+    "network_calls": 0
+  },
+  {
+    "id": "untrusted_text_data",
+    "kind": "concept_contract",
+    "generation_calls": 0,
+    "network_calls": 0
+  },
+  {
+    "id": "encoder_view_separate",
+    "kind": "concept_contract",
+    "generation_calls": 0,
+    "network_calls": 0
+  },
+  {
+    "id": "gold_offsets_unicode",
+    "kind": "concept_contract",
+    "generation_calls": 0,
+    "network_calls": 0
+  },
+  {
+    "id": "gold_relevance_not_answer",
+    "kind": "concept_contract",
+    "generation_calls": 0,
+    "network_calls": 0
+  },
+  {
+    "id": "history_transient",
+    "kind": "existing_core_packet",
+    "generation_calls": 0,
+    "network_calls": 0
+  },
+  {
+    "id": "history_native",
+    "kind": "existing_core_packet",
+    "generation_calls": 0,
+    "network_calls": 0
+  },
+  {
+    "id": "core_actual_packet",
+    "kind": "existing_core_packet",
+    "generation_calls": 0,
+    "network_calls": 0
+  },
+  {
+    "id": "core_budget_exhaustion",
+    "kind": "existing_core_packet",
+    "generation_calls": 0,
+    "network_calls": 0
+  },
+  {
+    "id": "no_generation",
+    "kind": "existing_core_packet",
+    "generation_calls": 0,
+    "network_calls": 0
+  }
+]

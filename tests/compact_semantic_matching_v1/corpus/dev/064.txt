@@ -1,0 +1,1 @@
+Haven routes duplicate customer profiles to the identity queue.

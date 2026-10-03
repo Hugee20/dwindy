@@ -1,0 +1,1 @@
+Weir closes expired payment links after fourteen days.

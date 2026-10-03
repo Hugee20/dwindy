@@ -1,0 +1,1 @@
+Ivy dispatches pending tasks according to arrival sequence.

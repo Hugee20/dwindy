@@ -1,0 +1,1 @@
+Auric's greeting service sends welcome messages to new users.

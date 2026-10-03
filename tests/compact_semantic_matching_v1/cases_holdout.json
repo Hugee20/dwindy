@@ -1,0 +1,2322 @@
+[
+  {
+    "id": "holdout_english_semantic_01",
+    "split": "holdout",
+    "category": "english_semantic",
+    "query": "How does Marigold prevent incomplete files becoming visible?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "holdout-entry-001",
+        "source_id": "holdout-entry-001",
+        "start": 0,
+        "end": 86,
+        "text": "Marigold publishes an upload only after an atomic rename of the finished staging file."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "holdout-entry-001",
+        "source_id": "holdout-entry-001",
+        "start": 43,
+        "end": 56,
+        "text": "atomic rename"
+      }
+    ],
+    "distractors": [
+      "holdout-entry-002"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "holdout_english_semantic_02",
+    "split": "holdout",
+    "category": "english_semantic",
+    "query": "Where can Nebula clients find a lost invoice number?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "holdout-entry-003",
+        "source_id": "holdout-entry-003",
+        "start": 0,
+        "end": 73,
+        "text": "Nebula locates purchase identifiers in the mailed billing acknowledgment."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "holdout-entry-003",
+        "source_id": "holdout-entry-003",
+        "start": 43,
+        "end": 72,
+        "text": "mailed billing acknowledgment"
+      }
+    ],
+    "distractors": [
+      "holdout-entry-004"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "holdout_english_semantic_03",
+    "split": "holdout",
+    "category": "english_semantic",
+    "query": "Who can overturn Oak's rejected enrollment?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "holdout-entry-005",
+        "source_id": "holdout-entry-005",
+        "start": 0,
+        "end": 57,
+        "text": "Oak allows a second decision only from the appeals chair."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "holdout-entry-005",
+        "source_id": "holdout-entry-005",
+        "start": 43,
+        "end": 56,
+        "text": "appeals chair"
+      }
+    ],
+    "distractors": [
+      "holdout-entry-006"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "holdout_english_semantic_04",
+    "split": "holdout",
+    "category": "english_semantic",
+    "query": "How does Palisade make room when its inbox fills?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "holdout-entry-007",
+        "source_id": "holdout-entry-007",
+        "start": 0,
+        "end": 74,
+        "text": "Palisade evicts the oldest unpinned entry when the inbox reaches capacity."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "holdout-entry-007",
+        "source_id": "holdout-entry-007",
+        "start": 20,
+        "end": 41,
+        "text": "oldest unpinned entry"
+      }
+    ],
+    "distractors": [
+      "holdout-entry-008"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "holdout_english_semantic_05",
+    "split": "holdout",
+    "category": "english_semantic",
+    "query": "When is Quill ready to accept new work after a restart?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "holdout-entry-009",
+        "source_id": "holdout-entry-009",
+        "start": 0,
+        "end": 55,
+        "text": "Quill begins intake after its journal replay completes."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "holdout-entry-009",
+        "source_id": "holdout-entry-009",
+        "start": 30,
+        "end": 54,
+        "text": "journal replay completes"
+      }
+    ],
+    "distractors": [
+      "holdout-entry-010"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "holdout_english_semantic_06",
+    "split": "holdout",
+    "category": "english_semantic",
+    "query": "Where does Rill record a user's permission withdrawal?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "holdout-entry-011",
+        "source_id": "holdout-entry-011",
+        "start": 0,
+        "end": 56,
+        "text": "Rill writes consent revocations in the privacy register."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "holdout-entry-011",
+        "source_id": "holdout-entry-011",
+        "start": 39,
+        "end": 55,
+        "text": "privacy register"
+      }
+    ],
+    "distractors": [
+      "holdout-entry-012"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "holdout_english_semantic_07",
+    "split": "holdout",
+    "category": "english_semantic",
+    "query": "What keeps Saffron requests from starving?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "holdout-entry-013",
+        "source_id": "holdout-entry-013",
+        "start": 0,
+        "end": 62,
+        "text": "Saffron promotes a waiting request one tier after ten minutes."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "holdout-entry-013",
+        "source_id": "holdout-entry-013",
+        "start": 35,
+        "end": 43,
+        "text": "one tier"
+      }
+    ],
+    "distractors": [
+      "holdout-entry-014"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "holdout_english_semantic_08",
+    "split": "holdout",
+    "category": "english_semantic",
+    "query": "How does Tundra detect a changed attachment?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "holdout-entry-015",
+        "source_id": "holdout-entry-015",
+        "start": 0,
+        "end": 70,
+        "text": "Tundra compares a newly computed digest with the recorded fingerprint."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "holdout-entry-015",
+        "source_id": "holdout-entry-015",
+        "start": 49,
+        "end": 69,
+        "text": "recorded fingerprint"
+      }
+    ],
+    "distractors": [
+      "holdout-entry-016"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "holdout_english_semantic_09",
+    "split": "holdout",
+    "category": "english_semantic",
+    "query": "What tells Upland a long task is still alive?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "holdout-entry-017",
+        "source_id": "holdout-entry-017",
+        "start": 0,
+        "end": 63,
+        "text": "Upland expects a periodic lease renewal from the active worker."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "holdout-entry-017",
+        "source_id": "holdout-entry-017",
+        "start": 26,
+        "end": 39,
+        "text": "lease renewal"
+      }
+    ],
+    "distractors": [
+      "holdout-entry-018"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "holdout_english_semantic_10",
+    "split": "holdout",
+    "category": "english_semantic",
+    "query": "Where does Vesper direct information requested under privacy law?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "holdout-entry-019",
+        "source_id": "holdout-entry-019",
+        "start": 0,
+        "end": 73,
+        "text": "Vesper assembles disclosure material in the requester-only download area."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "holdout-entry-019",
+        "source_id": "holdout-entry-019",
+        "start": 44,
+        "end": 72,
+        "text": "requester-only download area"
+      }
+    ],
+    "distractors": [
+      "holdout-entry-020"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "holdout_english_semantic_11",
+    "split": "holdout",
+    "category": "english_semantic",
+    "query": "How does Weir prevent a partial payment from closing a bill?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "holdout-entry-021",
+        "source_id": "holdout-entry-021",
+        "start": 0,
+        "end": 69,
+        "text": "Weir leaves an invoice open until the remaining balance reaches zero."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "holdout-entry-021",
+        "source_id": "holdout-entry-021",
+        "start": 38,
+        "end": 68,
+        "text": "remaining balance reaches zero"
+      }
+    ],
+    "distractors": [
+      "holdout-entry-022"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "holdout_english_semantic_12",
+    "split": "holdout",
+    "category": "english_semantic",
+    "query": "When does Xylem allow a held consignment to leave?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "holdout-entry-023",
+        "source_id": "holdout-entry-023",
+        "start": 0,
+        "end": 62,
+        "text": "Xylem releases a shipment after customs clearance is recorded."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "holdout-entry-023",
+        "source_id": "holdout-entry-023",
+        "start": 32,
+        "end": 49,
+        "text": "customs clearance"
+      }
+    ],
+    "distractors": [
+      "holdout-entry-024"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "holdout_filipino_01",
+    "split": "holdout",
+    "category": "filipino",
+    "query": "Paano makakakuha ng kopya ng kontrata sa Bukal?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "holdout-entry-025",
+        "source_id": "holdout-entry-025",
+        "start": 0,
+        "end": 75,
+        "text": "Sa Bukal, maaaring humingi ng kopya ng kontrata sa tanggapan ng mga talaan."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "holdout-entry-025",
+        "source_id": "holdout-entry-025",
+        "start": 51,
+        "end": 74,
+        "text": "tanggapan ng mga talaan"
+      }
+    ],
+    "distractors": [
+      "holdout-entry-026"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": true
+  },
+  {
+    "id": "holdout_filipino_02",
+    "split": "holdout",
+    "category": "filipino",
+    "query": "Ano ang kailangan bago magamit ang serbisyo sa Dagat?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "holdout-entry-027",
+        "source_id": "holdout-entry-027",
+        "start": 0,
+        "end": 69,
+        "text": "Dagat requires a completed orientation session before service access."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "holdout-entry-027",
+        "source_id": "holdout-entry-027",
+        "start": 17,
+        "end": 46,
+        "text": "completed orientation session"
+      }
+    ],
+    "distractors": [
+      "holdout-entry-028"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": true
+  },
+  {
+    "id": "holdout_filipino_03",
+    "split": "holdout",
+    "category": "filipino",
+    "query": "Saan puwedeng mag-charge ng de-kuryenteng bisikleta sa Gabay?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "holdout-entry-029",
+        "source_id": "holdout-entry-029",
+        "start": 0,
+        "end": 86,
+        "text": "May puwesto para sa pag-charge ng de-kuryenteng bisikleta sa likod ng gusali ng Gabay."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "holdout-entry-029",
+        "source_id": "holdout-entry-029",
+        "start": 61,
+        "end": 76,
+        "text": "likod ng gusali"
+      }
+    ],
+    "distractors": [
+      "holdout-entry-030"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": true
+  },
+  {
+    "id": "holdout_filipino_04",
+    "split": "holdout",
+    "category": "filipino",
+    "query": "Kailan sinusukat ang kalidad ng tubig sa Habagat?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "holdout-entry-031",
+        "source_id": "holdout-entry-031",
+        "start": 0,
+        "end": 63,
+        "text": "Habagat tests water quality on the first Tuesday of each month."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "holdout-entry-031",
+        "source_id": "holdout-entry-031",
+        "start": 35,
+        "end": 48,
+        "text": "first Tuesday"
+      }
+    ],
+    "distractors": [
+      "holdout-entry-032"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": true
+  },
+  {
+    "id": "holdout_filipino_05",
+    "split": "holdout",
+    "category": "filipino",
+    "query": "Sino ang responsable sa mga halaman sa Isla?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "holdout-entry-033",
+        "source_id": "holdout-entry-033",
+        "start": 0,
+        "end": 67,
+        "text": "Ang tagapangasiwa ng hardin ang responsable sa mga halaman ng Isla."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "holdout-entry-033",
+        "source_id": "holdout-entry-033",
+        "start": 4,
+        "end": 27,
+        "text": "tagapangasiwa ng hardin"
+      }
+    ],
+    "distractors": [
+      "holdout-entry-034"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": true
+  },
+  {
+    "id": "holdout_filipino_06",
+    "split": "holdout",
+    "category": "filipino",
+    "query": "Ilang oras puwedeng gamitin ang silid sa Katipunan?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "holdout-entry-035",
+        "source_id": "holdout-entry-035",
+        "start": 0,
+        "end": 58,
+        "text": "Katipunan permits a study-room session of up to two hours."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "holdout-entry-035",
+        "source_id": "holdout-entry-035",
+        "start": 48,
+        "end": 57,
+        "text": "two hours"
+      }
+    ],
+    "distractors": [
+      "holdout-entry-036"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": true
+  },
+  {
+    "id": "holdout_filipino_07",
+    "split": "holdout",
+    "category": "filipino",
+    "query": "Paano ibinabalik ang aklat kapag sarado ang Liwayway?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "holdout-entry-037",
+        "source_id": "holdout-entry-037",
+        "start": 0,
+        "end": 76,
+        "text": "Kapag sarado ang Liwayway, maaaring ihulog ang aklat sa kahon ng pagsasauli."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "holdout-entry-037",
+        "source_id": "holdout-entry-037",
+        "start": 56,
+        "end": 75,
+        "text": "kahon ng pagsasauli"
+      }
+    ],
+    "distractors": [
+      "holdout-entry-038"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": true
+  },
+  {
+    "id": "holdout_filipino_08",
+    "split": "holdout",
+    "category": "filipino",
+    "query": "Ano ang singil para sa nawawalang badge sa Mulawin?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "holdout-entry-039",
+        "source_id": "holdout-entry-039",
+        "start": 0,
+        "end": 57,
+        "text": "Mulawin charges seventy pesos to replace a missing badge."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "holdout-entry-039",
+        "source_id": "holdout-entry-039",
+        "start": 16,
+        "end": 29,
+        "text": "seventy pesos"
+      }
+    ],
+    "distractors": [
+      "holdout-entry-040"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": true
+  },
+  {
+    "id": "holdout_filipino_09",
+    "split": "holdout",
+    "category": "filipino",
+    "query": "Saan dapat isumite ang tala ng oras sa Pag-asa?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "holdout-entry-041",
+        "source_id": "holdout-entry-041",
+        "start": 0,
+        "end": 61,
+        "text": "Sa Pag-asa, isinusumite ang tala ng oras sa portal ng kawani."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "holdout-entry-041",
+        "source_id": "holdout-entry-041",
+        "start": 44,
+        "end": 60,
+        "text": "portal ng kawani"
+      }
+    ],
+    "distractors": [
+      "holdout-entry-042"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": true
+  },
+  {
+    "id": "holdout_filipino_10",
+    "split": "holdout",
+    "category": "filipino",
+    "query": "Kailan puwedeng sumali ang bisita sa ensayo ng Sampaguita?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "holdout-entry-043",
+        "source_id": "holdout-entry-043",
+        "start": 0,
+        "end": 61,
+        "text": "Sampaguita permits guests at the final rehearsal on Saturday."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "holdout-entry-043",
+        "source_id": "holdout-entry-043",
+        "start": 33,
+        "end": 60,
+        "text": "final rehearsal on Saturday"
+      }
+    ],
+    "distractors": [
+      "holdout-entry-044"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": true
+  },
+  {
+    "id": "holdout_filipino_11",
+    "split": "holdout",
+    "category": "filipino",
+    "query": "Paano kinukumpirma ang donasyon sa Silangan?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "holdout-entry-045",
+        "source_id": "holdout-entry-045",
+        "start": 0,
+        "end": 78,
+        "text": "Nagpapadala ang Silangan ng sulat ng pagkilala sa bawat natanggap na donasyon."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "holdout-entry-045",
+        "source_id": "holdout-entry-045",
+        "start": 28,
+        "end": 46,
+        "text": "sulat ng pagkilala"
+      }
+    ],
+    "distractors": [
+      "holdout-entry-046"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": true
+  },
+  {
+    "id": "holdout_filipino_12",
+    "split": "holdout",
+    "category": "filipino",
+    "query": "Sino ang magpapasya sa paglipat ng silid sa Ugnay?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "holdout-entry-047",
+        "source_id": "holdout-entry-047",
+        "start": 0,
+        "end": 58,
+        "text": "Ugnay room-transfer decisions belong to the housing panel."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "holdout-entry-047",
+        "source_id": "holdout-entry-047",
+        "start": 44,
+        "end": 57,
+        "text": "housing panel"
+      }
+    ],
+    "distractors": [
+      "holdout-entry-048"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": true
+  },
+  {
+    "id": "holdout_taglish_01",
+    "split": "holdout",
+    "category": "taglish",
+    "query": "How to request a gate pass sa Zephyr?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "holdout-entry-049",
+        "source_id": "holdout-entry-049",
+        "start": 0,
+        "end": 81,
+        "text": "Zephyr issues an exit permit when the shift coordinator signs the departure slip."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "holdout-entry-049",
+        "source_id": "holdout-entry-049",
+        "start": 38,
+        "end": 55,
+        "text": "shift coordinator"
+      }
+    ],
+    "distractors": [
+      "holdout-entry-050"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": true
+  },
+  {
+    "id": "holdout_taglish_02",
+    "split": "holdout",
+    "category": "taglish",
+    "query": "Kailan mag-e-expire ang Azure quote?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "holdout-entry-051",
+        "source_id": "holdout-entry-051",
+        "start": 0,
+        "end": 61,
+        "text": "Azure's price offer remains valid for fourteen calendar days."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "holdout-entry-051",
+        "source_id": "holdout-entry-051",
+        "start": 38,
+        "end": 60,
+        "text": "fourteen calendar days"
+      }
+    ],
+    "distractors": [
+      "holdout-entry-052"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": true
+  },
+  {
+    "id": "holdout_taglish_03",
+    "split": "holdout",
+    "category": "taglish",
+    "query": "Where ang drop box for Comet survey forms?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "holdout-entry-053",
+        "source_id": "holdout-entry-053",
+        "start": 0,
+        "end": 65,
+        "text": "Comet collects questionnaires in the sealed box beside reception."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "holdout-entry-053",
+        "source_id": "holdout-entry-053",
+        "start": 37,
+        "end": 64,
+        "text": "sealed box beside reception"
+      }
+    ],
+    "distractors": [
+      "holdout-entry-054"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": true
+  },
+  {
+    "id": "holdout_taglish_04",
+    "split": "holdout",
+    "category": "taglish",
+    "query": "Paano malaman kung cleared na ang Dusk balance?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "holdout-entry-055",
+        "source_id": "holdout-entry-055",
+        "start": 0,
+        "end": 73,
+        "text": "Dusk shows a cleared account when the settlement receipt has been posted."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "holdout-entry-055",
+        "source_id": "holdout-entry-055",
+        "start": 38,
+        "end": 56,
+        "text": "settlement receipt"
+      }
+    ],
+    "distractors": [
+      "holdout-entry-056"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": true
+  },
+  {
+    "id": "holdout_taglish_05",
+    "split": "holdout",
+    "category": "taglish",
+    "query": "Ano ang dress code for Equinox lab visits?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "holdout-entry-057",
+        "source_id": "holdout-entry-057",
+        "start": 0,
+        "end": 65,
+        "text": "Equinox visitors must wear closed shoes during a laboratory tour."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "holdout-entry-057",
+        "source_id": "holdout-entry-057",
+        "start": 27,
+        "end": 39,
+        "text": "closed shoes"
+      }
+    ],
+    "distractors": [
+      "holdout-entry-058"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": true
+  },
+  {
+    "id": "holdout_taglish_06",
+    "split": "holdout",
+    "category": "taglish",
+    "query": "Who handles overtime pay sa Fable?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "holdout-entry-059",
+        "source_id": "holdout-entry-059",
+        "start": 0,
+        "end": 74,
+        "text": "Ang opisyal ng payroll ng Fable ang nagpoproseso ng bayad sa sobrang oras."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "holdout-entry-059",
+        "source_id": "holdout-entry-059",
+        "start": 4,
+        "end": 22,
+        "text": "opisyal ng payroll"
+      }
+    ],
+    "distractors": [
+      "holdout-entry-060"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": true
+  },
+  {
+    "id": "holdout_taglish_07",
+    "split": "holdout",
+    "category": "taglish",
+    "query": "Saan makuha ang guest Wi-Fi password sa Halo?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "holdout-entry-061",
+        "source_id": "holdout-entry-061",
+        "start": 0,
+        "end": 56,
+        "text": "Halo supplies the visitor network key at the front desk."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "holdout-entry-061",
+        "source_id": "holdout-entry-061",
+        "start": 45,
+        "end": 55,
+        "text": "front desk"
+      }
+    ],
+    "distractors": [
+      "holdout-entry-062"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": true
+  },
+  {
+    "id": "holdout_taglish_08",
+    "split": "holdout",
+    "category": "taglish",
+    "query": "How much ang reservation bond sa Irides?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "holdout-entry-063",
+        "source_id": "holdout-entry-063",
+        "start": 0,
+        "end": 74,
+        "text": "Irides collects a three-hundred-peso security bond for a hall reservation."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "holdout-entry-063",
+        "source_id": "holdout-entry-063",
+        "start": 18,
+        "end": 36,
+        "text": "three-hundred-peso"
+      }
+    ],
+    "distractors": [
+      "holdout-entry-064"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": true
+  },
+  {
+    "id": "holdout_taglish_09",
+    "split": "holdout",
+    "category": "taglish",
+    "query": "Paano i-renew ang Jolt membership?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "holdout-entry-065",
+        "source_id": "holdout-entry-065",
+        "start": 0,
+        "end": 62,
+        "text": "Jolt extends membership after the annual subscription is paid."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "holdout-entry-065",
+        "source_id": "holdout-entry-065",
+        "start": 34,
+        "end": 53,
+        "text": "annual subscription"
+      }
+    ],
+    "distractors": [
+      "holdout-entry-066"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": true
+  },
+  {
+    "id": "holdout_taglish_10",
+    "split": "holdout",
+    "category": "taglish",
+    "query": "Ano ang pickup window ng Lumina supplies?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "holdout-entry-067",
+        "source_id": "holdout-entry-067",
+        "start": 0,
+        "end": 71,
+        "text": "Lumina supplies may be collected between one and four in the afternoon."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "holdout-entry-067",
+        "source_id": "holdout-entry-067",
+        "start": 41,
+        "end": 70,
+        "text": "one and four in the afternoon"
+      }
+    ],
+    "distractors": [
+      "holdout-entry-068"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": true
+  },
+  {
+    "id": "holdout_taglish_11",
+    "split": "holdout",
+    "category": "taglish",
+    "query": "Kailan nag-u-update ang Meridian inventory?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "holdout-entry-069",
+        "source_id": "holdout-entry-069",
+        "start": 0,
+        "end": 57,
+        "text": "Meridian refreshes stock totals at the end of each shift."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "holdout-entry-069",
+        "source_id": "holdout-entry-069",
+        "start": 39,
+        "end": 56,
+        "text": "end of each shift"
+      }
+    ],
+    "distractors": [
+      "holdout-entry-070"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": true
+  },
+  {
+    "id": "holdout_taglish_12",
+    "split": "holdout",
+    "category": "taglish",
+    "query": "Sino ang lead for Nimbus evacuation drill?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "holdout-entry-071",
+        "source_id": "holdout-entry-071",
+        "start": 0,
+        "end": 61,
+        "text": "Nimbus assigns the practice evacuation to the safety marshal."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "holdout-entry-071",
+        "source_id": "holdout-entry-071",
+        "start": 46,
+        "end": 60,
+        "text": "safety marshal"
+      }
+    ],
+    "distractors": [
+      "holdout-entry-072"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": true
+  },
+  {
+    "id": "holdout_lexical_01",
+    "split": "holdout",
+    "category": "lexical",
+    "query": "What is Oasis's inspection interval?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "holdout-entry-073",
+        "source_id": "holdout-entry-073",
+        "start": 0,
+        "end": 42,
+        "text": "Oasis's inspection interval is sixty days."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "holdout-entry-073",
+        "source_id": "holdout-entry-073",
+        "start": 31,
+        "end": 41,
+        "text": "sixty days"
+      }
+    ],
+    "distractors": [
+      "holdout-entry-074"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "holdout_lexical_02",
+    "split": "holdout",
+    "category": "lexical",
+    "query": "Where is Prism's sign-in book?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "holdout-entry-075",
+        "source_id": "holdout-entry-075",
+        "start": 0,
+        "end": 55,
+        "text": "Prism's sign-in book is on the eastern reception table."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "holdout-entry-075",
+        "source_id": "holdout-entry-075",
+        "start": 31,
+        "end": 54,
+        "text": "eastern reception table"
+      }
+    ],
+    "distractors": [
+      "holdout-entry-076"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "holdout_lexical_03",
+    "split": "holdout",
+    "category": "lexical",
+    "query": "Who authorizes Ripple's fee waivers?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "holdout-entry-077",
+        "source_id": "holdout-entry-077",
+        "start": 0,
+        "end": 61,
+        "text": "Ripple's fee waivers are authorized by the accounts director."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "holdout-entry-077",
+        "source_id": "holdout-entry-077",
+        "start": 43,
+        "end": 60,
+        "text": "accounts director"
+      }
+    ],
+    "distractors": [
+      "holdout-entry-078"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "holdout_lexical_04",
+    "split": "holdout",
+    "category": "lexical",
+    "query": "What is Solace's delivery cutoff?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "holdout-entry-079",
+        "source_id": "holdout-entry-079",
+        "start": 0,
+        "end": 34,
+        "text": "Solace's delivery cutoff is 16:45."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "holdout-entry-079",
+        "source_id": "holdout-entry-079",
+        "start": 28,
+        "end": 33,
+        "text": "16:45"
+      }
+    ],
+    "distractors": [
+      "holdout-entry-080"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "holdout_lexical_05",
+    "split": "holdout",
+    "category": "lexical",
+    "query": "How many seats are in Tempest's small room?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "holdout-entry-081",
+        "source_id": "holdout-entry-081",
+        "start": 0,
+        "end": 40,
+        "text": "Tempest's small room contains six seats."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "holdout-entry-081",
+        "source_id": "holdout-entry-081",
+        "start": 30,
+        "end": 39,
+        "text": "six seats"
+      }
+    ],
+    "distractors": [
+      "holdout-entry-082"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "holdout_lexical_06",
+    "split": "holdout",
+    "category": "lexical",
+    "query": "Which channel carries Verve alerts?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "holdout-entry-083",
+        "source_id": "holdout-entry-083",
+        "start": 0,
+        "end": 41,
+        "text": "Verve alerts are broadcast on channel 19."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "holdout-entry-083",
+        "source_id": "holdout-entry-083",
+        "start": 38,
+        "end": 40,
+        "text": "19"
+      }
+    ],
+    "distractors": [
+      "holdout-entry-084"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "holdout_lexical_07",
+    "split": "holdout",
+    "category": "lexical",
+    "query": "What is Wander's equipment deposit?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "holdout-entry-085",
+        "source_id": "holdout-entry-085",
+        "start": 0,
+        "end": 49,
+        "text": "Wander's equipment deposit is five hundred pesos."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "holdout-entry-085",
+        "source_id": "holdout-entry-085",
+        "start": 30,
+        "end": 48,
+        "text": "five hundred pesos"
+      }
+    ],
+    "distractors": [
+      "holdout-entry-086"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "holdout_lexical_08",
+    "split": "holdout",
+    "category": "lexical",
+    "query": "Where is Zenith's emergency exit?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "holdout-entry-087",
+        "source_id": "holdout-entry-087",
+        "start": 0,
+        "end": 56,
+        "text": "Zenith's emergency exit is behind the western stairwell."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "holdout-entry-087",
+        "source_id": "holdout-entry-087",
+        "start": 38,
+        "end": 55,
+        "text": "western stairwell"
+      }
+    ],
+    "distractors": [
+      "holdout-entry-088"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "holdout_identifier_01",
+    "split": "holdout",
+    "category": "identifier",
+    "query": "What does ATLAS_BATCH_SIZE set?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "holdout-entry-089",
+        "source_id": "holdout-entry-089",
+        "start": 0,
+        "end": 59,
+        "text": "ATLAS_BATCH_SIZE sets the nightly batch size to 64 records."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "holdout-entry-089",
+        "source_id": "holdout-entry-089",
+        "start": 48,
+        "end": 58,
+        "text": "64 records"
+      }
+    ],
+    "distractors": [
+      "holdout-entry-090"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "holdout_identifier_02",
+    "split": "holdout",
+    "category": "identifier",
+    "query": "Where is Lyric's logs/audit.ndjson written?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "holdout-entry-091",
+        "source_id": "holdout-entry-091",
+        "start": 0,
+        "end": 68,
+        "text": "Lyric writes logs/audit.ndjson beneath the protected runtime folder."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "holdout-entry-091",
+        "source_id": "holdout-entry-091",
+        "start": 43,
+        "end": 67,
+        "text": "protected runtime folder"
+      }
+    ],
+    "distractors": [
+      "holdout-entry-092"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "holdout_identifier_03",
+    "split": "holdout",
+    "category": "identifier",
+    "query": "What does Muse's /v2/lease endpoint return?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "holdout-entry-093",
+        "source_id": "holdout-entry-093",
+        "start": 0,
+        "end": 59,
+        "text": "Muse's /v2/lease endpoint returns the current worker lease."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "holdout-entry-093",
+        "source_id": "holdout-entry-093",
+        "start": 38,
+        "end": 58,
+        "text": "current worker lease"
+      }
+    ],
+    "distractors": [
+      "holdout-entry-094"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "holdout_identifier_04",
+    "split": "holdout",
+    "category": "identifier",
+    "query": "What is Nectar's reconnect_delay_ms?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "holdout-entry-095",
+        "source_id": "holdout-entry-095",
+        "start": 0,
+        "end": 38,
+        "text": "Nectar sets reconnect_delay_ms to 750."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "holdout-entry-095",
+        "source_id": "holdout-entry-095",
+        "start": 34,
+        "end": 37,
+        "text": "750"
+      }
+    ],
+    "distractors": [
+      "holdout-entry-096"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "holdout_identifier_05",
+    "split": "holdout",
+    "category": "identifier",
+    "query": "What does Orbit's seal_record() do?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "holdout-entry-097",
+        "source_id": "holdout-entry-097",
+        "start": 0,
+        "end": 47,
+        "text": "Orbit's seal_record() marks a record immutable."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "holdout-entry-097",
+        "source_id": "holdout-entry-097",
+        "start": 22,
+        "end": 46,
+        "text": "marks a record immutable"
+      }
+    ],
+    "distractors": [
+      "holdout-entry-098"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "holdout_identifier_06",
+    "split": "holdout",
+    "category": "identifier",
+    "query": "Where is Pike's assets/policy.yaml used?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "holdout-entry-099",
+        "source_id": "holdout-entry-099",
+        "start": 0,
+        "end": 52,
+        "text": "Pike uses assets/policy.yaml for local rule loading."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "holdout-entry-099",
+        "source_id": "holdout-entry-099",
+        "start": 33,
+        "end": 51,
+        "text": "local rule loading"
+      }
+    ],
+    "distractors": [
+      "holdout-entry-100"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "holdout_identifier_07",
+    "split": "holdout",
+    "category": "identifier",
+    "query": "What does Rook's ZX_204 code mean?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "holdout-entry-101",
+        "source_id": "holdout-entry-101",
+        "start": 0,
+        "end": 38,
+        "text": "Rook uses ZX_204 for an expired lease."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "holdout-entry-101",
+        "source_id": "holdout-entry-101",
+        "start": 24,
+        "end": 37,
+        "text": "expired lease"
+      }
+    ],
+    "distractors": [
+      "holdout-entry-102"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "holdout_identifier_08",
+    "split": "holdout",
+    "category": "identifier",
+    "query": "Which Sylvan task calls refresh_catalog_v3?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "holdout-entry-103",
+        "source_id": "holdout-entry-103",
+        "start": 0,
+        "end": 54,
+        "text": "Sylvan's catalog update task calls refresh_catalog_v3."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "holdout-entry-103",
+        "source_id": "holdout-entry-103",
+        "start": 9,
+        "end": 28,
+        "text": "catalog update task"
+      }
+    ],
+    "distractors": [
+      "holdout-entry-104"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "holdout_morphology_01",
+    "split": "holdout",
+    "category": "morphology",
+    "query": "How are Finch subscriptions extended?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "holdout-entry-105",
+        "source_id": "holdout-entry-105",
+        "start": 0,
+        "end": 65,
+        "text": "Finch extends a subscription after receiving the renewal payment."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "holdout-entry-105",
+        "source_id": "holdout-entry-105",
+        "start": 49,
+        "end": 64,
+        "text": "renewal payment"
+      }
+    ],
+    "distractors": [
+      "holdout-entry-106"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "holdout_morphology_02",
+    "split": "holdout",
+    "category": "morphology",
+    "query": "Who handles Iris reimbursements?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "holdout-entry-107",
+        "source_id": "holdout-entry-107",
+        "start": 0,
+        "end": 61,
+        "text": "Iris reimburses approved expenses through the treasury clerk."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "holdout-entry-107",
+        "source_id": "holdout-entry-107",
+        "start": 46,
+        "end": 60,
+        "text": "treasury clerk"
+      }
+    ],
+    "distractors": [
+      "holdout-entry-108"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "holdout_morphology_03",
+    "split": "holdout",
+    "category": "morphology",
+    "query": "Where does Lynx encrypt data?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "holdout-entry-109",
+        "source_id": "holdout-entry-109",
+        "start": 0,
+        "end": 56,
+        "text": "Lynx's encryption happens in the protected staging area."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "holdout-entry-109",
+        "source_id": "holdout-entry-109",
+        "start": 33,
+        "end": 55,
+        "text": "protected staging area"
+      }
+    ],
+    "distractors": [
+      "holdout-entry-110"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "holdout_morphology_04",
+    "split": "holdout",
+    "category": "morphology",
+    "query": "When is Moss certification performed?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "holdout-entry-111",
+        "source_id": "holdout-entry-111",
+        "start": 0,
+        "end": 53,
+        "text": "Moss certifies equipment at the annual safety review."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "holdout-entry-111",
+        "source_id": "holdout-entry-111",
+        "start": 32,
+        "end": 52,
+        "text": "annual safety review"
+      }
+    ],
+    "distractors": [
+      "holdout-entry-112"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "holdout_morphology_05",
+    "split": "holdout",
+    "category": "morphology",
+    "query": "What does Otter notify users about?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "holdout-entry-113",
+        "source_id": "holdout-entry-113",
+        "start": 0,
+        "end": 51,
+        "text": "Otter's notifications announce reservation changes."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "holdout-entry-113",
+        "source_id": "holdout-entry-113",
+        "start": 31,
+        "end": 50,
+        "text": "reservation changes"
+      }
+    ],
+    "distractors": [
+      "holdout-entry-114"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "holdout_morphology_06",
+    "split": "holdout",
+    "category": "morphology",
+    "query": "Where are Plover evaluations recorded?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "holdout-entry-115",
+        "source_id": "holdout-entry-115",
+        "start": 0,
+        "end": 54,
+        "text": "Plover evaluates submissions in the assessment ledger."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "holdout-entry-115",
+        "source_id": "holdout-entry-115",
+        "start": 36,
+        "end": 53,
+        "text": "assessment ledger"
+      }
+    ],
+    "distractors": [
+      "holdout-entry-116"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "holdout_morphology_07",
+    "split": "holdout",
+    "category": "morphology",
+    "query": "How does Robin inspect parcels?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "holdout-entry-117",
+        "source_id": "holdout-entry-117",
+        "start": 0,
+        "end": 46,
+        "text": "Robin's inspection uses the screening station."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "holdout-entry-117",
+        "source_id": "holdout-entry-117",
+        "start": 28,
+        "end": 45,
+        "text": "screening station"
+      }
+    ],
+    "distractors": [
+      "holdout-entry-118"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "holdout_morphology_08",
+    "split": "holdout",
+    "category": "morphology",
+    "query": "Who schedules Swift pickups?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "holdout-entry-119",
+        "source_id": "holdout-entry-119",
+        "start": 0,
+        "end": 51,
+        "text": "Swift's scheduling is handled by the route planner."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "holdout-entry-119",
+        "source_id": "holdout-entry-119",
+        "start": 37,
+        "end": 50,
+        "text": "route planner"
+      }
+    ],
+    "distractors": [
+      "holdout-entry-120"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "holdout_short_local_01",
+    "split": "holdout",
+    "category": "short_local",
+    "query": "Agate complaint address?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "holdout-entry-121",
+        "source_id": "holdout-entry-121",
+        "start": 0,
+        "end": 49,
+        "text": "Agate accepts complaints at review@agate.invalid."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "holdout-entry-121",
+        "source_id": "holdout-entry-121",
+        "start": 28,
+        "end": 48,
+        "text": "review@agate.invalid"
+      }
+    ],
+    "distractors": [
+      "holdout-entry-122"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "holdout_short_local_02",
+    "split": "holdout",
+    "category": "short_local",
+    "query": "Beryl closing hour?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "holdout-entry-123",
+        "source_id": "holdout-entry-123",
+        "start": 0,
+        "end": 34,
+        "text": "Beryl's reception closes at 17:20."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "holdout-entry-123",
+        "source_id": "holdout-entry-123",
+        "start": 28,
+        "end": 33,
+        "text": "17:20"
+      }
+    ],
+    "distractors": [
+      "holdout-entry-124"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "holdout_short_local_03",
+    "split": "holdout",
+    "category": "short_local",
+    "query": "Cobalt access age?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "holdout-entry-125",
+        "source_id": "holdout-entry-125",
+        "start": 0,
+        "end": 45,
+        "text": "Cobalt admits members aged sixteen and above."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "holdout-entry-125",
+        "source_id": "holdout-entry-125",
+        "start": 27,
+        "end": 34,
+        "text": "sixteen"
+      }
+    ],
+    "distractors": [
+      "holdout-entry-126"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "holdout_short_local_04",
+    "split": "holdout",
+    "category": "short_local",
+    "query": "Dolomite collection day?",
+    "context_expected": true,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [
+      {
+        "document_id": "holdout-entry-127",
+        "source_id": "holdout-entry-127",
+        "start": 0,
+        "end": 43,
+        "text": "Dolomite collects recyclables on Thursdays."
+      }
+    ],
+    "answer_gold": [
+      {
+        "document_id": "holdout-entry-127",
+        "source_id": "holdout-entry-127",
+        "start": 33,
+        "end": 42,
+        "text": "Thursdays"
+      }
+    ],
+    "distractors": [
+      "holdout-entry-128"
+    ],
+    "rationale": "The named entity, requested procedure and scope must match; the paired entry is related but does not answer this request.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "holdout_no_supply_01",
+    "split": "holdout",
+    "category": "no_supply",
+    "query": "How long is Argent's equipment warranty?",
+    "context_expected": false,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [],
+    "answer_gold": [],
+    "distractors": [
+      "holdout-entry-129"
+    ],
+    "negative_kind": "wrong_entity",
+    "rationale": "Warranty terms of a different named provider are not relevant authority.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "holdout_no_supply_02",
+    "split": "holdout",
+    "category": "no_supply",
+    "query": "How do I appeal an Argent loan rejection?",
+    "context_expected": false,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [],
+    "answer_gold": [],
+    "distractors": [
+      "holdout-entry-130"
+    ],
+    "negative_kind": "wrong_procedure",
+    "rationale": "Application instructions do not establish appeals procedure.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "holdout_no_supply_03",
+    "split": "holdout",
+    "category": "no_supply",
+    "query": "Who can view Argent's employee medical records?",
+    "context_expected": false,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [],
+    "answer_gold": [],
+    "distractors": [
+      "holdout-entry-131"
+    ],
+    "negative_kind": "wrong_scope",
+    "rationale": "Visitor declarations do not establish employee medical-record access.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "holdout_no_supply_04",
+    "split": "holdout",
+    "category": "no_supply",
+    "query": "What does Argent's LOCK_330 indicate?",
+    "context_expected": false,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [],
+    "answer_gold": [],
+    "distractors": [
+      "holdout-entry-132"
+    ],
+    "negative_kind": "identifier_near_miss",
+    "rationale": "A similar error code is a different identifier.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "holdout_no_supply_05",
+    "split": "holdout",
+    "category": "no_supply",
+    "query": "Good morning!",
+    "context_expected": false,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [],
+    "answer_gold": [],
+    "distractors": [
+      "holdout-entry-133"
+    ],
+    "negative_kind": "conversation",
+    "rationale": "Greeting is not a request for ventilation evidence.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "holdout_no_supply_06",
+    "split": "holdout",
+    "category": "no_supply",
+    "query": "Okay, understood.",
+    "context_expected": false,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [],
+    "answer_gold": [],
+    "distractors": [
+      "holdout-entry-134"
+    ],
+    "negative_kind": "conversation",
+    "rationale": "Acknowledgment does not request a training survey.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "holdout_no_supply_07",
+    "split": "holdout",
+    "category": "no_supply",
+    "query": "I could use some encouragement.",
+    "context_expected": false,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [],
+    "answer_gold": [],
+    "distractors": [
+      "holdout-entry-135"
+    ],
+    "negative_kind": "conversation",
+    "rationale": "Personal encouragement is not a query about staff awards.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "holdout_no_supply_08",
+    "split": "holdout",
+    "category": "no_supply",
+    "query": "That made me laugh.",
+    "context_expected": false,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [],
+    "answer_gold": [],
+    "distractors": [
+      "holdout-entry-136"
+    ],
+    "negative_kind": "conversation",
+    "rationale": "Conversational feedback is not a workshop query.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "holdout_no_supply_09",
+    "split": "holdout",
+    "category": "no_supply",
+    "query": "Make this less formal: Please attend the briefing.",
+    "context_expected": false,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [],
+    "answer_gold": [],
+    "distractors": [
+      "holdout-entry-137"
+    ],
+    "negative_kind": "transformation",
+    "rationale": "Rewrite the quoted sentence without importing attendance obligations.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "holdout_no_supply_10",
+    "split": "holdout",
+    "category": "no_supply",
+    "query": "Translate to Filipino: The window is open.",
+    "context_expected": false,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [],
+    "answer_gold": [],
+    "distractors": [
+      "holdout-entry-138"
+    ],
+    "negative_kind": "transformation",
+    "rationale": "Translation does not require an alarm policy.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "holdout_no_supply_11",
+    "split": "holdout",
+    "category": "no_supply",
+    "query": "Correct the spelling: The calender is on the wall.",
+    "context_expected": false,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [],
+    "answer_gold": [],
+    "distractors": [
+      "holdout-entry-139"
+    ],
+    "negative_kind": "transformation",
+    "rationale": "Spelling correction must not add calendar facts.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "holdout_no_supply_12",
+    "split": "holdout",
+    "category": "no_supply",
+    "query": "Put this in title case: monthly safety review.",
+    "context_expected": false,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [],
+    "answer_gold": [],
+    "distractors": [
+      "holdout-entry-140"
+    ],
+    "negative_kind": "transformation",
+    "rationale": "Title case is a text operation.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "holdout_no_supply_13",
+    "split": "holdout",
+    "category": "no_supply",
+    "query": "Write a bedtime story about a paper boat.",
+    "context_expected": false,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [],
+    "answer_gold": [],
+    "distractors": [
+      "holdout-entry-141"
+    ],
+    "negative_kind": "writing",
+    "rationale": "A story is not a storage-policy request.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "holdout_no_supply_14",
+    "split": "holdout",
+    "category": "no_supply",
+    "query": "Suggest a slogan for an imaginary help desk.",
+    "context_expected": false,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [],
+    "answer_gold": [],
+    "distractors": [
+      "holdout-entry-142"
+    ],
+    "negative_kind": "writing",
+    "rationale": "Imaginary copywriting does not request the actual slogan.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "holdout_no_supply_15",
+    "split": "holdout",
+    "category": "no_supply",
+    "query": "Explain the difference between a noun and a verb.",
+    "context_expected": false,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [],
+    "answer_gold": [],
+    "distractors": [
+      "holdout-entry-143"
+    ],
+    "negative_kind": "general_knowledge",
+    "rationale": "Grammar explanation is not a database question.",
+    "fluent_review_required": false
+  },
+  {
+    "id": "holdout_no_supply_16",
+    "split": "holdout",
+    "category": "no_supply",
+    "query": "If I have ten apples and give away three, how many remain?",
+    "context_expected": false,
+    "mode": "auto",
+    "history": [],
+    "relevance_gold": [],
+    "answer_gold": [],
+    "distractors": [
+      "holdout-entry-144"
+    ],
+    "negative_kind": "general_reasoning",
+    "rationale": "Simple arithmetic does not authorize local inventory context.",
+    "fluent_review_required": false
+  }
+]

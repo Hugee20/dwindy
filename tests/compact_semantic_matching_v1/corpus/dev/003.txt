@@ -1,0 +1,1 @@
+Briar retains discarded notes in the recycle drawer for seven days.

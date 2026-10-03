@@ -1,0 +1,1 @@
+Sable's maximum booking duration is three hours.

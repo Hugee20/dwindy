@@ -1,0 +1,1 @@
+Kiwi disables notifications when the subscriber clears the reminder preference.

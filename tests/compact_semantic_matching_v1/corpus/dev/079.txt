@@ -1,0 +1,1 @@
+Pearl runs its nightly export at 02:15 UTC.

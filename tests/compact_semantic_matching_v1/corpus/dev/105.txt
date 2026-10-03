@@ -1,0 +1,1 @@
+Amber records approvals in the authorization log.

@@ -1,0 +1,1 @@
+Rill writes consent revocations in the privacy register.

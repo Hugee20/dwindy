@@ -1,0 +1,37 @@
+{
+  "hypothesis": "A small local encoder improves Dwindy’s discovery and admission of relevant information while preserving source identity, compact evidence, offline operation and bounded resource use.",
+  "arms": {
+    "A": "Current unicode61 FTS + existing usefulness unchanged.",
+    "R": "Semantic ordering/admission of FTS candidates only; cannot repair missing lexical candidates.",
+    "S": "Exact cosine retrieval across permitted split-local chunks + semantic admission.",
+    "H": "FTS top12 + dense top12 union, RRF k=60, reduce to12 + semantic admission."
+  },
+  "candidate_limit": 12,
+  "supplied_limit": 3,
+  "evidence_budget": 768,
+  "output_reserve": 256,
+  "context_size": 8192,
+  "budget_oracle": "utf8_quarters_v1",
+  "core": "Existing production Core prepares packet; stop/close at TurnStarted before generate. Audit real packet IDs and trimming; no generation. Model-free accounting is not Qwen tokenizer accuracy. Any later real-token validation must be separately authorized and reported.",
+  "lexical": "Unchanged unicode61, BM25 weights2/2/1, first32 original unique non-stopword query terms, existing OR query, duplicate/overlap suppression and context_policy classifications. No Porter.",
+  "bypass": "Existing mode/classification/history query rules retained for all arms; model-only and self-contained turns do not execute encoders. Candidate availability probes, if separately collected, flagged diagnostic only.",
+  "semantic": "No conflict, intent or answerability classifier. Cosine is a selection heuristic; similarity does not establish relevance, truth, support or action capability.",
+  "admission": "R/S/H: for non-directed queries, independently admit selected original passages with cosine >= the one global development threshold. Never let one high-scoring passage authorize other passages. Directed queries retain existing explicit opt-in behavior, reported separately. Ordering remains arm order after admission.",
+  "hybrid": "RRF sum(1/(60+rank)) over source-anchored entry IDs. Ties break by document ID then original chunk ordinal. Dense similarities retained for individual admission; no score-scale mixing or tuned weights.",
+  "ties": "Dense ties: document ID, original chunk ordinal. R reranks only original FTS12. Dedup/overlap policy unchanged; dense/union final candidate packet bound12.",
+  "vector_store": "Evaluation-owned flat float32 vectors + JSON identity table, exact dot products; no vector database or orchestration framework.",
+  "encoding": "Name then current heading then original chunk body. No query, gold labels, source category or split label in encoded document text. Full text remains original supply. Audit tokenizer input length, retained body codepoint span, truncation and gold beyond that span; all misses remain in denominators.",
+  "thresholds": [
+    0.35,
+    0.45,
+    0.55,
+    0.65,
+    0.75,
+    0.85,
+    0.95
+  ],
+  "threshold_rule": "Single threshold per model/arm, same across categories/languages. Evaluate only this predeclared grid, no corpus repair. Choose highest threshold that passes every quality/control gate; resources also mandatory.",
+  "candidate_selection": "If none passes all development gates, stop. Otherwise prefer smallest total model/dependency/RSS footprint among eligible candidates; break ties by selection p95 then semantic final-answer count. No holdout run/freeze automatically.",
+  "runs": "One paired A/R/S/H record per dev case at each declared model/threshold profile; preserve raw candidate/admission/supply and pairwise changes. No library/model substitutions or additional tuning after outputs without a separately versioned evaluation.",
+  "result_contract": "contract.py is evaluation-only concept machinery, not a production abstraction. Public source indicators represent supplied material, not an assertion that Qwen used it or verified facts."
+}

@@ -1,0 +1,1 @@
+Ember prints submissions through the office assistant.

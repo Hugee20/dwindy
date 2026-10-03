@@ -1,0 +1,1 @@
+Aster lets a client cancel an invoice by contacting the billing desk.

@@ -1,0 +1,1 @@
+Yarrow uses AB-71 to mean a payment check is pending.

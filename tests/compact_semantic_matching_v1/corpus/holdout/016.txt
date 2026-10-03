@@ -1,0 +1,1 @@
+Tundra checks attachment names against the permitted extension list.

@@ -1,0 +1,1 @@
+Lynx's encryption happens in the protected staging area.

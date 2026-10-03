@@ -1,0 +1,1 @@
+Marigold previews unfinished uploads in the staff staging browser.

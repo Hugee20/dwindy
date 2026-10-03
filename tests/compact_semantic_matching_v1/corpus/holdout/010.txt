@@ -1,0 +1,1 @@
+Quill begins metrics collection immediately during restart.

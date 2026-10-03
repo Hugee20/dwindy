@@ -1,0 +1,1 @@
+Fern marks an item as packed after the warehouse checklist is signed.

@@ -1,0 +1,1 @@
+Otter's notifications announce reservation changes.

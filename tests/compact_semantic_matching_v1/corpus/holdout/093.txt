@@ -1,0 +1,1 @@
+Muse's /v2/lease endpoint returns the current worker lease.

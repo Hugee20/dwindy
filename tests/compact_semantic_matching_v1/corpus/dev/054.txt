@@ -1,0 +1,1 @@
+Coral expires an unverified invitation after six days.

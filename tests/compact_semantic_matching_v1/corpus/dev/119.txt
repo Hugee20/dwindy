@@ -1,0 +1,1 @@
+Hazel's authentication requires a one-time code.

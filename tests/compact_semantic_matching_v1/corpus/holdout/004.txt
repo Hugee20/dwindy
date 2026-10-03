@@ -1,0 +1,1 @@
+Nebula locates customer identifiers in the membership card.
