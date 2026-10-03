@@ -1,0 +1,239 @@
+{
+ "id": "uk_prime_minister",
+ "author": "seen",
+ "role": "dev",
+ "order": 4,
+ "message": "Who is the current Prime Minister of the United Kingdom?",
+ "expected": "answerable",
+ "provenance": "reach_v2 dev",
+ "split": "dev",
+ "synthetic": false,
+ "detected": {
+  "freshness": true,
+  "explicit_search": false
+ },
+ "query": "current prime minister united kingdom",
+ "minimize_reason": null,
+ "captured_at": "2026-10-02T11:18:39+00:00",
+ "subject_query": "prime minister united kingdom",
+ "h1": {
+  "url": "https://en.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&generator=search&gsrsearch=current+prime+minister+united+kingdom&gsrlimit=3&prop=extracts%7Cinfo&exintro=1&explaintext=1&exsentences=5&exlimit=3&inprop=url&list=search&srsearch=current+prime+minister+united+kingdom&srlimit=3&srprop=snippet",
+  "status": 200,
+  "seconds": 2.248,
+  "bytes": 5329,
+  "attempts": [],
+  "body": {
+   "batchcomplete": true,
+   "continue": {
+    "sroffset": 3,
+    "gsroffset": 3,
+    "continue": "gsroffset||"
+   },
+   "query": {
+    "pages": [
+     {
+      "pageid": 24150,
+      "ns": 0,
+      "title": "Prime Minister of the United Kingdom",
+      "index": 3,
+      "extract": "The prime minister of the United Kingdom is the head of government of the United Kingdom. The prime minister advises the sovereign on the exercise of much of the royal prerogative, chairs the Cabinet, and selects its ministers. Modern prime ministers hold office by virtue of their ability to command the confidence of the House of Commons, so they are invariably members of Parliament. \nThe office of prime minister is not established by any statute or constitutional document, but exists only by long-established convention, whereby the monarch appoints as prime minister the person most likely to command the confidence of the House of Commons. In practice, this is the leader of the political party that holds the largest number of seats in the Commons.",
+      "contentmodel": "wikitext",
+      "pagelanguage": "en",
+      "pagelanguagehtmlcode": "en",
+      "pagelanguagedir": "ltr",
+      "touched": "2026-10-02T07:17:58Z",
+      "lastrevid": 1376685200,
+      "length": 132081,
+      "fullurl": "https://en.wikipedia.org/wiki/Prime_Minister_of_the_United_Kingdom",
+      "editurl": "https://en.wikipedia.org/w/index.php?title=Prime_Minister_of_the_United_Kingdom&action=edit",
+      "canonicalurl": "https://en.wikipedia.org/wiki/Prime_Minister_of_the_United_Kingdom"
+     },
+     {
+      "pageid": 2152548,
+      "ns": 0,
+      "title": "List of prime ministers of the United Kingdom",
+      "index": 1,
+      "extract": "The prime minister of the United Kingdom is the principal minister of the Crown of His Majesty's Government, and the head of the British Cabinet. \nThere is no specific date for when the office of prime minister first appeared, as the role was not created but rather evolved over time through a merger of duties. The term was regularly, if informally, used by Robert Walpole by the 1730s. It was used in the House of Commons as early as 1805, and it was certainly in parliamentary use by the 1880s, but did not become the official title until 1905, when Henry Campbell-Bannerman was prime minister.  \nHistorians generally consider Robert Walpole, who led the government of the Kingdom of Great Britain for over twenty years from 1721, to be the first prime minister.",
+      "contentmodel": "wikitext",
+      "pagelanguage": "en",
+      "pagelanguagehtmlcode": "en",
+      "pagelanguagedir": "ltr",
+      "touched": "2026-09-30T18:13:33Z",
+      "lastrevid": 1377050810,
+      "length": 148668,
+      "fullurl": "https://en.wikipedia.org/wiki/List_of_prime_ministers_of_the_United_Kingdom",
+      "editurl": "https://en.wikipedia.org/w/index.php?title=List_of_prime_ministers_of_the_United_Kingdom&action=edit",
+      "canonicalurl": "https://en.wikipedia.org/wiki/List_of_prime_ministers_of_the_United_Kingdom"
+     },
+     {
+      "pageid": 4693901,
+      "ns": 0,
+      "title": "Spouse of the prime minister of the United Kingdom",
+      "index": 2,
+      "extract": "To date, forty-seven women and three men have been married to a British prime minister in office. There have also been four bachelor and nine widower prime ministers; the last bachelor was Edward Heath (1970–1974) and the last widower was Ramsay MacDonald (1924, 1929–1935). The Duke of Grafton (1768–1770) and Boris Johnson (2019–2022) are the only prime ministers to have divorced and remarried while in office.\nThe current prime minister, Andy Burnham, has been married to Marie-France van Heel since 2000.",
+      "contentmodel": "wikitext",
+      "pagelanguage": "en",
+      "pagelanguagehtmlcode": "en",
+      "pagelanguagedir": "ltr",
+      "touched": "2026-09-30T16:29:34Z",
+      "lastrevid": 1373815564,
+      "length": 49791,
+      "fullurl": "https://en.wikipedia.org/wiki/Spouse_of_the_prime_minister_of_the_United_Kingdom",
+      "editurl": "https://en.wikipedia.org/w/index.php?title=Spouse_of_the_prime_minister_of_the_United_Kingdom&action=edit",
+      "canonicalurl": "https://en.wikipedia.org/wiki/Spouse_of_the_prime_minister_of_the_United_Kingdom"
+     }
+    ],
+    "searchinfo": {
+     "totalhits": 21979
+    },
+    "search": [
+     {
+      "ns": 0,
+      "title": "List of prime ministers of the United Kingdom",
+      "pageid": 2152548,
+      "snippet": "The <span class=\"searchmatch\">prime</span> <span class=\"searchmatch\">minister</span> of the <span class=\"searchmatch\">United</span> <span class=\"searchmatch\">Kingdom</span> is the principal <span class=\"searchmatch\">minister</span> of the Crown of His Majesty&#039;s Government, and the head of the British Cabinet. There"
+     },
+     {
+      "ns": 0,
+      "title": "Prime Minister of the United Kingdom",
+      "pageid": 24150,
+      "snippet": "The <span class=\"searchmatch\">prime</span> <span class=\"searchmatch\">minister</span> of the <span class=\"searchmatch\">United</span> <span class=\"searchmatch\">Kingdom</span> is the head of government of the <span class=\"searchmatch\">United</span> <span class=\"searchmatch\">Kingdom</span>. The <span class=\"searchmatch\">prime</span> <span class=\"searchmatch\">minister</span> advises the sovereign on the exercise of much"
+     },
+     {
+      "ns": 0,
+      "title": "Spouse of the prime minister of the United Kingdom",
+      "pageid": 4693901,
+      "snippet": "recent <span class=\"searchmatch\">prime</span> ministerial spouses, The Goldfish Bowl: Married to the <span class=\"searchmatch\">Prime</span> <span class=\"searchmatch\">Minister</span>, 1955–1997, in 2005. List of <span class=\"searchmatch\">prime</span> <span class=\"searchmatch\">ministers</span> of the <span class=\"searchmatch\">United</span> <span class=\"searchmatch\">Kingdom</span> Spouse"
+     }
+    ]
+   }
+  },
+  "results": [
+   {
+    "title": "List of prime ministers of the United Kingdom",
+    "url": "https://en.wikipedia.org/wiki/List_of_prime_ministers_of_the_United_Kingdom",
+    "text": "The prime minister of the United Kingdom is the principal minister of the Crown of His Majesty's Government, and the head of the British Cabinet. There is no specific date for when the office of prime minister first appeared, as the role was not created but rather evolved over time through a merger of duties. The term was regularly, if informally, used by Robert Walpole by the 1730s. It was used in the House of Commons as early as 1805, and it was certainly in parliamentary use by the 1880s, but did not become the official title until 1905, when Henry Campbell-Bannerman was prime minister. Historians generally consider Robert Walpole, who led the government of the Kingdom of Great Britain for over twenty years from 1721, to be the first prime minister. The prime minister of the United Kingdom is the principal minister of the Crown of His Majesty's Government, and the head of the British Cabinet. There"
+   },
+   {
+    "title": "Spouse of the prime minister of the United Kingdom",
+    "url": "https://en.wikipedia.org/wiki/Spouse_of_the_prime_minister_of_the_United_Kingdom",
+    "text": "To date, forty-seven women and three men have been married to a British prime minister in office. There have also been four bachelor and nine widower prime ministers; the last bachelor was Edward Heath (1970–1974) and the last widower was Ramsay MacDonald (1924, 1929–1935). The Duke of Grafton (1768–1770) and Boris Johnson (2019–2022) are the only prime ministers to have divorced and remarried while in office. The current prime minister, Andy Burnham, has been married to Marie-France van Heel since 2000. recent prime ministerial spouses, The Goldfish Bowl: Married to the Prime Minister, 1955–1997, in 2005. List of prime ministers of the United Kingdom Spouse"
+   },
+   {
+    "title": "Prime Minister of the United Kingdom",
+    "url": "https://en.wikipedia.org/wiki/Prime_Minister_of_the_United_Kingdom",
+    "text": "The prime minister of the United Kingdom is the head of government of the United Kingdom. The prime minister advises the sovereign on the exercise of much of the royal prerogative, chairs the Cabinet, and selects its ministers. Modern prime ministers hold office by virtue of their ability to command the confidence of the House of Commons, so they are invariably members of Parliament. The office of prime minister is not established by any statute or constitutional document, but exists only by long-established convention, whereby the monarch appoints as prime minister the person most likely to command the confidence of the House of Commons. In practice, this is the leader of the political party that holds the largest number of seats in the Commons. The prime minister of the United Kingdom is the head of government of the United Kingdom. The prime minister advises the sovereign on the exercise of much"
+   }
+  ]
+ },
+ "h2": {
+  "url": "https://en.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&generator=search&gsrsearch=prime+minister+united+kingdom&gsrlimit=3&prop=extracts%7Crevisions%7Cinfo&exintro=1&explaintext=1&exlimit=3&rvprop=content&rvslots=main&rvsection=0&inprop=url",
+  "status": 200,
+  "seconds": 1.477,
+  "bytes": 27198,
+  "attempts": [
+   {
+    "status": 429,
+    "seconds": 1.092,
+    "waited": 13
+   }
+  ],
+  "body": {
+   "batchcomplete": true,
+   "continue": {
+    "gsroffset": 3,
+    "continue": "gsroffset||"
+   },
+   "query": {
+    "pages": [
+     {
+      "pageid": 24150,
+      "ns": 0,
+      "title": "Prime Minister of the United Kingdom",
+      "index": 1,
+      "extract": "The prime minister of the United Kingdom is the head of government of the United Kingdom. The prime minister advises the sovereign on the exercise of much of the royal prerogative, chairs the Cabinet, and selects its ministers. Modern prime ministers hold office by virtue of their ability to command the confidence of the House of Commons, so they are invariably members of Parliament. \nThe office of prime minister is not established by any statute or constitutional document, but exists only by long-established convention, whereby the monarch appoints as prime minister the person most likely to command the confidence of the House of Commons. In practice, this is the leader of the political party that holds the largest number of seats in the Commons. The prime minister is ex officio also First Lord of the Treasury (an office often associated with the premiership between 1721 and 1895, after 1902 always united to it, and, after 1905, an official title of the position), Minister for the Civil Service, the minister responsible for national security, and Minister for the Union. The prime minister's official residence and office is 10 Downing Street in London.\nThe power of the prime minister depends on the support of their respective party and on the support of the country at large. The appointment of cabinet ministers and granting of honours are done through the prime minister's power of appointment. The prime minister, alongside the cabinet, proposes new legislation and decides on key policies, which are then passed by an act of parliament.\nThe power of the office of prime minister has grown significantly since the first prime minister, Robert Walpole in 1721. The prime minister was originally viewed as the primus inter pares (\"first among equals\"). Prime ministerial power evolved gradually alongside the office itself, and the prime minister has played an increasingly prominent role in British politics since the early 20th century. During the premierships of Margaret Thatcher and Tony Blair, prime ministerial power expanded substantially, and their leaderships in the office were described as \"presidential\" due to their personal wielding of power and tight control over their cabinet. The prime minister is one of the world's most powerful political leaders in modern times. As the leader of the world's fifth largest economy, the prime minister holds significant domestic and international leadership, being the leader of a prominent member state of NATO, the G7 and G20.\nAs of 2026, 59 people (56 men and 3 women) have served as prime minister, with the first, Walpole, taking office on 3 April 1721. The longest-serving prime minister was also Walpole, who served over 20 years, and the shortest-serving was Liz Truss, who served seven weeks. The current prime minister is Andy Burnham who has held the office since 20 July 2026.\n\n",
+      "revisions": [
+       {
+        "slots": {
+         "main": {
+          "contentmodel": "wikitext",
+          "contentformat": "text/x-wiki",
+          "content": "{{Short description|Head of government}}\n{{For|the list|List of prime ministers of the United Kingdom}}\n{{pp-semi-indef|small=yes}}\n{{Use British English|date=April 2013}}\n{{Use dmy dates|date=May 2025}}\n{{Infobox official post\n| post = Prime Minister\n| body = the United Kingdom of Great Britain and Northern Ireland\n| insignia = Coat of arms of the United Kingdom (2022, lesser arms).svg\n| insignia_size = 125px\n| insignia_caption = [[Royal coat of arms of the United Kingdom|Royal arms]] of [[Government of the United Kingdom|His Majesty's Government]]\n| insignia_alt = \n| flag = Flag of the United Kingdom (1-2).svg\n| flag_size = \n| flag_alt = \n| flag_border = yes\n| flag_caption = [[Flag of the United Kingdom]]\n| image = Prime Minister Andy Burnham portrait (cropped 3x4 large).jpg\n| image_size = \n| alt = \n| image_caption = \n| incumbent = [[Andy Burnham]]\n| acting = \n| incumbent_since = 20 July 2026\n| department = {{indented plainlist|\n* [[Government of the United Kingdom]]\n* [[Office for the Prime Minister and Cabinet]]\n* [[Cabinet Office]]\n}}\n| style = {{indented plainlist|\n* Prime Minister (informal)\n* [[The Right Honourable]] (formal)\n* [[Excellency|His Excellency]] (diplomatic)\n}}\n| type = [[Head of government]]\n| status = [[Minister of the Crown|Chief Minister of the Crown]]\n<br/>[[Great Office of State]]\n| abbreviation = \n| member_of = {{indented plainlist|\n* [[Cabinet of the United Kingdom|Cabinet]]\n* [[Privy Council of the United Kingdom|Privy Council]]\n* [[British–Irish Council]]\n* [[National Security Council (United Kingdom)|National Security Council]]\n* [[Council of the Nations and Regions]]\n* [[Prime Minister and Heads of Devolved Governments Council|PM and Heads of Devolved Governments Council]]\n}}\n| reports_to = {{hlist|[[Monarchy of the United Kingdom|Monarch]]|[[Parliament of the United Kingdom|Parliament]]}}\n| residence = {{ubl|[[10 Downing Street]] (official)|[[Chequers]] (country house)}}\n| seat = \n| nominator = \n| appointer = [[Monarchy of the United Kingdom#Appointment of the prime minister|The Monarch]]\n| appointer_qualified = (with their choice limited to the person who can command the [[Confidence motions in the United Kingdom|confidence]] of the [[House of Commons of the United Kingdom|House of Commons]])<ref>{{Cite news |last=Andersson |first=Jasmine |date=31 August 2022 |title=Queen to appoint new prime minister at Balmoral |url=https://www.bbc.com/news/uk-62728328 |url-status=live |archive-url=https://web.archive.org/web/20221008210639/https://www.bbc.com/news/uk-62728328 |archive-date=8 October 2022 |access-date=18 April 2024 |work=[[BBC News]] |language=en-GB}}</ref>\n| term_length = [[At His Majesty's pleasure]]\n| term_length_qualified = \n| constituting_instrument = \n| precursor = \n| formation = \n| first = [[Robert Walpole]]\n| last = \n| abolished = \n| superseded_by = \n| succession = \n| unofficial_names = \n| deputy = ''No fixed position; often held by'':{{blist|[[Deputy Prime Minister of the United Kingdom|Deputy Prime Minister]]|[[First Secretary of State]]}}\n| salary = £166,786 per annum (2024)<!--£75,440 Claimed Salary of PM + £91,346 MP Salary (2024)--><ref>{{Cite web |date=15 December 2022 |title=Salaries of Members of His Majesty's Government – Financial Year 2022–23 |url=https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/1124173/2022-12-07-Ministerial-Salaries-22-23-table.pdf |url-status=live |archive-url=https://web.archive.org/web/20230413011557/https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/1124173/2022-12-07-Ministerial-Salaries-22-23-table.pdf |archive-date=13 April 2023 |access-date=5 April 2023}}</ref><br/>(including £91,346 [[Member of Parliament (United Kingdom)|MP]] salary)<ref>{{Cite web |title=MPs' pay & pensions |url=https://www.theipsa.org.uk/ |url-status=live |archive-url=https://web.archive.org/web/20210709150734/https://www.theipsa.org.uk/ |archive-date=9 July 2021 |access-date=6 July 2024 |website=Independent Parliamentary Standards Authority}}</ref>\n| website = {{URL|https://gov.uk/government/organisations/prime-ministers-office-10-downing-street}}\n| footnotes =\n}}\n{{uk-gov-positions}}\n\nThe '''prime minister of the United Kingdom''' <!--\"prime minister\" is uncapitalized per MOS:JOBTITLES because it is preceded by the modifier \"the\" and denotes a description, not a title-->is the [[head of government]] of the [[United Kingdom]]. The prime minister [[Advice (constitutional law)|advises]] the [[Monarchy of the United Kingdom|sovereign]] on the exercise of much of the [[Royal prerogative in the United Kingdom|royal prerogative]], chairs the [[Cabinet of the United Kingdom|Cabinet]], and selects its [[Minister of the Crown|ministers]]. Modern prime ministers hold office by virtue of their ability to command the confidence of the [[House of Commons of the United Kingdom|House of Commons]], so they are invariably [[Member of Parliament (United Kingdom)|members of Parliament]]. \n\nThe office of prime minister is not established by any statute or constitutional document, but exists only by long-established [[Constitutional conventions of the United Kingdom|convention]], whereby the monarch appoints as prime minister the person most likely to [[Confidence motions in the United Kingdom|command the confidence]] of the House of Commons.<ref>{{Cite book |url=https://www.gov.uk/government/publications/cabinet-manual |title=The Cabinet Manual |date=October 2011 |publisher=[[Cabinet Office]] |edition=1st |page=14 |chapter=The principles of government formation (Section 2.8) |quote=Prime Ministers hold office unless and until they resign. If the prime minister resigns on behalf of the Government, the sovereign will invite the person who appears most likely to be able to command the confidence of the House to serve as prime minister and to form a government. |access-date=24 July 2016 |archive-url=https://web.archive.org/web/20191128225325/https://www.gov.uk/government/publications/cabinet-manual |archive-date=28 November 2019 |url-status=live}}</ref> In practice, this is the leader of the political party that holds the largest number of seats in the Commons. The prime minister is ''[[ex officio]]'' also [[First Lord of the Treasury]] (an office often associated with the premiership between 1721 and 1895, after 1902 always united to it, and, after 1905, an official title of the position), [[Minister for the Civil Service]], the minister responsible for [[national security]],<ref name=\"manual\"/>{{rp|p.22}} and [[Minister for the Union]].<ref>{{Cite web |title=Minister for the Union |url=https://www.gov.uk/government/ministers/minister-for-the-union |url-status=live |archive-url=https://web.archive.org/web/20200719053618/https://www.gov.uk/government/ministers/minister-for-the-union |archive-date=19 July 2020 |access-date=6 September 2022 |publisher=GOV.UK}}</ref> The prime minister's official residence and office is [[10 Downing Street]] in London.<ref>{{Cite web |title=About us – Prime Minister's Office, 10 Downing Street – GOV.UK |url=https://www.gov.uk/government/organisations/prime-ministers-office-10-downing-street/about |url-status=live |archive-url=https://web.archive.org/web/20230325012225/https://www.gov.uk/government/organisations/prime-ministers-office-10-downing-street/about |archive-date=25 March 2023 |access-date=25 March 2023 |website=www.gov.uk |language=en}}</ref>\n\nThe power of the prime minister depends on the support of their respective party and on the support of the country at large.<ref name=\":0\">{{Cite web |date=19 June 2014 |title=Role and powers of the Prime Minister - Political and Constitutional Reform |url=https://publications.parliament.uk/pa/cm201415/cmselect/cmpolcon/351/35108.htm |url-status=live |archive-url=https://web.archive.org/web/20250318230013/https://publications.parliament.uk/pa/cm201415/cmselect/cmpolcon/351/35108.htm |archive-date=March 18, 2025 |access-date=September 16, 2026 |website=House of Commons Publications |language=en-US}}</ref> The appointment of [[Cabinet of the United Kingdom|cabinet ministers]] and granting of [[Honours system in the United Kingdom|honours]] are done through the prime minister's [[power of appointment]].<ref>{{Cite web |title=How government works – GOV.UK |url=https://www.gov.uk/government/how-government-works#who-runs-government |url-status=live |archive-url=https://web.archive.org/web/20130116085400/https://www.gov.uk/government/how-government-works#who-runs-government |archive-date=16 January 2013 |access-date=18 November 2024 |website=www.gov.uk |language=en}}</ref><ref>{{Cite web |title=Governance |url=https://honours.cabinetoffice.gov.uk/about/governance |url-status=live |archive-url=https://web.archive.org/web/20241224184856/https://honours.cabinetoffice.gov.uk/about/governance/ |archive-date=24 December 2024 |access-date=18 November 2024 |website=UK Honours System |language=en}}</ref> The prime minister, alongside the cabinet, proposes new legislation and decides on key policies, which are then passed by an [[act of parliament]].<ref>{{Cite web |title=The executive |url=https://consoc.org.uk/the-constitution-explained/the-executive |url-status=live |archive-url=https://web.archive.org/web/20241112140933/https://consoc.org.uk/the-constitution-explained/the-executive/ |archive-date=12 November 2024 |access-date=12 November 2024 |website=The Constitution Society |language=en-GB}}</ref>\n\nThe power of the office of prime minister has grown significantly since the first prime minister, [[Robert Walpole]] in 1721. The prime minister was originally viewed as the ''[[primus inter pares]]'' (\"first among equals\").<ref name=\":0\" />{{Better source needed|reason=The current source is insufficiently reliable ([[WP:NOTRS]]).|date=July 2026}} Prime ministerial power evolved gradually alongside the office itself, and the prime minister has played an increasingly prominent role in British politics since the early 20th century.<ref>{{Cite web |last1=Blick |first1=Andrew |last2=Jones |first2=George |date=7 June 2010 |title=The power of the Prime Minister |url=https://www.historyandpolicy.org/policy-papers/papers/the-power-of-the-prime-minister |url-status=live |archive-url=https://web.archive.org/web/20151107235151/https://www.historyandpolicy.org/policy-papers/papers/the-power-of-the-prime-minister |archive-date=7 November 2015 |access-date=18 November 2024 |website=History & Policy}}</ref> During the premierships of [[Margaret Thatcher]] and [[Tony Blair]], prime ministerial power expanded substantially, and their leaderships in the office were described as \"presidential\" due to their personal wielding of power and tight control over their cabinet.<ref>{{Cite book |last1=Hayton |first1=Richard |url=https://eprints.whiterose.ac.uk/92565/3/HAYTON%20%26%20HEPPELL%20The%20Presidentialization%20of%20Party%20Politics%20in%20the%20UK.pdf |title=The Presidentialisation of Party Politics in the UK |last2=Heppell |first2=Timothy |date=24 August 2015 |publisher=Palgrave Macmillan |isbn=9781137482457 |pages=5 |chapter=Constitutional structures and the party system in the UK |access-date=1 December 2024 |archive-url=https://web.archive.org/web/20241204094959/https://eprints.whiterose.ac.uk/92565/3/HAYTON%2520%26%2520HEPPELL%2520The%2520Presidentialization%2520of%2520Party%2520Politics%2520in%2520the%2520UK.pdf |archive-date=4 December 2024 |url-status=live}}</ref><ref>{{Cite news |date=8 September 2010 |title=Why Tony Blair's Leadership Journey Failed |url=https://hbr.org/2010/09/why-tony-blairs-leadership-jou |url-status=live |archive-url=https://web.archive.org/web/20241203184152/https://hbr.org/2010/09/why-tony-blairs-leadership-jou |archive-date=3 December 2024 |access-date=18 November 2024 |work=Harvard Business Review |language=en |issn=0017-8012}}</ref><ref>{{Cite web |last=Beckett |first=Charlie |date=13 April 2013 |title=Margaret Thatcher: how she reshaped politics and political communications |url=https://blogs.lse.ac.uk/polis/2013/04/08/margaret-thatcher-how-she-reshaped-politics-and-political-communications |url-status=live |archive-url=https://web.archive.org/web/20241206165905/https://blogs.lse.ac.uk/polis/2013/04/08/margaret-thatcher-how-she-reshaped-politics-and-political-communications/ |archive-date=6 December 2024 |access-date=18 November 2024 |website=LSE Blogs}}</ref> The prime minister is one of the world's most powerful political leaders in modern times.<ref>{{Cite web |last=Koop |first=Avery |date=20 January 2021 |title=History Visualized: The World Leaders In Positions of Power (1970-Today) |url=https://www.visualcapitalist.com/visualized-world-leaders-in-positions-of-power |url-status=live |archive-url=https://web.archive.org/web/20250211073726/https://www.visualcapitalist.com/visualized-world-leaders-in-positions-of-power/ |archive-date=11 February 2025 |access-date=18 November 2024 |website=Visual Capitalist}}</ref> As the leader of the [[List of countries by GDP (nominal)|world's fifth largest economy]], the prime minister holds significant domestic and international leadership, being the leader of a prominent member state of [[NATO]], the [[G7]] and [[G20]].<ref>{{Cite web |title=What is the role of the Prime Minister? |url=https://www.bbc.co.uk/bitesize/articles/zqd8tcw |url-status=live |archive-url=https://web.archive.org/web/20250212134709/https://www.bbc.co.uk/bitesize/articles/zqd8tcw |archive-date=12 February 2025 |access-date=12 February 2025 |website=BBC Bitesize |language=en-GB |quote=As the UK is a member of NATO...the Prime Minister's decisions about use of the armed forces may involve persuading other leaders into agreement...The UK is one of the seven 'advanced economies' in the G7 group of nations. This gives the Prime Minister influence on global issues and economics.}}</ref>{{Sfn|Seldon|Meakin|Thoms|2021|p=87}}<ref>{{Cite press release |title=Prime Minister to drive forward UK growth as he meets world's leading economic powers at G20 |date=18 November 2024 |publisher=Prime Minister's Office |url=https://www.gov.uk/government/news/prime-minister-to-drive-forward-uk-growth-as-he-meets-worlds-leading-economic-powers-at-g20#:~:text=Prime%20Minister%20Keir%20Starmer%20said,values%20differ%20from%20o |language=en |access-date=18 November 2024 |url-status=live |archive-url=https://web.archive.org/web/20241118103803/https://www.gov.uk/government/news/prime-minister-to-drive-forward-uk-growth-as-he-meets-worlds-leading-economic-powers-at-g20#:~:text=Prime%20Minister%20Keir%20Starmer%20said,values%20differ%20from%20o |archive-date=18 November 2024}}</ref>\n\n{{As of|2026}}, [[List of prime ministers of the United Kingdom|59<!--59--> people]] (56<!--56--> men and 3 women) have served as prime minister, with the first, [[Robert Walpole|Walpole]], taking office on 3 April 1721. The [[List of prime ministers of the United Kingdom by length of tenure|longest-serving prime minister]] was also Walpole, who served over 20 years, and the shortest-serving was [[Liz Truss]], who served seven weeks. The current prime minister is [[Andy Burnham]] who has held the office since 20 July 2026."
+         }
+        }
+       }
+      ],
+      "contentmodel": "wikitext",
+      "pagelanguage": "en",
+      "pagelanguagehtmlcode": "en",
+      "pagelanguagedir": "ltr",
+      "touched": "2026-10-02T07:17:58Z",
+      "lastrevid": 1376685200,
+      "length": 132081,
+      "fullurl": "https://en.wikipedia.org/wiki/Prime_Minister_of_the_United_Kingdom",
+      "editurl": "https://en.wikipedia.org/w/index.php?title=Prime_Minister_of_the_United_Kingdom&action=edit",
+      "canonicalurl": "https://en.wikipedia.org/wiki/Prime_Minister_of_the_United_Kingdom"
+     },
+     {
+      "pageid": 2152548,
+      "ns": 0,
+      "title": "List of prime ministers of the United Kingdom",
+      "index": 2,
+      "extract": "The prime minister of the United Kingdom is the principal minister of the Crown of His Majesty's Government, and the head of the British Cabinet. \nThere is no specific date for when the office of prime minister first appeared, as the role was not created but rather evolved over time through a merger of duties. The term was regularly, if informally, used by Robert Walpole by the 1730s. It was used in the House of Commons as early as 1805, and it was certainly in parliamentary use by the 1880s, but did not become the official title until 1905, when Henry Campbell-Bannerman was prime minister.  \nHistorians generally consider Robert Walpole, who led the government of the Kingdom of Great Britain for over twenty years from 1721, to be the first prime minister. Walpole is also the longest-serving British prime minister by this definition. The first prime minister of the United Kingdom of Great Britain and Ireland was William Pitt the Younger at its creation on 1 January 1801. The first to use the title in an official act was Benjamin Disraeli who signed the 1878 Treaty of Berlin as \"Prime Minister of Her Britannic Majesty\".\nIn 1905, the post of prime minister was officially given recognition in the order of precedence, with the incumbent Henry Campbell-Bannerman the first officially referred to as \"prime minister\". The first prime minister of the current United Kingdom of Great Britain and Northern Ireland upon its creation in 1922 (when 26 Irish counties seceded and created the Irish Free State) was Andrew Bonar Law, although the country was not renamed officially until 1927, when Stanley Baldwin was the serving prime minister.",
+      "revisions": [
+       {
+        "slots": {
+         "main": {
+          "contentmodel": "wikitext",
+          "contentformat": "text/x-wiki",
+          "content": "{{Short description|none}}<!-- See WP:SDNONE for list articles -->\n{{featured list}}\n{{Use dmy dates|date=May 2021}}\n{{Use British English|date=August 2021}}\n{{Multiple image\n| perrow            = 2\n| header            = \n| image1            = Robert-Walpole-1st-Earl-of-Orford.jpg\n| caption1          = [[Robert Walpole]] is considered the first prime minister of [[Kingdom of Great Britain|Great Britain]].\n| image3            = Sir Winston Churchill - 19086236948.jpg\n| caption3          = [[Winston Churchill]] was prime minister during much of the [[Second World War]].\n| image4            = Margaret Thatcher stock portrait (cropped).jpg\n| caption4          = [[Margaret Thatcher]] was the first female prime minister.\n| image6            = Prime Minister Andy Burnham portrait (cropped 3x4 large).jpg\n| caption6          = [[Andy Burnham]] is the current prime minister.\n| footer            = \n| total_width       = 300\n| align             = Right\n}}\nThe [[prime minister of the United Kingdom]] is the principal [[minister of the Crown]] of [[Government of the United Kingdom|His Majesty's Government]], and the head of the [[Cabinet of the United Kingdom|British Cabinet]]. \n\nThere is no specific date for when the office of prime minister first appeared, as the role was not created but rather evolved over time through a merger of duties.{{Sfn|Hennessy|2001|pp=39–40}} The term was regularly, if informally, used by [[Robert Walpole]] by the 1730s.<ref>{{Cite ODNB |title=Walpole, Robert, first earl of Orford (1676–1745), prime minister |url=https://www.oxforddnb.com/display/10.1093/ref:odnb/9780198614128.001.0001/odnb-9780198614128-e-28601 |access-date=2025-04-11 |language=en |doi=10.1093/ref:odnb/28601}}</ref> It was used in the [[House of Commons of Great Britain|House of Commons]] as early as 1805,{{Sfn|Castlereagh|1805}} and it was certainly in parliamentary use by the 1880s,{{Sfnm|1a1=Eardley-Wilmot|1y=1885|2a1=Macfarlane|2y=1885}} but did not become the official title until 1905, when [[Henry Campbell-Bannerman]] was prime minister.  \n\nHistorians generally consider [[Robert Walpole]], who led the government of the [[Kingdom of Great Britain]] for over twenty years from 1721,{{Sfnm|1a1=Clarke|1y=1999|1p=266|2a1=Hennessy|2y=2001|2pp=39–40}} to be the first prime minister. Walpole is also the longest-serving British prime minister by this definition.{{Sfn|BBC News|1998}} The first prime minister of the [[United Kingdom of Great Britain and Ireland]] was [[William Pitt the Younger]] at its creation on 1 January 1801.{{Sfnm|1a1=Burt|1y=1874|1p=106|2a1=Castlereagh|2y=1805}} The first to use the title in an official act was [[Benjamin Disraeli]] who signed the [[1878 Treaty of Berlin]] as \"Prime Minister of Her Britannic Majesty\".{{Sfn|Bogdanor|1997}}\n\nIn 1905, the post of prime minister was officially given recognition in the [[Orders of precedence in the United Kingdom|order of precedence]],{{Sfn|Marriott|1923|page=83}} with the incumbent [[Henry Campbell-Bannerman]] the first officially referred to as \"prime minister\". The first prime minister of the current [[United Kingdom of Great Britain and Northern Ireland]] upon its creation in 1922 (when 26 Irish counties seceded and created the [[History of the Republic of Ireland|Irish Free State]]) was [[Andrew Bonar Law]],{{Sfn|Law|1922}} although the country was not renamed officially until 1927, when [[Stanley Baldwin]] was the serving prime minister.{{Sfn|Royal and Parliamentary Titles Act|1927}}"
+         }
+        }
+       }
+      ],
+      "contentmodel": "wikitext",
+      "pagelanguage": "en",
+      "pagelanguagehtmlcode": "en",
+      "pagelanguagedir": "ltr",
+      "touched": "2026-09-30T18:13:33Z",
+      "lastrevid": 1377050810,
+      "length": 148668,
+      "fullurl": "https://en.wikipedia.org/wiki/List_of_prime_ministers_of_the_United_Kingdom",
+      "editurl": "https://en.wikipedia.org/w/index.php?title=List_of_prime_ministers_of_the_United_Kingdom&action=edit",
+      "canonicalurl": "https://en.wikipedia.org/wiki/List_of_prime_ministers_of_the_United_Kingdom"
+     },
+     {
+      "pageid": 4693901,
+      "ns": 0,
+      "title": "Spouse of the prime minister of the United Kingdom",
+      "index": 3,
+      "extract": "To date, forty-seven women and three men have been married to a British prime minister in office. There have also been four bachelor and nine widower prime ministers; the last bachelor was Edward Heath (1970–1974) and the last widower was Ramsay MacDonald (1924, 1929–1935). The Duke of Grafton (1768–1770) and Boris Johnson (2019–2022) are the only prime ministers to have divorced and remarried while in office.\nThe current prime minister, Andy Burnham, has been married to Marie-France van Heel since 2000.\n\n",
+      "revisions": [
+       {
+        "slots": {
+         "main": {
+          "contentmodel": "wikitext",
+          "contentformat": "text/x-wiki",
+          "content": "{{Short description|none}}\n{{refimprove|date=August 2020}}\n{{EngvarB|date=May 2015}}\n{{Use dmy dates|date=July 2024}}\n{{Infobox political role\n| post = Spouse of the Prime Minister{{clear}}\n| body = the United Kingdom\n| style = \n| image = Prime Minister Andy Burnham arrives at 10 Downing Street (cropped).jpg\n| incumbent_label = Current\n| incumbent = [[Marie-France van Heel]]\n| incumbent_since = 20 July 2026\n| residence = [[10 Downing Street]] (customary)\n| formation = {{start date and age|1721|04|03|p=1|df=y}}\n| first = [[Catherine, Lady Walpole]]<!--\"the 1st Lady Walpole\" is not correct at all-->\n| unofficial_names =\n}}\n\nTo date, forty-seven women and three men have been married to a [[British prime minister]] in office. There have also been four bachelor and nine widower prime ministers; the last bachelor was [[Edward Heath]] (1970–1974) and the last widower was [[Ramsay MacDonald]] (1924, 1929–1935). The [[Augustus FitzRoy, 3rd Duke of Grafton|Duke of Grafton]] (1768–1770) and [[Boris Johnson]] (2019–2022) are the only prime ministers to have divorced and remarried while in office.\n\nThe current prime minister, [[Andy Burnham]], has been married to [[Marie-France van Heel]] since 2000."
+         }
+        }
+       }
+      ],
+      "contentmodel": "wikitext",
+      "pagelanguage": "en",
+      "pagelanguagehtmlcode": "en",
+      "pagelanguagedir": "ltr",
+      "touched": "2026-09-30T16:29:34Z",
+      "lastrevid": 1373815564,
+      "length": 49791,
+      "fullurl": "https://en.wikipedia.org/wiki/Spouse_of_the_prime_minister_of_the_United_Kingdom",
+      "editurl": "https://en.wikipedia.org/w/index.php?title=Spouse_of_the_prime_minister_of_the_United_Kingdom&action=edit",
+      "canonicalurl": "https://en.wikipedia.org/wiki/Spouse_of_the_prime_minister_of_the_United_Kingdom"
+     }
+    ]
+   }
+  }
+ },
+ "expansions": [],
+ "year": 2026
+}

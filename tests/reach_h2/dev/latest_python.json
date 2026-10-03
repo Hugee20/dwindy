@@ -1,0 +1,264 @@
+{
+ "id": "latest_python",
+ "author": "seen",
+ "role": "dev",
+ "order": 2,
+ "message": "What is the latest stable version of Python?",
+ "expected": "answerable",
+ "provenance": "reach_v2 dev",
+ "split": "dev",
+ "synthetic": false,
+ "detected": {
+  "freshness": true,
+  "explicit_search": false
+ },
+ "query": "latest stable version python",
+ "minimize_reason": null,
+ "captured_at": "2026-10-02T11:17:57+00:00",
+ "subject_query": "stable version python",
+ "h1": {
+  "url": "https://en.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&generator=search&gsrsearch=latest+stable+version+python&gsrlimit=3&prop=extracts%7Cinfo&exintro=1&explaintext=1&exsentences=5&exlimit=3&inprop=url&list=search&srsearch=latest+stable+version+python&srlimit=3&srprop=snippet",
+  "status": 200,
+  "seconds": 1.726,
+  "bytes": 4954,
+  "attempts": [],
+  "body": {
+   "batchcomplete": true,
+   "continue": {
+    "sroffset": 3,
+    "gsroffset": 3,
+    "continue": "gsroffset||"
+   },
+   "query": {
+    "pages": [
+     {
+      "pageid": 23862,
+      "ns": 0,
+      "title": "Python (programming language)",
+      "index": 1,
+      "extract": "Python is a high-level, general-purpose programming language that emphasizes code readability, simplicity, and ease-of-writing with the use of significant indentation, an extensive (\"batteries-included\") standard library, and garbage collection. Python supports multiple programming paradigms but with an emphasis on object-oriented programming and dynamic typing.\nGuido van Rossum began working on Python in the late 1980s as a successor to the ABC programming language. Python 3.0, released in 2008, was a major revision and not completely backward-compatible with earlier versions. Beginning with Python 3.5, capabilities and keywords for typing were added to the language, allowing optional static typing.",
+      "contentmodel": "wikitext",
+      "pagelanguage": "en",
+      "pagelanguagehtmlcode": "en",
+      "pagelanguagedir": "ltr",
+      "touched": "2026-10-02T02:28:28Z",
+      "lastrevid": 1377929544,
+      "length": 144806,
+      "fullurl": "https://en.wikipedia.org/wiki/Python_(programming_language)",
+      "editurl": "https://en.wikipedia.org/w/index.php?title=Python_(programming_language)&action=edit",
+      "canonicalurl": "https://en.wikipedia.org/wiki/Python_(programming_language)"
+     },
+     {
+      "pageid": 2167925,
+      "ns": 0,
+      "title": "Python Imaging Library",
+      "index": 3,
+      "extract": "Python Imaging Library is a free and open-source additional library for the Python programming language that adds support for opening, manipulating, and saving many different image file formats. It is available for Windows, macOS and Linux. The latest version of PIL is 1.1.7, was released in September 2009 and supports Python 1.5.2–2.7.\nDevelopment of the original project, known as PIL, was discontinued in 2011. Subsequently, a successor project named Pillow forked the PIL repository and added Python 3.x support.",
+      "contentmodel": "wikitext",
+      "pagelanguage": "en",
+      "pagelanguagehtmlcode": "en",
+      "pagelanguagedir": "ltr",
+      "touched": "2026-09-29T19:04:00Z",
+      "lastrevid": 1359413382,
+      "length": 7167,
+      "fullurl": "https://en.wikipedia.org/wiki/Python_Imaging_Library",
+      "editurl": "https://en.wikipedia.org/w/index.php?title=Python_Imaging_Library&action=edit",
+      "canonicalurl": "https://en.wikipedia.org/wiki/Python_Imaging_Library"
+     },
+     {
+      "pageid": 21356332,
+      "ns": 0,
+      "title": "History of Python",
+      "index": 2,
+      "extract": "The programming language Python was conceived in the late 1980s, and its implementation was started in December 1989 by Guido van Rossum at CWI in the Netherlands as a successor to ABC capable of exception handling and interfacing with the Amoeba operating system. Van Rossum was Python's principal author and had a central role in deciding the direction of Python (as reflected in the title given to him by the Python community, Benevolent Dictator for Life (BDFL)) until stepping down as leader on July 12, 2018. Python was named after the BBC TV show Monty Python's Flying Circus.\nPython 2.0 was released on October 16, 2000, with many major new features, such as list comprehensions, cycle-detecting garbage collector, reference counting, memory management and support for Unicode, along with a change to the development process itself, with a shift to a more transparent and community-backed process.\nPython 3.0, a major, backwards-incompatible release, was released on December 3, 2008 after a long period of testing.",
+      "contentmodel": "wikitext",
+      "pagelanguage": "en",
+      "pagelanguagehtmlcode": "en",
+      "pagelanguagedir": "ltr",
+      "touched": "2026-10-02T00:43:40Z",
+      "lastrevid": 1377930390,
+      "length": 59915,
+      "fullurl": "https://en.wikipedia.org/wiki/History_of_Python",
+      "editurl": "https://en.wikipedia.org/w/index.php?title=History_of_Python&action=edit",
+      "canonicalurl": "https://en.wikipedia.org/wiki/History_of_Python"
+     }
+    ],
+    "searchinfo": {
+     "totalhits": 385
+    },
+    "search": [
+     {
+      "ns": 0,
+      "title": "Python (programming language)",
+      "pageid": 23862,
+      "snippet": "policy. <span class=\"searchmatch\">Python</span> 3.15.0rc2 (which defaults to UTF-8) is out in preview, and the <span class=\"searchmatch\">stable</span> release is expected to launch in October 2026. Earlier <span class=\"searchmatch\">versions</span> in the"
+     },
+     {
+      "ns": 0,
+      "title": "History of Python",
+      "pageid": 21356332,
+      "snippet": "automates the translation of <span class=\"searchmatch\">Python</span> 2 code to <span class=\"searchmatch\">Python</span> 3. As of June 2026[update], <span class=\"searchmatch\">Python</span> 3.14.6 is the <span class=\"searchmatch\">latest</span> <span class=\"searchmatch\">stable</span> release. This <span class=\"searchmatch\">version</span> currently receives full"
+     },
+     {
+      "ns": 0,
+      "title": "Python Imaging Library",
+      "pageid": 2167925,
+      "snippet": "for Windows, macOS and Linux. The <span class=\"searchmatch\">latest</span> <span class=\"searchmatch\">version</span> of PIL is 1.1.7, was released in September 2009 and supports <span class=\"searchmatch\">Python</span> 1.5.2–2.7. Development of the original"
+     }
+    ]
+   }
+  },
+  "results": [
+   {
+    "title": "Python (programming language)",
+    "url": "https://en.wikipedia.org/wiki/Python_(programming_language)",
+    "text": "Python is a high-level, general-purpose programming language that emphasizes code readability, simplicity, and ease-of-writing with the use of significant indentation, an extensive (\"batteries-included\") standard library, and garbage collection. Python supports multiple programming paradigms but with an emphasis on object-oriented programming and dynamic typing. Guido van Rossum began working on Python in the late 1980s as a successor to the ABC programming language. Python 3.0, released in 2008, was a major revision and not completely backward-compatible with earlier versions. Beginning with Python 3.5, capabilities and keywords for typing were added to the language, allowing optional static typing. policy. Python 3.15.0rc2 (which defaults to UTF-8) is out in preview, and the stable release is expected to launch in October 2026. Earlier versions in the"
+   },
+   {
+    "title": "History of Python",
+    "url": "https://en.wikipedia.org/wiki/History_of_Python",
+    "text": "The programming language Python was conceived in the late 1980s, and its implementation was started in December 1989 by Guido van Rossum at CWI in the Netherlands as a successor to ABC capable of exception handling and interfacing with the Amoeba operating system. Van Rossum was Python's principal author and had a central role in deciding the direction of Python (as reflected in the title given to him by the Python community, Benevolent Dictator for Life (BDFL)) until stepping down as leader on July 12, 2018. Python was named after the BBC TV show Monty Python's Flying Circus. Python 2.0 was released on October 16, 2000, with many major new features, such as list comprehensions, cycle-detecting garbage collector, reference counting, memory management and support for Unicode, along with a change to the development process itself, with a shift to a more transparent and community-backed process. Python 3.0, a major, backwards-incompatible release, was released on December 3, 2008 after a long period of testing. automates the translation of Python 2 code to Python 3. As of June 2026[update], Python 3.14.6 is the latest stable release. This version currently receives full"
+   },
+   {
+    "title": "Python Imaging Library",
+    "url": "https://en.wikipedia.org/wiki/Python_Imaging_Library",
+    "text": "Python Imaging Library is a free and open-source additional library for the Python programming language that adds support for opening, manipulating, and saving many different image file formats. It is available for Windows, macOS and Linux. The latest version of PIL is 1.1.7, was released in September 2009 and supports Python 1.5.2–2.7. Development of the original project, known as PIL, was discontinued in 2011. Subsequently, a successor project named Pillow forked the PIL repository and added Python 3.x support. for Windows, macOS and Linux. The latest version of PIL is 1.1.7, was released in September 2009 and supports Python 1.5.2–2.7. Development of the original"
+   }
+  ]
+ },
+ "h2": {
+  "url": "https://en.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&generator=search&gsrsearch=stable+version+python&gsrlimit=3&prop=extracts%7Crevisions%7Cinfo&exintro=1&explaintext=1&exlimit=3&rvprop=content&rvslots=main&rvsection=0&inprop=url",
+  "status": 200,
+  "seconds": 2.894,
+  "bytes": 32170,
+  "attempts": [],
+  "body": {
+   "batchcomplete": true,
+   "continue": {
+    "gsroffset": 3,
+    "continue": "gsroffset||"
+   },
+   "query": {
+    "pages": [
+     {
+      "pageid": 23862,
+      "ns": 0,
+      "title": "Python (programming language)",
+      "index": 2,
+      "extract": "Python is a high-level, general-purpose programming language that emphasizes code readability, simplicity, and ease-of-writing with the use of significant indentation, an extensive (\"batteries-included\") standard library, and garbage collection. Python supports multiple programming paradigms but with an emphasis on object-oriented programming and dynamic typing.\nGuido van Rossum began working on Python in the late 1980s as a successor to the ABC programming language. Python 3.0, released in 2008, was a major revision and not completely backward-compatible with earlier versions. Beginning with Python 3.5, capabilities and keywords for typing were added to the language, allowing optional static typing. As of 2026, the Python Software Foundation supports Python 3.11, 3.12, 3.13, and 3.14, following the project's annual release cycle and five-year support policy. Python 3.15.0rc2 (which defaults to UTF-8) is out in preview, and the stable release is expected to launch in October 2026. Earlier versions in the 3.x series have reached end-of-life and no longer receive security updates. \nPython is widely taught as an introductory programming language.",
+      "revisions": [
+       {
+        "slots": {
+         "main": {
+          "contentmodel": "wikitext",
+          "contentformat": "text/x-wiki",
+          "content": "{{Short description|General-purpose programming language}}\n{{Use dmy dates|date=November 2021}}\n{{Use American English|date=December 2024}}\n{{Infobox programming language\n| logo = Python-logo-notext.svg\n| logo size = 150px\n| paradigm = [[Multi-paradigm]]: [[Object-oriented programming|object-oriented]],<ref>{{Cite web |title=General Python FAQ – Python 3 documentation |url=https://docs.python.org/3/faq/general.html#what-is-python |access-date=7 July 2024 |website=docs.python.org}}</ref> [[Procedural programming|procedural]] ([[Imperative programming|imperative]]), [[Functional programming|functional]], [[Structured programming|structured]], [[Reflective programming|reflective]]\n| released = {{start date and age|1991|02|20|df=y}}<ref name=\"alt-sources-history\">{{cite web |title=Python 0.9.1 part 01/21 |url=https://www.tuhs.org/Usenet/alt.sources/1991-February/001749.html |url-status=live |archive-url=https://web.archive.org/web/20210811171015/https://www.tuhs.org/Usenet/alt.sources/1991-February/001749.html |archive-date=11 August 2021 |access-date=11 August 2021 |publisher=alt.sources archives}}</ref>\n| designer = [[Guido van Rossum]]\n| developer = [[Python Software Foundation]]\n| latest release version = {{wikidata|property|edit|reference|P548=Q2804309|P348}}\n| latest release date = {{start date and age|{{wikidata|qualifier|single|P548=Q2804309|P348|P577}}}}\n| latest preview version = <!-- 3.15.0rc1 4 August 2026 {{wikidata|property|edit|reference|P548=Q51930650|P348}} doesn't work, nor what AI suggested as fix: {{#invoke:Wikidata | claim | P348 | qualifier = P548:Q51930650 | rank = best }} -->\n| latest preview date = {{start date and age|2025|08|18|df=y}} <!-- {{start date and age|{{wikidata|qualifier|Q28865 |P548=Q51930650|P348|P577}}}} nor\n{{#invoke:Wikidata | qualifier | P348 | P577 | qualifier = P548:Q51930650 | rank = best | formatting = date }}\n-->\n| typing = [[Duck typing|Duck]], [[Dynamic typing|dynamic]], [[Strong and weak typing|strong]];<ref>{{Cite web |title=Why is Python a dynamic language and also a strongly typed language |url=https://wiki.python.org/moin/Why%20is%20Python%20a%20dynamic%20language%20and%20also%20a%20strongly%20typed%20language |url-status=live |archive-url=https://web.archive.org/web/20210314173706/https://wiki.python.org/moin/Why%20is%20Python%20a%20dynamic%20language%20and%20also%20a%20strongly%20typed%20language |archive-date=14 March 2021 |access-date=27 January 2021 |website=Python Wiki}}</ref> [[Optional typing|optional type annotations]]{{efn|since 3.5, but those hints are ignored, except with unofficial tools<ref name=\"type_hint-PEP\"/>}}\n| memory management = [[Garbage collection (computer science)|Garbage-collected]]\n| implementations = [[CPython]], [[PyPy]], [[MicroPython]], [[CircuitPython]], [[IronPython]], [[Jython]], [[Stackless Python]]\n| platform = 64-bit [[Linux]], [[macOS]]; 64- and 32-bit [[Microsoft Windows|Windows]] 10 <small> and later</small> and more{{efn|* '''Tier 1''': 64-bit [[Linux]], [[macOS]]; 64- and 32-bit [[Windows]]<!-- Windows 8.1 supported with 3.11 (previously 3.10) to 3.13 but only Windows 10+ with latest Python 3.14+--><ref>{{Cite web |last1=von Löwis |first1=Martin |last2=Cannon |first2=Brett |title=PEP 11 – CPython platform support |url=https://peps.python.org/pep-0011/ |access-date=22 April 2024 |website=Python Enhancement Proposals (PEPs) |language=en}}</ref><!--Not \"Windows for IoT and embedded systems\"; NOT UNIX, it's not listed, nor any Unix-like, maybe implied Possibly Windows 8.1 is also supported on at least Python 3.9? Might also work on latest, seems too minor to mention, for any Python version. Windows 7 and 8 are prevented to work on Python 3.9, though it might not rule out 8.1, also some info like this might be a bit wrong:\n\n\"Windows 8 and newer for Python 3.9\nFreeBSD 10 and newer\nmacOS Snow Leopard (macOS 10.6, 2008) and newer\"\n-->\n* '''Tier 2''': E.g. 32-bit [[WebAssembly]] (WASI) <!-- (WASI SDK, Wasmtime) meaning wasm32-unknown-wasi; wasm32-unknown-emscripten is unsupported since 3.13. aarch64-pc-windows-msvc and powerpc64le-unknown-linux-gnu -->\n* '''Tier 3''': 64-bit [[Android (operating system)|Android]]<!-- too much trivia to mention \"5.0+\", even if true, it seemingly is, and corresponding API levels, but those are ancient, possibly even only way more recent is officially supported? -->,<ref>{{Cite web |title=PEP 738 – Adding Android as a supported platform {{!}} peps.python.org |url=https://peps.python.org/pep-0738/ |access-date=19 May 2024 |website=Python Enhancement Proposals (PEPs) |language=en}}</ref> [[iOS]], [[FreeBSD]], and (32-bit) [[Raspberry Pi OS]]<br />Unofficial (or has been known to work): Other [[Unix-like]]/[[BSD]] variants) and a few other platforms<!-- Used to support many more, only few support latest 3.9+ --><ref name=\"DownloadOther\"/><ref>{{Cite web |title=test – Regression tests package for Python |url=https://docs.python.org/3.7/library/test.html?highlight=android#test.support.is_android |url-status=live |archive-url=https://web.archive.org/web/20220517151240/https://docs.python.org/3.7/library/test.html?highlight=android#test.support.is_android |archive-date=17 May 2022 |access-date=17 May 2022 |website=Python 3.7.17 documentation}}</ref><ref>{{Cite web |title=platform – Access to underlying platform's identifying data |url=https://docs.python.org/3.10/library/platform.html?highlight=android |url-status=live |archive-url=https://web.archive.org/web/20220517150826/https://docs.python.org/3/library/platform.html?highlight=android |archive-date=17 May 2022 |access-date=17 May 2022 |website=Python 3.10.4 documentation}}</ref>}}\n\n<!--\nhttps://mail.python.org/archives/list/python-committers@python.org/thread/K757345KX6W5ZLTWYBUXOXQTJJTL7GW5/\n* Alpine / musl is not supported, because our test suite is failing due to bugs and missing features in musl libc.\n* NetBSD and OpenBSD are in a similar state as Alpine: no stable buildbot and AFAIK tests are failing\n* [outdated]\n* Cygwin and MinGW are officially unsupported, see bpo-45537 and bpo-45538\n\n..\n\nThe policy Brett is proposing just makes that explicit and gives us something to point to when someone comes up with a patch to support PDP-11, or when someone's patch for Android breaks Windows. I don't think we'll wind up with tier-support police; if a core dev wants to take responsibility for a patch for a platform that is not tier 3 or above, they can still do that. But if it breaks things for a supported platform, it will be reverted.\n\n..\n\nE.g. Android support was even funded by the PSF recently.[outdated]\nAlso, note that the stdlib does in fact support other Python implementations reusing (parts of) it, e.g. Jython, PyPy and IronPython. Again, without core devs backing these.\n-->\n| operating system =\n| license = [[Python Software Foundation License]]\n| file ext = .py,<ref name=\"venners-interview-pt-1\" /> .pyc,<ref name=pep488>{{cite web |last1=Cannon |first1=Brett |date=20 February 2015 |title=PEP 488 – Elimination of PYO files |url=https://peps.python.org/pep-0488/ |website=Python Enhancement Proposals (PEPs) |access-date=28 February 2026 |archive-url=https://web.archive.org/web/20260116004856/https://peps.python.org/pep-0488/ |archive-date=16 January 2026 |language=en |quote=A PYC file is the bytecode file generated and read from when no optimization level is specified at interpreter startup [...] <code>.pyc</code> |url-status=live}}</ref> .pyd,<ref name=\"pep273\">{{cite web |last1=Ahlstrom |first1=James C. |title=PEP 273 – Import Modules from Zip Archives |url=https://peps.python.org/pep-0273/ |website=Python Enhancement Proposals (PEPs) |access-date=28 February 2026 |archive-url=https://web.archive.org/web/20260225044635/https://peps.python.org/pep-0273/ |archive-date=25 Feb 2026 |language=en |date=11 October 2001 |quote=Dynamic modules have extensions like <code>.dll</code>, <code>.pyd</code>, and <code>.so</code>. |url-status=live}}</ref> .pyi,<ref name=\"pep561\">{{cite web |last1=Harper Smith |first1=Emma |date=9 September 2017 |title=PEP 561 – Distributing and Packaging Type Information |url=https://peps.python.org/pep-0561/ |website=Python Enhancement Proposals (PEPs) |access-date=28 February 2026 |archive-url=https://web.archive.org/web/20251207013328/https://peps.python.org/pep-0561/ |archive-date=7 December 2025 |language=en |quote='stubs' - files containing only type information, empty of runtime code (the filename ends in <code>.pyi</code>). |url-status=live}}</ref><!-- too much trivia: .pyo (before 3.5),<ref>File extension .pyo was removed in Python 3.5. See [https://www.python.org/dev/peps/pep-0488/ PEP 0488] {{Webarchive|url=https://web.archive.org/web/20200601133202/https://www.python.org/dev/peps/pep-0488/ |date=1 June 2020}}</ref> --> .pyw,<ref name=\"pep397\">{{cite web |last1=Hammond |first1=Mark |last2=von Löwis |first2=Martin |title=PEP 397 – Python launcher for Windows |url=https://peps.python.org/pep-0397/ |website=Python Enhancement Proposals (PEPs) |access-date=28 February 2026 |archive-url=https://web.archive.org/web/20260204012409/https://peps.python.org/pep-0397/ |archive-date=4 February 2026 |language=en |date=15 March 2011 |quote=[...] the 'console' version of the launcher is associated with .py files and the 'windows' version associated with .pyw files. |url-status=live}}</ref> .pyz<!-- Too much trivia?: (since 3.5), since 3.8 latest supported and Python 3.5.10 Sept. 5, 2020--><ref name=\"pep0441\">{{cite web |last1=Holth |first1=Daniel |last2=Moore |first2=Paul |date=30 March 2013 |title=PEP 0441 – Improving Python ZIP Application Support |url=https://www.python.org/dev/peps/pep-0441/ |url-status=live |archive-url=https://web.archive.org/web/20151116044812/https://www.python.org/dev/peps/pep-0441/ |archive-date=16 November 2015 |access-date=12 November 2015 |website=Python Enhancement Proposals (PEPs)}}</ref>\n| website = {{URL|https://www.python.org/|python.org}}\n| dialects = [[Cython]], [[RPython]], [[Starlark]]<ref>{{cite web |title=Starlark Language |url=https://docs.bazel.build/versions/master/skylark/language.html |url-status=live |archive-url=https://web.archive.org/web/20200615140534/https://docs.bazel.build/versions/master/skylark/language.html |archive-date=15 June 2020 |access-date=25 May 2019 |website=bazel.build}}</ref>\n| influenced by = [[ABC (programming language)|ABC]],<ref name=\"faq-created\" /> [[Ada (programming language)|Ada]],<ref>{{cite web |title=Ada 83 Reference Manual (raise statement) |url=https://archive.adaic.com/standards/83lrm/html/lrm-11-03.html#11.3 |url-status=live |archive-url=https://web.archive.org/web/20191022155758/http://archive.adaic.com/standards/83lrm/html/lrm-11-03.html#11.3 |archive-date=22 October 2019 |access-date=7 January 2020 |website=archive.adaic.com}}</ref>{{failed verification|date=August 2025|reason=The source does not talk about Python. The \"raise\" keyword it describes is very similar to the Python version, but this is original research (see WP:OR).}} {{nowrap|[[ALGOL 68]]}},<ref name=\"98-interview\" /> [[APL (programming language)|APL]],<ref name=\"python.org\">{{cite web |title=itertools – Functions creating iterators for efficient looping |url=https://docs.python.org/3.7/library/itertools.html |url-status=live |archive-url=https://web.archive.org/web/20200614153629/https://docs.python.org/3/library/itertools.html |archive-date=14 June 2020 |access-date=22 November 2016 |website=Python 3.7.17 documentation |quote=This module implements a number of iterator building blocks inspired by constructs from APL, Haskell, and SML.}}</ref> [[C (programming language)|C]],<ref name=\"AutoNT-1\" /> [[C++]],<ref name=\"classmix\" /> [[CLU (programming language)|CLU]],<ref name=\"effbot-call-by-object\" /> [[Dylan (programming language)|Dylan]],<ref name=\"AutoNT-2\" /> [[Haskell]],<ref name=\"AutoNT-3\" /><ref name=\"python.org\" /> [[Icon (programming language)|Icon]],<ref name=\"AutoNT-4\" /> [[Lisp (programming language)|Lisp]],<ref name=\"AutoNT-6\" /> {{nowrap|[[Modula-3]]}},{{r |98-interview}}<ref name=\"classmix\" /> [[Perl]],<ref>{{cite web |title=re – Regular expression operations |url=https://docs.python.org/3.10/library/re.html |url-status=live |archive-url=https://web.archive.org/web/20180718132241/https://docs.python.org/3/library/re.html |archive-date=18 July 2018 |access-date=6 September 2022 |website=Python 3.10.6 documentation |quote=This module provides regular expression matching operations similar to those found in Perl.}}</ref> [[Standard ML]]<ref name=\"python.org\" />\n| influenced = [[Apache Groovy]], [[Boo (programming language)|Boo]], [[Cobra (programming language)|Cobra]], [[CoffeeScript]],<ref>{{Cite web |title=CoffeeScript |url=https://coffeescript.org/ |url-status=live |archive-url=https://web.archive.org/web/20200612100004/http://coffeescript.org/ |archive-date=12 June 2020 |access-date=3 July 2018 |website=coffeescript.org}}</ref> [[D (programming language)|D]], [[F Sharp (programming language)|F#]], [[GDScript]], [[Go (programming language)|Go]], [[JavaScript]],<ref>{{cite web |last=Rauschmayer |first=Axel |date=24 February 2013 |title=Perl and Python influences in JavaScript |url=https://www.2ality.com/2013/02/javascript-influences.html |url-status=live |archive-url=https://web.archive.org/web/20181226141121/http://2ality.com/2013/02/javascript-influences.html%0A |archive-date=26 December 2018 |access-date=15 May 2015 |website=2ality.com}}</ref><ref>{{cite web |last=Rauschmayer |first=Axel |title=Chapter 3: The Nature of JavaScript; Influences |url=https://speakingjs.com/es5/ch03.html |url-status=live |archive-url=https://web.archive.org/web/20181226141123/http://speakingjs.com/es5/ch03.html%0A |archive-date=26 December 2018 |access-date=15 May 2015 |website=Speaking JavaScript |publisher=O'Reilly}}</ref> [[Julia (programming language)|Julia]],<ref name=\"Julia\">{{cite web |last1=Bezanson |first1=Jeff |last2=Karpinski |first2=Stefan |last3=Shah |first3=Viral B. |last4=Edelman |first4=Alan |date=February 2012 |title=Why We Created Julia |url=https://julialang.org/blog/2012/02/why-we-created-julia |url-status=live |archive-url=https://web.archive.org/web/20200502144010/https://julialang.org/blog/2012/02/why-we-created-julia/ |archive-date=2 May 2020 |access-date=5 June 2014 |website=Julia website |quote=We want something as usable for general programming as Python [...]}}</ref> [[Mojo (programming language)|Mojo]],<ref name=\"Mojo\"/> [[Nim (programming language)|Nim]], [[Ruby (programming language)|Ruby]],<ref name=\"bini\" /> [[Swift (programming language)|Swift]],<ref name=\"lattner2014\"/> [[V (programming language)|V]]<ref name=\"vpeople\"/>\n<!-- Do not put in as there's a pure Java implementation (Jython): | programming language = [[C (programming language)|C]] -->| wikibooks = Python Programming\n}}\n{{Python sidebar}}\n\n'''Python''' is a [[high-level programming language|high-level]], [[general-purpose programming language]] that emphasizes [[code readability]], simplicity, and ease-of-writing with the use of [[significant indentation]],<ref name=\"AutoNT-7\" /> an extensive (\"batteries-included\") [[standard library]], and [[garbage collection (computer science)|garbage collection]]. Python supports multiple [[programming paradigm]]s but with an emphasis on [[object-oriented programming]] and [[dynamic typing]].\n\n[[Guido van Rossum]] began working on Python in the late 1980s as a successor to the [[ABC (programming language)|ABC]] programming language. Python&nbsp;3.0, released in 2008, was a major revision and not completely [[backward-compatible]] with earlier versions. Beginning with Python 3.5,<ref>{{cite web |title=PEP 484 – Type Hints |url=https://peps.python.org/pep-0484/ |website=Python Enhancement Proposals |access-date=27 October 2025 |language=en}}</ref> capabilities and keywords for typing were added to the language, allowing optional [[static typing]].<ref>{{Cite web |title=mypy – Optional Static Typing for Python |url=https://mypy-lang.org/ |access-date=17 August 2025 |website=mypy-lang.org}}</ref> {{As of|2026}}, the [[Python Software Foundation]] supports Python 3.11, 3.12, 3.13, and 3.14, following the project's annual release cycle and five-year support policy. Python 3.15.0rc2 (which defaults to [[UTF-8]]) is out in preview, and the stable release is expected to launch in October 2026.<ref name=\"Python3.15-whatsnew\">{{cite web|url=https://docs.python.org/3.15/whatsnew/3.15.html|title=What's new in Python 3.15|access-date=26 January 2026}}</ref> Earlier versions in the 3.x series have reached end-of-life and no longer receive security updates. \n\nPython is widely taught as an introductory programming language.<ref>{{Cite journal |last1=Sultana |first1=Simon G. |last2=Reed |first2=Philip A. |date=2017 |title=Curriculum for an Introductory Computer Science Course: Identifying Recommendations from Academia and Industry |journal=The Journal of Technology Studies |volume=43 |issue=2 |pages=80–92 |doi=10.21061/jots.v43i2.a.3 |issn=1071-6084 |jstor=90023144}}</ref>"
+         }
+        }
+       }
+      ],
+      "contentmodel": "wikitext",
+      "pagelanguage": "en",
+      "pagelanguagehtmlcode": "en",
+      "pagelanguagedir": "ltr",
+      "touched": "2026-10-02T02:28:28Z",
+      "lastrevid": 1377929544,
+      "length": 144806,
+      "fullurl": "https://en.wikipedia.org/wiki/Python_(programming_language)",
+      "editurl": "https://en.wikipedia.org/w/index.php?title=Python_(programming_language)&action=edit",
+      "canonicalurl": "https://en.wikipedia.org/wiki/Python_(programming_language)"
+     },
+     {
+      "pageid": 21356332,
+      "ns": 0,
+      "title": "History of Python",
+      "index": 1,
+      "extract": "The programming language Python was conceived in the late 1980s, and its implementation was started in December 1989 by Guido van Rossum at CWI in the Netherlands as a successor to ABC capable of exception handling and interfacing with the Amoeba operating system. Van Rossum was Python's principal author and had a central role in deciding the direction of Python (as reflected in the title given to him by the Python community, Benevolent Dictator for Life (BDFL)) until stepping down as leader on July 12, 2018. Python was named after the BBC TV show Monty Python's Flying Circus.\nPython 2.0 was released on October 16, 2000, with many major new features, such as list comprehensions, cycle-detecting garbage collector, reference counting, memory management and support for Unicode, along with a change to the development process itself, with a shift to a more transparent and community-backed process.\nPython 3.0, a major, backwards-incompatible release, was released on December 3, 2008 after a long period of testing. Many of its major features were also backported to the backwards-compatible Python versions 2.6 and 2.7 until support for Python 2 finally ceased at the beginning of 2020. Releases of Python 3 up through 3.12 include the 2to3 utility, which automates the translation of Python 2 code to Python 3.\nAs of June 2026, Python 3.14.6  is the latest stable release. This version currently receives full bug-fix and security updates, while Python 3.13—released in October 2024—will continue to receive bug-fixes until October 2026, and after that will only receive security fixes until its end-of-life in 2029. Python 3.10 is the oldest supported branch of Python (albeit in the 'security support' phase).\n\n",
+      "revisions": [
+       {
+        "slots": {
+         "main": {
+          "contentmodel": "wikitext",
+          "contentformat": "text/x-wiki",
+          "content": "{{short description|History of the Python programming language}}\n{{Use mdy dates|date=August 2026}}\n{{use American English|date=May 2024}}\n[[File:Python logo 1990s.svg|thumb|Old Python logo, 1990s–2006]]\n[[File:Python logo and wordmark.svg|alt=|thumb|New Python logo, 2006–present]]\n[[File:Guido-portrait-2014.jpg|thumb|Guido van Rossum in 2014]]\n\nThe [[programming language]] [[Python (programming language)|Python]] was conceived in the late 1980s,<ref name=\"venners-interview-pt-1\">{{cite web |title=The Making of Python |url=http://www.artima.com/intv/pythonP.html |url-status=live |archive-url=https://web.archive.org/web/20160901183332/http://www.artima.com/intv/pythonP.html |archive-date=September 1, 2016 |access-date=March 22, 2007 |publisher=Artima Developer}}</ref> and its implementation was started in December 1989<ref name=\"timeline-of-python\" /> by [[Guido van Rossum]] at [[Centrum Wiskunde & Informatica|CWI]] in [[the Netherlands]] as a successor to [[ABC (programming language)|ABC]] capable of [[exception handling]] and interfacing with the [[Amoeba (operating system)|Amoeba operating system]].<ref name=\"faq-created\">{{cite web |title=Why Was Python Created in the First Place? |url=https://www.python.org/doc/faq/general/#why-was-python-created-in-the-first-place |url-status=live |archive-url=https://web.archive.org/web/20080223222507/http://www.python.org/doc/faq/general/#why-was-python-created-in-the-first-place |archive-date=February 23, 2008 |access-date=March 22, 2007 |publisher=Python FAQ}}</ref> Van Rossum was Python's principal author and had a central role in deciding the direction of Python (as reflected in the title given to him by the Python community, [[Benevolent dictator for life|''Benevolent Dictator for Life'' (BDFL)]]<ref>{{cite web |last=van Rossum |first=Guido |date=July 31, 2008 |title=Origin of BDFL |url=http://www.artima.com/weblogs/viewpost.jsp?thread=235725 |url-status=live |archive-url=https://web.archive.org/web/20110116210946/http://www.artima.com/weblogs/viewpost.jsp?thread=235725 |archive-date=January 16, 2011 |access-date=August 1, 2008}}</ref><ref>{{cite web |date=March 7, 2006 |title=Python Creator Scripts Inside Google |url=http://www.eweek.com/c/a/Application-Development/Python-Creator-Scripts-Inside-Google/ |url-status=live |archive-url=https://archive.today/20180809122951/http://www.eweek.com/development/python-creator-scripts-inside-google |archive-date=August 9, 2018 |access-date=May 13, 2008 |publisher=www.eweek.com}}</ref>) until stepping down as leader on July 12, 2018.<ref>{{cite news |last1=Fairchild |first1=Carlie |date=July 12, 2018 |title=Guido Van Rossum Stepping Down from Role as Python's Benevolent Dictator for Life |url=https://www.linuxjournal.com/content/guido-van-rossum-stepping-down-role-pythons-benevolent-dictator-life |url-status=live |archive-url=https://web.archive.org/web/20180713192427/https://www.linuxjournal.com/content/guido-van-rossum-stepping-down-role-pythons-benevolent-dictator-life |archive-date=July 13, 2018 |access-date=July 12, 2018 |work=Linux Journal |language=en}}</ref> Python was named after the [[BBC TV]] show ''[[Monty Python's Flying Circus]]''.<ref>{{Cite web |title=General Python FAQ — Python 3.8.3 Documentation |url=https://docs.python.org/3/faq/general.html#why-is-it-called-python |url-status=live |archive-url=https://web.archive.org/web/20121024164224/http://docs.python.org/faq/general.html#why-is-it-called-python |archive-date=October 24, 2012 |access-date=June 4, 2020 |website=docs.python.org}}</ref>\n\nPython 2.0 was released on October 16, 2000, with many major new features, such as [[list comprehension]]s, [[cycle detection|cycle-detecting]] [[garbage collection (computer science)|garbage collector]], [[reference counting]], [[memory management]] and support for [[Unicode]], along with a change to the development process itself, with a shift to a more transparent and community-backed process.<ref name=\"newin-2.0\">{{cite web |last1=Kuchling |first1=Andrew M. |last2=Zadka |first2=Moshe |title=What's New in Python 2.0 |url=http://www.amk.ca/python/2.0/ |archive-url=https://web.archive.org/web/20091214142515/http://www.amk.ca/python/2.0 |archive-date=December 14, 2009 |access-date=March 22, 2007}}</ref>\n\nPython 3.0, a major, backwards-incompatible release, was released on December 3, 2008<ref name=\"3.0-release\">{{cite web |title=Welcome to Python.org |url=https://www.python.org/download/releases/3.0/ |url-status=live |archive-url=https://web.archive.org/web/20200614153714/https://www.python.org/download/releases/3.0/ |archive-date=June 14, 2020 |access-date=December 27, 2016 |work=python.org}}</ref> after a long period of testing. Many of its major features were also [[backport]]ed to the backwards-compatible Python versions 2.6 and 2.7<ref name=\"pep-3000\" /> until support for Python 2 finally ceased at the beginning of 2020. Releases of Python&nbsp;3 up through 3.12 include the <code>2to3</code> utility, which automates the translation of Python&nbsp;2 code to Python&nbsp;3.<ref>{{Cite web |title=2to3 — Automated Python 2 to 3 Code Translation — Python 3.12.12 Documentation |url=https://docs.python.org/3.12/library/2to3.html |url-status=live |archive-url=https://web.archive.org/web/20251212075917/https://docs.python.org/3.12/library/2to3.html |archive-date=December 12, 2025 |access-date=December 12, 2025 |website=docs.python.org}}</ref>\n\n{{As of|June 2026}}, Python 3.14.6 <!-- not sure why not displaying: {{wikidata|property|P548=Q2804309|P348}} --> is the latest stable release. This version currently receives full bug-fix and security updates, while Python 3.13—released in October 2024—will continue to receive bug-fixes until October 2026, and after that will only receive security fixes until its end-of-life in 2029. Python 3.10 is the oldest supported branch of Python (albeit in the 'security support' phase).<ref>{{Cite web |title=Status of Python Versions |url=https://devguide.python.org/versions/ |url-status=live |archive-url=https://web.archive.org/web/20220826132905/https://devguide.python.org/versions/ |archive-date=August 26, 2022 |access-date=October 7, 2024 |website=Python Developer's Guide |language=en}}</ref><ref>{{Cite web |date=October 8, 2024 |title=Python |url=https://endoflife.date/python |url-status=live |archive-url=https://web.archive.org/web/20210918162455/https://endoflife.date/python |archive-date=September 18, 2021 |access-date=November 20, 2024 |website=endoflife.date |language=en-US}}</ref>"
+         }
+        }
+       }
+      ],
+      "contentmodel": "wikitext",
+      "pagelanguage": "en",
+      "pagelanguagehtmlcode": "en",
+      "pagelanguagedir": "ltr",
+      "touched": "2026-10-02T00:43:40Z",
+      "lastrevid": 1377930390,
+      "length": 59915,
+      "fullurl": "https://en.wikipedia.org/wiki/History_of_Python",
+      "editurl": "https://en.wikipedia.org/w/index.php?title=History_of_Python&action=edit",
+      "canonicalurl": "https://en.wikipedia.org/wiki/History_of_Python"
+     },
+     {
+      "pageid": 34292335,
+      "ns": 0,
+      "title": "Pip (package manager)",
+      "index": 3,
+      "extract": "pip (also known by Python 3's alias pip3) is a package manager (package management system) written in Python and is used to install and manage software packages. The Python Software Foundation recommends using pip to install Python applications and its dependencies during deployment. Pip connects to an online software repository of public packages, named the Python Package Index (PyPI). Pip can be configured to connect to other package repositories (local or remote), provided that they comply to Python Enhancement Proposal 503.\nMost distributions of Python come with pip preinstalled. Python 2.7.9 and later (on the python2 series), and Python 3.4 and later include pip by default.",
+      "revisions": [
+       {
+        "slots": {
+         "main": {
+          "contentmodel": "wikitext",
+          "contentformat": "text/x-wiki",
+          "content": "{{Short description|Package management system for Python}}\n{{Primary sources|date=November 2022}}\n{{use dmy dates|date=June 2018}}\n{{lowercase title}}\n{{Infobox software\n| name = pip\n| logo = \n| screenshot = Pip help.png\n| caption = An output of <code>pip --help</code>\n| author = Ian Bicking\n| released = {{Start date and age|2008|10|28|df=yes|paren=yes}}<ref>{{Cite web |url=https://pypi.org/project/pip/0.2/ |title=Pip 0.2 |website=[[Python Package Index]] (PyPI) |access-date=27 August 2024}}</ref>\n| latest release version = {{wikidata|property|preferred|references|edit|P348|P548=Q2804309}}\n| latest release date = {{Start date and age|{{wikidata|qualifier|preferred|single|P348|P548=Q2804309|P577}}|df=yes|paren=yes}}\n| programming language = [[Python (programming language)|Python]]\n| operating system = OS-independent\n| platform = [[Python (programming language)|Python]]\n| genre = [[Package manager]]\n| license = [[MIT License|MIT]]<ref>{{cite web |title=pip/LICENSE.txt |url=https://github.com/pypa/pip/blob/master/LICENSE.txt |date=17 April 2018 |website=[[GitHub]] |url-status=live |archive-url=https://web.archive.org/web/20180601113651/https://github.com/pypa/pip/blob/master/LICENSE.txt |archive-date=1 June 2018 |access-date=1 June 2018}}</ref>\n| website = {{URL|https://pip.pypa.io}}\n}}\n\n'''pip''' (also known by [[Python 3]]'s alias '''pip3''') is a [[package manager]] (package management system) written in [[Python (programming language)|Python]] and is used to install and manage software packages.<ref name=\"rhos-pip\">{{cite web |last1=Kollár |first1=László |title=Managing Python packages the right way |url=https://opensource.com/article/19/4/managing-python-packages |access-date=23 June 2019 |website=Opensource.com |publisher=[[Red Hat]] |language=en}}</ref> The [[Python Software Foundation]] recommends using pip to install Python applications and its dependencies during deployment.<ref>{{Cite web |title=Tool recommendations — Python Packaging User Guide |url=https://packaging.python.org/en/latest/guides/tool-recommendations/ |access-date=2022-11-09 |website=packaging.python.org}}</ref> Pip connects to an online [[software repository]] of public packages, named the [[Python Package Index]] (PyPI). Pip can be configured to connect to other package repositories (local or remote), provided that they comply to [[Python Enhancement Proposal]] 503.<ref>{{cite web |title=Python Enhancement Proposal 503 |url=https://www.python.org/dev/peps/pep-0503 |website=python.org}}</ref><ref>{{cite web |title=pip install command line documentation |url=https://pip.pypa.io/en/stable/cli/pip_install/#cmdoption-0 |website=pip.pypa.io}}</ref>\n\nMost distributions of Python come with pip preinstalled. Python 2.7.9 and later (on the python2 series), and Python 3.4 and later include pip by default.<ref name=\"pip-inst\">{{cite web |title=pip installation |url=https://pip.pypa.io/en/latest/installing.html |access-date=24 Feb 2015}}</ref>"
+         }
+        }
+       }
+      ],
+      "contentmodel": "wikitext",
+      "pagelanguage": "en",
+      "pagelanguagehtmlcode": "en",
+      "pagelanguagedir": "ltr",
+      "touched": "2026-09-30T16:39:03Z",
+      "lastrevid": 1375261208,
+      "length": 8944,
+      "fullurl": "https://en.wikipedia.org/wiki/Pip_(package_manager)",
+      "editurl": "https://en.wikipedia.org/w/index.php?title=Pip_(package_manager)&action=edit",
+      "canonicalurl": "https://en.wikipedia.org/wiki/Pip_(package_manager)"
+     }
+    ]
+   }
+  }
+ },
+ "expansions": [
+  {
+   "title": "Python (programming language)",
+   "field": "latest_release_version",
+   "template": "{{wikidata|property|edit|reference|P548=Q2804309|P348}}",
+   "url": "https://en.wikipedia.org/w/api.php?action=expandtemplates&format=json&formatversion=2&title=Python+%28programming+language%29&text=%7B%7Bwikidata%7Cproperty%7Cedit%7Creference%7CP548%3DQ2804309%7CP348%7D%7D&prop=wikitext",
+   "status": 200,
+   "seconds": 1.401,
+   "bytes": 945,
+   "attempts": [],
+   "body": {
+    "expandtemplates": {
+     "wikitext": "3.14.7<ref name=\"wikidata-90bb707ab3f1fecdfef9ae8ff9a99c6c899342a8-v20\"><templatestyles src=\"Module:Citation/CS1/styles.css\"></templatestyles><cite class=\"citation web cs1\">[https://docs.python.org/release/3.14.7/whatsnew/changelog.html \"Python 3.14.7 final\"]. 5 August 2026<span class=\"reference-accessdate\">. Retrieved <span class=\"nowrap\">5 August</span> 2026</span>.</cite><span title=\"ctx_ver=Z39.88-2004&rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&rft.genre=unknown&rft.btitle=Python+3.14.7+final&rft.date=2026-08-05&rft_id=https%3A%2F%2Fdocs.python.org%2Frelease%2F3.14.7%2Fwhatsnew%2Fchangelog.html&rfr_id=info%3Asid%2Fen.wikipedia.org%3APython+%28programming+language%29\" class=\"Z3988\"></span></ref>&nbsp;[[File:OOjs UI icon edit-ltr-progressive.svg|frameless|text-top|10px|alt=Edit this on Wikidata|link=https://www.wikidata.org/wiki/Q28865?uselang=en#P348|Edit this on Wikidata]]"
+    }
+   }
+  },
+  {
+   "title": "Pip (package manager)",
+   "field": "latest_release_version",
+   "template": "{{wikidata|property|preferred|references|edit|P348|P548=Q2804309}}",
+   "url": "https://en.wikipedia.org/w/api.php?action=expandtemplates&format=json&formatversion=2&title=Pip+%28package+manager%29&text=%7B%7Bwikidata%7Cproperty%7Cpreferred%7Creferences%7Cedit%7CP348%7CP548%3DQ2804309%7D%7D&prop=wikitext",
+   "status": 200,
+   "seconds": 1.945,
+   "bytes": 901,
+   "attempts": [],
+   "body": {
+    "expandtemplates": {
+     "wikitext": "26.2.1<ref name=\"wikidata-05415f81585147ab1653d9ef4b012b5b3f8136c0-v20\"><templatestyles src=\"Module:Citation/CS1/styles.css\"></templatestyles><cite class=\"citation web cs1\">[https://github.com/pypa/pip/releases/tag/26.2.1 \"Release 26.2.1\"]. 4 August 2026<span class=\"reference-accessdate\">. Retrieved <span class=\"nowrap\">5 August</span> 2026</span>.</cite><span title=\"ctx_ver=Z39.88-2004&rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&rft.genre=unknown&rft.btitle=Release+26.2.1&rft.date=2026-08-04&rft_id=https%3A%2F%2Fgithub.com%2Fpypa%2Fpip%2Freleases%2Ftag%2F26.2.1&rfr_id=info%3Asid%2Fen.wikipedia.org%3APip+%28package+manager%29\" class=\"Z3988\"></span></ref>&nbsp;[[File:OOjs UI icon edit-ltr-progressive.svg|frameless|text-top|10px|alt=Edit this on Wikidata|link=https://www.wikidata.org/wiki/Q6541095?uselang=en#P348|Edit this on Wikidata]]"
+    }
+   }
+  }
+ ],
+ "year": 2026
+}

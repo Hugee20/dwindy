@@ -1,0 +1,233 @@
+{
+ "id": "android_version",
+ "author": "seen",
+ "role": "dev",
+ "order": 1,
+ "message": "What is the latest version of Android?",
+ "expected": "answerable",
+ "provenance": "reach_v2 dev",
+ "split": "dev",
+ "synthetic": false,
+ "detected": {
+  "freshness": true,
+  "explicit_search": false
+ },
+ "query": "latest version android",
+ "minimize_reason": null,
+ "captured_at": "2026-10-02T11:17:45+00:00",
+ "subject_query": "version android",
+ "h1": {
+  "url": "https://en.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&generator=search&gsrsearch=latest+version+android&gsrlimit=3&prop=extracts%7Cinfo&exintro=1&explaintext=1&exsentences=5&exlimit=3&inprop=url&list=search&srsearch=latest+version+android&srlimit=3&srprop=snippet",
+  "status": 200,
+  "seconds": 1.44,
+  "bytes": 4470,
+  "attempts": [],
+  "body": {
+   "batchcomplete": true,
+   "continue": {
+    "sroffset": 3,
+    "gsroffset": 3,
+    "continue": "gsroffset||"
+   },
+   "query": {
+    "pages": [
+     {
+      "pageid": 30752816,
+      "ns": 0,
+      "title": "Android version history",
+      "index": 1,
+      "extract": "The version history of the Android mobile operating system began with the public release of its first beta on November 5, 2007. The first commercial version, Android 1.0, was released on September 23, 2008. The operating system has been developed by Google on a yearly schedule since at least 2011. New major releases are usually announced at Google I/O in May, along with beta testing, with the stable version released to the public between August and October. From 2025, new versions were announced in the first quarter and shipped in the second quarter.",
+      "contentmodel": "wikitext",
+      "pagelanguage": "en",
+      "pagelanguagehtmlcode": "en",
+      "pagelanguagedir": "ltr",
+      "touched": "2026-09-29T19:48:17Z",
+      "lastrevid": 1374336735,
+      "length": 233346,
+      "fullurl": "https://en.wikipedia.org/wiki/Android_version_history",
+      "editurl": "https://en.wikipedia.org/w/index.php?title=Android_version_history&action=edit",
+      "canonicalurl": "https://en.wikipedia.org/wiki/Android_version_history"
+     },
+     {
+      "pageid": 32338503,
+      "ns": 0,
+      "title": "Android-x86",
+      "index": 2,
+      "extract": "Android-x86 was an unofficial port of the Android mobile operating system (developed by the Open Handset Alliance) for the Intel x86 platform. It is an open source project designed to make Android run on devices powered by x86 processors (such as PCs), rather than RISC-based ARM chips.\nDevelopers Chih-Wei Huang and Yi Sun originated the project in 2009. The project began as a series of patches to the Android source code to enable Android to run on various netbooks, tablets and ultra-mobile PC. Huang was the project maintainer and as of 2021 active developers included Mauro Rossi and Michael Goffioul. As of 2025, the project is considered inactive or discontinued.",
+      "contentmodel": "wikitext",
+      "pagelanguage": "en",
+      "pagelanguagehtmlcode": "en",
+      "pagelanguagedir": "ltr",
+      "touched": "2026-09-29T19:48:17Z",
+      "lastrevid": 1372231732,
+      "length": 14019,
+      "fullurl": "https://en.wikipedia.org/wiki/Android-x86",
+      "editurl": "https://en.wikipedia.org/w/index.php?title=Android-x86&action=edit",
+      "canonicalurl": "https://en.wikipedia.org/wiki/Android-x86"
+     },
+     {
+      "pageid": 62358786,
+      "ns": 0,
+      "title": "Android Kunjappan Version 5.25",
+      "index": 3,
+      "extract": "Android Kunjappan Version 5.25 is a 2019 Indian Malayalam-language science fiction comedy-drama film written and directed by Ratheesh Balakrishnan Poduval (in his directorial debut), produced by Santhosh T. Kuruvilla, and starring Suraj Venjaramoodu, Soubin Shahir, Sooraj Thelakkad, Kendy Zirdo, and Saiju Kurup. It is loosely based on the 2012 film Robot & Frank.\nThe music was composed by Bijibal. In the plot, Subramanian (Soubin Shahir) goes to Russia for work, leaving his old-age father Bhaskaran Poduval (Suraj Venjaramoodu) with an android called Kunjappan (Sooraj Thelakkad) to take care of him. Bhaskaran, however, hates the idea.",
+      "contentmodel": "wikitext",
+      "pagelanguage": "en",
+      "pagelanguagehtmlcode": "en",
+      "pagelanguagedir": "ltr",
+      "touched": "2026-09-29T19:46:05Z",
+      "lastrevid": 1374631641,
+      "length": 23419,
+      "fullurl": "https://en.wikipedia.org/wiki/Android_Kunjappan_Version_5.25",
+      "editurl": "https://en.wikipedia.org/w/index.php?title=Android_Kunjappan_Version_5.25&action=edit",
+      "canonicalurl": "https://en.wikipedia.org/wiki/Android_Kunjappan_Version_5.25"
+     }
+    ],
+    "searchinfo": {
+     "totalhits": 3287
+    },
+    "search": [
+     {
+      "ns": 0,
+      "title": "Android version history",
+      "pageid": 30752816,
+      "snippet": "The <span class=\"searchmatch\">version</span> history of the <span class=\"searchmatch\">Android</span> mobile operating system began with the public release of its first beta on November 5, 2007. The first commercial version"
+     },
+     {
+      "ns": 0,
+      "title": "Android-x86",
+      "pageid": 32338503,
+      "snippet": "to the updated <span class=\"searchmatch\">version</span>. Legend: Unsupported Supported <span class=\"searchmatch\">Latest</span> <span class=\"searchmatch\">version</span> Preview <span class=\"searchmatch\">version</span> Future <span class=\"searchmatch\">version</span> An open source OS based on <span class=\"searchmatch\">Android</span>-x86. Supported"
+     },
+     {
+      "ns": 0,
+      "title": "Android Kunjappan Version 5.25",
+      "pageid": 62358786,
+      "snippet": "<span class=\"searchmatch\">Android</span> Kunjappan <span class=\"searchmatch\">Version</span> 5.25 is a 2019 Indian Malayalam-language science fiction comedy-drama film written and directed by Ratheesh Balakrishnan Poduval"
+     }
+    ]
+   }
+  },
+  "results": [
+   {
+    "title": "Android version history",
+    "url": "https://en.wikipedia.org/wiki/Android_version_history",
+    "text": "The version history of the Android mobile operating system began with the public release of its first beta on November 5, 2007. The first commercial version, Android 1.0, was released on September 23, 2008. The operating system has been developed by Google on a yearly schedule since at least 2011. New major releases are usually announced at Google I/O in May, along with beta testing, with the stable version released to the public between August and October. From 2025, new versions were announced in the first quarter and shipped in the second quarter. The version history of the Android mobile operating system began with the public release of its first beta on November 5, 2007. The first commercial version"
+   },
+   {
+    "title": "Android-x86",
+    "url": "https://en.wikipedia.org/wiki/Android-x86",
+    "text": "Android-x86 was an unofficial port of the Android mobile operating system (developed by the Open Handset Alliance) for the Intel x86 platform. It is an open source project designed to make Android run on devices powered by x86 processors (such as PCs), rather than RISC-based ARM chips. Developers Chih-Wei Huang and Yi Sun originated the project in 2009. The project began as a series of patches to the Android source code to enable Android to run on various netbooks, tablets and ultra-mobile PC. Huang was the project maintainer and as of 2021 active developers included Mauro Rossi and Michael Goffioul. As of 2025, the project is considered inactive or discontinued. to the updated version. Legend: Unsupported Supported Latest version Preview version Future version An open source OS based on Android-x86. Supported"
+   },
+   {
+    "title": "Android Kunjappan Version 5.25",
+    "url": "https://en.wikipedia.org/wiki/Android_Kunjappan_Version_5.25",
+    "text": "Android Kunjappan Version 5.25 is a 2019 Indian Malayalam-language science fiction comedy-drama film written and directed by Ratheesh Balakrishnan Poduval (in his directorial debut), produced by Santhosh T. Kuruvilla, and starring Suraj Venjaramoodu, Soubin Shahir, Sooraj Thelakkad, Kendy Zirdo, and Saiju Kurup. It is loosely based on the 2012 film Robot & Frank. The music was composed by Bijibal. In the plot, Subramanian (Soubin Shahir) goes to Russia for work, leaving his old-age father Bhaskaran Poduval (Suraj Venjaramoodu) with an android called Kunjappan (Sooraj Thelakkad) to take care of him. Bhaskaran, however, hates the idea. Android Kunjappan Version 5.25 is a 2019 Indian Malayalam-language science fiction comedy-drama film written and directed by Ratheesh Balakrishnan Poduval"
+   }
+  ]
+ },
+ "h2": {
+  "url": "https://en.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&generator=search&gsrsearch=version+android&gsrlimit=3&prop=extracts%7Crevisions%7Cinfo&exintro=1&explaintext=1&exlimit=3&rvprop=content&rvslots=main&rvsection=0&inprop=url",
+  "status": 200,
+  "seconds": 1.078,
+  "bytes": 12851,
+  "attempts": [],
+  "body": {
+   "batchcomplete": true,
+   "continue": {
+    "gsroffset": 3,
+    "continue": "gsroffset||"
+   },
+   "query": {
+    "pages": [
+     {
+      "pageid": 30752816,
+      "ns": 0,
+      "title": "Android version history",
+      "index": 1,
+      "extract": "The version history of the Android mobile operating system began with the public release of its first beta on November 5, 2007. The first commercial version, Android 1.0, was released on September 23, 2008. The operating system has been developed by Google on a yearly schedule since at least 2011. New major releases are usually announced at Google I/O in May, along with beta testing, with the stable version released to the public between August and October. From 2025, new versions were announced in the first quarter and shipped in the second quarter.",
+      "revisions": [
+       {
+        "slots": {
+         "main": {
+          "contentmodel": "wikitext",
+          "contentformat": "text/x-wiki",
+          "content": "{{Short description|List of Android operating system versions}}\n{{pp|small=yes}}\n{{Use mdy dates|date=January 2023}}\n[[File:Android-17-wordmark-black.svg|thumb|upright=0.8|[[Android 17]] is the current version of Android, released on June 16, 2026.]]\nThe version history of the [[Android (operating system)|Android]] [[mobile operating system]] began with the public release of its first [[Beta (software)|beta]] on November 5, 2007. The first commercial version, Android 1.0, was released on September 23, 2008. The operating system has been developed by [[Google]] on a yearly schedule since at least 2011.<ref>{{cite web |access-date=January 30, 2023 |title=What's the Latest Version of Android? |url=https://www.howtogeek.com/345250/whats-the-latest-version-of-android/ |website=How-To Geek |first1=Joe |last1=Fedewa|date=January 12, 2023}}</ref> New major releases are usually announced at [[Google I/O]] in May, along with beta testing, with the [[stable version]] released to the public between August and October. From 2025, new versions were announced in the first quarter and shipped in the second quarter.<ref>{{cite web |last1=McCullough |first1=Matthew |title=More frequent Android SDK releases: faster innovation, higher quality and more polish |url=https://android-developers.googleblog.com/2025/01/first-beta-android16.html |website=Android Developers Blog |publisher=Google |access-date=14 June 2026}}</ref><ref>{{cite web |last1=McCullough |first1=Matthew |title=The First Beta of Android 16 |url=https://android-developers.googleblog.com/2024/10/android-sdk-release-update.html |website=Android Developers Blog |publisher=Google |access-date=14 June 2026}}</ref><ref name=android17>{{cite web |last1=McCullough |first1=Matthew |title=The First Beta of Android 17 |url=https://android-developers.googleblog.com/2026/02/the-first-beta-of-android-17.html |website=Android Developers Blog |publisher=Google |access-date=14 June 2026}}</ref><ref>{{cite web |access-date=July 30, 2025 |title=Google and Samsung are forever changing Android updates as we know them |url=https://www.androidauthority.com/google-samsung-forever-changing-android-updates-3581811/ |date=July 30, 2025 |website=Android Authority |first1=Joe |last1=Maring}}</ref>\n\n{{TOC limit|3}}"
+         }
+        }
+       }
+      ],
+      "contentmodel": "wikitext",
+      "pagelanguage": "en",
+      "pagelanguagehtmlcode": "en",
+      "pagelanguagedir": "ltr",
+      "touched": "2026-09-29T19:48:17Z",
+      "lastrevid": 1374336735,
+      "length": 233346,
+      "fullurl": "https://en.wikipedia.org/wiki/Android_version_history",
+      "editurl": "https://en.wikipedia.org/w/index.php?title=Android_version_history&action=edit",
+      "canonicalurl": "https://en.wikipedia.org/wiki/Android_version_history"
+     },
+     {
+      "pageid": 62358786,
+      "ns": 0,
+      "title": "Android Kunjappan Version 5.25",
+      "index": 2,
+      "extract": "Android Kunjappan Version 5.25 is a 2019 Indian Malayalam-language science fiction comedy-drama film written and directed by Ratheesh Balakrishnan Poduval (in his directorial debut), produced by Santhosh T. Kuruvilla, and starring Suraj Venjaramoodu, Soubin Shahir, Sooraj Thelakkad, Kendy Zirdo, and Saiju Kurup. It is loosely based on the 2012 film Robot & Frank.\nThe music was composed by Bijibal. In the plot, Subramanian (Soubin Shahir) goes to Russia for work, leaving his old-age father Bhaskaran Poduval (Suraj Venjaramoodu) with an android called Kunjappan (Sooraj Thelakkad) to take care of him. Bhaskaran, however, hates the idea.\nThe film was released in India on 8 November 2019. It received critical acclaim and was one of the commercially successful Malayalam films released in the year. The movie won three Kerala State Film Awards including Best Actor award for Suraj.",
+      "revisions": [
+       {
+        "slots": {
+         "main": {
+          "contentmodel": "wikitext",
+          "contentformat": "text/x-wiki",
+          "content": "{{short description|2019 film directed by Ratheesh Balakrishnan Poduval}}\n{{Use dmy dates|date=January 2020}}\n{{Use Indian English|date=January 2020}}\n{{Infobox film\n| name           = Android Kunjappan Version 5.25\n| image          = Android Kunjappan Version 5.25.jpg\n| caption        = Theatrical release poster\n| director       = [[Ratheesh Balakrishnan Poduval]]\n| producer       = [[Santhosh T. Kuruvilla]]\n| writer         = Ratheesh Balakrishnan Poduval\n| starring       = {{ubl|[[Suraj Venjaramoodu]]|[[Soubin Shahir]]|[[Sooraj Thelakkad]]|Kendy Zirdo|[[Saiju Kurup]]}}\n| music          = [[Bijibal]]\n| cinematography = [[Sanu Varghese]]\n| editing        = Saiju Sreedharan\n| studio         = Moonshot Entertainments\n| distributor    = [[Maxlab Cinemas and Entertainments]]\n| released       = {{Film date|df=yes|2019|11|08|India}}\n| country        = [[India]]\n| language       = [[Malayalam]]\n}}\n\n'''''Android Kunjappan Version 5.25''''' is a [[List of Malayalam films of 2019|2019]] Indian [[Malayalam cinema|Malayalam]]-language [[science fiction comedy|science fiction comedy-drama]] film written and directed by [[Ratheesh Balakrishnan Poduval]] (in his directorial debut), produced by [[Santhosh T. Kuruvilla]], and starring [[Suraj Venjaramoodu]], [[Soubin Shahir]], [[Sooraj Thelakkad]], Kendy Zirdo, and [[Saiju Kurup]]. It is loosely based on the 2012 film [[Robot & Frank]].\n\nThe music was composed by [[Bijibal]]. In the plot, Subramanian ([[Soubin Shahir]]) goes to [[Russia]] for work, leaving his old-age father Bhaskaran Poduval ([[Suraj Venjaramoodu]]) with an [[android (robot)|android]] called Kunjappan ([[Sooraj Thelakkad]]) to take care of him. Bhaskaran, however, hates the idea.\n\nThe film was released in [[India]] on 8 November 2019. It received critical acclaim and was one of the commercially successful Malayalam films released in the year. The movie won three [[Kerala State Film Awards]] including Best Actor award for Suraj.<ref name=\"stateaward\">{{Cite web |date=2020-10-13 |title=50th Kerala State Film Awards: Winners list |url=https://indianexpress.com/article/entertainment/malayalam/50th-kerala-state-film-awards-winners-list-6723151/ |access-date=2020-10-13 |website=[[The New Indian Express]]}}</ref>"
+         }
+        }
+       }
+      ],
+      "contentmodel": "wikitext",
+      "pagelanguage": "en",
+      "pagelanguagehtmlcode": "en",
+      "pagelanguagedir": "ltr",
+      "touched": "2026-09-29T19:46:05Z",
+      "lastrevid": 1374631641,
+      "length": 23419,
+      "fullurl": "https://en.wikipedia.org/wiki/Android_Kunjappan_Version_5.25",
+      "editurl": "https://en.wikipedia.org/w/index.php?title=Android_Kunjappan_Version_5.25&action=edit",
+      "canonicalurl": "https://en.wikipedia.org/wiki/Android_Kunjappan_Version_5.25"
+     },
+     {
+      "pageid": 78407995,
+      "ns": 0,
+      "title": "Android 16",
+      "index": 3,
+      "extract": "Android 16 is the sixteenth major release and the 23rd version of Android, the mobile operating system developed by the Open Handset Alliance and led by Google. The first developer preview was released on November 19, 2024. The first beta was released on January 23, 2025. Google released the final version on June 10, 2025. The first devices to ship with Android 16 are the Samsung Galaxy Z Fold 7, Galaxy Z Flip 7, and its FE model.\nAs of July 2026, 25.49% of Android devices run Android 16, making it the most widely used version of Android.",
+      "revisions": [
+       {
+        "slots": {
+         "main": {
+          "contentmodel": "wikitext",
+          "contentformat": "text/x-wiki",
+          "content": "{{Short description|2025 Android mobile operating system}}\n{{About|the operating system version|the fictional character|Android 16 (Dragon Ball)}}\n{{Use mdy dates|date=December 2024}}\n{{Use American English|date=December 2024}}\n{{Infobox OS version\n| name = Android 16\n| logo = [[File:Android 16 Logo (SVG).svg|frameless|class=skin-invert]]\n| screenshot = File:Android 16 home screen screenshot.png\n| screenshot_size = 250px\n| caption = Android 16 Beta 1 home screen with Pixel Launcher\n| version of = [[Android (operating system)|Android]]\n| developer = [[Google]]\n| family = [[Android (operating system)|Android]]\n| source model = [[Open-source software]]<ref>{{cite news |title=The wait is over: Android 16 QPR1's source code is now available on AOSP |url=https://www.androidauthority.com/android-16-qpr1-source-code-available-3614853/ |work=Android Authority |date=2025-11-11 |language=en}}</ref>\n| RTM date = {{Start date and age|2025|01|23}}\n| GA date = {{Start date and age|2025|06|10}}\n| latest release version = 16.0.0_r8 (BP2A.250805.043)<ref name=\"release\">{{cite web|url=https://android.googlesource.com/platform/build/+/refs/tags/android-security-16.0.0_r8|title=Android 16.0.0 security release 8|website=Google Git}}</ref>\n| latest release date = {{Start date and age|2026|09|08}}\n| kernel type = [[Monolithic kernel|Monolithic]] ([[Linux kernel|Linux]])\n| preceded by = [[Android 15]]\n| succeeded by = [[Android 17]]\n| website = {{URL|https://android.com/16}}\n| support status = Supported\n}}\n'''Android 16''' is the [[Android version history|sixteenth major release]] and the 23rd version of [[Android (operating system)|Android]], the mobile operating system developed by the [[Open Handset Alliance]] and led by [[Google]]. The first developer preview was released on November 19, 2024.<ref>{{Cite web |last=Weatherbed |first=Jess |date=2024-11-19 |title=Android 16 is now available for early testers |url=https://www.theverge.com/2024/11/19/24300673/android-16-developer-preview-availability-release-timeline |access-date=2024-11-20 |website=The Verge |language=en |archive-date=November 19, 2024 |archive-url=https://web.archive.org/web/20241119190426/https://www.theverge.com/2024/11/19/24300673/android-16-developer-preview-availability-release-timeline |url-status=live }}</ref> The first beta was released on January 23, 2025.<ref name=\":2\">{{Cite web |title=The First Beta of Android 16 |url=https://android-developers.googleblog.com/2025/01/first-beta-android16.html |access-date=2025-01-24 |website=Android Developers Blog |language=en |archive-date=January 24, 2025 |archive-url=https://web.archive.org/web/20250124035557/https://android-developers.googleblog.com/2025/01/first-beta-android16.html |url-status=live }}</ref> Google released the final version on June 10, 2025.<ref>{{Cite web |date=2025-06-10 |title=Android 16 is out, complete with live notification updates and new camera features |url=https://www.engadget.com/mobile/android-16-is-out-complete-with-live-notification-updates-and-new-camera-features-170006072.html |access-date=2025-06-10 |website=Engadget |language=en-US |archive-date=June 10, 2025 |archive-url=https://web.archive.org/web/20250610180151/https://www.engadget.com/mobile/android-16-is-out-complete-with-live-notification-updates-and-new-camera-features-170006072.html |url-status=live }}</ref> The first devices to ship with Android 16 are the [[Samsung Galaxy Z Fold 7]], [[Samsung Galaxy Z Flip 7|Galaxy Z Flip 7]], and its [[Samsung Galaxy Z Flip 7 FE|FE]] model.<ref>{{Cite web |last=Shaik |first=Asif Iqbal |date=2025-04-05 |title=Exclusive: Samsung’s Galaxy Z Fold 7, Flip 7 will launch with One UI 8 onboard |url=https://www.sammobile.com/news/samsung-galaxy-z-fold-7-flip-7-one-ui-8-preloaded/ |access-date=2026-08-07 |website=SamMobile |language=en-US}}</ref><ref>{{Cite web |last=Mishra |first=Abhijeet |date=2025-05-28 |title=Galaxy Z Fold 7 and Flip 7 confirmed to launch with One UI 8 preloaded |url=https://www.sammobile.com/news/samsung-galaxy-z-fold-7-flip-7-one-ui-8-android-16/ |access-date=2026-08-07 |website=SamMobile |language=en-US}}</ref>\n\n{{As of|2026|07}}, 25.49% of Android devices run Android 16, making it the most widely used version of Android.<ref>{{Cite web |title=Mobile and Tablet Android version Market Share Worldwide |url=https://gs.statcounter.com/android-version-market-share/ |access-date=2026-08-01|website=StatCounter Global Stats |language=en}}</ref>"
+         }
+        }
+       }
+      ],
+      "contentmodel": "wikitext",
+      "pagelanguage": "en",
+      "pagelanguagehtmlcode": "en",
+      "pagelanguagedir": "ltr",
+      "touched": "2026-09-29T19:48:17Z",
+      "lastrevid": 1375909617,
+      "length": 25338,
+      "fullurl": "https://en.wikipedia.org/wiki/Android_16",
+      "editurl": "https://en.wikipedia.org/w/index.php?title=Android_16&action=edit",
+      "canonicalurl": "https://en.wikipedia.org/wiki/Android_16"
+     }
+    ]
+   }
+  }
+ },
+ "expansions": [],
+ "year": 2026
+}

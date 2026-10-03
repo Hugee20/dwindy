@@ -1,0 +1,249 @@
+{
+ "id": "linux_kernel",
+ "author": "seen",
+ "role": "dev",
+ "order": 3,
+ "message": "What is the latest version of the Linux kernel?",
+ "expected": "answerable",
+ "provenance": "reach_v2 dev",
+ "split": "dev",
+ "synthetic": false,
+ "detected": {
+  "freshness": true,
+  "explicit_search": false
+ },
+ "query": "latest version linux kernel",
+ "minimize_reason": null,
+ "captured_at": "2026-10-02T11:18:22+00:00",
+ "subject_query": "version linux kernel",
+ "h1": {
+  "url": "https://en.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&generator=search&gsrsearch=latest+version+linux+kernel&gsrlimit=3&prop=extracts%7Cinfo&exintro=1&explaintext=1&exsentences=5&exlimit=3&inprop=url&list=search&srsearch=latest+version+linux+kernel&srlimit=3&srprop=snippet",
+  "status": 200,
+  "seconds": 1.415,
+  "bytes": 4801,
+  "attempts": [],
+  "body": {
+   "batchcomplete": true,
+   "continue": {
+    "sroffset": 3,
+    "gsroffset": 3,
+    "continue": "gsroffset||"
+   },
+   "query": {
+    "pages": [
+     {
+      "pageid": 556778,
+      "ns": 0,
+      "title": "Red Hat Enterprise Linux",
+      "index": 2,
+      "extract": "Red Hat Enterprise Linux (RHEL) is a commercial Linux distribution developed by Red Hat. Red Hat Enterprise Linux is released in server versions for x86-64, Power ISA, ARM64, and IBM Z and a desktop version for x86-64. Fedora Linux and CentOS Stream serve as its upstream sources. All of Red Hat's official support and training, together with the Red Hat Certification Program, focuses on the Red Hat Enterprise Linux platform.\nThe first version of Red Hat Enterprise Linux to bear the name originally came onto the market as \"Red Hat Linux Advanced Server\".",
+      "contentmodel": "wikitext",
+      "pagelanguage": "en",
+      "pagelanguagehtmlcode": "en",
+      "pagelanguagedir": "ltr",
+      "touched": "2026-09-30T16:26:15Z",
+      "lastrevid": 1376656889,
+      "length": 84998,
+      "fullurl": "https://en.wikipedia.org/wiki/Red_Hat_Enterprise_Linux",
+      "editurl": "https://en.wikipedia.org/w/index.php?title=Red_Hat_Enterprise_Linux&action=edit",
+      "canonicalurl": "https://en.wikipedia.org/wiki/Red_Hat_Enterprise_Linux"
+     },
+     {
+      "pageid": 6097297,
+      "ns": 0,
+      "title": "Linux",
+      "index": 3,
+      "extract": "Linux ( LIN-uuks) is a family of free and open-source software Unix-like operating systems based on the Linux kernel, which was first released on 17 September 1991 by Linus Torvalds. Some members of the family are typically packaged as a distribution (a.k.a. distro), which includes the kernel alongside supporting system software and libraries developed by third parties—such as GNU, Red Hat, and X.Org—to create a complete operating system; however, not all Linux-based operating systems are considered distros, with Android being an example. Linux was originally designed as a clone of Unix and is distributed under the copyleft GPL license.\nThere are many thousands of Linux distributions, many based directly or indirectly on other distributions; popular Linux distros include Debian, Fedora Linux, Linux Mint, Arch Linux, and Ubuntu, while commercial distributions include Red Hat Enterprise Linux, SUSE Linux Enterprise, and ChromeOS. Linux distributions are frequently used in server platforms.",
+      "contentmodel": "wikitext",
+      "pagelanguage": "en",
+      "pagelanguagehtmlcode": "en",
+      "pagelanguagedir": "ltr",
+      "touched": "2026-09-30T06:07:45Z",
+      "lastrevid": 1377623330,
+      "length": 125981,
+      "fullurl": "https://en.wikipedia.org/wiki/Linux",
+      "editurl": "https://en.wikipedia.org/w/index.php?title=Linux&action=edit",
+      "canonicalurl": "https://en.wikipedia.org/wiki/Linux"
+     },
+     {
+      "pageid": 62331725,
+      "ns": 0,
+      "title": "Linux kernel version history",
+      "index": 1,
+      "extract": "This article documents the broad, wide version history of the Linux kernel, a free, open-source, and Unix-like kernel that is used on many computer systems and web servers worldwide.\nSince the Linux kernel's creation by Linus Torvalds in 1991, it had rapidly gained popularity as many developers started contributing to the project.\nThe kernel became self-hosting as of version 0.11 in December 1991.\nThe version 1.0.0 of the kernel was released on March 1994, which consisted of around 176,250 lines in the original unmodified source code.\nThe most recent stable release of the Linux kernel is 7.2, which was released on 16 August 2026.",
+      "contentmodel": "wikitext",
+      "pagelanguage": "en",
+      "pagelanguagehtmlcode": "en",
+      "pagelanguagedir": "ltr",
+      "touched": "2026-10-01T14:35:10Z",
+      "lastrevid": 1377204444,
+      "length": 251111,
+      "fullurl": "https://en.wikipedia.org/wiki/Linux_kernel_version_history",
+      "editurl": "https://en.wikipedia.org/w/index.php?title=Linux_kernel_version_history&action=edit",
+      "canonicalurl": "https://en.wikipedia.org/wiki/Linux_kernel_version_history"
+     }
+    ],
+    "searchinfo": {
+     "totalhits": 840
+    },
+    "search": [
+     {
+      "ns": 0,
+      "title": "Linux kernel version history",
+      "pageid": 62331725,
+      "snippet": "This article documents the broad, wide <span class=\"searchmatch\">version</span> history of the <span class=\"searchmatch\">Linux</span> <span class=\"searchmatch\">kernel</span>, a free, open-source, and Unix-like <span class=\"searchmatch\">kernel</span> that is used on many computer systems"
+     },
+     {
+      "ns": 0,
+      "title": "Red Hat Enterprise Linux",
+      "pageid": 556778,
+      "snippet": "Enterprise <span class=\"searchmatch\">Linux</span> (RHEL) is a commercial <span class=\"searchmatch\">Linux</span> distribution developed by Red Hat. Red Hat Enterprise <span class=\"searchmatch\">Linux</span> is released in server <span class=\"searchmatch\">versions</span> for x86-64,"
+     },
+     {
+      "ns": 0,
+      "title": "Linux",
+      "pageid": 6097297,
+      "snippet": "<span class=\"searchmatch\">Linux</span> (/ˈlɪnʊks/ LIN-uuks) is a family of free and open-source software Unix-like operating systems based on the <span class=\"searchmatch\">Linux</span> <span class=\"searchmatch\">kernel</span>, which was first released"
+     }
+    ]
+   }
+  },
+  "results": [
+   {
+    "title": "Linux kernel version history",
+    "url": "https://en.wikipedia.org/wiki/Linux_kernel_version_history",
+    "text": "This article documents the broad, wide version history of the Linux kernel, a free, open-source, and Unix-like kernel that is used on many computer systems and web servers worldwide. Since the Linux kernel's creation by Linus Torvalds in 1991, it had rapidly gained popularity as many developers started contributing to the project. The kernel became self-hosting as of version 0.11 in December 1991. The version 1.0.0 of the kernel was released on March 1994, which consisted of around 176,250 lines in the original unmodified source code. The most recent stable release of the Linux kernel is 7.2, which was released on 16 August 2026. This article documents the broad, wide version history of the Linux kernel, a free, open-source, and Unix-like kernel that is used on many computer systems"
+   },
+   {
+    "title": "Red Hat Enterprise Linux",
+    "url": "https://en.wikipedia.org/wiki/Red_Hat_Enterprise_Linux",
+    "text": "Red Hat Enterprise Linux (RHEL) is a commercial Linux distribution developed by Red Hat. Red Hat Enterprise Linux is released in server versions for x86-64, Power ISA, ARM64, and IBM Z and a desktop version for x86-64. Fedora Linux and CentOS Stream serve as its upstream sources. All of Red Hat's official support and training, together with the Red Hat Certification Program, focuses on the Red Hat Enterprise Linux platform. The first version of Red Hat Enterprise Linux to bear the name originally came onto the market as \"Red Hat Linux Advanced Server\". Enterprise Linux (RHEL) is a commercial Linux distribution developed by Red Hat. Red Hat Enterprise Linux is released in server versions for x86-64,"
+   },
+   {
+    "title": "Linux",
+    "url": "https://en.wikipedia.org/wiki/Linux",
+    "text": "Linux ( LIN-uuks) is a family of free and open-source software Unix-like operating systems based on the Linux kernel, which was first released on 17 September 1991 by Linus Torvalds. Some members of the family are typically packaged as a distribution (a.k.a. distro), which includes the kernel alongside supporting system software and libraries developed by third parties—such as GNU, Red Hat, and X.Org—to create a complete operating system; however, not all Linux-based operating systems are considered distros, with Android being an example. Linux was originally designed as a clone of Unix and is distributed under the copyleft GPL license. There are many thousands of Linux distributions, many based directly or indirectly on other distributions; popular Linux distros include Debian, Fedora Linux, Linux Mint, Arch Linux, and Ubuntu, while commercial distributions include Red Hat Enterprise Linux, SUSE Linux Enterprise, and ChromeOS. Linux distributions are frequently used in server platforms. Linux (/ˈlɪnʊks/ LIN-uuks) is a family of free and open-source software Unix-like operating systems based on the Linux kernel, which was first released"
+   }
+  ]
+ },
+ "h2": {
+  "url": "https://en.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&generator=search&gsrsearch=version+linux+kernel&gsrlimit=3&prop=extracts%7Crevisions%7Cinfo&exintro=1&explaintext=1&exlimit=3&rvprop=content&rvslots=main&rvsection=0&inprop=url",
+  "status": 200,
+  "seconds": 2.365,
+  "bytes": 16604,
+  "attempts": [],
+  "body": {
+   "batchcomplete": true,
+   "continue": {
+    "gsroffset": 3,
+    "continue": "gsroffset||"
+   },
+   "query": {
+    "pages": [
+     {
+      "pageid": 8412133,
+      "ns": 0,
+      "title": "Kernel-based Virtual Machine",
+      "index": 2,
+      "extract": "Kernel-based Virtual Machine (KVM) is a free and open-source virtualization module in the Linux kernel that allows the kernel to function as a hypervisor. It was merged into the mainline Linux kernel in version 2.6.20, which was released on February 5, 2007. KVM requires a processor with hardware virtualization extensions, such as Intel VT or AMD-V. KVM has also been ported to other operating systems such as FreeBSD and illumos in the form of loadable kernel modules.\nKVM was originally designed for x86 processors but has since been ported to z/Architecture, PowerPC, IA-64, and ARM. \nThe IA-64 port was removed in 2014.\nKVM supports hardware-assisted virtualization for a wide variety of guest operating systems including BSD, Solaris, Windows, Haiku, ReactOS, Plan 9, AROS, macOS, and even other Linux systems. In addition, Android 2.2, GNU/Hurd (Debian K16), Minix 3.1.2a, Solaris 10 U3 and Darwin 8.0.1, together with other operating systems and some newer versions of these listed, are known to work with certain limitations.\nAdditionally, KVM provides paravirtualization support for Linux, OpenBSD, FreeBSD, NetBSD, Plan 9 and Windows guests using the VirtIO API. This includes a paravirtual Ethernet card, disk I/O controller, balloon driver, and a VGA graphics interface using SPICE or VMware drivers.",
+      "revisions": [
+       {
+        "slots": {
+         "main": {
+          "contentmodel": "wikitext",
+          "contentformat": "text/x-wiki",
+          "content": "{{short description|Virtualization module in the Linux kernel}}\n{{Hatnote|Not to be confused with [[KVM switch]]. For other uses, see [[KVM (disambiguation)]].}}\n\n{{Infobox software\n| name = KVM\n| logo = Kvmbanner-logo2 1.png\n| logo size = 160px\n| screenshot = QEMU 6.2 running NetBSD and OpenIndiana screenshot.png\n| screenshot size = 300px\n| caption = Screenshot of QEMU/KVM running [[NetBSD]] and [[OpenIndiana]] guests on an [[Arch Linux]] host.\n| author = [[Qumranet]]\n| developer = The [[Linux Kernel]] community\n| operating_system = [[Unix-like]]\n| programming_language = [[C (programming language)|C]]\n| platform = [[ARM architecture|ARM]], [[PowerPC]], [[z/Architecture]], [[IA-32]], [[x86-64]], [[RISC-V]], [[Loongson|LoongArch]]\n| genre = [[Hypervisor]]\n| license = [[GNU General Public License|GNU GPL]] or [[GNU Lesser General Public License|LGPL]]\n| website = {{URL|www.linux-kvm.org}}\n}}\n\n'''Kernel-based Virtual Machine''' ('''KVM''') is a [[free and open-source]] [[virtualization]] module in the [[Linux kernel]] that allows the [[Kernel (operating system)|kernel]] to function as a [[hypervisor]]. It was merged into the [[Mainline Linux|mainline Linux kernel]] in version 2.6.20, which was released on February 5, 2007.<ref name=\"2620notes\">{{cite web |url=http://kernelnewbies.org/Linux_2_6_20#head-bca4fe7ffe454321118a470387c2be543ee51754 |title=Linux kernel 2.6.20, Section 2.2. Virtualization support through KVM |date=2007-02-05 |access-date=2014-06-16 |website=kernelnewbies.org }}</ref> KVM requires a processor with [[Virtualization#Hardware_assisted|hardware virtualization]] extensions, such as [[Intel VT]] or [[AMD-V]].<ref>{{Cite web |title=KVM FAQ: What do I need to use KVM? |url=http://www.linux-kvm.org/page/FAQ#What_do_I_need_to_use_KVM.3F |access-date=2026-04-24 |website=www.linux-kvm.org}}</ref> KVM has also been ported to other operating systems such as [[FreeBSD]]<ref>{{cite web |url=http://www.freebsd.org/news/status/report-2007-07-2007-10.html#Porting-Linux-KVM-to-FreeBSD |title=FreeBSD Quarterly Status Report: Porting Linux KVM to FreeBSD |access-date=2026-04-24|website=freebsd.org}}</ref> and [[illumos]]<ref>{{cite web|url=http://dtrace.org/blogs/bmc/2011/08/15/kvm-on-illumos/|title=KVM on illumos|date=15 August 2011 }}</ref> in the form of loadable kernel modules.\n\nKVM was originally designed for [[x86]] processors but has since been [[porting|ported]] to [[z/Architecture]],<ref name=\"2626notes\">{{cite web |url=https://kernelnewbies.org/Linux_2_6_26#KVM_ported_to_IA64.2C_PPC_and_S390 |title=Linux_2_6_26 |at=1.2. KVM ported to IA64, PPC and S390 |date=2008-07-13 |access-date=2025-08-23 |website=kernelnewbies.org}}</ref><ref>{{cite web |url=https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=b0c632db637d68ad39d9f97f452ce176253f5f4e |title=KVM: s390: arch backend for the kvm kernel module |date=2008-04-27|access-date=2026-04-24|website=git.kernel.org}}</ref> [[PowerPC]],<ref name=\"2626notes\" /> [[IA-64]],<ref name=\"2626notes\" /> and [[ARM architecture|ARM]].<ref>{{cite web |url=https://systems.cs.columbia.edu/projects/kvm-arm/ |title=KVM/ARM: An Open-Source ARM Virtualization System}}</ref><ref>{{Cite web |url=https://columbia.github.com/linux-kvm-arm |title=KVM/ARM Open Source Project |access-date=2017-11-01 |archive-url=https://web.archive.org/web/20130310052146/http://columbia.github.com/linux-kvm-arm/ |archive-date=2013-03-10 |url-status=dead }}</ref><ref>{{Cite journal| title = KVM/ARM: The Design and Implementation of the Linux ARM Hypervisor | author1 = Christoffer Dall | author2 = Jason Nieh | journal = SIGARCH Comput. Archit. News | publisher = ACM International Conference on Architectural Support for Programming Languages and Operating Systems | date = 2014| volume = 42 | issue = 1 | pages = 333–348 | doi = 10.1145/2654822.2541946 }}</ref> \nThe IA-64 port was removed in 2014.<ref>{{Cite web|url=https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=003f7de6258900e17f6206e8e417d76c75ca549f | title=kernel/git/torvalds/linux.git: KVM: ia64: remove|date=2014-11-19|access-date=2026-04-24|website=git.kernel.org}}</ref>\n\nKVM supports [[hardware-assisted virtualization]] for a wide variety of guest operating systems including [[BSD]], [[Solaris (operating system)|Solaris]], [[Microsoft Windows|Windows]], [[Haiku (operating system)|Haiku]], [[ReactOS]], [[Plan 9 from Bell Labs|Plan 9]], [[AROS Research Operating System|AROS]], [[macOS]], and even other Linux systems.<ref name=\":0\">{{cite web | url = http://www.linux-kvm.org/page/Guest_Support_Status | title = KVM wiki: Guest support status | access-date =2007-05-27 }}</ref><ref>{{cite web|url=http://www.contrib.andrew.cmu.edu/~somlo/OSXKVM/|title=Running Mac OS X as a QEMU/KVM Guest|access-date=2014-08-20}}</ref> In addition, Android 2.2, [[GNU/Hurd]]<ref>{{cite web|url=https://www.gnu.org/software/hurd/hurd/status.html |title=status |publisher=Gnu.org |access-date=2014-02-12}}</ref> ([[Debian]] K16), [[MINIX 3|Minix]] 3.1.2a, Solaris 10 U3 and [[Darwin (operating system)|Darwin]] 8.0.1, together with other operating systems and some newer versions of these listed, are known to work with certain limitations.<ref name=\":0\" />\n\nAdditionally, KVM provides [[paravirtualization]] support for Linux, [[OpenBSD]],<ref>{{cite web |url=https://man.openbsd.org/virtio.4|title=OpenBSD man page virtio(4) |access-date=2018-02-04}}</ref> FreeBSD,<ref>{{cite web |url=http://people.freebsd.org/~kuriyama/virtio/|title=virtio binary packages for FreeBSD|access-date=2012-10-29}}</ref> [[NetBSD]],<ref>{{cite web |url=http://netbsd.gw.com/cgi-bin/man-cgi?virtio++NetBSD-current |title=NetBSD man page virtio(4) |access-date=2013-07-15 |archive-date=2019-11-13 |archive-url=https://web.archive.org/web/20191113035952/https://netbsd.gw.com/cgi-bin/man-cgi?virtio++NetBSD-current |url-status=dead }}</ref> Plan 9<ref>{{cite web |url=https://code.google.com/p/plan9front/wiki/qemu |title=plan9front |access-date=2013-02-11|archive-url=https://web.archive.org/web/20110722064328/https://code.google.com/p/plan9front/wiki/qemu|archive-date=2011-07-22}}</ref> and Windows guests using the VirtIO [[API]].<ref>{{cite web |url=https://lwn.net/Articles/239238/ |title=An API for virtual I/O: virtio |date=2007-07-11 |access-date=2014-04-16 |publisher=[[LWN.net]]}}</ref> This includes a paravirtual [[Ethernet card]], disk I/O controller,<ref>{{cite web |url=http://linux-iscsi.org/wiki/vHost |title=SCSI target for KVM wiki |publisher=linux-iscsi.org |date=2012-08-07 |access-date=2012-08-12 |archive-date=2020-06-05 |archive-url=https://web.archive.org/web/20200605120413/http://linux-iscsi.org/wiki/VHost |url-status=dead }}</ref> [[balloon driver]], and a [[VGA]] graphics interface using [[Simple Protocol for Independent Computing Environments|SPICE]] or [[VMware]] drivers."
+         }
+        }
+       }
+      ],
+      "contentmodel": "wikitext",
+      "pagelanguage": "en",
+      "pagelanguagehtmlcode": "en",
+      "pagelanguagedir": "ltr",
+      "touched": "2026-10-01T14:34:46Z",
+      "lastrevid": 1374925852,
+      "length": 15979,
+      "fullurl": "https://en.wikipedia.org/wiki/Kernel-based_Virtual_Machine",
+      "editurl": "https://en.wikipedia.org/w/index.php?title=Kernel-based_Virtual_Machine&action=edit",
+      "canonicalurl": "https://en.wikipedia.org/wiki/Kernel-based_Virtual_Machine"
+     },
+     {
+      "pageid": 24588622,
+      "ns": 0,
+      "title": "Linux-libre",
+      "index": 3,
+      "extract": "According to the  Free Software Foundation Latin America, Linux-libre is a modified version of the Linux kernel that contains no binary blobs, obfuscated code, or code released under proprietary licenses. In the Linux kernel, those types of code are mostly used for proprietary firmware images. While generally redistributable, they do not give the user the freedom to audit, modify, or, consequently, redistribute their modified versions. The GNU Project keeps Linux-libre in synchronization with the mainline Linux kernel.",
+      "revisions": [
+       {
+        "slots": {
+         "main": {
+          "contentmodel": "wikitext",
+          "contentformat": "text/x-wiki",
+          "content": "{{Short description|Version of the Linux kernel without proprietary code}}\n{{Use mdy dates|date=September 2013}}\n{{Use American English|date=March 2023}}\n{{Primary sources|date=April 2022}}\n{{Infobox software\n| name = Linux-libre\n| title = Linux-libre\n| logo = [[File:Freedo.svg|150px|Freedo, official mascot of Linux-libre]]\n| logo caption = Freedo the penguin, mascot of the Linux-libre kernel\n| screenshot = Linux-Libre 3.0.66-1 Boot.png\n| caption = Linux-libre kernel 3.0.66-1 booting\n| collapsible = \n| developer = [[Free Software Foundation Latin America]]\n| released = {{Start date and age|2008|02|20}}<ref>{{cite web|url=https://lists.autistici.org/message/20080221.002845.467ba592.en.html|title=[blag-devel] linux-libre|author=blag-announce|date=February 20, 2008|access-date=2020-05-25|archive-url=https://web.archive.org/web/20231104194527/https://lists.autistici.org/message/20080221.002845.467ba592.en.html|archive-date=November 4, 2023}}</ref>\n| latest release version = {{wikidata|property|preferred|references|edit|Q665683|P348|P548=Q2804309}}\n| latest release date = {{wikidata|qualifier|preferred|single|Q665683|P348|P548=Q2804309|P577}}\n| latest preview version = {{wikidata|property|preferred|references|edit|Q665683|P348|P548=Q51930650}}\n| latest preview date = {{wikidata|qualifier|preferred|single|Q665683|P348|P548=Q51930650|P577}}\n| programming language = [[C language|C]], [[Rust (programming language)|Rust]], and [[Assembly language|Assembly]]\n| language = [[English language|English]]\n| platform = [[x86-64]], [[i386]], [[IA-32]], [[ARM architecture|ARM]] ([[Parabola GNU/Linux-libre|Parabola]]), [[MIPS architecture|MIPS]] ([[Debian]]), [[Motorola 68000 series|m68k]],<ref>{{cite web|url=https://linux-libre.fsfla.org/pub/linux-libre/freesh/dists/freesh/main/binary-m68k/|title=Index of /pub/linux-libre/freesh/dists/freesh/main/binary-m68k|website=linux-libre.fsfla.org|access-date=October 5, 2020}}</ref> [[RISC-V]],<ref>{{cite web|url=https://linux-libre.fsfla.org/pub/linux-libre/freesh/dists/freesh/main/binary-riscv64/|title=Index of /pub/linux-libre/freesh/dists/freesh/main/binary-riscv64|website=linux-libre.fsfla.org|access-date=February 7, 2019}}</ref> [[IBM Power microprocessors|IBM POWER8 and above]]<ref>{{cite web|url=https://linux-libre.fsfla.org/pub/linux-libre/freesh/dists/freesh/main/binary-ppc64el/|title=Index of /pub/linux-libre/freesh/dists/freesh/main/binary-ppc64el|website=linux-libre.fsfla.org|access-date=February 7, 2019}}</ref>\n| license = [[GPL-2.0-only]]<ref>{{cite web|url=https://directory.fsf.org/wiki/Linux-libre#tab=Details|title=Linux-libre - Free Software Directory}}</ref>\n| website = {{URL|https://www.fsfla.org/ikiwiki/selibre/linux-libre/}}\n| author = Linus Torvalds et al.\n| genre = [[Kernel (operating system)|Kernel]]\n}}\n\nAccording to the [[Free_Software_Foundation_Latin_America | Free Software Foundation Latin America]], '''Linux-libre''' is a modified version of the [[Linux kernel]] that contains no [[binary blobs]], [[Obfuscation (software)|obfuscated code]], or code released under [[proprietary license]]s.<ref>{{Cite web |title=Linux-libre - Free Software Directory |url=https://directory.fsf.org/wiki/Linux-libre |access-date=2022-09-23 |website=directory.fsf.org | archive-date = November 4, 2023 | archive-url =  https://web.archive.org/web/20231104204626/https://directory.fsf.org/wiki/Linux-libre}}</ref> In the Linux kernel, those types of code are mostly used for proprietary [[firmware]] images. While generally redistributable, they do not give the user the freedom to audit, modify, or, consequently, redistribute their modified versions. The [[GNU Project]] keeps Linux-libre in synchronization with the [[Mainline Linux|mainline Linux kernel]].<ref name=\"Red16Mar22\">{{cite web |last=Red |first=Ramces |date=22 March 2022 |title=5 Best Linux-Libre Distributions for Better Security |url=https://www.maketecheasier.com/best-linux-libre-distributions/ |url-status=live |archive-url=https://web.archive.org/web/20220316183031/https://www.maketecheasier.com/best-linux-libre-distributions/ |archive-date=March 16, 2022 |access-date=30 April 2022 |work=Make Tech Easier}}</ref>{{Better source needed|date=May 2026}}"
+         }
+        }
+       }
+      ],
+      "contentmodel": "wikitext",
+      "pagelanguage": "en",
+      "pagelanguagehtmlcode": "en",
+      "pagelanguagedir": "ltr",
+      "touched": "2026-09-30T16:36:33Z",
+      "lastrevid": 1374764531,
+      "length": 20340,
+      "fullurl": "https://en.wikipedia.org/wiki/Linux-libre",
+      "editurl": "https://en.wikipedia.org/w/index.php?title=Linux-libre&action=edit",
+      "canonicalurl": "https://en.wikipedia.org/wiki/Linux-libre"
+     },
+     {
+      "pageid": 62331725,
+      "ns": 0,
+      "title": "Linux kernel version history",
+      "index": 1,
+      "extract": "This article documents the broad, wide version history of the Linux kernel, a free, open-source, and Unix-like kernel that is used on many computer systems and web servers worldwide.\nSince the Linux kernel's creation by Linus Torvalds in 1991, it had rapidly gained popularity as many developers started contributing to the project.\nThe kernel became self-hosting as of version 0.11 in December 1991.\nThe version 1.0.0 of the kernel was released on March 1994, which consisted of around 176,250 lines in the original unmodified source code.\nThe most recent stable release of the Linux kernel is 7.2, which was released on 16 August 2026.",
+      "revisions": [
+       {
+        "slots": {
+         "main": {
+          "contentmodel": "wikitext",
+          "contentformat": "text/x-wiki",
+          "content": "{{Short description|Version history of the Linux kernel}}\n{{broader|History of Linux}}\n{{Use dmy dates|date=January 2020}}\n\nThis article documents the broad, '''wide version history of the [[Linux kernel]]''', a [[Free and open-source software|free, open-source]], and [[Unix-like]] [[kernel (operating system)|kernel]] that is used on many [[computer system]]s and [[Server (computing)|web servers]] worldwide.\n\nSince the Linux kernel's creation by [[Linus Torvalds]] in 1991, it had rapidly gained popularity as many developers started contributing to the project.\n\nThe kernel became [[self-hosting (compilers)|self-hosting]] as of version 0.11 in December 1991.\nThe version 1.0.0 of the kernel was released on March 1994, which consisted of around 176,250 lines in the original unmodified source code.\n\nThe most recent stable release of the Linux kernel is {{#invoke:Strip version patch|main|{{wikidata|property|preferred|Q14579|P348|P548=Q2804309}}}}, which was released on {{wikidata|qualifier|reference|Q14579|P348|{{#invoke:Strip version patch|main|{{wikidata|property|preferred|Q14579|P348|P548=Q2804309}}}}|P577}}."
+         }
+        }
+       }
+      ],
+      "contentmodel": "wikitext",
+      "pagelanguage": "en",
+      "pagelanguagehtmlcode": "en",
+      "pagelanguagedir": "ltr",
+      "touched": "2026-10-01T14:35:10Z",
+      "lastrevid": 1377204444,
+      "length": 251111,
+      "fullurl": "https://en.wikipedia.org/wiki/Linux_kernel_version_history",
+      "editurl": "https://en.wikipedia.org/w/index.php?title=Linux_kernel_version_history&action=edit",
+      "canonicalurl": "https://en.wikipedia.org/wiki/Linux_kernel_version_history"
+     }
+    ]
+   }
+  }
+ },
+ "expansions": [
+  {
+   "title": "Linux-libre",
+   "field": "latest_release_version",
+   "template": "{{wikidata|property|preferred|references|edit|Q665683|P348|P548=Q2804309}}",
+   "url": "https://en.wikipedia.org/w/api.php?action=expandtemplates&format=json&formatversion=2&title=Linux-libre&text=%7B%7Bwikidata%7Cproperty%7Cpreferred%7Creferences%7Cedit%7CQ665683%7CP348%7CP548%3DQ2804309%7D%7D&prop=wikitext",
+   "status": 200,
+   "seconds": 1.056,
+   "bytes": 925,
+   "attempts": [],
+   "body": {
+    "expandtemplates": {
+     "wikitext": "7.2.5-gnu<ref name=\"wikidata-f862e399cb01f7a9dedd715f3b59f6c31f45744b-v20\"><templatestyles src=\"Module:Citation/CS1/styles.css\"></templatestyles><cite class=\"citation web cs1\">[https://linux-libre.fsfla.org/pub/linux-libre/releases/7.2.5-gnu/ \"7.2.5-gnu\"]. September 12, 2026<span class=\"reference-accessdate\">. Retrieved <span class=\"nowrap\">September 14,</span> 2026</span>.</cite><span title=\"ctx_ver=Z39.88-2004&rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&rft.genre=unknown&rft.btitle=7.2.5-gnu&rft.date=2026-09-12&rft_id=https%3A%2F%2Flinux-libre.fsfla.org%2Fpub%2Flinux-libre%2Freleases%2F7.2.5-gnu%2F&rfr_id=info%3Asid%2Fen.wikipedia.org%3ALinux-libre\" class=\"Z3988\"></span></ref>&nbsp;[[File:OOjs UI icon edit-ltr-progressive.svg|frameless|text-top|10px|alt=Edit this on Wikidata|link=https://www.wikidata.org/wiki/Q665683?uselang=en#P348|Edit this on Wikidata]]"
+    }
+   }
+  }
+ ],
+ "year": 2026
+}
