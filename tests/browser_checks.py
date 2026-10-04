@@ -25,12 +25,14 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 @contextmanager
-def static_server():
+def static_server(*, web_only=False):
+    root = ROOT / 'web' if web_only else ROOT
     class Files(SimpleHTTPRequestHandler):
         def log_message(self, *args): pass
         def translate_path(self, path):
-            target = (ROOT / unquote(urlsplit(path).path).lstrip("/")).resolve()
-            if not any(target.is_relative_to(ROOT / folder) for folder in ("web", "assets")):
+            target = (root / unquote(urlsplit(path).path).lstrip("/")).resolve()
+            allowed = (root,) if web_only else (ROOT / 'web', ROOT / 'assets')
+            if not any(target.is_relative_to(folder) for folder in allowed):
                 return str(ROOT / "web" / "not-found")
             return str(target)
     server = ThreadingHTTPServer(("127.0.0.1", 0), Files)
@@ -64,6 +66,8 @@ def standalone_connection_check(browser, static):
         globalThis.fetch = (url, options = {}) => {
             connectionRequests.push({url: String(url), method: options.method || 'GET',
                 authorization: options.headers?.Authorization || null, body: options.body || null});
+            if (String(url).startsWith('http://127.0.0.1:8000/v1/'))
+                return Promise.resolve(new Response('{}', {status: 404}));
             return originalFetch(url, options);
         };
     """)["identifier"]
@@ -74,8 +78,9 @@ def standalone_connection_check(browser, static):
             browser.navigate(static + "/web/index.html")
             browser.wait("!!document.querySelector('dwindy-chat')?.shadowRoot?.querySelector('link')?.sheet")
             browser.evaluate("globalThis.chat = document.querySelector('dwindy-chat')")
-            browser.wait("!chat.$('.error').hidden")  # Initial static-host health 404.
-            assert browser.evaluate("document.querySelector('#api-base').value") == static
+            browser.wait("!chat.$('.error').hidden")  # Controlled unavailable default API.
+            assert browser.evaluate("document.querySelector('#api-base').value") == 'http://127.0.0.1:8000'
+            assert browser.evaluate("connectionRequests.every(c => c.url.startsWith('http://127.0.0.1:8000/v1/'))")
 
             def connect(value):
                 browser.evaluate("connectionRequests.length = 0; document.querySelector('#api-base').value = " +
@@ -113,6 +118,27 @@ def standalone_connection_check(browser, static):
         browser.call("Page.removeScriptToEvaluateOnNewDocument", identifier=script)
 
 
+def standalone_bundle_check(browser):
+    """The web/ directory alone contains its images and selects the real API port."""
+    script = browser.call('Page.addScriptToEvaluateOnNewDocument', source="""
+        globalThis.bundleRequests = [];
+        globalThis.fetch = (url) => {
+            bundleRequests.push(String(url));
+            return Promise.resolve(new Response('{}', {status: 404}));
+        };
+    """)['identifier']
+    try:
+        with static_server(web_only=True) as static:
+            browser.navigate(static + '/index.html')
+            browser.wait("!!document.querySelector('dwindy-chat')?.shadowRoot?.querySelector('link')?.sheet")
+            browser.wait("[...document.images, ...document.querySelector('dwindy-chat').shadowRoot.querySelectorAll('img')].every(img => img.complete && img.naturalWidth > 0)")
+            assert browser.evaluate("document.querySelector('#api-base').value") == 'http://127.0.0.1:8000'
+            assert browser.evaluate("bundleRequests.length > 0 && bundleRequests.every(url => url.startsWith('http://127.0.0.1:8000/v1/'))")
+            return {'web_directory_only': True, 'all_images_loaded': True, 'default_api_port': 8000}
+    finally:
+        browser.call('Page.removeScriptToEvaluateOnNewDocument', identifier=script)
+
+
 def run(args):
     with static_server() as static, launch_browser(args.browser) as browser:
         version = browser.call("Browser.getVersion")["product"]
@@ -123,6 +149,7 @@ def run(args):
         print(json.dumps({"browser": version, "browser_tests": len(results), "failures": failures}), flush=True)
         assert not failures
         print(json.dumps({"standalone_cross_origin_connection": standalone_connection_check(browser, static)}), flush=True)
+        print(json.dumps({'standalone_bundle': standalone_bundle_check(browser)}), flush=True)
         model = load_config(args.config) if args.config else Config(Path("unused.gguf"), max_tokens=5)
         backend = None if args.config else FakeBackend(limit=10000)
         app = create_app(model, ApiConfig(allowed_origins=(static,)), backend=backend, chat_root=ROOT)

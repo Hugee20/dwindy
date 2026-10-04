@@ -31,6 +31,10 @@ class LlamaBackend:
                     "GGUF has no tokenizer.chat_template. M1 requires an embedded "
                     "text chat template supported by this runtime; no family fallback is used."
                 )
+            self._qwen3_channels = (
+                self._model.metadata.get("general.architecture") in ("qwen3", "qwen3moe")
+                and "<think>" in template and "</think>" in template
+            )
             def token_text(token_id):
                 if token_id < 0:
                     return ""
@@ -49,6 +53,13 @@ class LlamaBackend:
                 f"Cannot load GGUF/chat template ({type(exc).__name__}). "
                 "Check model compatibility, available RAM, and runtime version."
             ) from exc
+
+    def model_metadata(self):
+        """Only facts reported by the loaded GGUF; no filename/vendor inference."""
+        metadata = self._model.metadata if self._model is not None else {}
+        return {key: value if isinstance(value, str) and value.strip() else None
+                for key, value in (('name', metadata.get('general.name')),
+                                   ('architecture', metadata.get('general.architecture')))}
 
     def _prepare(self, messages):
         if self._model is None:
@@ -94,15 +105,22 @@ class LlamaBackend:
             )
             pieces = []
             reason = None
+            from .reasoning import Qwen3Answer
+            answer = Qwen3Answer(formatted.prompt) if self._qwen3_channels else None
             for chunk in stream:
                 choice = chunk["choices"][0]
-                if choice["text"]:
-                    pieces.append(choice["text"])
-                    yield TextDelta(choice["text"])
+                text = answer.feed(choice["text"]) if answer else choice["text"]
+                if text:
+                    pieces.append(text)
+                    yield TextDelta(text)
                 if choice.get("finish_reason"):
                     reason = choice["finish_reason"]
             if reason is None:
                 raise BackendError("Runtime ended without a completion result.")
+            tail = answer.finish() if answer else ""
+            if tail:
+                pieces.append(tail)
+                yield TextDelta(tail)
             count = len(self._model.tokenize("".join(pieces).encode("utf-8"),
                                               add_bos=False, special=False))
             yield Completion(reason, len(tokens), count)

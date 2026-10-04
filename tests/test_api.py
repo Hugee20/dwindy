@@ -14,6 +14,7 @@ except ImportError:
 
 from dwindy.backend import BackendError, Completion, ContextLimitError, TextDelta
 from dwindy.config import Config
+from dwindy.identity import runtime_system_prompt
 from dwindy.server import ApiConfig
 from test_terminal import FakeBackend
 
@@ -38,13 +39,15 @@ class ApiTests(unittest.TestCase):
         data = first.json()
         self.assertEqual(set(data), {"conversation_id", "text", "finish_reason", "dropped_turns", "usage"})
         self.assertEqual(data["text"], "ok")
+        self.assertEqual(self.backend.requests[-1][0].role, "system")
+        self.assertEqual(self.backend.requests[-1][0].content, runtime_system_prompt())
         key = data["conversation_id"]
         self.assertEqual(len(key), 32)
         client.post("/v1/chat", json={"message": "two", "conversation_id": key})
-        self.assertEqual([m.content for m in self.backend.requests[-1]], ["one", "ok", "two"])
+        self.assertEqual([m.content for m in self.backend.requests[-1] if m.role != "system"], ["one", "ok", "two"])
         other = client.post("/v1/chat", json={"message": "other"}).json()["conversation_id"]
         self.assertNotEqual(other, key)
-        self.assertEqual([m.content for m in self.backend.requests[-1]], ["other"])
+        self.assertEqual([m.content for m in self.backend.requests[-1] if m.role != "system"], ["other"])
         self.assertEqual(client.delete("/v1/conversations/" + key).status_code, 204)
         self.assertEqual(client.delete("/v1/conversations/" + key).status_code, 404)
         self.assertEqual(client.post("/v1/chat", json={"message": "again", "conversation_id": key}).status_code, 404)
@@ -70,7 +73,7 @@ class ApiTests(unittest.TestCase):
         client = self.client()
         with patch.object(self.backend, "generate", wraps=self.backend.generate) as generate:
             client.post("/v1/chat", json={"message": "  /reset  "})
-        self.assertEqual([m.content for m in generate.call_args.args[0]], ["original", "  /reset  "])
+        self.assertEqual([m.content for m in generate.call_args.args[0]], [runtime_system_prompt("original"), "  /reset  "])
         self.assertEqual(generate.call_args.args[1], self.model.options())
 
     def test_strict_request_schema(self):
@@ -101,13 +104,13 @@ class ApiTests(unittest.TestCase):
         self.assertFalse(self.backend.requests)
 
     def test_whole_turn_trimming(self):
-        self.backend.limit = 20
+        self.backend.limit = 20 + len(runtime_system_prompt()) + 1
         client = self.client()
         key = client.post("/v1/chat", json={"message": "one"}).json()["conversation_id"]
         client.post("/v1/chat", json={"message": "two", "conversation_id": key})
         last = client.post("/v1/chat", json={"message": "three", "conversation_id": key}).json()
         self.assertEqual(last["dropped_turns"], 1)
-        self.assertEqual([m.content for m in self.backend.requests[-1]], ["two", "ok", "three"])
+        self.assertEqual([m.content for m in self.backend.requests[-1] if m.role != "system"], ["two", "ok", "three"])
 
     def test_json_failure_is_safe_and_rolls_back(self):
         client = self.client()
@@ -120,7 +123,7 @@ class ApiTests(unittest.TestCase):
         self.assertEqual(result.status_code, 500)
         self.assertNotIn("SECRET", result.text)
         client.post("/v1/chat", json={"message": "next", "conversation_id": key})
-        self.assertEqual([m.content for m in self.backend.requests[-1]], ["one", "ok", "next"])
+        self.assertEqual([m.content for m in self.backend.requests[-1] if m.role != "system"], ["one", "ok", "next"])
 
     def test_sse_error_and_no_completed_event(self):
         self.backend.failure = BackendError("SECRET")

@@ -1,6 +1,6 @@
 import {ChatClient, apiBase, validWikipediaUrl} from './api-client.js';
 
-const asset = name => new URL(`../assets/${name}`, import.meta.url).href;
+const asset = name => new URL(`./assets/${name}`, import.meta.url).href;
 const idle = asset('chatheads/dwindy-idle.png');
 const working = asset('chatheads/dwindy-working.png');
 
@@ -38,7 +38,6 @@ export class DwindyChat extends HTMLElement {
         <label class="retrieval-setting" hidden><input class="use-retrieval" type="checkbox"> <span class="retrieval-label">Use local documents</span></label>
         <p class="retrieval-status" role="status" hidden></p>
         <label class="reach-setting" hidden><input class="use-reach" type="checkbox"> Use Wikipedia <span>(sends a minimized query online)</span></label>
-        <p class="reach-status" role="status" hidden></p>
         <div class="transcript" role="region" aria-label="Conversation" tabindex="0">
           <div class="empty"><img alt=""><h3>Hello. What’s on your mind?</h3><p>Ask a question, explore an idea, or work through a thought.</p></div>
           <p class="pruned" hidden>Older messages were removed from this display.</p>
@@ -170,7 +169,6 @@ export class DwindyChat extends HTMLElement {
     this.$('.retrieval-setting').hidden = true;
     this.$('.use-retrieval').checked = false;
     this.$('.retrieval-status').hidden = true;
-    this.$('.reach-status').hidden = true;
     this.$('.error').hidden = true;
     this.$('.status').textContent = 'Connection ready to use. Send a message to begin.';
     if (this.#inline || this.hasAttribute('open')) this.#checkHealth();
@@ -313,7 +311,6 @@ export class DwindyChat extends HTMLElement {
     input.value = ''; this.#scroll();
     let complete = false, dropped = 0;
     this.$('.retrieval-status').hidden = true;
-    this.$('.reach-status').hidden = true;
     try {
       const retrieval = this.$('.retrieval-setting').hidden ? undefined : this.$('.use-retrieval').checked ? 'auto' : false;
       const reach = this.$('.reach-setting').hidden ? undefined : this.$('.use-reach').checked ? 'auto' : false;
@@ -329,14 +326,12 @@ export class DwindyChat extends HTMLElement {
             this.$('.retrieval-status').hidden = false;
           }
           const external = item.data.reach;
-          if (external) {
-            const status = this.$('.reach-status');
-            this.#reachStatus(status, external);
-            status.hidden = false;
+          if (external && !['disabled', 'not_attempted'].includes(external.state)) {
             const receipt = document.createElement('p');
             receipt.className = 'reach-receipt';
+            receipt.setAttribute('role', 'status');
             this.#reachStatus(receipt, external);
-            assistant.li.append(receipt);
+            assistant.content.closest('.bubble').append(receipt);
           }
         }
         if (item.event === 'delta') {
@@ -372,11 +367,11 @@ export class DwindyChat extends HTMLElement {
     node.textContent = labels[info.state] || '';
     if (info.attempted && typeof info.query === 'string')
       node.append(document.createTextNode(` Query sent: ${info.query}.`));
-    for (const source of info.sources || []) {
+    for (const source of info.state === 'supplied' ? info.sources || [] : []) {
       if (!validWikipediaUrl(source.url)) continue;
       node.append(document.createElement('br'));
       const link = document.createElement('a');
-      link.textContent = `Referenced from Wikipedia ? ${source.title}`;
+      link.textContent = `Referenced from Wikipedia — ${source.title}`;
       link.href = source.url; link.target = '_blank'; link.rel = 'noopener noreferrer';
       node.append(link);
     }
@@ -408,7 +403,6 @@ export class DwindyChat extends HTMLElement {
     this.$('.delete-confirm').hidden = true;
     this.$('.resume-id').value = '';
     this.$('.retrieval-status').hidden = true;
-    this.$('.reach-status').hidden = true;
   }
 
   async newConversation() {

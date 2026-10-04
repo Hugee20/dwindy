@@ -28,7 +28,7 @@ safe design exists.
 
 ## Server-local clock
 
-When a message refers to the present ("today", "tomorrow", "what time is it", "the date"…), the
+When a message refers to the present ("today", "tomorrow", "what time is it", "current year", "the date"…), the
 turn receives:
 
 > Server-local date and time: Friday, 2026-10-02 09:15 (UTC+08:00). This is the server's clock,

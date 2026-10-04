@@ -25,6 +25,16 @@ the backend on exit. The terminal receives Core; it handles input, slash command
 and interruption. `/reset` calls Core's reset operation. No model messages, token budgeting,
 history storage, or response-commit decisions remain in terminal rendering.
 
+API and terminal wiring use `identity.py` to declare Dwindy / a local AI assistant powered
+by a local large language model through Core's existing system-message path. This identity
+does not read or include backend names, architectures or vendors. Project attribution
+describes Dwindy as a small, modular, local-first chatbot project. The optional backend
+`model_metadata()` accessor remains internal diagnostic information from the loaded GGUF;
+missing values remain unknown. Identity context is token-counted and never saved as conversation
+history. Generic Core callers retain their explicit `system_prompt` interface. Model/license
+attribution belongs in repository/legal documentation, separate from conversational branding.
+No identity question detector or generated-response enforcement is involved.
+
 `config.py` reads explicitly selected TOML using `tomllib`, validates settings, and resolves
 local model paths. CLI model paths override the file setting. No automatic config search or
 environment-based model settings are implemented. CPU execution is fixed, not a toggle.
@@ -106,7 +116,8 @@ at construction, then forwards it through the common `_prepare` path for countin
 generation. It does not send the mapping to the model constructor or completion API.
 Evaluation configuration serialization includes the mapping. Templates define whether a
 variable has an effect; unfamiliar variables may be ignored. There is no model detection,
-universal reasoning mode, message rewriting, or generated-output stripping.
+universal reasoning mode or message rewriting. The runtime now decodes the known Qwen3
+leading reasoning channel before emitting visible text; other model output is unchanged.
 
 ## HTTP ownership, state, and cancellation
 
@@ -191,7 +202,7 @@ Host/Origin/auth rules. Model loading and API operation make no outbound request
 an external component stylesheet. The standalone shell selects inline presentation; embedding
 uses the same component with a launcher/native modal dialog. No framework, bundler, browser
 package dependency, CDN or outbound asset fetch is introduced. Default assets resolve relative
-to the module and use the existing canonical `assets/` tree. Idle and working indicate idle/
+to the module and use the self-contained `web/assets/` tree. Idle and working indicate idle/
 completed and active request processing respectively; no other mascot state is activated.
 
 `web/api-client.js` is an internal shared transport: fetch, streamed UTF-8/SSE parsing,

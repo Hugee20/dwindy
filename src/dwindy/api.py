@@ -20,6 +20,7 @@ from starlette.responses import JSONResponse, Response
 
 from .backend import Completion, ContextLimitError, TextDelta
 from .core import DwindyCore, TurnStarted
+from .identity import runtime_system_prompt
 from .config import ConfigError
 from .server import ApiConfig
 from .persistence import ConversationStore, StorageError
@@ -352,7 +353,7 @@ class ApiState:
                 return error(503, "conversation_capacity", "Conversation limit reached; delete an idle conversation.", retry=True)
             key = key or secrets.token_urlsafe(24)
             entry = Conversation(DwindyCore(self.backend, options=self.model_config.options(),
-                                           system_prompt=self.model_config.system_prompt), time.monotonic())
+                                           system_prompt=runtime_system_prompt(self.model_config.system_prompt)), time.monotonic())
             self.conversations[key] = entry
         self.busy = entry.active = True
         return ChatResponse(self, key, entry, body, restoring=restoring)

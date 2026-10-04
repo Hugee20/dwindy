@@ -6,6 +6,7 @@ from .backend import BackendError, Completion, TextDelta
 from .config import ConfigError, load_config
 from .capabilities import select as select_capabilities
 from .core import DwindyCore, TurnStarted
+from .identity import runtime_system_prompt
 from .evidence import Facts
 from .reach import decide as reach_decide, local_relevant as reach_local_relevant
 from .retrieval import RetrievalError
@@ -88,7 +89,8 @@ def main(argv=None) -> int:
             index = RetrievalIndex(args.retrieval_index)
         from .llama_backend import LlamaBackend
         backend = LlamaBackend(config)
-        core = DwindyCore(backend, options=config.options(), system_prompt=config.system_prompt)
+        core = DwindyCore(backend, options=config.options(),
+                          system_prompt=runtime_system_prompt(config.system_prompt))
         terminal(core, index=index, mode=args.retrieval or "auto")
         return 0
     except (ConfigError, BackendError, RetrievalError) as exc:

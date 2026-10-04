@@ -19,11 +19,14 @@ ASSET_FILES = (
 def frontend_files(root):
     root = Path(root).expanduser().resolve()
     mapping = {}
-    for name in [*("web/" + name for name in WEB_FILES), *("assets/" + name for name in ASSET_FILES)]:
+    for name in [*("web/" + name for name in WEB_FILES), *("web/assets/" + name for name in ASSET_FILES)]:
         path = (root / name).resolve()
         if not path.is_relative_to(root) or not path.is_file():
-            raise ConfigError("chat-root must contain the complete web/ and assets/ source bundle without external symlinks.")
+            raise ConfigError("chat-root must contain the complete web/ bundle, including web/assets/, without external symlinks.")
         mapping["/dwindy/" + name] = path
+        if name.startswith("web/assets/"):
+            # Preserve the original public asset URLs for existing clients.
+            mapping["/dwindy/" + name.removeprefix("web/")] = path
     return mapping
 
 

@@ -157,6 +157,10 @@ def main(argv=None) -> int:
             print('Install the optional API dependencies: pip install -e ".[api]"', file=sys.stderr)
             return 1
         app = create_app(model_config, api_config, chat_root=args.chat_root)
+        if args.chat_root is not None:
+            host = f'[{api_config.host}]' if ':' in api_config.host else api_config.host
+            scheme = 'https' if api_config.ssl_certfile else 'http'
+            print(f'Standalone chat: {scheme}://{host}:{api_config.port}/chat/', file=sys.stderr)
         if api_config.retrieval_index_path is not None:
             mode = api_config.retrieval_default or "auto"
             print(f"Local context: {mode} by default. Clients may send retrieval=false; "

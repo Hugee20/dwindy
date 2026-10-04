@@ -93,13 +93,17 @@ export const tests = [
     send(chat, 'latest python'); await complete(chat);
     const post=JSON.parse(calls.find(c=>c.options.method==='POST').options.body);
     assert(post.reach === 'auto');
-    assert(chat.$('.reach-status').textContent.includes('latest version python'));
-    assert(chat.$('.reach-status').textContent.includes('does not verify'));
+    const receipt = chat.$('.assistant:last-child .reach-receipt');
+    assert(receipt.textContent.includes('latest version python'));
+    assert(receipt.textContent.includes('does not verify'));
+    assert(chat.shadowRoot.querySelectorAll('.reach-receipt').length === 1);
+    assert(receipt.parentElement.classList.contains('bubble'));
+    assert(!chat.$('.reach-status'));
     const link=chat.$('.assistant:last-child .reach-receipt a');
-    assert(link.textContent === 'Referenced from Wikipedia ? <Python>');
+    assert(link.textContent === 'Referenced from Wikipedia — <Python>');
     assert(link.href === 'https://en.wikipedia.org/wiki/Python' && link.rel.includes('noopener'));
     assert(!chat.shadowRoot.querySelector('Python'));
-    await chat.resetConversation(); assert(chat.$('.reach-status').hidden);
+    await chat.resetConversation(); assert(!chat.$('.reach-receipt'));
   }, {fetchImpl: async (url,options) => options.method === 'DELETE' ? new Response(null,{status:204}) : url.endsWith('/health') ? new Response('{"reach_enabled":true,"reach_default":"off"}') :
       response(frame('started', {conversation_id: id, dropped_turns: 0, reach: {state:'supplied',attempted:true,reason:'supplied',provider:'wikipedia',
         query: 'latest version python', sources: [{title: '<Python>', url: 'https://en.wikipedia.org/wiki/Python'}]}}) +
@@ -108,8 +112,9 @@ export const tests = [
     for (const state of ['disabled','not_attempted','unavailable','not_supplied']) {
       await fixture(async chat => {
         send(chat,'hello'); await complete(chat);
-        assert(!chat.$('.reach-status').hidden);
-        assert(!chat.$('.reach-status').querySelector('a'));
+        const receipt = chat.$('.reach-receipt');
+        assert(!!receipt === !['disabled', 'not_attempted'].includes(state));
+        assert(!chat.shadowRoot.querySelector('.reach-receipt a'));
         assert(chat.$('.retrieval-status').hidden);
         assert(chat.$('.reach-setting').hidden);
       }, {fetchImpl: async url=>url.endsWith('/health')?new Response('{}'):

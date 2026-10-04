@@ -89,3 +89,13 @@ class ServerConfigTests(unittest.TestCase):
             self.assertEqual(settings["timeout_graceful_shutdown"], 1)
             server.return_value.started = False
             self.assertEqual(main([]), 1)
+
+    @unittest.skipUnless(find_spec('uvicorn') and find_spec('fastapi'), 'Optional API dependencies not installed')
+    def test_standalone_launcher_prints_chat_url_without_changing_api_binding(self):
+        with patch('dwindy.server.load_config'), patch('dwindy.api.create_app') as app, \
+             patch('uvicorn.Config'), patch('uvicorn.Server') as server, \
+             patch('sys.stderr', new_callable=io.StringIO) as output:
+            server.return_value.started = True
+            self.assertEqual(main(['--chat-root', '.']), 0)
+            self.assertIn('http://127.0.0.1:8000/chat/', output.getvalue())
+            self.assertEqual(app.call_args.kwargs['chat_root'], '.')

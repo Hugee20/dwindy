@@ -72,7 +72,7 @@ class ApiCapabilityTests(unittest.TestCase):
         with self.client() as client:
             plain = client.post('/v1/chat', json={'message': 'Hello!'}).json()
             self.assertNotIn('capabilities', plain)
-            self.assertEqual(self.model_input(), 'Hello!')
+            self.assertEqual([m.content for m in self.backend.requests[-1] if m.role != 'system'], ['Hello!'])
             with patch.object(capabilities, 'datetime') as clock:
                 clock.now.side_effect = [datetime(2026, 10, 2, 9, 0, tzinfo=timezone.utc),
                                          datetime(2026, 10, 2, 9, 0, tzinfo=timezone.utc) + timedelta(days=1)]
@@ -91,6 +91,18 @@ class ApiCapabilityTests(unittest.TestCase):
         self.assertIn('host_context', body['properties'])
         self.assertIn('HostContextItem', body['$defs'])
         self.assertIn('capabilities', schema['components']['schemas']['ChatReply']['properties'])
+
+    def test_current_year_fact_and_metadata_reach_the_single_model_call(self):
+        moment = datetime(2031, 1, 2, 9, 0, tzinfo=timezone.utc)
+        with self.client() as client, patch.object(capabilities, 'datetime') as clock:
+            clock.now.return_value = moment
+            reply = client.post('/v1/chat', json={'message': "What's the current year?"}).json()
+        self.assertEqual(reply['capabilities'], [{'name': 'clock', 'value': moment.astimezone().isoformat(timespec='minutes')}])
+        self.assertIn('TOOL/computation name="clock"', self.model_input())
+        self.assertIn(moment.astimezone().strftime('%Y-%m-%d'), self.model_input())
+        self.assertEqual(len(self.backend.requests), 1)
+        self.assertEqual(self.backend.requests[-1][-1].content.split('User question:\n')[-1],
+                         "What's the current year?")
 
 
 if __name__ == '__main__':

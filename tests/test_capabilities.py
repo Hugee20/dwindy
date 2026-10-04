@@ -61,6 +61,19 @@ class CapabilityTests(unittest.TestCase):
         with patch.object(capabilities, 'CALCULATOR_ADOPTED', False):
             self.assertEqual(select('What is 924 × 17?'), ())
 
+    def test_current_year_uses_existing_live_clock_route(self):
+        message = "What's the current year?"
+        self.assertTrue(capabilities.clock_applies(message))
+        with patch.object(capabilities, 'datetime') as clock:
+            clock.now.side_effect = [FIXED, FIXED.replace(year=2027)]
+            first, later = select(message)[0], select(message)[0]
+        self.assertEqual(first.name, 'clock')
+        self.assertEqual(first.metadata['value'], FIXED.isoformat(timespec='minutes'))
+        self.assertIn('2026-10-02', first.text)
+        self.assertIn('2027-10-02', later.text)
+        self.assertEqual(select('Translate to French: What is the current year?'), ())
+        self.assertEqual(select('The current yearly report'), ())
+
 
 def passage(text):
     return Passage(Source('d', 'c', 'Doc', 'a.md', 'h', 1, 1, 0, len(text)), text)

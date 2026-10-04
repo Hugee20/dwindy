@@ -43,22 +43,58 @@ from the Apache-2.0 source license.
 
 ## Windows setup
 
-Python 3.11+ is required. Run these PowerShell commands from the repository root.
-The existing development environment was tested on Windows x86-64 / Python 3.13.0;
-Python 3.11 and other platforms have not yet been validated. On a new checkout, create
-the virtual environment with an installed Python 3.11+ interpreter, for example:
+For standalone browser chat and API integration, use the same installation below.
+Python 3.11+ is required; the reference platform is Windows x86-64 / Python 3.13.0.
+Python 3.11 and other platforms have not yet been validated. Run these PowerShell
+commands from the extracted/cloned repository, with your compatible GGUF available
+locally. Activation is unnecessary because the commands use the virtual environment's
+executables explicitly:
 
 ```powershell
 py -3.13 -m venv .venv
+.\.venv\Scripts\python.exe -m pip install --only-binary=llama-cpp-python --extra-index-url https://abetlen.github.io/llama-cpp-python/whl/cpu -e '.[api]'
+Copy-Item config.example.toml config.local.toml
+notepad config.local.toml
 ```
 
-Skip that command if `.venv` already contains the interpreter you want. Activation is
-unnecessary; use its interpreter explicitly:
+On a new checkout, set `model_path` to your actual GGUF, for example
+`model_path = 'D:\Models\your-model.gguf'`. If you already have `config.local.toml`,
+edit it rather than copying over your settings.
+
+For Qwen3, uncomment both lines at the end of the example so they read:
+
+```toml
+[chat_template_kwargs]
+enable_thinking = false
+```
+
+Leave this table after the top-level settings. It selects Qwen3's non-thinking mode
+for ordinary chat, avoiding use of the short output allowance on reasoning. The runtime
+also hides recognized reasoning when thinking is enabled, but cannot invent an answer
+if the allowance ends before the final answer channel. Other models may not support
+this template option.
+
+Save the file, then launch:
 
 ```powershell
-$env:PIP_DISABLE_PIP_VERSION_CHECK = "1"
-.\.venv\Scripts\python.exe -m pip install --only-binary=llama-cpp-python --extra-index-url https://abetlen.github.io/llama-cpp-python/whl/cpu -e .
+.\.venv\Scripts\dwindy-api.exe --config config.local.toml --chat-root .
 ```
+
+Open **http://127.0.0.1:8000/chat/** after startup completes. Keep that one terminal
+running; no separate static server or CORS configuration is needed. Stop with Ctrl+C,
+wait for shutdown, and rerun the launch command to restart. For API-only use, omit
+`--chat-root .` from the same command.
+
+You do not need `api.local.toml` for this demo. Persistence, local retrieval and Reach
+are optional. Pass `--api-config api.local.toml` only when you configure those or other
+server features; configuration files are never auto-discovered. Reach additionally
+requires its optional extra. If `DWINDY_API_TOKEN` is set in the server's environment,
+enter that token in the page's connection form.
+
+Copy and edit the example rather than generating TOML with PowerShell
+`Set-Content -Encoding utf8`: Windows PowerShell 5.1 adds a byte-order mark (BOM),
+which the TOML parser rejects. If your editor offers an encoding choice, save as
+UTF-8 without BOM.
 
 This is a **setup-time dependency download**, not a runtime operation. The command uses
 the runtime project's published CPU wheel index and fails instead of silently attempting
@@ -68,6 +104,50 @@ for compiler-based installation alternatives. Dwindy does not install anything a
 Air-gapped setup requires separately prepared dependency wheels and model files.
 
 ## Supply and run your own model
+
+### Tested reference model acquisition
+
+Dwindy v1 validation used **Qwen3-1.7B Q4_K_M**, specifically the artifact published by
+[ggml-org on Hugging Face](https://huggingface.co/ggml-org/Qwen3-1.7B-GGUF/blob/daeb8e2d528a760970442092f6bf1e55c3b659eb/Qwen3-1.7B-Q4_K_M.gguf).
+This is ggml-org's GGUF quantization of the upstream Qwen model, not a claim that all
+files named Qwen3-1.7B Q4_K_M are identical.
+
+| Reference artifact | Value |
+|---|---|
+| Repository | `ggml-org/Qwen3-1.7B-GGUF` |
+| Pinned revision | `daeb8e2d528a760970442092f6bf1e55c3b659eb` |
+| Exact filename | `Qwen3-1.7B-Q4_K_M.gguf` |
+| File size | 1,282,439,264 bytes (approximately 1.28 GB / 1.19 GiB) |
+| Model license | Apache-2.0; review the publisher's model card and upstream license |
+
+Expected SHA-256:
+
+```text
+d2387ca2dbfee2ffabce7120d3770dadca0b293052bc2f0e138fdc940d9bc7b5
+```
+
+1. Use the [revision-pinned download link](https://huggingface.co/ggml-org/Qwen3-1.7B-GGUF/resolve/daeb8e2d528a760970442092f6bf1e55c3b659eb/Qwen3-1.7B-Q4_K_M.gguf)
+   in your browser and save the GGUF to a local folder, for example `D:\Models`.
+2. Check the downloaded file's SHA-256 against the value above:
+
+   ```powershell
+   Get-FileHash 'D:\Models\Qwen3-1.7B-Q4_K_M.gguf' -Algorithm SHA256
+   ```
+
+   Hexadecimal letter case does not matter. If the hash differs, the file is not the
+   tested reference artifact; do not identify it as that artifact.
+3. Set `model_path` in your copied `config.local.toml` to the saved file and enable
+   Qwen3's non-thinking setting as shown in the Windows quick start. Launch the same
+   single server and open `/chat/`.
+
+The local validation file's size and SHA-256 match the publisher's pinned metadata.
+Model acquisition is a deliberate setup step; Dwindy never downloads a model at runtime.
+
+### Compatible alternatives and terminal use
+
+Other compatible GGUFs may work, but they are not the artifact used for v1 validation.
+Matching a model family, filename or quantization label alone does not establish that
+an alternative has been tested.
 
 Obtain a compatible text instruction/chat GGUF separately, review its license, and keep it
 outside version control. M1 requires an embedded `tokenizer.chat_template` supported by
@@ -98,9 +178,13 @@ URLs and UNC model paths are rejected.
 
 Configuration keys are `model_path`, `context_size`, `max_tokens`, `temperature`, `seed`,
 `threads`, and `system_prompt`. Unknown keys fail. Defaults are 4096 context tokens,
-256 output tokens, temperature 0.7, seed 42, runtime-chosen thread count, and no system
-message. These are starting settings, not benchmark-derived recommendations. Some templates
-reject system messages; leave `system_prompt` empty unless your model supports them.
+256 output tokens, temperature 0.7, seed 42, runtime-chosen thread count, and no additional
+configured system text. The API and terminal add a compact system declaration identifying
+Dwindy as a local AI assistant powered by a local large language model. Backend names,
+architectures and vendors are not included in this conversational identity.
+Project attribution identifies the Dwindy project, separate from the generation backend.
+This requires a template supporting system messages. These are starting settings, not
+benchmark-derived recommendations. `system_prompt` appends optional configured system text.
 
 An optional `[chat_template_kwargs]` table passes model-template variables to the runtime
 formatter. Omitted or empty means the embedded template's defaults are preserved. For a
@@ -116,9 +200,11 @@ and non-finite numbers are rejected. Keys must be identifiers without a leading 
 Formatter-owned arguments such as messages, special tokens, generation-prefix controls,
 tools/functions, and helpers are reserved. The adapter alone forwards these variables;
 counting and generation use the same settings. Unrecognized variables may be ignored by
-a template, so this is not a universal reasoning switch. No model-name detection, prompt
-rewriting, or generated-text filtering is performed. Inspect raw evaluation responses to
-verify the effect for your particular GGUF. Effective kwargs are recorded in evaluation settings.
+a template, so this is not a universal reasoning switch. The runtime recognizes the
+Qwen3 reasoning protocol from GGUF architecture/template metadata and decodes its leading
+thinking channel before any text reaches Core, the API, UI or new saved history. Literal
+user text and tags within the final answer remain text. Other model output is unchanged.
+No prompt rewriting is involved. Effective kwargs are recorded in evaluation settings.
 
 Type `/reset` to discard history and `/exit` to quit. EOF or Ctrl+C at the input prompt
 also exits. Ctrl+C during generation discards the incomplete turn and returns to the prompt.
@@ -198,10 +284,31 @@ work must finish and its stream must close before the loaded model is released.
 
 | Endpoint | Result |
 |---|---|
-| `GET /v1/health` | `200 {"status":"ready","busy":false,"persistence_enabled":false,"retrieval_enabled":false}`; busy describes the global inference lease. Unavailable returns 503. No inference is run. |
+| `GET /v1/health` | 200 with readiness and enabled-feature metadata (example below); `busy` describes the global inference lease. Unavailable returns 503. No inference is run. |
 | `POST /v1/chat` | One conversational turn; JSON by default, SSE when `stream` is true. |
 | `POST /v1/retrieve` | Explicit `{"query":"..."}` lexical search, at most three matches; no model invocation. Requires a configured index. |
 | `DELETE /v1/conversations/{id}` | 204 with an empty body; unknown/expired IDs return 404, active conversations return 409. |
+
+Example health response with Wikipedia Reach configured and off by default, without
+persistence or a local retrieval index:
+
+```json
+{
+  "status": "ready",
+  "busy": false,
+  "persistence_enabled": false,
+  "retrieval_enabled": false,
+  "reach_enabled": true,
+  "reach_provider": "wikipedia",
+  "reach_default": "off"
+}
+```
+
+Reach fields are omitted when no provider is configured, as in the basic demo.
+`reach_enabled` means the deployment permits Reach; it does not mean a request was
+attempted or Wikipedia is currently reachable. Per-turn Reach status and actually
+supplied sources are reported separately in chat responses. A configured local index
+also adds `retrieval_default` and, for a project index, `project_snapshot`.
 
 `GET /openapi.json` provides the local machine-readable contract under the same security
 controls. Interactive documentation/CDN assets are disabled.
@@ -239,8 +346,10 @@ A successful non-streaming response has this shape (counts are illustrative):
 ```
 
 `finish_reason` comes from the backend (currently `stop` or `length`). `text_tokens` counts
-retokenized raw visible response text, **not** sampled tokens or final-answer-only tokens.
-No reasoning tags or other generated content are removed. `dropped_turns` counts oldest
+retokenized visible answer text, **not** sampled tokens. Qwen3's leading reasoning channel
+is excluded; its generation still consumes the same output allowance. An unfinished
+reasoning-only response is an error and is not committed. Existing saved conversations
+are not rewritten. `dropped_turns` counts oldest
 complete conversation turns trimmed for this request. A nonempty length-limited answer is
 committed, preserving M1/M2 semantics.
 
@@ -322,7 +431,8 @@ delivery, request replay, or cancellation endpoint is provided.
 
 ### Security and API configuration
 
-Loopback is the default; no outbound requests, update checks, or downloads occur at runtime.
+Loopback is the default. No update checks or model downloads occur at runtime; explicitly
+configured and selected Reach may send a minimized query to Wikipedia.
 Requests must use an exact allowed Host. Untrusted Origins are rejected, including `null`;
 same-origin requests are permitted, and additional browser origins must be explicitly listed.
 For example, local development can set `allowed_origins = ["http://localhost:5173"]`. There is
@@ -391,7 +501,7 @@ Open `http://127.0.0.1:8000/chat/`. Static hosting is opt-in and allowlisted; AP
 remains unchanged. Optional connection credentials stay in page memory. The browser itself keeps no
 persistent conversation history or credentials. Optional server-side persistence is explicit. The UI shows literal model text, with no Markdown/HTML rendering.
 
-Alternatively, copy the `web/` runtime files and used `assets/` into another application's
+Alternatively, copy the `web/` runtime files and their bundled `web/assets/` into another application's
 static directory, preserving their layout:
 
 ```html

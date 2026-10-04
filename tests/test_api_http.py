@@ -140,7 +140,7 @@ class LiveHttpTests(unittest.TestCase):
             wait_for(lambda: not client.get("/v1/health").json()["busy"])
             self.assertTrue(self.backend.cleanup_finished)
             self.assertEqual(client.post("/v1/chat", json={"message": "next", "conversation_id": key}).status_code, 200)
-            self.assertEqual([m.content for m in self.backend.requests[-1]], ["one", "ok", "next"])
+            self.assertEqual([m.content for m in self.backend.requests[-1] if m.role != "system"], ["one", "ok", "next"])
         self.assertTrue(self.backend.model_closed.is_set())
         self.assertFalse(self.backend.closed_while_running)
 

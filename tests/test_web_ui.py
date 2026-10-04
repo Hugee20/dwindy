@@ -34,6 +34,14 @@ class WebUiTests(unittest.TestCase):
         self.assertEqual(self.client.post("/v1/chat", json={"message": "hello"}).status_code, 401)
         self.assertEqual(self.client.delete("/v1/conversations/" + "A" * 32).status_code, 401)
 
+    def test_new_and_original_asset_urls_share_exact_bytes(self):
+        for name in ('branding/dwindy-lockup.png', 'branding/dwindy-wordmark.png',
+                     'chatheads/dwindy-idle.png', 'chatheads/dwindy-working.png'):
+            modern = self.client.get('/dwindy/web/assets/' + name)
+            legacy = self.client.get('/dwindy/assets/' + name)
+            self.assertEqual(modern.status_code, 200)
+            self.assertEqual(modern.content, legacy.content)
+
     def test_method_and_path_do_not_expand_auth_bypass(self):
         for path in ("/dwindy/web/index.html/", "/dwindy/web/standalone.js.map", "/dwindy/web/tests/index.html",
                      "/dwindy/config.local.toml", "/dwindy/assets/branding/PALETTE.md"):

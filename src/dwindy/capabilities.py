@@ -18,7 +18,7 @@ CUES = {
                          "how much is", "solve"),
     "word_operator": ("plus", "minus", "times", "multiplied by", "divided by", "of"),
     "clock": ("today", "tonight", "tomorrow", "yesterday", "what day is it", "what time is it",
-              "what year is it", "the date", "current date", "current time", "date today", "right now"),
+              "what year is it", "the date", "current date", "current time", "current year", "date today", "right now"),
 }
 BOUNDS = dict(max_expression_chars=200, max_number_digits=30, max_nesting=10,
               max_abs_exponent=100, max_result_digits=100, precision_digits=28)

@@ -8,7 +8,7 @@ sys.path.insert(0, str(Path(__file__).parent))
 from reach_h2.evaluate import (FIELDS, MAX_CHARS, MAX_EXPANSION_URL_BYTES, clean_value, expansion_url, h1_url,
                                holdout_ids, infobox_fields, load, reference_select, replay_expand, search_query,
                                subject_terms, unit_text, words)
-from dwindy import reach
+from reach_history_support import reach  # Deferred H2 retains its historical provider request.
 
 ROOT = Path(__file__).parent/'reach_h2'
 FROZEN = {'reach': '16b2f1a129038b4552b7b3a17b0cc3de3337b070e54efa5e1780409afe025eda',

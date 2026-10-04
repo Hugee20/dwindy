@@ -49,7 +49,7 @@ class ApiRetrievalTests(unittest.TestCase):
             self.assertEqual(app.state.dwindy.conversations[reply['conversation_id']].core.snapshot()[0].content,'Helios retry delay')
             plain=client.post('/v1/chat',json={'message':'hello','retrieval':False}).json()
             self.assertNotIn('retrieval',plain)
-            self.assertEqual(len(self.backend.requests[-1]),1)
+            self.assertEqual([m.role for m in self.backend.requests[-1]], ["system", "user"])
 
     def test_sse_no_match_and_budget_status(self):
         with self.client(self.app()) as client:
@@ -68,7 +68,7 @@ class ApiRetrievalTests(unittest.TestCase):
             self.assertEqual(db.execute('SELECT user_text,assistant_text FROM turns').fetchall(),[('Amber lending duration','ok')])
         with self.client(self.app(True)) as client:
             client.post('/v1/chat',json={'message':'continue','conversation_id':key})
-            self.assertEqual([m.content for m in self.backend.requests[-1]],['Amber lending duration','ok','continue'])
+            self.assertEqual([m.content for m in self.backend.requests[-1] if m.role != "system"],['Amber lending duration','ok','continue'])
 
     def test_disabled_failure_invalid_input_and_security(self):
         with self.client(create_app(self.model,backend=self.backend)) as client:

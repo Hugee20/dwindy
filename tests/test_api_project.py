@@ -60,7 +60,7 @@ class ApiProjectTests(unittest.TestCase):
             self.assertIn('event: completed', stream)
             plain = client.post('/v1/chat', json={'message': 'hello', 'retrieval': False}).json()
             self.assertNotIn('retrieval', plain)
-            self.assertEqual([m.content for m in self.backend.requests[-1]], ['hello'])
+            self.assertEqual([m.content for m in self.backend.requests[-1] if m.role != "system"], ['hello'])
 
     def test_persistence_on_stores_only_question(self):
         with self.client(persistent=True) as client:
@@ -69,7 +69,7 @@ class ApiProjectTests(unittest.TestCase):
             self.assertEqual(db.execute('SELECT user_text,assistant_text FROM turns').fetchall(), [('loan duration', 'ok')])
         with self.client(persistent=True) as client:
             client.post('/v1/chat', json={'message': 'continue', 'conversation_id': reply['conversation_id']})
-        self.assertEqual([m.content for m in self.backend.requests[-1]], ['loan duration', 'ok', 'continue'])
+        self.assertEqual([m.content for m in self.backend.requests[-1] if m.role != "system"], ['loan duration', 'ok', 'continue'])
 
     def test_m6_index_responses_are_unchanged(self):
         plain = self.root/'plain.sqlite3'

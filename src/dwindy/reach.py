@@ -218,16 +218,40 @@ def _clean(text):
     return " ".join(html.unescape(re.sub(r"<[^>]*>", "", text)).split())
 
 
-def _bounded(text):
-    limit = BOUNDS["max_result_chars"]
-    if len(text) <= limit:
-        return text
-    cut = text.rfind(". ", 0, limit - 1)
-    return text[:cut + 1] if cut > limit // 2 else text[:limit]
+def _exact_subject_title(title, query):
+    terms = set(subject_terms(query))
+    return bool(terms) and terms == set(subject_terms(title))
 
 
-def parse(body):
-    """Validated results from a MediaWiki response (intro extracts and/or search snippets)."""
+def _selected_text(text, query, title=''):
+    """Select verbatim paragraph/sentence windows; query overlap is not verification."""
+    limit = BOUNDS['max_result_chars']
+    wanted = set(words(query)) - STOPWORDS
+    # Only an exact subject identity supplies context; qualified titles do not.
+    context = set(words(title)) if _exact_subject_title(title, query) else set()
+    windows = []
+    for paragraph in text.splitlines():
+        paragraph = paragraph.strip()
+        if not paragraph:
+            continue
+        start = 0
+        boundaries = [m.end() for m in re.finditer(r'(?<=[.!?])\s+', paragraph)]
+        while len(paragraph) - start > limit:
+            end = max((b for b in boundaries if start < b <= start + limit), default=0)
+            if not end:
+                end = paragraph.rfind(' ', start, start + limit + 1)
+            if end <= start:
+                end = start + limit
+            windows.append(paragraph[start:end].strip())
+            start = end
+        if paragraph[start:].strip():
+            windows.append(paragraph[start:].strip())
+    # max() keeps the first window on ties: original paragraph/window ordering.
+    return max(windows, key=lambda text: len(wanted & (context | set(words(text)))), default='')
+
+
+def parse(body, query_text=''):
+    """Select bounded text from complete introductions, or snippets when unavailable."""
     if not isinstance(body, dict):
         raise ReachError()
     query = body.get("query")
@@ -251,15 +275,15 @@ def parse(body):
             continue
         if not valid_article_url(url):
             continue  # Only validated provider article URLs are ever reported.
-        text = " ".join(part for part in (_clean(extract), snippets.get(title, "")) if part)
+        text = _selected_text(extract if extract.strip() else snippets.get(title, ''), query_text, title)
         if text and title not in seen:
             seen.add(title)
-            results.append(WebResult(title, url, _bounded(text)))
+            results.append(WebResult(title, url, text))
     for title, snippet in snippets.items():
         if title not in seen and snippet and not pages:
             seen.add(title)
             url = RESULT_URL_PREFIX + urllib.parse.quote(title.replace(" ", "_"))
-            results.append(WebResult(title, url, _bounded(snippet)))
+            results.append(WebResult(title, url, _selected_text(snippet, query_text, title)))
     return results[:BOUNDS["max_results_supplied"]]
 
 
@@ -290,7 +314,7 @@ class WikipediaBackend:
     def url(self, query):
         return API_URL + '?' + urllib.parse.urlencode(dict(
             action='query', format='json', formatversion='2', generator='search', gsrsearch=query, gsrlimit=3,
-            prop='extracts|info', exintro=1, explaintext=1, exsentences=5, exlimit=3, inprop='url',
+            prop='extracts|info', exintro=1, explaintext=1, exlimit=3, inprop='url',
             list='search', srsearch=query, srlimit=3, srprop='snippet'))
 
     def search(self, query):
@@ -313,7 +337,7 @@ class WikipediaBackend:
             raise
         except Exception:
             raise ReachError('reach_unavailable')
-        return parse(body)
+        return parse(body, query)
 
     def close(self):
         self._closed = True
@@ -340,9 +364,21 @@ def passages(results, retrieved):
 
 # Admission is bounded lexical coverage, not semantic answer verification.
 def select_entries(results, query):
-    from .context_policy import useful
-    terms = subject_terms(query)
-    return tuple(p for p in passages(results, '') if useful((p,), terms))
+    terms = set(subject_terms(query))
+    if not terms:
+        return ()
+    candidates = passages(results, '')
+    exact = tuple(p for p in candidates if _exact_subject_title(p.source.name, query))
+    admitted = []
+    for p in exact or candidates:
+        title_terms = subject_terms(p.source.name)
+        title_matches = _exact_subject_title(p.source.name, query)
+        if terms <= set(title_terms) and not title_matches:
+            continue  # Extra informative title words denote a qualified/different subject.
+        text_terms = set(words(p.text))
+        if terms <= text_terms or (title_matches and title_terms[0] in text_terms):
+            admitted.append(p)
+    return tuple(admitted)
 
 
 def subject_terms(query):

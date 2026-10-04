@@ -102,6 +102,19 @@ class AdapterTests(unittest.TestCase):
         with self.assertRaisesRegex(BackendError, "closed"):
             backend.count_tokens([Message("user", "hi")])
 
+    def test_optional_model_metadata_comes_only_from_loaded_gguf(self):
+        backend = LlamaBackend(self.cfg)
+        self.addCleanup(backend.close)
+        model = FakeLlama.instances[-1]
+        self.assertEqual(backend.model_metadata(), dict(name=None, architecture=None))
+        model.metadata.update({'general.name': 'Different model', 'general.architecture': 'different_arch'})
+        result = backend.model_metadata()
+        self.assertEqual(result, dict(name='Different model', architecture='different_arch'))
+        result['name'] = 'Caller mutation'
+        self.assertEqual(backend.model_metadata()['name'], 'Different model')
+        model.metadata.update({'general.name': '', 'general.architecture': 123})
+        self.assertEqual(backend.model_metadata(), dict(name=None, architecture=None))
+
     def test_template_kwargs_shared_by_counting_and_generation(self):
         cfg = Config(Path("local.gguf"), max_tokens=5,
                      chat_template_kwargs={"suffix": "EXTRA", "enable_thinking": False})
@@ -129,3 +142,78 @@ class AdapterTests(unittest.TestCase):
         with patch.object(FakeLlama, "create_completion", return_value=iter(chunks)):
             events = list(backend.generate([Message("user", "hi")], self.cfg.options()))
         self.assertEqual(events[0], TextDelta(raw))
+
+    def test_qwen_channel_is_decoded_before_core_history_and_usage(self):
+        from dwindy.core import DwindyCore
+        backend = LlamaBackend(self.cfg)
+        self.addCleanup(backend.close)
+        backend._qwen3_channels = True
+        core = DwindyCore(backend, options=self.cfg.options())
+        user = 'Use <think>literal user text</think>'
+        raw = '<think>private reasoning</think>\n\nAnswer'
+        chunks = [{'choices': [{'text': part, 'finish_reason': None}]} for part in raw]
+        chunks.append({'choices': [{'text': '', 'finish_reason': 'stop'}]})
+        with patch.object(FakeLlama, 'create_completion', return_value=iter(chunks)) as generate:
+            events = list(core.chat(user))
+        self.assertEqual(''.join(e.text for e in events if isinstance(e, TextDelta)), 'Answer')
+        self.assertEqual(core.snapshot(), (Message('user', user), Message('assistant', 'Answer')))
+        self.assertEqual(events[-1].text_tokens, len('Answer'))
+        self.assertIn(user, bytes(generate.call_args.kwargs['prompt']).decode())
+        self.assertEqual(FakeLlama.instances[-1].resets, 2)
+
+    def test_unfinished_qwen_reasoning_rolls_back_core(self):
+        from dwindy.core import DwindyCore
+        backend = LlamaBackend(self.cfg)
+        self.addCleanup(backend.close)
+        backend._qwen3_channels = True
+        core = DwindyCore(backend, options=self.cfg.options())
+        chunks = [{'choices': [{'text': '<think>private', 'finish_reason': 'length'}]}]
+        with patch.object(FakeLlama, 'create_completion', return_value=iter(chunks)):
+            with self.assertRaisesRegex(BackendError, 'before a final answer'):
+                list(core.chat('Hello'))
+        self.assertEqual(core.snapshot(), ())
+        self.assertEqual(FakeLlama.instances[-1].resets, 2)
+
+    def test_unfinished_second_qwen_turn_preserves_native_history_and_retry(self):
+        from dwindy.core import DwindyCore
+        backend = LlamaBackend(self.cfg)
+        self.addCleanup(backend.close)
+        backend._qwen3_channels = True
+        core = DwindyCore(backend, options=self.cfg.options())
+        question = 'Remember the number 418 for this conversation.'
+
+        def render(messages, **kwargs):
+            prompt = ''.join('<|im_start|>' + m['role'] + '\n' + m['content']
+                             + '<|im_end|>\n' for m in messages)
+            return types.SimpleNamespace(prompt=prompt + '<|im_start|>assistant\n',
+                                         added_special=True, stop=['<|im_end|>'],
+                                         stopping_criteria=None)
+
+        streams = [iter([{'choices': [{'text': text, 'finish_reason': reason}]}])
+                   for text, reason in (
+                       ('<think>private first</think>\nHello!', 'stop'),
+                       ('<think>private unfinished', 'length'),
+                       ('<think>private retry</think>\nRemembered.', 'stop'))]
+        with patch.object(backend, '_formatter', side_effect=render), \
+                patch.object(FakeLlama, 'n_ctx', return_value=10000), \
+                patch.object(FakeLlama, 'create_completion', side_effect=streams) as generate:
+            list(core.chat('Hello'))
+            first = (Message('user', 'Hello'), Message('assistant', 'Hello!'))
+            self.assertEqual(core.snapshot(), first)
+            with self.assertRaisesRegex(BackendError, 'before a final answer'):
+                list(core.chat(question))
+            self.assertEqual(core.snapshot(), first)
+            self.assertEqual(FakeLlama.instances[-1].resets, 4)
+            events = list(core.chat(question))
+
+        expected_prompt = ('<|im_start|>user\nHello<|im_end|>\n'
+                           '<|im_start|>assistant\nHello!<|im_end|>\n'
+                           '<|im_start|>user\n' + question + '<|im_end|>\n'
+                           '<|im_start|>assistant\n')
+        for call in generate.call_args_list[1:]:
+            self.assertEqual(bytes(call.kwargs['prompt']).decode(), expected_prompt)
+        self.assertEqual(generate.call_count, 3)  # One generation per attempted turn.
+        self.assertEqual(FakeLlama.instances[-1].resets, 6)
+        self.assertEqual(core.snapshot(), first + (Message('user', question),
+                                                   Message('assistant', 'Remembered.')))
+        self.assertEqual(''.join(e.text for e in events if isinstance(e, TextDelta)), 'Remembered.')

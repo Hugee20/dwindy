@@ -77,8 +77,24 @@ generated statement, that Qwen used every entry, or that the answer is current/c
 
 ## Limitations and historical findings
 
-Wikipedia intros/snippets can be incomplete, truncated, outdated or inconsistent. Lexical
-admission is overlap, not truth, answerability or freshness verification. Ambiguous questions
+The single request acquires complete plain-text introductions within the response ceiling.
+Paragraph boundaries are preserved for selection. Dwindy ranks bounded verbatim paragraph
+or sentence windows by literal query-word coverage, with source order breaking ties, before
+applying the character limit. An article title whose informative words exactly match the query
+subject provides context during selection, so an incumbent paragraph need not repeat its
+country. Snippets are used only when an introduction is absent. Exact subject articles are
+preferred during admission; their passages must mention the title's leading subject word.
+Titles containing all subject words plus extra informative qualifiers (such as **Vice**
+President of Brazil) are not equivalent to the requested subject. Otherwise admission requires
+all informative subject words in the selected text; URLs do not provide coverage. Local
+usefulness and ranking are unchanged. IDs and content hashes describe the exact selected
+text; Core's actual supplied entries determine the public receipt.
+
+Wikipedia intros/snippets can be incomplete, outdated or inconsistent. Long sentences may
+require word-boundary windows. Conservative exact-word admission can miss relevant variants.
+Abbreviations such as `UN` and `United Nations` are not expanded or treated as interchangeable;
+including both forms can prevent full literal subject coverage.
+Lexical admission is coverage, not truth, answerability or freshness verification. Ambiguous questions
 may not trigger automatic acquisition. Outages/rate limits produce local fallback. No infobox
 expansion, semantic retrieval, extra provider, verifier or second generation is introduced.
 

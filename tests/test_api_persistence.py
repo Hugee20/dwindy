@@ -14,6 +14,7 @@ from test_api_http import live_server, wait_for, BlockingBackend
 from test_terminal import FakeBackend
 from dwindy.backend import BackendError, Completion, TextDelta
 from dwindy.config import Config
+from dwindy.identity import runtime_system_prompt
 from dwindy.persistence import StorageError
 from dwindy.server import ApiConfig
 
@@ -37,7 +38,7 @@ class ApiPersistenceTests(unittest.TestCase):
             return db.execute("SELECT user_text,assistant_text FROM turns ORDER BY turn_number").fetchall()
 
     def test_restart_and_expiry_restore_only_retained_window_and_delete_disk_only(self):
-        app = self.app(FakeBackend(limit=20))
+        app = self.app(FakeBackend(limit=20 + len(runtime_system_prompt()) + 1))
         with self.client(app) as client:
             key = client.post("/v1/chat", json={"message": "12345678"}).json()["conversation_id"]
             result = client.post("/v1/chat", json={"message": "abcdefgh", "conversation_id": key})
@@ -47,10 +48,10 @@ class ApiPersistenceTests(unittest.TestCase):
         with self.client(app) as client:
             self.assertTrue(client.get("/v1/health").json()["persistence_enabled"])
             client.post("/v1/chat", json={"message": "again", "conversation_id": key})
-            self.assertEqual([m.content for m in self.backend.requests[-1]], ["abcdefgh", "ok", "again"])
+            self.assertEqual([m.content for m in self.backend.requests[-1] if m.role != "system"], ["abcdefgh", "ok", "again"])
             app.state.dwindy.conversations[key].touched = time.monotonic() - 2000
             client.post("/v1/chat", json={"message": "after expiry", "conversation_id": key})
-            self.assertIn("again", [m.content for m in self.backend.requests[-1]])
+            self.assertIn("again", [m.content for m in self.backend.requests[-1] if m.role != "system"])
         with self.client(self.app()) as client:
             self.assertEqual(client.delete("/v1/conversations/" + key).status_code, 204)
             self.assertEqual(client.post("/v1/chat", json={"message": "gone", "conversation_id": key}).status_code, 404)
@@ -68,7 +69,7 @@ class ApiPersistenceTests(unittest.TestCase):
                 self.assertEqual(len(self.rows()), 1)
                 self.assertEqual([m.content for m in app.state.dwindy.conversations[key].core.snapshot()], ["one", "ok"])
             client.post("/v1/chat", json={"message": "next", "conversation_id": key})
-            self.assertEqual([m.content for m in self.backend.requests[-1]], ["one", "ok", "next"])
+            self.assertEqual([m.content for m in self.backend.requests[-1] if m.role != "system"], ["one", "ok", "next"])
 
     def test_uncertain_write_quarantines_api(self):
         app = self.app()
@@ -149,7 +150,7 @@ class ApiPersistenceTests(unittest.TestCase):
             self.assertEqual(len(self.rows()), 2)
         with self.client(self.app()) as client:
             client.post("/v1/chat", json={"message": "three", "conversation_id": key})
-            self.assertEqual([m.content for m in self.backend.requests[-1]], ["one", "ok", "two", "ok", "three"])
+            self.assertEqual([m.content for m in self.backend.requests[-1] if m.role != "system"], ["one", "ok", "two", "ok", "three"])
 
     def test_disconnect_native_cleanup_does_not_persist_partial_turn(self):
         backend = BlockingBackend()

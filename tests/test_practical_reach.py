@@ -1,5 +1,7 @@
 """Production Reach infrastructure; generated prose is never the acceptance oracle."""
 import os
+import hashlib
+import urllib.parse
 from pathlib import Path
 import threading
 import time
@@ -10,7 +12,7 @@ from dwindy import reach
 from dwindy.backend import GenerationOptions
 from dwindy.core import DwindyCore
 from dwindy.config import Config
-from dwindy.evidence import Evidence, Facts, GUIDANCE
+from dwindy.evidence import Evidence, Facts, GUIDANCE, quoted
 from dwindy.api import create_app
 from dwindy.server import ApiConfig
 from test_api import TestClient
@@ -19,10 +21,108 @@ from test_terminal import FakeBackend
 
 def body():
     return {'query': {'pages': [dict(title='Python', fullurl='https://en.wikipedia.org/wiki/Python',
-                                   extract='Python is a programming language. Python releases are published regularly.')]}}
+                                   extract='Python is a programming language. Python release information is published regularly.')]}}
 
 
 class PracticalReachTests(unittest.TestCase):
+    def test_brazil_incumbent_inherits_exact_article_subject_and_is_supplied(self):
+        answer = ('Luiz Inácio Lula da Silva is the 39th and current president. '
+                  'He was sworn in on 1 January 2023.')
+        lead = ('The president of Brazil is the head of state and government.\n\n'
+                'The Constitution of Brazil sets out the duties of the president.\n\n' + answer)
+        response = {'query': {'pages': [
+            dict(title='President of Brazil', index=0,
+                 fullurl='https://en.wikipedia.org/wiki/President_of_Brazil', extract=lead),
+            dict(title='Vice President of Brazil', index=1,
+                 fullurl='https://en.wikipedia.org/wiki/Vice_President_of_Brazil',
+                 extract='The current vice president of Brazil replaces the president when absent.')]}}
+        question = 'Who is the current president of Brazil?'
+        calls = []
+        d, e, _ = self.decide(question, backend=self.backend(lambda url: calls.append(url) or response))
+        self.assertEqual(len(calls), 1)
+        self.assertEqual(len(d.candidates), 2)
+        self.assertEqual(len(d.admitted), 1)
+        p = e.passages[0]
+        self.assertEqual(p.text, answer)
+        self.assertIn(p.text, lead)
+        self.assertNotIn('brazil', reach.words(p.text))
+        self.assertEqual(p.source.name, 'President of Brazil')
+        self.assertEqual(p.source.content_hash, hashlib.sha256(answer.encode()).hexdigest())
+        self.assertEqual(p.source.chunk_id,
+            hashlib.sha256((p.source.source_path + '\n' + answer + '\n0').encode()).hexdigest()[:32])
+        self.assertEqual(reach.select_entries(reach.parse(response, d.query), d.query), d.admitted)
+        b = FakeBackend(limit=20000)
+        events = list(DwindyCore(b, options=GenerationOptions(max_tokens=5)).chat(question, evidence=e))
+        receipt = d.metadata(events[0].retrieval)
+        self.assertEqual(receipt['admitted_entry_ids'], receipt['supplied_entry_ids'])
+        self.assertEqual(receipt['supplied_entry_ids'], [p.source.chunk_id])
+        self.assertEqual([s['title'] for s in receipt['sources']], ['President of Brazil'])
+        self.assertIn(quoted(answer), b.requests[-1][-1].content)
+
+    def test_qualified_article_is_not_the_exact_subject_even_without_other_results(self):
+        query = 'current president brazil'
+        vice = reach.WebResult('Vice President of Brazil',
+            'https://en.wikipedia.org/wiki/Vice_President_of_Brazil',
+            'The current vice president of Brazil replaces the president.')
+        self.assertFalse(reach.select_entries([vice], query))
+        self.assertFalse(reach.select_entries([reach.WebResult('President of Brazil',
+            'https://en.wikipedia.org/wiki/President_of_Brazil', 'Brazil elects senators.')], query))
+        self.assertEqual(reach._selected_text('Current president one.\n\nCurrent president two.',
+            query, 'President of Brazil'), 'Current president one.')
+
+    def test_full_lead_request_and_late_paragraph_survive_actual_supply(self):
+        answer = 'The current president of the Philippines is Example Person, sworn in on June 30.'
+        lead = ('The president of the Philippines leads the government.\n\n' +
+                'Historical background. ' * 90 + '\n\n' + answer)
+        response = {'query': {'pages': [
+            dict(title='President of the Philippines', index=1,
+                 fullurl='https://en.wikipedia.org/wiki/President_of_the_Philippines', extract=lead),
+            dict(title='List of current senators of the Philippines', index=2,
+                 fullurl='https://en.wikipedia.org/wiki/List_of_current_senators_of_the_Philippines',
+                 extract='The Philippines elects senators to its current Senate.')],
+            'search': [dict(title='President of the Philippines', snippet='Duplicate background snippet.')]}}
+        calls = []
+        decision, evidence, _ = self.decide('Who is the current president of the Philippines?',
+            backend=self.backend(lambda url: calls.append(url) or response))
+        params = urllib.parse.parse_qs(urllib.parse.urlsplit(calls[0]).query)
+        self.assertNotIn('exsentences', params)
+        self.assertNotIn('exchars', params)
+        self.assertEqual(params['exintro'], ['1'])
+        self.assertEqual(params['explaintext'], ['1'])
+        self.assertEqual(len(calls), 1)
+        self.assertEqual(len(decision.candidates), 2)
+        self.assertEqual(len(decision.admitted), 1)
+        passage = evidence.passages[0]
+        self.assertEqual(passage.text, answer)
+        self.assertIn(passage.text, lead)
+        self.assertEqual(passage.source.content_hash, hashlib.sha256(answer.encode()).hexdigest())
+        backend = FakeBackend(limit=20000)
+        core = DwindyCore(backend, options=GenerationOptions(max_tokens=5))
+        events = list(core.chat('Who is the current president of the Philippines?', evidence=evidence))
+        receipt = decision.metadata(events[0].retrieval)
+        self.assertEqual(receipt['supplied_entry_ids'], [passage.source.chunk_id])
+        self.assertEqual(receipt['admitted_entry_ids'], [passage.source.chunk_id])
+        self.assertEqual(receipt['sources'][0]['title'], 'President of the Philippines')
+        self.assertNotIn('senators', str(receipt['sources']))
+        self.assertIn(answer, backend.requests[-1][-1].content)
+
+    def test_window_selection_is_verbatim_bounded_and_stable(self):
+        answer = 'The current president of the Philippines is Example Person.'
+        paragraph = 'Historical background sentence. ' * 100 + answer
+        selected = reach._selected_text(paragraph, 'current president philippines')
+        self.assertLessEqual(len(selected), reach.BOUNDS['max_result_chars'])
+        self.assertIn(selected, paragraph)
+        self.assertIn(answer, selected)
+        self.assertEqual(reach._selected_text('Python current one.\n\nPython current two.', 'current python'),
+                         'Python current one.')
+        self.assertEqual(reach._selected_text('A' * 4000, ''), 'A' * 1600)
+
+    def test_admission_requires_subject_terms_in_text_not_url(self):
+        results = [reach.WebResult('President of the Philippines',
+            'https://en.wikipedia.org/wiki/President_of_the_Philippines', 'The Philippines elects senators.')]
+        self.assertFalse(reach.select_entries(results, 'current president philippines'))
+        self.assertFalse(reach.select_entries(results, 'current'))
+
     def backend(self, transport=None):
         b = reach.WikipediaBackend(transport or (lambda _: body()))
         self.addCleanup(b.close)

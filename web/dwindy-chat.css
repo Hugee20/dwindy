@@ -73,6 +73,6 @@ dialog::backdrop { background: #19251344; }
 :host .persistence label { display: block; margin: .4rem 0; }
 :host .persistence input { width: 100%; box-sizing: border-box; font: inherit; padding: .3rem; }
 :host .persistence button { font: inherit; margin: .2rem; padding: .35rem .5rem; }
-:host .retrieval-setting, :host .retrieval-status, :host .reach-setting, :host .reach-status { flex: 0 0 auto; margin: .2rem 1rem; font-size: .8rem; }
+:host .retrieval-setting, :host .retrieval-status, :host .reach-setting { flex: 0 0 auto; margin: .2rem 1rem; font-size: .8rem; }
 :host .retrieval-setting input, :host .reach-setting input { accent-color: var(--dw-primary); }
-:host .reach-receipt { font-size: .8rem; overflow-wrap: anywhere; }
+:host .reach-receipt { display: block; margin: .75rem 0 0; padding-top: .6rem; border-top: 1px solid #d0d5c2; font-size: .875rem; color: #435130; overflow-wrap: anywhere; }

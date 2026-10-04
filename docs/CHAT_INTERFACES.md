@@ -43,11 +43,14 @@ From a source checkout with the existing optional API dependencies installed:
 
 Open `http://127.0.0.1:8000/chat/`. The server redirects to
 `/dwindy/web/index.html`. The normal API remains unchanged. `--chat-root` must explicitly
-point to a directory containing the `web/` and `assets/` trees; the files are not
+point to a directory containing `web/`, including its four runtime images in `web/assets/`; the files are not
 automatically discovered or bundled into the Python wheel. Hosting is disabled when
 the argument is omitted. No browser is automatically launched.
 
-The page defaults to its own origin as API base. Connection settings allow a different
+The API-hosted page defaults to its own origin as API base. When the self-contained `web/`
+bundle is served independently (for example on port 8080), it defaults to
+`http://127.0.0.1:8000`. The connection is selected before component attachment, avoiding
+an initial request to the static server's API path. Connection settings allow a different
 HTTP(S) base and an optional bearer token. The standalone form uses `chat.connect(base, token)`
 to apply both values before checking the selected API. A changed destination or token detaches
 the previous conversation locally without contacting or deleting from the old connection.
@@ -60,7 +63,7 @@ conversation ID is forwarded to the new connection. A token input is cleared aft
 Browser/password-manager behavior is outside Dwindy's control; Dwindy does not save it.
 
 Static hosting publicly exposes only the six required HTML/JS/CSS files and the four
-used PNGs, plus the entry redirect. GET/HEAD of those exact paths bypasses bearer
+used PNGs (also through the original asset-URL aliases), plus the entry redirect. GET/HEAD of those exact paths bypasses bearer
 authentication so a browser can bootstrap. Host, Origin and exposure policy checks still
 apply. `/v1/*` and `/openapi.json` retain M3 authentication. There is no directory listing,
 repository mount, test-page hosting, arbitrary file route, or config/model-file exposure.
@@ -70,7 +73,7 @@ HTTP(S) connection destinations because the user can explicitly choose an API ba
 
 ## Copy into another web application
 
-Copy the six runtime files from `web/` and the four runtime assets below, preserving
+Copy the six runtime files from `web/` and its four runtime assets below, preserving
 their relative layout. Serve them from the host application's existing static directory:
 
 ```text
@@ -82,11 +85,11 @@ vendor/dwindy/
     api-client.js
     dwindy-chat.js
     dwindy-chat.css
-  assets/
-    branding/dwindy-lockup.png
-    branding/dwindy-wordmark.png
-    chatheads/dwindy-idle.png
-    chatheads/dwindy-working.png
+    assets/
+      branding/dwindy-lockup.png
+      branding/dwindy-wordmark.png
+      chatheads/dwindy-idle.png
+      chatheads/dwindy-working.png
 ```
 
 An embedded-only deployment needs the component JS/CSS, api-client.js, wordmark and
@@ -186,7 +189,10 @@ the header/launcher uses `dwindy-working.png`; completed message avatars return 
 A custom avatar remains the host image rather than acquiring invented expression states.
 Errors and cancellation use text, not emotional mascot inference. Sad, Pout, Shocked,
 Dizzy and Mischievous are not loaded or activated. There are no Reach, tool, document,
-provenance, reasoning-visibility or context-compaction indicators.
+model-inferred provenance, reasoning-visibility or context-compaction indicators. Reach
+has one deterministic receipt below each answer only for meaningful unavailable,
+not-supplied or supplied states. Disabled/not-attempted turns add no receipt. Article
+links represent actual supplied material and do not verify the generated answer.
 
 The original PNGs and PDFs are unchanged. The mark is byte-identical to the idle chathead,
 so clients reuse idle instead of fetching a duplicate image. The standalone header uses
@@ -207,7 +213,8 @@ with missing completion, malformed framing or unexpected events become uncertain
 is cancelled/released when iteration ends. Redirects are rejected and cookies are omitted.
 
 All user/model strings are text nodes, with whitespace preserved. HTML and Markdown remain
-literal text. No generated links, images, code execution, hidden reasoning removal or
+literal text. Qwen3's leading reasoning channel is decoded at the runtime boundary;
+the browser does not strip user or answer text. No generated links, images, code execution or
 automatic retry occurs. Nonempty length-limited answers remain visible with a limit notice.
 Dropped-turn notices describe omitted model context, never summarization/compaction.
 
@@ -229,7 +236,8 @@ Display retention is separate from server context: at most 100 message entries a
 200,000 characters across older displayed turns are kept. One answer displays at most
 65,536 characters with an explicit display-limit note; receipt continues to completion.
 The SSE parser caps buffered input at 1 MiB. These bounds do not change model generation,
-Core history, evaluation output or strip reasoning tags. The composer caps input at 60,000
+Core history or evaluation output. The runtime, rather than the browser, separates the
+supported Qwen3 reasoning channel. The composer caps input at 60,000
 characters; API byte/context limits can still reject a shorter multibyte message.
 
 ## Accessibility and browser security
