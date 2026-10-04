@@ -9,16 +9,15 @@ frontend dependency is needed. There is no browser persistence, account system o
 ## Optional local documents (M6)
 
 When health reports `retrieval_enabled: true`, both presentations expose a small, labeled
-"Use local documents" checkbox. It starts unchecked, is held only in component memory,
-and is disabled during a request. Each enabled request sends `retrieval: true` to the same
-public chat endpoint. An unchecked request keeps the previous request body shape.
+"Use local documents" checkbox. Its state is held only in component memory and it is
+disabled during a request. Checked sends `retrieval: "auto"`; unchecked sends `retrieval: false`.
+It starts checked when health reports `retrieval_default: "auto"`, otherwise unchecked.
 When health also reports a `project_snapshot` (M7), the same checkbox is labeled
 "Use local project context"; its behavior is otherwise identical.
 
-From M8, checked sends `retrieval: "auto"` (the context-selection policy decides) and unchecked
-sends `false`. The box starts checked when health reports `retrieval_default: "auto"`, the
-default whenever an index is configured. The status line reads "Local material checked; none
-used." when local material was searched but not used, and "Local project information was
+With an index, `auto` is the server default unless explicitly configured otherwise; the
+context-selection policy decides whether to supply evidence. The status line reads
+"Local material checked; none used." when local material was searched but not used, and "Local project information was
 unavailable." when retrieval failed. Nothing is shown when no search was attempted. This control
 is transitional and developer-facing: a deployment built as a project assistant should not
 require end users to enable it. See [context selection](CONTEXT_SELECTION.md).
@@ -188,9 +187,10 @@ Idle/completed uses `dwindy-idle.png`. While a chat request is actively processi
 the header/launcher uses `dwindy-working.png`; completed message avatars return to idle.
 A custom avatar remains the host image rather than acquiring invented expression states.
 Errors and cancellation use text, not emotional mascot inference. Sad, Pout, Shocked,
-Dizzy and Mischievous are not loaded or activated. There are no Reach, tool, document,
-model-inferred provenance, reasoning-visibility or context-compaction indicators. Reach
-has one deterministic receipt below each answer only for meaningful unavailable,
+Dizzy and Mischievous are not loaded or activated. There are no tool, model-inferred
+provenance, reasoning-visibility or context-compaction indicators. Local retrieval uses
+the status line described above. Reach has one deterministic receipt below each answer
+only for meaningful unavailable,
 not-supplied or supplied states. Disabled/not-attempted turns add no receipt. Article
 links represent actual supplied material and do not verify the generated answer.
 

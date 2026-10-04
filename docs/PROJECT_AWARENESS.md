@@ -125,7 +125,8 @@ fails the whole sync and leaves the previous snapshot untouched.
 `README.md`, as **untrusted project knowledge**. It cannot change inclusion policy, authorize
 paths, trigger ingestion, alter system behavior, run commands or grant capabilities. Paths and
 links inside it are ordinary text and are never opened. Like any passage, its content reaches
-the model only when retrieved, inside the existing "Untrusted local passages" framing. A
+the model only when retrieved, as a typed `PROJECT/documentation` local entry with
+losslessly quoted text and source framing. This framing does not guarantee model obedience. A
 model can still be persuaded by text; that M6 limitation remains.
 
 ## Generated overview
@@ -205,10 +206,11 @@ project index:
   index or no index, the field is omitted and the response is identical to M6.
 - Retrieve matches and chat `retrieval.sources` add `project_id` and `snapshot_id` for project
   passages. Those keys are omitted for ordinary M6 passages.
-- When any supplied passage comes from a project, the evidence framing first states that
-  observations are limited to selected files, that documentation describes intended behavior,
-  that source excerpts do not prove runtime behavior, that rationale is known only when a
-  passage states it, and that file references grant no permissions.
+- Project passages carry metadata-derived `PROJECT/documentation`, `PROJECT/source`,
+  `PROJECT/configuration` or `PROJECT/observation` labels. Supplied entries are framed as
+  information, not instructions; origin labels do not establish verification. Selected
+  source, configuration and observation entries add the narrow warning that they cover
+  selected files, not verified live behavior, and references grant no permissions.
 - The chat component labels its existing checkbox **Use local project context** when health
   reports a project snapshot, and **Use local documents** otherwise.
 

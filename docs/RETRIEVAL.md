@@ -68,7 +68,9 @@ architectural requirement. Model configuration and generation settings are untou
 .\.venv\Scripts\python.exe -m dwindy.server --config config.local.toml --api-config api.local.toml --chat-root .
 ```
 
-Retrieval works with conversation persistence on or off. Terminal chat stays unchanged.
+Retrieval works with conversation persistence on or off. Terminal chat supports
+`--retrieval-index data/retrieval.sqlite3` and `--retrieval auto/on/off`; its default is
+`auto` when an index is supplied. Terminal chat does not use the API TOML.
 The optional API's existing Host/Origin/bearer/TLS/body-limit protections also cover retrieval.
 All API clients share the configured collection; this is not per-user document authorization.
 
@@ -185,7 +187,9 @@ They omit body/score. `supplied` means one or more passages were supplied, **not
 answer is grounded or correct. `no_match` means no candidates survived lexical search and
 deduplication; `budget_exhausted` means candidates existed but no whole passage fit. Both
 have empty sources and still generate with insufficient-material guidance when that fits.
-Without retrieval opt-in, responses omit retrieval metadata and model input is unchanged.
+With `retrieval: false`, responses omit local retrieval metadata and no local evidence is
+added. An omitted field uses the server default: `auto` with a configured index unless
+`retrieval_default = "off"`; without an index, ordinary chat is the default.
 SSE started metadata is not a successful-generation/durable-commit acknowledgement.
 
 The existing error envelope remains `{"error":{"code":"...","message":"..."}}`.

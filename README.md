@@ -43,6 +43,18 @@ from the Apache-2.0 source license.
 
 ## Windows setup
 
+Get the source with Git:
+
+```powershell
+git clone https://github.com/Hugee20/dwindy.git
+Set-Location dwindy
+```
+
+Alternatively, open [the GitHub repository](https://github.com/Hugee20/dwindy), choose
+**Code → Download ZIP**, extract it, and open PowerShell in the extracted directory
+containing `pyproject.toml`. The complete practical guide is
+[Installation and integration](docs/INSTALLATION_AND_INTEGRATION.md).
+
 For standalone browser chat and API integration, use the same installation below.
 Python 3.11+ is required; the reference platform is Windows x86-64 / Python 3.13.0.
 Python 3.11 and other platforms have not yet been validated. Run these PowerShell
@@ -53,6 +65,7 @@ executables explicitly:
 ```powershell
 py -3.13 -m venv .venv
 .\.venv\Scripts\python.exe -m pip install --only-binary=llama-cpp-python --extra-index-url https://abetlen.github.io/llama-cpp-python/whl/cpu -e '.[api]'
+.\.venv\Scripts\python.exe -m pip check
 Copy-Item config.example.toml config.local.toml
 notepad config.local.toml
 ```
@@ -102,6 +115,14 @@ a native source build if a matching runtime wheel is unavailable. See the
 [official installation documentation](https://llama-cpp-python.readthedocs.io/en/latest/)
 for compiler-based installation alternatives. Dwindy does not install anything at startup.
 Air-gapped setup requires separately prepared dependency wheels and model files.
+
+If pip times out fetching PyPI/build dependencies such as setuptools, retry with a longer
+network timeout; this does not change the installed extras or allow a native runtime build:
+
+```powershell
+.\.venv\Scripts\python.exe -m pip install --timeout 120 --retries 5 --only-binary=llama-cpp-python --extra-index-url https://abetlen.github.io/llama-cpp-python/whl/cpu -e '.[api]'
+.\.venv\Scripts\python.exe -m pip check
+```
 
 ## Supply and run your own model
 
@@ -465,7 +486,10 @@ publicly shipped widget. M4's memory-only client integration is documented below
 | `database_path` | unset (ephemeral); explicit local SQLite file, relative to API TOML |
 | `database_max_mib` | `128`; main database cap, excludes journal/filesystem overhead |
 | `retrieval_index_path` | unset; local M6/M7 index, relative to API TOML |
-| `retrieval_default` | `"auto"` when an index is configured; `"off"` opts out. `"on"` is per request only |
+| `retrieval_context_tokens` | `768`; incremental evidence allowance, including framing, used for local retrieval and Reach |
+| `retrieval_default` | `"auto"` when an index is configured; `"off"` opts out. Forced requests use `retrieval: true` |
+| `reach_provider` | unset (disabled); only `"wikipedia"` is accepted; install `.[api,reach]` |
+| `reach_default` | `"off"`; `"auto"` opts in to freshness/lookup detection. Forced requests use `reach: true` |
 
 Non-loopback startup requires **all** of explicit exposure opt-in, a valid bearer token, and
 a loadable TLS certificate/key. Configure the actual host in `allowed_hosts` too. TLS terminates
