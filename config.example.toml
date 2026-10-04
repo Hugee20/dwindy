@@ -7,7 +7,7 @@ max_tokens = 256
 temperature = 0.7
 seed = 42
 # threads = 4  # Omit to let the runtime choose.
-# Empty by default: some chat templates do not support system messages.
+# Optional additional system text; API/terminal always add transient Dwindy identity context.
 system_prompt = ""
 
 # Optional model-template variables; omitted/empty preserves template defaults.
